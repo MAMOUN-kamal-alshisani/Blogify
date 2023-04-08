@@ -1,0 +1,68 @@
+@import "../../../variables/_variables.scss";
+
+.footer {
+  // height:100ch;
+  // margin-top: 62.5vh;
+  .footer_cn {
+    @include flex(flex, center, nowrap, column);
+
+    background-color: rgb(42, 40, 40);
+    height: 30vh;
+    .first_section {
+      .first_cn {
+        .link_icon {
+          background-color: rgb(42, 40, 40);
+          @include flex(flex, center, nowrap, row);
+          gap: 25px;
+          .links_cn {
+            @include flex(flex, center, nowrap, row);
+            align-items: center;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 25px;
+            min-width: fit-content;
+            min-height: fit-content;
+            // background-color: #9c27b0;
+            font-size: x-large;
+            .link {
+                // color: black;
+                // background-color: red;
+              .navbar_icon {
+           color: black;
+          background-color: #9c27b0;
+          padding: 5px;
+               font-size: xx-large;
+               border-radius: 50%;
+
+               &:hover{
+                color: rgb(49, 45, 45);
+                transform: scale(1.05)
+               }
+              }
+            }
+          }
+        }
+      }
+      .second_cn{
+        @include flex(flex, center, nowrap, row);
+        align-items: center;
+
+        .link{
+padding: 10px;
+text-decoration: none;
+color: white;
+font-size: large;
+        }
+      }
+    }
+
+    .second_section{
+      @include flex(flex, center, nowrap, column);
+      align-items: center;
+margin-top: 20px;
+// background-color: #9c27b0;
+background-color: #673ab7;
+    }
+  }
+}

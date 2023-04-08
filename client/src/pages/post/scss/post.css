@@ -1,0 +1,118 @@
+.Post {
+  margin-top: 25px;
+  margin-bottom: 155px;
+  text-transform: none;
+}
+.Post .Post_cn {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 20px;
+}
+.Post .Post_cn .TextCn1 {
+  width: 50%;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+.Post .Post_cn .TextCn1 .titleContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 1px 0px grey;
+}
+.Post .Post_cn .TextCn1 .titleContainer input {
+  height: 35px;
+  padding: 5px;
+  border: 1px solid rgb(184, 184, 184);
+  outline: transparent;
+  font-size: large;
+}
+.Post .Post_cn .TextCn1 .edithContainer .quill {
+  height: 300px;
+}
+.Post .Post_cn .TextCn1 .edithContainer .quill .ql-toolbar {
+  box-shadow: 0px 0px 1px 0px grey;
+}
+.Post .Post_cn .TextCn1 .edithContainer .quill .ql-container {
+  box-shadow: 0px 0px 1px 0px grey;
+}
+.Post .Post_cn .TextCn2 {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  width: 20%;
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 20px;
+}
+.Post .Post_cn .TextCn2 .categoryContainer {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  background-color: rgba(158, 158, 158, 0.2196078431);
+  box-shadow: 0px 0px 5px 0px grey;
+  padding: 10px;
+  gap: 10px;
+}
+.Post .Post_cn .TextCn2 .categoryContainer .inputContainer label {
+  padding-left: 10px;
+  color: #673ab7;
+}
+.Post .Post_cn .TextCn2 .publishContainer {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  background: rgba(158, 158, 158, 0.2196078431);
+  gap: 10px;
+  box-shadow: 0px 0px 5px 0px grey;
+  padding: 10px;
+}
+.Post .Post_cn .TextCn2 .publishContainer span {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.Post .Post_cn .TextCn2 .publishContainer label {
+  text-decoration: underline;
+  color: gray;
+  cursor: pointer;
+}
+.Post .Post_cn .TextCn2 .publishContainer label:hover {
+  color: black;
+}
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn button:first-child {
+  height: 30px;
+  padding: 5px;
+  box-shadow: 0px 0px 1px 0px grey;
+  color: #673ab7;
+  cursor: pointer;
+}
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn button:first-child:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 1px 0px rgb(183, 182, 182);
+}
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn button:last-child {
+  height: 30px;
+  width: 70px;
+  padding: 5px;
+  background-color: #673ab7;
+  border: transparent;
+  color: white;
+  cursor: pointer;
+}
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn button:last-child:hover {
+  background-color: #794aca;
+}/*# sourceMappingURL=post.css.map */

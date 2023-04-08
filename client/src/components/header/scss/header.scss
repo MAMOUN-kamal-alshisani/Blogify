@@ -1,0 +1,94 @@
+@import "../../../variables/_variables.scss";
+
+.header {
+  padding-top: 5px;
+  height: 7vh;
+  box-shadow: 0px 0px 1px 0px grey;
+  .header_cn {
+    @include flex(flex, space-between, nowrap, row);
+    padding: 5px 10px;
+    .header_links {
+      @include flex(flex, unset, nowrap, row);
+      align-items: $alignItems;
+      gap: 50px;
+      .link {
+        text-decoration: none;
+        font-size: large;
+        padding-bottom: 6px;
+        transition: ease-in-out;
+    color: #3e1c7a;
+
+        &:hover {
+          color: black;
+          // border-bottom: 2px solid grey;
+        }
+      }
+    }
+    .personal_cn {
+      @include flex(flex, space-between, nowrap, row);
+      align-items: center;
+      gap: 50px;
+
+      .dropdown {
+        position: relative;
+
+        .icon {
+          margin-right: 30px;
+          cursor: pointer;
+          font-size: x-large;
+          color: grey;
+          transition: all ease-in-out 1s;
+
+          &:hover {
+            color: black;
+            transform: scale(1.1);
+          }
+        }
+        .dropdown_menu {
+          @include flex(flex, space-between, nowrap, column);
+          position: absolute;
+          right: 5px;
+          background-color: rgb(255, 255, 255);
+          border: 1px solid rgb(219, 213, 213);
+          padding: 5px;
+          .link {
+            padding: 10px;
+            text-decoration: none;
+            &:hover {
+              background-color: rgb(235, 230, 230);
+            }
+          }
+
+          .logout_btn {
+            background-color: transparent;
+            border: transparent;
+            font-size: inherit;
+            padding: 10px;
+            color: #3e1c7a;
+            cursor: pointer;
+            &:hover {
+              background-color: rgb(235, 230, 230);
+            }
+          }
+        }
+      }
+
+      .write_link {
+        .link {
+          text-decoration: none;
+          background-color: #9C27B0;
+
+          color: white;
+          padding: 10px;
+          border-radius: 50%;
+          transition: all ease-in-out 1s;
+          &:hover {
+            // background-color: rgb(93, 91, 91);
+          background-color: #ad26c5;
+
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+.Navbar {
+  height: 10vh;
+  background-color: rgb(42, 40, 40);
+  box-shadow: 0px 0px 2px 0px rgb(213, 213, 213);
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.Navbar .navbar_cn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 5px 10px;
+  align-items: center;
+  width: 100%;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+.Navbar .navbar_cn .siteName_cn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+}
+.Navbar .navbar_cn .siteName_cn h2 {
+  color: #673ab7;
+}
+.Navbar .navbar_cn .siteName_cn .nav_text {
+  color: grey;
+  font-size: small;
+}
+.Navbar .navbar_cn .siteName_cn .nav_text .tags {
+  text-decoration: none;
+  color: grey;
+  transition: all ease-in-out 1s;
+}
+.Navbar .navbar_cn .siteName_cn .nav_text .tags:hover {
+  color: white;
+}
+.Navbar .navbar_cn .log_links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.Navbar .navbar_cn .log_links .search_Input .input {
+  height: 29px;
+  width: 200px;
+  background-color: #e1e1e1;
+  border: 1px solid #673ab7;
+}
+.Navbar .navbar_cn .log_links .search_Input .search_btn {
+  height: 29px;
+  background-color: #673ab7;
+  color: white;
+  padding: 0px 5px;
+  cursor: pointer;
+}
+.Navbar .navbar_cn .log_links .search_Input .search_btn:hover {
+  background-color: #7541ce;
+}
+.Navbar .navbar_cn .log_links .link_icon {
+  margin-right: 20px;
+}
+.Navbar .navbar_cn .log_links .link_icon .navbar_icon {
+  font-size: x-large;
+  margin-left: 15px;
+  color: #673ab7;
+  padding-top: 3px;
+}
+.Navbar .navbar_cn .log_links .link_icon .navbar_icon:hover {
+  color: #8c5dde;
+}
+.Navbar .navbar_cn .log_links .link {
+  text-decoration: none;
+  font-size: large;
+  color: #673ab7;
+  transition: all ease-in-out 1s;
+}
+.Navbar .navbar_cn .log_links .link:hover {
+  color: black;
+  transform: scale(1.1);
+}/*# sourceMappingURL=navbar.css.map */

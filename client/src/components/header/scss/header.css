@@ -1,0 +1,92 @@
+.header {
+  padding-top: 5px;
+  height: 7vh;
+  box-shadow: 0px 0px 1px 0px grey;
+}
+.header .header_cn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 5px 10px;
+}
+.header .header_cn .header_links {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+.header .header_cn .header_links .link {
+  text-decoration: none;
+  font-size: large;
+  padding-bottom: 6px;
+  transition: ease-in-out;
+  color: #3e1c7a;
+}
+.header .header_cn .header_links .link:hover {
+  color: black;
+}
+.header .header_cn .personal_cn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+.header .header_cn .personal_cn .dropdown {
+  position: relative;
+}
+.header .header_cn .personal_cn .dropdown .icon {
+  margin-right: 30px;
+  cursor: pointer;
+  font-size: x-large;
+  color: grey;
+  transition: all ease-in-out 1s;
+}
+.header .header_cn .personal_cn .dropdown .icon:hover {
+  color: black;
+  transform: scale(1.1);
+}
+.header .header_cn .personal_cn .dropdown .dropdown_menu {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  position: absolute;
+  right: 5px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(219, 213, 213);
+  padding: 5px;
+}
+.header .header_cn .personal_cn .dropdown .dropdown_menu .link {
+  padding: 10px;
+  text-decoration: none;
+}
+.header .header_cn .personal_cn .dropdown .dropdown_menu .link:hover {
+  background-color: rgb(235, 230, 230);
+}
+.header .header_cn .personal_cn .dropdown .dropdown_menu .logout_btn {
+  background-color: transparent;
+  border: transparent;
+  font-size: inherit;
+  padding: 10px;
+  color: #3e1c7a;
+  cursor: pointer;
+}
+.header .header_cn .personal_cn .dropdown .dropdown_menu .logout_btn:hover {
+  background-color: rgb(235, 230, 230);
+}
+.header .header_cn .personal_cn .write_link .link {
+  text-decoration: none;
+  background-color: #9C27B0;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all ease-in-out 1s;
+}
+.header .header_cn .personal_cn .write_link .link:hover {
+  background-color: #ad26c5;
+}/*# sourceMappingURL=header.css.map */

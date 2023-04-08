@@ -1,0 +1,132 @@
+@import "../../../variables/_variables.scss";
+
+.blogs {
+  @include flex(flex, unset, nowrap, column);
+  margin: 40px 0px;
+  .blogs_cn {
+    @include flex(flex, unset, nowrap, column);
+    // width: 100%;
+    .toolbar_section {
+      @include flex(flex, space-between, nowrap, row);
+      align-items: center;
+      border-radius: 6px;
+      width: 1005px;
+      margin-left: 160px;
+      // gap: 20px;
+      box-shadow: 0px 0px 1px 0px grey;
+      border-bottom: 2px solid #9c27b0;
+      // border-bottom: 2px solid blueviolet;
+      .toolbar_category {
+        // padding: 10px 0px;
+        @include flex(flex, space-between, nowrap, row);
+        align-items: center;
+        height: 40px;
+        .titleContainer {
+          @include flex(flex, unset, nowrap, row);
+          align-items: center;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+
+          color: white;
+          background-color: #9c27b0;
+          padding: inherit;
+          padding-left: 50px;
+          padding-right: 50px;
+          height: inherit;
+          .title {
+            // padding-left: 50px;
+            // padding-right: 50px
+            // color: white;
+            // background-color: blueviolet;
+            // padding: inherit;
+            // padding-left: 50px;
+            // padding-right: 50px;
+            // // width: 200px;
+            // border-bottom: 2px solid blueviolet;
+          }
+        }
+
+        // .category {
+        //   margin-left: 20px;
+        // }
+
+        .categoryBtnContainer {
+          @include flex(flex, unset, nowrap, row);
+          padding-left: 10px;
+          gap: 20px;
+          width: 100%;
+          .categoryBtn {
+            background-color: transparent;
+            border: transparent;
+            font-size: medium;
+            cursor: pointer;
+
+            &:hover {
+              color: royalblue;
+            }
+          }
+        }
+      }
+      .toolbar_filter {
+        span {
+          padding-right: 20px;
+        }
+      }
+    }
+
+    .cards_section {
+      @include flex(flex, unset, nowrap, row);
+      max-width: 1024px;
+      margin-left: 150px;
+      margin-top: 20px;
+
+      .card_container {
+        @include flex(flex, space-evenly, wrap, row);
+        gap: 5px;
+        // margin-left: 140px;
+        .card_div {
+          .card {
+            width: 300px;
+            // height: 300px;
+            @include flex(flex, space-between, nowrap, column);
+
+            .card_img {
+              height: 250px;
+            }
+            .card-body {
+              @include flex(flex, space-between, nowrap, column);
+              gap: 10px;
+              .card-title {
+                @include flex(flex, space-between, nowrap, row);
+                padding: 5px;
+                p {
+                  @include flex(flex, space-between, nowrap, row);
+                  gap: 5px;
+                  color: grey;
+                  font-size: small;
+                  align-items: center;
+                }
+              }
+
+              .card-text {
+                font-family: Arial, Helvetica, sans-serif;
+                color: grey;
+                // padding:5px;
+                .cardBtn {
+                  background-color: transparent;
+                  border: transparent;
+                  cursor: pointer;
+                  padding-left: 10px;
+
+                  &:hover {
+                    color: #9c27b0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

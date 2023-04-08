@@ -1,0 +1,35 @@
+$primary_bg_clr: rgb(0 69 121);
+$primary_bg_clr2: #2b7db3;
+$primary_bg_clr3: #f2f2f2;
+$primary_clr: white;
+$primary_clr2: #ccc;
+$primary_clr3: crimson;
+$primary_clr14: #893948;
+$primary_clr4: grey;
+$primary_clr5: #e0d40cfa;
+$primary_clr6:#b9b00bfa;
+$primary_clr7:gainsboro;
+$primary_clr8:#849095;
+$primary_clr9:#25af04;
+$primary_clr10:black;
+$primary_clr11:#111111c9;
+$primary_clr12:royalblue;
+$primary_clr13:#111111c9;
+$fontweight:bold;
+$cursor:pointer;
+$border:transparent;
+$captext:capitalize;
+$textspace:1px;
+$textshadow:1px 4px 6px $primary_clr4;
+$border-radius:6px;
+$relative:relative;
+$absolute:absolute;
+$alignItems:center;
+$objfit: cover;
+// $fontfam:
+@mixin flex($display,$jstcontent,$flexwarp,$flexdirection) {
+    display: $display;
+    justify-content:$jstcontent ;
+    flex-wrap: $flexwarp;
+    flex-direction: $flexdirection;
+}

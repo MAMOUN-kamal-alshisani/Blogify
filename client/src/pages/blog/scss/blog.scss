@@ -1,0 +1,102 @@
+@import "../../../variables/_variables.scss";
+
+.SBlog {
+  @include flex(flex, unset, nowrap, column);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  .blog_cn {
+    @include flex(flex, unset, nowrap, column);
+    align-items: center;
+    .personalBlog {
+      @include flex(flex, unset, nowrap, row);
+      gap: 20px;
+      width: 85%;
+      // min-width: 500px;
+      .mainBlog {
+        width: fit-content;
+        .card_article {
+          //   width: 200px;
+          // width: 300px;
+          width: 800px;
+
+          .mainBlogImg {
+            width: 100%;
+            // min-width: 500px;
+            // max-width: 95%;
+            // max-height: 600px;
+            max-height: 400px;
+            object-fit: fill
+          }
+        }
+      }
+
+      .sideBlog_cr {
+        @include flex(flex, unset, nowrap, column);
+        gap: 20px;
+        width: 350px;
+        height: 600px;
+        overflow: hidden;
+
+        &:hover{
+          overflow: auto;
+          // overflow:
+        }
+      
+        .sideBlogCards {
+          .sideBlogImg {
+          }
+          .allBlogs_title {
+          }
+
+          .desc_div {
+          }
+        }
+      }
+    }
+  }
+
+  .allBlogs {
+    // @include flex(flex, unset, wrap, row);
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    width: 85%;
+    // box-shadow: 0px 0px 1px 0px grey;
+    .allBlogs_cn {
+      @include flex(flex, space-between, nowrap, row);
+      align-items: center;
+      box-shadow: 0px 0px 1px 0px grey;
+      padding: 5px;
+      .card_div {
+        width: 300px;
+        height: 400px;
+
+
+        .footer_side_photo{
+          width: inherit;
+          height: 250px;
+          border-radius: 4px;
+          // width: 250px;
+
+          // object-fit:contain;
+        }
+      }
+
+      .blogs_cards_btn {
+        background-color: transparent;
+        border: transparent;
+        width: 30px;
+        height: 35px;
+        font-size: x-large;
+        color: rgb(108, 101, 101);
+        cursor: pointer;
+        border-radius: 50%;
+        text-align: center;
+
+        &:hover {
+          background-color: rgba(20, 18, 18, 0.175);
+        }
+      }
+    }
+  }
+}
