@@ -1,0 +1,30 @@
+.pages__section {
+  margin-top: 30px;
+  width: 1024px;
+}
+.pages__section .pagination_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+}
+.pages__section .pagination_container .pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 10px;
+}
+.pages__section .pagination_container .pagination .page-item {
+  list-style: none;
+  background-color: white;
+  border: 1px solid rgb(189, 189, 189);
+  color: blueviolet;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.pages__section .pagination_container .pagination .page-item:hover {
+  background-color: rgb(240, 240, 240);
+}/*# sourceMappingURL=pagination.css.map */

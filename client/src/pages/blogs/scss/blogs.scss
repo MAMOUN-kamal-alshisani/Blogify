@@ -1,0 +1,235 @@
+@import "../../../variables/_variables.scss";
+
+.blogs {
+  @include flex(flex, unset, nowrap, column);
+  padding: 40px 0px;
+  background-color: #f1f1f1;
+  .blogs_cn {
+    @include flex(flex, unset, nowrap, column);
+    align-items: center;
+    .toolbar_section {
+      @include flex(flex, space-between, wrap, row);
+      align-items: center;
+      border-radius: 6px;
+      // width: 950px;
+      width: 75%;
+      min-width: fit-content;
+      // word-break:;
+      box-shadow: 0px 0px 1px 0px grey;
+      border-bottom: 2px solid #9c27b0;
+      background: white;
+      .toolbar_category {
+        @include flex(flex, space-between, nowrap, row);
+        align-items: center;
+        height: 40px;
+        font-weight: 300;
+padding-right: 50px;
+        .titleContainer {
+          @include flex(flex, unset, nowrap, row);
+          align-items: center;
+          background-color: #9c27b0;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+          // padding-left: 50px;
+          // padding-right: 50px;
+          height: inherit;
+          .title {
+            color: white;
+            // font-family: cursive;
+            padding-left: 30px;
+            padding-right: 30px;
+            // padding-left: 50px;
+            // padding-right: 50px
+            // color: white;
+            // background-color: blueviolet;
+            // padding: inherit;
+            // padding-left: 50px;
+            // padding-right: 50px;
+            // // width: 200px;
+            // border-bottom: 2px solid blueviolet;
+          }
+        }
+
+        // .category {
+        //   margin-left: 20px;
+        // }
+
+        .categoryBtnContainer {
+          @include flex(flex, unset, nowrap, row);
+          padding-left: 10px;
+          gap: 20px;
+          width: 100%;
+          .categoryBtn {
+            background-color: transparent;
+            border: transparent;
+            // font-family: Arial, Helvetica, sans-serif;
+            color: #080808b5;
+            font-size: medium;
+            cursor: pointer;
+            &:hover {
+              color: royalblue;
+            }
+          }
+        }
+      }
+      .toolbar_filter {
+        position: relative;
+        .filterBtn {
+          @include flex(flex, unset, nowrap, row);
+          align-items: center;
+          margin-right: 20px;
+          border: transparent;
+          background: transparent;
+          cursor: pointer;
+          width: 100%;
+          // font-family: Arial, Helvetica, sans-serif;
+          font-size: medium;
+          color: rgba(8, 8, 8, 0.7098039216);
+
+          &:hover {
+            color: black;
+          }
+        }
+        .filter_option_cr {
+          @include flex(flex, unset, nowrap, column);
+          // gap: 20px;
+          position: absolute;
+          top: 25px;
+          z-index: 110;
+          background-color: white;
+          border: 1px solid #e0e0e0;
+
+          .filterBtn_cr {
+            width: 100%;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            &:hover {
+              background-color: #efeded;
+            }
+
+            .optionBtn {
+            }
+          }
+        }
+      }
+    }
+
+    .cards_section {
+      @include flex(flex, center, nowrap, row);
+      max-width: 1024px;
+      margin-top: 40px;
+      .card_container {
+        @include flex(flex, space-evenly, wrap, row);
+        gap: 60px;
+        .card_div {
+          box-shadow: 0px 0px 5px 0px grey;
+          border-radius: 15px;
+          background-color: white;
+          position: relative;
+          transition: all ease-in-out 1s;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(247, 248, 248);
+          }
+          .card {
+            @include flex(flex, space-between, nowrap, column);
+            width: 350px;
+            transition: all ease-out 1s;
+            &:hover .card-body {
+              position: unset;
+              color: black;
+              .category_title {
+                p {
+                }
+              }
+            }
+            &:hover .card_img {
+              height: 250px;
+              filter: brightness(100%);
+            }
+            .card_img {
+              height: 450px;
+              border-top-right-radius: 15px;
+              border-top-left-radius: 15px;
+              filter: brightness(90%);
+              object-fit: fill;
+              // transition: all ease-out 1s;
+
+            }
+            .card-body {
+              @include flex(flex, space-between, nowrap, column);
+              color: white;
+              gap: 10px;
+              padding: 10px;
+              overflow: auto;
+              margin-bottom: 25px;
+              position: absolute;
+              bottom: 0;
+              transition: all linear 1s;
+              .category_title {
+                p {
+                  background-color: #040303;
+                  border: 1px solid rgb(193, 9, 230);
+                  width: fit-content;
+                  padding: 5px 15px;
+                  border-radius: 6px;
+                  color: white;
+                }
+              }
+              .card-text {
+                // font-family: Arial, Helvetica, sans-serif;
+                // font-family: cursive;
+                // color: grey;
+                font-weight: bold;
+                padding: 5px;
+                line-height: 25px;
+                height: 100px;
+                overflow: auto;
+                .cardBtn {
+                  background-color: transparent;
+                  border: transparent;
+                  cursor: pointer;
+                  padding-left: 10px;
+                  color: grey;
+                  &:hover {
+                    color: #9c27b0;
+                  }
+                }
+              }
+            }
+            .card-footer {
+              padding: 10px;
+              @include flex(flex, space-between, nowrap, row);
+              width: 100%;
+              position: absolute;
+              bottom: 0;
+              .card-title {
+                @include flex(flex, space-between, nowrap, row);
+                padding: 5px;
+                // border-bottom: 1px solid #e0e0e0;
+                // border-top: 1px solid #e0e0e0;
+                width: 100%;
+
+                p {
+                  @include flex(flex, space-between, nowrap, row);
+                  gap: 5px;
+                  color: grey;
+                  font-size: small;
+                  align-items: center;
+                }
+              }
+              .card-text {
+                @include flex(flex, flex-end, nowrap, row);
+                gap: 5px;
+                color: grey;
+                padding: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

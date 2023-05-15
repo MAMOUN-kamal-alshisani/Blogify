@@ -1,0 +1,200 @@
+.signup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+.signup .signup_cn {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+}
+.signup .signup_cn .signup_innerCn {
+  align-items: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 75vw;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+.signup .signup_cn .signup_innerCn .signup_header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+}
+.signup .signup_cn .signup_innerCn .signup_header h1 {
+  color: #ffffff;
+}
+.signup .signup_cn .signup_innerCn .signup_header .link_cn .link {
+  color: white;
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  gap: 5px;
+  transition: all ease-in-out 1s;
+}
+.signup .signup_cn .signup_innerCn .signup_header .link_cn .link:hover {
+  transform: scale(1.01);
+}
+.signup .signup_cn .signup_innerCn .form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+.signup .signup_cn .signup_innerCn .form .form_header {
+  padding-bottom: 60px;
+  padding-top: 25px;
+}
+.signup .signup_cn .signup_innerCn .form .form_header h1 {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 4rem;
+  color: #9c27b0;
+}
+.signup .signup_cn .signup_innerCn .form .form_header p {
+  color: whitesmoke;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn input {
+  width: 350px;
+  height: 35px;
+  padding: 5px;
+  border: transparent;
+  border-bottom: 1px solid #9e9e9e;
+  background-color: inherit;
+  font-size: large;
+  color: white;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn input::-moz-selection {
+  outline: transparent;
+  background-color: #6a7886;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn input::selection {
+  outline: transparent;
+  background-color: #6a7886;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn input:focus {
+  outline: transparent;
+  border-bottom: 1px solid #9c27b0;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 0.602) inset; /* Change the color to your own background color */
+  -webkit-text-fill-color: red;
+  background-color: #3d95ec;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn .icon {
+  position: absolute;
+  right: 0;
+  top: 7px;
+  font-size: large;
+  color: grey;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn .visible_icon {
+  cursor: pointer;
+}
+.signup .signup_cn .signup_innerCn .form .input_cn .visible_icon:hover {
+  color: rgb(252, 246, 246);
+}
+.signup .signup_cn .signup_innerCn .form .input_cn .err {
+  font-size: small;
+  color: red;
+}
+.signup .signup_cn .signup_innerCn .form .sign_btn_cn {
+  padding-top: 10px;
+}
+.signup .signup_cn .signup_innerCn .form .sign_btn_cn .signup_btn {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  width: 120px;
+  height: 40px;
+  background-color: #9c27b0;
+  color: white;
+  border: transparent;
+  font-size: medium;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 1px grey;
+}
+.signup .signup_cn .signup_innerCn .form .sign_btn_cn .signup_btn:hover {
+  background-color: #b52dcd;
+}
+.signup .signup_cn .signup_innerCn .form .sign_btn_cn .signup_btn:disabled {
+  background-color: #4d0f58;
+}
+.signup .signup_cn .signup_innerCn .form .sign_btn_cn .signup_btn .spinnerIcon {
+  animation: spin 5s;
+  font-size: medium;
+}
+@keyframes spin {
+  0% {
+    rotate: 0;
+  }
+  25% {
+    rotate: 90deg;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  90% {
+    rotate: 360deg;
+  }
+  100% {
+    display: none;
+  }
+}
+.signup .signup_cn .signup_innerCn .signup_footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.signup .signup_cn .signup_innerCn .signup_footer .link {
+  color: #9e9e9e;
+  font-size: larger;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all ease-in-out 1s;
+}
+.signup .signup_cn .signup_innerCn .signup_footer .link:hover {
+  color: white;
+  transform: scale(1.05);
+}
+.signup .signup_cn .signup_innerCn .signup_footer p {
+  color: white;
+  font-size: large;
+}/*# sourceMappingURL=signup.css.map */

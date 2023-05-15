@@ -1,0 +1,79 @@
+@import "../../../variables/_variables.scss";
+.profile {
+  //   background: linear-gradient(#e66465, #9198e5);
+  background-color: #f1f1f1;
+  .profile_cn {
+    @include flex(flex, unset, nowrap, row);
+  padding: 40px 0px;
+    width: 1224px;
+    gap: 30px;
+    padding-left: 40px;
+    // background: linear-gradient(#e66465, #9198e5);
+    .profile_pic_section {
+      @include flex(flex, unset, nowrap, column);
+      align-items: center;
+      width: 50%;
+      padding-top: 40px;
+        border-right: 2px solid rgb(233, 230, 230);
+// background-color: #dedddd78;
+background-color: white;
+.pic_div{
+
+.userImg{
+
+}
+  .user_info_div{
+
+
+  }
+
+  .userImgBtn{
+    background: #673AB7;
+    padding: 5px;
+    border: transparent;
+    border-radius: 2px;
+    color: white;
+  }
+}
+        // button{
+     
+        // }
+      .user_info_div{
+        padding:5px 0px;
+        text-align: center
+      }
+    }
+    .profile_info_section {
+      @include flex(flex, unset, nowrap, column);
+      gap: 20px;
+      width: 50%;
+      background: #dedddd78;
+      padding: 5px;
+      .formInput {
+        @include flex(flex, unset, nowrap, column);
+        padding: 5px 0px;
+        label {
+          padding: 5px 0px;
+        }
+        input,
+        select {
+          height: 30px;
+          border: 1px solid #dddbdb;
+    background: #f1f1f1;
+
+    &:focus{
+        background-color: white;
+        // outline: 1px solid #673ab7;
+        outline: transparent;
+    }
+        }
+      }
+      button{
+        background: #9C27B0;
+        border: transparent;
+        height: 30px;
+        width: 100px;
+      }
+    }
+  }
+}

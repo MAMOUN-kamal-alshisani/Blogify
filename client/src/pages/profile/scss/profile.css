@@ -1,0 +1,72 @@
+.profile {
+  background-color: #f1f1f1;
+}
+.profile .profile_cn {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 40px 0px;
+  width: 1224px;
+  gap: 30px;
+  padding-left: 40px;
+}
+.profile .profile_cn .profile_pic_section {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding-top: 40px;
+  border-right: 2px solid rgb(233, 230, 230);
+  background-color: white;
+}
+.profile .profile_cn .profile_pic_section .pic_div .userImgBtn {
+  background: #673AB7;
+  padding: 5px;
+  border: transparent;
+  border-radius: 2px;
+  color: white;
+}
+.profile .profile_cn .profile_pic_section .user_info_div {
+  padding: 5px 0px;
+  text-align: center;
+}
+.profile .profile_cn .profile_info_section {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+  background: rgba(222, 221, 221, 0.4705882353);
+  padding: 5px;
+}
+.profile .profile_cn .profile_info_section .formInput {
+  display: flex;
+  justify-content: unset;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  padding: 5px 0px;
+}
+.profile .profile_cn .profile_info_section .formInput label {
+  padding: 5px 0px;
+}
+.profile .profile_cn .profile_info_section .formInput input,
+.profile .profile_cn .profile_info_section .formInput select {
+  height: 30px;
+  border: 1px solid #dddbdb;
+  background: #f1f1f1;
+}
+.profile .profile_cn .profile_info_section .formInput input:focus,
+.profile .profile_cn .profile_info_section .formInput select:focus {
+  background-color: white;
+  outline: transparent;
+}
+.profile .profile_cn .profile_info_section button {
+  background: #9C27B0;
+  border: transparent;
+  height: 30px;
+  width: 100px;
+}/*# sourceMappingURL=profile.css.map */
