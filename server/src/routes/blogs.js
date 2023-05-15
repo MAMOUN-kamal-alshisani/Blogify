@@ -7,8 +7,10 @@ import {
   deleteBlog,
   getUserBlogs,
   getBlogsByLatest,
-  getAdminBlog
-  ,getUserBlogsbyID
+  getAdminBlog,
+  getUserBlogsbyID,
+  getBlogsByRecent,
+  getCategoryCount
 } from "../controllers/blogs.js";
 // import { verifyToken,verifyAdmin } from '../middleware/auth.js'
 
@@ -17,8 +19,12 @@ export const blogsRoute = express.Router();
 blogsRoute.get("/api/blog", getAllBlogs);
 blogsRoute.get("/api/blog/user/:UserId", getUserBlogs);
 blogsRoute.get("/api/blogs/user/:id", getUserBlogsbyID);
+blogsRoute.get("/api/blogs/count", getCategoryCount);
+
 
 blogsRoute.get("/api/blog/latest", getBlogsByLatest);
+blogsRoute.get("/api/blog/recent", getBlogsByRecent);
+
 blogsRoute.get("/api/blog/admin", getAdminBlog);
 
 

@@ -23,7 +23,6 @@ const RequireAuth =({children})=>{
     // const [currentUser,setCurrentUser] = useState(JSON.parse(localStorage.getItem('user') || null))
     // const token = useSelector(selectCurrentToken)
     const [cookies,setCookies] = useCookies('user')
-
 const location = useLocation()
 
     return(

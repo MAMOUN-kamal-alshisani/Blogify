@@ -1,10 +1,10 @@
-import { Op } from "sequelize";
+import { Op, Sequelize } from "sequelize";
 import { Blogs } from "../models/blogs.js";
 import { User } from "../models/user.js";
 
-
 export const getAllBlogs = async (req, res) => {
   try {
+    
     const blogs = await Blogs.findAll({});
     res.status(200).send(blogs);
   } catch (err) {
@@ -12,12 +12,30 @@ export const getAllBlogs = async (req, res) => {
   }
 };
 
+export const getCategoryCount = async (req, res) => {
+  try {
+    
+    const blogs=await Blogs.sequelize.query('SELECT Blogs.category, COUNT(*) AS Count FROM Blogs GROUP BY Blogs.category')
+
+    res.status(200).send(blogs);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+
+
+
+// SELECT Blogs.category, 
+//        COUNT(*) AS Count 
+// FROM   Blogs 
+// GROUP  BY Blogs.category 
 export const getUserBlogsbyID = async (req, res) => {
   try {
     const Id = req.params.id;
     // const UserId = req.params.UserId;
 
-    const blog = await Blogs.findOne({ where: { id:Id } });
+    const blog = await Blogs.findOne({ where: { id: Id } });
     if (!blog)
       return res.status(404).send("no blog with specified (id) is found! ");
     const blogs = await Blogs.findAll({ where: { UserId: blog.UserId } });
@@ -40,24 +58,47 @@ export const getUserBlogs = async (req, res) => {
   }
 };
 
-
 export const getBlogsByLatest = async (req, res) => {
   try {
+    const adminUser = await User.findOne({ where: { UserName: "Admin" } });
+    if (!adminUser) return res.status(404).send("admin is not found");
 
-const adminUser = await User.findOne({where:{UserName:'Admin'}})
-if(!adminUser)return res.status(404).send('admin is not found')
     const blogs = await Blogs.findAll({
       raw: true,
       order: [["createdAt", "DESC"]],
       limit: 5,
-      where:{UserId:{[Op.ne]:adminUser.id}}
+      where: { UserId: { [Op.ne]: adminUser.id } },
     });
+    const users = await User.findAll({  attributes: { exclude: ['Password'] }});
+    //  const { Password, ...details } = users.toJSON();
 
-    res.status(200).send(blogs);
+    // console.log(details);
+    res.status(200).json({ blogs, users });
   } catch (err) {
     res.status(500).send(err);
   }
 };
+
+export const getBlogsByRecent = async(req,res)=>{
+  try {
+    const adminUser = await User.findOne({ where: { UserName: "Admin" } });
+    if (!adminUser) return res.status(404).send("admin is not found");
+
+    const blogs = await Blogs.findAll({
+      raw: true,
+      order: [["createdAt", "DESC"]],
+      // where: { UserId: { [Op.ne]: adminUser.id } },
+    });
+    // const users = await User.findAll({  attributes: { exclude: ['Password'] }});
+    //  const { Password, ...details } = users.toJSON();
+
+    // console.log(details);
+    res.status(200).send( blogs );
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
 
 
 export const getBlog = async (req, res) => {
@@ -72,7 +113,7 @@ export const getBlog = async (req, res) => {
 
 export const getAdminBlog = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { UserName: "admin" } });
+    const user = await User.findOne({ where: { UserName: "admin" }});
     if (!user) return res.status(404).send("admin account not found!");
     const blogs = await Blogs.findAll({ where: { UserId: user.id } });
     res.status(200).send(blogs);

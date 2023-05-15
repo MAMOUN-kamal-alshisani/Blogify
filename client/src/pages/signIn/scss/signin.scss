@@ -131,6 +131,9 @@
           margin-top: 45px;
 
           .signin_btn {
+            @include flex(flex, center, nowrap, row);
+            align-items: center;
+            gap: 4px;
             width: 120px;
             height: 40px;
             background-color: #9c27b0;

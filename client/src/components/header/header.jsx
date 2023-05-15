@@ -13,14 +13,14 @@ export default function Header() {
   // const [user, setUser] = useState(
   //   JSON.parse(localStorage.getItem("user") || null)
   // );
-  const cookies = new Cookies()
+  const cookies = new Cookies();
   const [toggle, setToggle] = useState(false);
   // const [cookies,setCookies,removeCookies] = useCookies('user')
   const logout = async () => {
     const url = `http://localhost:4000/api/signout`;
     const res = await axios.post(url);
-    if (cookies.get('user')) {
-      return cookies.remove('user')
+    if (cookies.get("user")) {
+      return cookies.remove("user");
     }
   };
 
@@ -42,6 +42,15 @@ export default function Header() {
             Blogs
           </Link>
         </div>
+        <div className="categoryList">
+          <ul>
+            <li>Travel</li>
+            <li>Technology</li>
+            <li>Food</li>
+            <li>Science</li>
+            <li>Design</li>
+          </ul>
+        </div>
         <div className="personal_cn">
           <div className="write_link">
             <Link to={"/post"} className="link">
@@ -55,21 +64,27 @@ export default function Header() {
             />
             {toggle && (
               <div className="dropdown_menu">
-                {cookies.get('user') ? (
-                  <button onClick={mutate} className="logout_btn">
-                    Logout
-                  </button>
-                ) : (
-                  <Link to={"/signin"} className="link">
-                    Login
+                <div className="dropdown_item">
+                  {cookies.get("user") ? (
+                    <button onClick={mutate} className="logout_btn">
+                      Logout
+                    </button>
+                  ) : (
+                    <Link to={"/signin"} className="link">
+                      Login
+                    </Link>
+                  )}
+                </div>
+                <div className="dropdown_item">
+                  <Link to={"/signup"} className="link">
+                    Register
                   </Link>
-                )}
-                <Link to={"/signup"} className="link">
-                  Register
-                </Link>
-                <Link to={"/profile"} className="link">
-                  Profile
-                </Link>
+                </div>
+                <div className="dropdown_item">
+                  <Link to={"/profile"} className="link">
+                    Profile
+                  </Link>
+                </div>
               </div>
             )}
           </div>

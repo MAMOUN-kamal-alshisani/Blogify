@@ -8,7 +8,7 @@ import Blogs from "./pages/blogs/blogs";
 import Profile from "./pages/profile/profile";
 import axios from "axios";
 import RequireAuth from "./components/requireAuth/requireAuth";
-import SBlog from "./pages/blog/blog";
+import Blog from "./pages/blog/blog";
 axios.defaults.withCredentials = true;
 // { path: "/post",  element:<RequireAuth/>,   children: <Post /> },
 
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         path: "/blogs/:id",
         element: (
           <RequireAuth>
-            <SBlog />
+            <Blog />
           </RequireAuth>
         ),
       },

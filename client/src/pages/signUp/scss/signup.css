@@ -51,7 +51,7 @@
   transition: all ease-in-out 1s;
 }
 .signup .signup_cn .signup_innerCn .signup_header .link_cn .link:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 .signup .signup_cn .signup_innerCn .form {
   display: flex;
@@ -132,6 +132,12 @@
   padding-top: 10px;
 }
 .signup .signup_cn .signup_innerCn .form .sign_btn_cn .signup_btn {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
   width: 120px;
   height: 40px;
   background-color: #9c27b0;
@@ -149,6 +155,7 @@
 }
 .signup .signup_cn .signup_innerCn .form .sign_btn_cn .signup_btn .spinnerIcon {
   animation: spin 5s;
+  font-size: medium;
 }
 @keyframes spin {
   0% {

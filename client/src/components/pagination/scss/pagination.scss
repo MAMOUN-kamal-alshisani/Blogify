@@ -1,0 +1,40 @@
+@import "../../../variables/_variables.scss";
+//   @include flex(flex, unset, nowrap, column);
+
+
+.pages__section{
+    margin-top: 30px;
+    width: 1024px;
+    .pagination_container{
+        @include flex(flex, center, nowrap, row);
+        width: 100%;
+        .pagination{
+            @include flex(flex, center, nowrap, row);
+    gap: 10px;
+            .page-item{
+                list-style: none;
+                // background-color: rgb(237 237 237);
+                background-color: white;
+                
+            border: 1px solid rgb(189, 189, 189);
+            color: blueviolet;
+                padding: 3px 6px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                &:hover{
+                    // background-color: rgb(243, 238, 238);
+                    background-color: rgb(240, 240, 240);
+
+                }
+            }
+    
+            .pageLink{
+    
+            }
+        }
+    }
+    .pageLink{
+    
+    }
+}

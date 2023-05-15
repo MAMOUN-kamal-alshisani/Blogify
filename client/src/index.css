@@ -2,6 +2,18 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-   font-family:Arial, Helvetica, sans-serif;
-   text-transform: capitalize;
+   /* font-family:Arial, Helvetica, sans-serif; */
+
+  
+   /* text-transform: capitalize; */
+   
+}
+button{
+    cursor: pointer;
+}
+p{
+    font-family: 'Trebuchet MS', sans-serif;
+}
+*:not(input){
+    text-transform: capitalize;
 }

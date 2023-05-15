@@ -4,65 +4,138 @@
   // height:100ch;
   // margin-top: 62.5vh;
   .footer_cn {
-    @include flex(flex, center, nowrap, column);
-
+    @include flex(flex, center, wrap, row);
     background-color: rgb(42, 40, 40);
-    height: 30vh;
+    word-wrap: break-word;
+    word-break: break-word;
+//     height: 30vh;
+// height: 200px;
     .first_section {
-      .first_cn {
-        .link_icon {
-          background-color: rgb(42, 40, 40);
-          @include flex(flex, center, nowrap, row);
-          gap: 25px;
-          .links_cn {
-            @include flex(flex, center, nowrap, row);
-            align-items: center;
-            padding: 5px;
-            width: 40px;
-            height: 40px;
-            border-radius: 25px;
-            min-width: fit-content;
-            min-height: fit-content;
-            // background-color: #9c27b0;
-            font-size: x-large;
-            .link {
-                // color: black;
-                // background-color: red;
-              .navbar_icon {
-           color: black;
-          background-color: #9c27b0;
-          padding: 5px;
-               font-size: xx-large;
-               border-radius: 50%;
+      @include flex(flex, space-around, nowrap, column);
+      flex: 1;
 
-               &:hover{
+padding: 10px;
+      .first_cn {
+        gap: 10px;
+        // background-color: rgb(42, 40, 40);
+        @include flex(flex, center, nowrap, row);
+        // gap: 25px;
+
+        .links_cn {
+          @include flex(flex, center, nowrap, row);
+          align-items: center;
+          // padding: 5px;
+          width: 40px;
+          height: 40px;
+          border-radius: 25px;
+          min-width: fit-content;
+          min-height: fit-content;
+          // background-color: #9c27b0;
+          font-size: x-large;
+          .link {
+            // color: black;
+            // background-color: red;
+            .navbar_icon {
+              color: black;
+              background-color: #9c27b0;
+              padding: 5px;
+              font-size: xx-large;
+              border-radius: 50%;
+
+              &:hover {
                 color: rgb(49, 45, 45);
-                transform: scale(1.05)
-               }
+                transform: scale(1.05);
               }
             }
           }
         }
       }
-      .second_cn{
-        @include flex(flex, center, nowrap, row);
+      .second_cn {
+        @include flex(flex, space-around, nowrap, row);
         align-items: center;
+        padding-left: 45px;
 
-        .link{
-padding: 10px;
-text-decoration: none;
-color: white;
-font-size: large;
+        // gap: 15px;
+        .link {
+          // padding: 10px;
+          text-decoration: none;
+          color: white;
+          font-size: large;
+        }
+      }
+
+      .third_cn {
+        @include flex(flex, space-around, nowrap, column);
+        align-items: center;
+        // margin-top: 20px;
+        background-color: #673ab7;
+        color: white;
+
+        h5{
+      padding: 5px;
+
         }
       }
     }
 
-    .second_section{
+    .second_section {
       @include flex(flex, center, nowrap, column);
       align-items: center;
-margin-top: 20px;
-// background-color: #9c27b0;
-background-color: #673ab7;
+      margin: 20px;
+      border-right: 2px solid #424242;
+      // text-align: center;
+      flex: 1;
+      h1 {
+        color: #9c27b0;
+        padding-bottom: 15px;
+      }
+      p{
+        padding: 15px;
+      }
+    }
+
+    .third_section {
+      @include flex(flex, center, nowrap, column);
+      align-items: center;
+      flex: 1;
+      margin: 20px;
+      border-left: 2px solid #424242;
+      h1 {
+        color: #9c27b0;
+      }
+
+      .input_cn {
+        padding: 15px;
+text-align: center;
+
+        input {
+          background-color: #e1e1e1;
+          padding: 5px;
+
+          &:focus{
+            background-color: white;
+            outline: transparent;
+          }
+        }
+        .subscribeBtn {
+          background-color: #673ab7;
+          color: white;
+          padding: 0px 15px;
+          cursor: pointer;
+
+          &:hover{
+            background-color: #7541ce;
+          }
+        }
+        input,
+        button {
+          height: 30px;
+        }
+      }
+    }
+    p {
+      padding-bottom: 10px;
+      color: grey;
     }
   }
 }

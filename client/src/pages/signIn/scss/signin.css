@@ -130,6 +130,12 @@
   margin-top: 45px;
 }
 .signin .signin_cn .signin_innerCn .form .sign_btn_cn .signin_btn {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
   width: 120px;
   height: 40px;
   background-color: #9c27b0;

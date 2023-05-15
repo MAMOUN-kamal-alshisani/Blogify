@@ -4,6 +4,9 @@ import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { ImSpinner2 } from "react-icons/im";
+import { AiOutlineHome } from "react-icons/ai";
+
+
 import Cookies from "universal-cookie";
 // import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,7 +27,7 @@ export default function SignIn() {
 
   const inputError = document.querySelector(".password_error");
   const emailError = document.querySelector(".email_error");
-  const signinBtn = document.querySelector(".signin_btn");
+  // const signinBtn = document.querySelector(".signin_btn");
 
   // useEffect(() => {
   //   // if (localStorage.getItem("user")) {
@@ -78,7 +81,7 @@ export default function SignIn() {
             <h1>Omega</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
-                Home page <FaLongArrowAltRight />
+                Home page <AiOutlineHome />
               </Link>
             </div>
           </div>

@@ -2,14 +2,21 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./scss/post.css";
-
-import { useEffect } from "react";
+import { useCookies } from "react-cookie";
+// import { useEffect } from "react";
 import axios from "axios";
+
 export default function Post() {
-  const [value, setValue] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("");
+  const [imgFile, setImgFile] = useState(null);
+  const [cookies, setCookies] = useCookies("user");
 
+  // console.log(cookies);
+  const [img,setImg] = useState('')
+  // console.log(cookies.user.id);
   //   useEffect(()=>{
-
   // const getUser = async()=>{
 
   //   const url = 'http://localhost:4000/api/user'
@@ -20,15 +27,61 @@ export default function Post() {
   // }
   // getUser()
   //   },[])
+  // console.log(img);
+  // console.log(imgFile?.name);
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", imgFile);
+      const res = await axios.post(
+        "http://localhost:4000/api/upload",
+        formData
+      );
+      console.log(res.data);
+      setImg(res.data)
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      // res.status(500).send(err)
+    }
+  };
+
+  const handleFile = async () => {
+    try {
+      const File = await upload();
+      // console.log(ImgFile);
+      const url = `http://localhost:4000/api/blog/${cookies.user.id}`;
+
+      const res = await axios.post(url, {
+        title: title,
+        desc: desc,
+        category: category,
+        watched: "12",
+        // photo: `file:///c://home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/${File}`,
+        photo:`../../uploads/${File}`
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="Post">
       <div className="Post_cn">
+        {/* <div><img src={`../../../../server/uploads/${img}`} alt="23" /></div> */}
         <div className="TextCn1">
           <div className="titleContainer">
-            <input type="text" id="title" name="title" placeholder="Title" />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
           <div className="edithContainer">
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill theme="snow" value={desc} onChange={setDesc} />
           </div>
         </div>
 
@@ -36,30 +89,54 @@ export default function Post() {
           <div className="categoryContainer">
             <h1>Category</h1>
             <div className="inputContainer">
-              <input type="radio" name="travel" value="travel" />
+              <input
+                type="radio"
+                name="category"
+                value="travel"
+                onChange={(e) => setCategory(e.target.value)}
+              />
               <label htmlFor="travel">Travel</label>
             </div>
 
             <div className="inputContainer">
-              <input type="radio" name="art" value="art" />
+              <input
+                type="radio"
+                name="category"
+                value="art"
+                onChange={(e) => setCategory(e.target.value)}
+              />
               <label htmlFor="art">Art</label>
             </div>
 
             <div className="inputContainer">
-              <input type="radio" name="science" value="science" />
+              <input
+                type="radio"
+                name="category"
+                value="science"
+                onChange={(e) => setCategory(e.target.value)}
+              />
               <label htmlFor="science">Science</label>
             </div>
 
             <div className="inputContainer">
-              <input type="radio" name="technology" value="technology" />
+              <input
+                type="radio"
+                name="category"
+                value="technology"
+                onChange={(e) => setCategory(e.target.value)}
+              />
               <label htmlFor="technology">Technology</label>
             </div>
             <div className="inputContainer">
-              <input type="radio" name="food" value="food" />
+              <input
+                type="radio"
+                name="category"
+                value="food"
+                onChange={(e) => setCategory(e.target.value)}
+              />
               <label htmlFor="food">Food</label>
             </div>
           </div>
-
           <div className="publishContainer">
             <h1>Publish</h1>
             <span>
@@ -73,13 +150,21 @@ export default function Post() {
               type="file"
               id="file"
               name="file"
-              accept="image/png, image/jpeg"
+              // accept="image/png, image/jpeg"
               style={{ display: "none" }}
+              onChange={(e) => setImgFile(e.target.files[0])}
             />
 
             <div className="publishBtn">
               <button>Save as a draft</button>
-              <button>Update</button>
+              <button
+                onClick={() => {
+                  handleFile();
+                  // upload()
+                }}
+              >
+                Update
+              </button>
             </div>
           </div>
         </div>

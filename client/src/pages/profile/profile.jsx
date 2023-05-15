@@ -1,83 +1,68 @@
-import React from 'react'
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from "react";
+import "./scss/profile.css";
 export default function Profile() {
-
-  var settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
   return (
-    <div>
+    <div className="profile">
+      <div className="profile_cn">
+        <section className="profile_pic_section">
+          <div className="pic_div">
+            <img
+              src="http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
+              alt="img"
+              style={{ width: "200px" }}
+              className="userImg"
+            />
+            <div className="user_info_div">
+              <h4>my name is mamoun</h4>
+              <p>mamoun.bursi@yahoo.com</p>
+            </div>
+            <button className="userImgBtn">update profile image</button>
+          </div>
 
-<Slider {...settings}>
+          <div className="socials_div">
 
-{Array(4).fill(20).map(item=>{
-  return(
-    <div>
-      <span>this is the one</span>
+
+          </div>
+        </section>
+
+        <section className="profile_info_section">
+          <h2>profile information</h2>
+          <form>
+            <div className="formInput">
+              <label htmlFor="fullName">Full Name</label>
+              <input type="text" name="fullName" />
+            </div>
+            <div className="formInput">
+              <label htmlFor="birthDate">birthDate</label>
+              <input type="date" name="birthDate" />
+            </div>
+            <div className="formInput">
+              <label htmlFor="gender">Gender</label>
+              <select>
+                <option name="male" id="">
+                  male
+                </option>
+                <option name="female" id="">
+                  female
+                </option>
+              </select>
+            </div>
+            <div className="formInput">
+              <label htmlFor="phone">Phone</label>
+              <input type="number" name="phone" />
+            </div>
+            <div className="formInput">
+              <label htmlFor="country">country</label>
+              <input type="text" name="country" />
+            </div>
+            <div className="formInput">
+              <label htmlFor="city">city</label>
+              <input type="text" name="city" />
+            </div>
+          </form>
+          <button> save changes</button>
+        </section>
+      </div>
     </div>
-  )
-})}
-{/* {Arr?.map((ele) => {
-return (
-  <div className="card_div">
-    <img
-      style={{ width: "200px", height: "200px" }}
-      src="https://donpk.com/wp-content/uploads/2017/01/nature-wallpaper-hd-pictures-free-download-2.jpg"
-      alt="img"
-    />
-
-    <div className="allBlogs_title">
-      <p>title</p>
-      <p>2023/5/4</p>
-    </div>
-
-    <div className="desc_div">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Similique natus impedit velit atque, necessitatibus quam.
-        Deleniti hic vitae necessitatibus. Beatae laudantium
-        doloremque quis fuga a quisquam consequatur eaque minima
-        officiis.r
-      </p>
-    </div>
-  </div>
-);
-})} */}
-</Slider>
-
-    </div>
-  )
+  );
 }

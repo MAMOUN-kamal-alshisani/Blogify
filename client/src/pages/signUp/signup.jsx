@@ -8,6 +8,8 @@ import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { ImSpinner2 } from "react-icons/im";
+import { AiOutlineHome } from "react-icons/ai";
+
 
 import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
@@ -106,7 +108,7 @@ export default function SignUp() {
             <h1>Omega</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
-                Home page <FaLongArrowAltRight />
+                Home page <AiOutlineHome />
               </Link>
             </div>
           </div>

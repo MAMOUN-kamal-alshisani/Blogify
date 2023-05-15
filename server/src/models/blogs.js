@@ -39,5 +39,8 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
   },
 });
+Blogs.sync()
+.then(() => console.log("Profile created successfully"))
+.catch((err) => console.error(err));
 
-Blogs.belongsTo(User)
+Blogs.belongsTo(User,{ constraints: false})
