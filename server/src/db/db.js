@@ -7,7 +7,7 @@ import { Sequelize } from "sequelize";
 
 // 'mysql://oo5jqvt1kl5f26uqlj6r:************@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":true}'
 // const sql = new Sequelize('mysql://oo5jqvt1kl5f26uqlj6r:00000000@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":false}&sslcert=/etc/ssl/certs/ca-certificates.crt')
-const sql = new Sequelize('mysql://uxgly5sqitra45uftnvm:pscale_pw_tB8QfAWZlXrVFeeLdjzs8taiQw9OwcOKtuKHRCTA789@aws.connect.psdb.cloud/omegablog'
+const sql = new Sequelize(process.env.DATABASE_URL
 ,{
   dialectOptions: {
     ssl: { // <1>
