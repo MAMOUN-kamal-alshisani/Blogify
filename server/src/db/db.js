@@ -1,7 +1,7 @@
 // import mysql from "mysql2";
 import { Sequelize } from "sequelize";
-
-
+import dotenv from 'dotenv'
+dotenv.config()
 // DATABASE_URL='mysql://oo5jqvt1kl5f26uqlj6r:************@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":true}'
 	
 
