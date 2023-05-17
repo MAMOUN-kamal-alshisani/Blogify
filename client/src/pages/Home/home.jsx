@@ -15,7 +15,9 @@ import axios from "axios";
 import "./scss/home.css";
 import { useEffect, useState } from "react";
 import React from "react";
-
+// import dotenv from 'dotenv'
+// dotenv.config()
+// import env from "react-dotenv";
 // import { SlNote } from "react-icons/sl";
 // import { AiOutlineEye } from "react-icons/ai";
 // import { BiTimeFive } from "react-icons/bi";
@@ -30,7 +32,8 @@ export default function Home() {
   // console.log(img);
   // const [localImg, setLocalImg] = useState([]);
   const getRecentBlogs = async () => {
-    const url = "http://localhost:4000/api/blog/latest";
+    // const url = "http://localhost:4000/api/blog/latest";
+    const url = `https://omega-8pd2.onrender.com/api/blog/latest`
     const res = await axios.get(url);
     // res.data.blogs.map(blog=>{
     //   setImg(prev=> [...prev, blog.photo])
@@ -40,14 +43,17 @@ export default function Home() {
   };
 
   const getAdminBlogs = async () => {
-    const url = "http://localhost:4000/api/blog/admin";
+    // const url = "http://localhost:4000/api/blog/admin";
+    const url = `https://omega-8pd2.onrender.com/api/blog/admin`
     const res = await axios.get(url);
     return res.data;
   };
 
   // /api/blogs/count
   const getBlogsCategoryCount = async () => {
-    const url = "http://localhost:4000/api/blogs/count";
+    // const url = "http://localhost:4000/api/blogs/count";
+    const url = `https://omega-8pd2.onrender.com/api/blogs/count`
+
     const res = await axios.get(url);
     return res.data[0];
   };
