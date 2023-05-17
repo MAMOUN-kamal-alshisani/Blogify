@@ -15,6 +15,6 @@ import { verifyToken, verifyAdmin } from "../middleware/auth.js";
 
 userRoute.get("/api/user", getAllUsers);
 userRoute.get("/api/user/:id" /*,verifyToken*/, getUser);
-userRoute.put("/api/user/:id", verifyAdmin, updateUser);
-userRoute.post("/api/user", verifyAdmin, createUser);
-userRoute.delete("/api/user/:id", verifyAdmin, deleteUser);
+userRoute.put("/api/user/:id",  updateUser);
+userRoute.post("/api/user",  createUser);
+userRoute.delete("/api/user/:id", deleteUser);
