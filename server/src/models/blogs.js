@@ -38,6 +38,9 @@ export const Blogs = db.define("Blogs", {
   watched: {
     type: DataTypes.STRING,
   },
+  UserId:{
+    type: DataTypes.INTEGER,
+  },
 });
 Blogs.sync()
 .then(() => console.log("Profile created successfully"))
