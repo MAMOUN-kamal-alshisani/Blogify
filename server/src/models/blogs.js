@@ -24,7 +24,7 @@ export const Blogs = db.define("Blogs", {
 //   photo: {
 //     type: DataTypes.STRING,
 //     allowNull: false,
-  },
+//   },
   // liked: {
   //   type: DataTypes.STRING,
   //   allowNull: false,
