@@ -129,6 +129,7 @@ export const createBlog = async (req, res) => {
     const blogs = await Blogs.create({
        title: title,
        desc: desc,
+      category:category,
       UserId:UserId
     });
     res.status(201).send(blogs);
