@@ -30,6 +30,6 @@ blogsRoute.get("/api/blog/admin", getAdminBlog);
 
 // :UserId
 blogsRoute.get("/api/blog/:id", getBlog);
-blogsRoute.post("/api/blog", createBlog);
+blogsRoute.post("/api/blog/:UserId", createBlog);
 blogsRoute.put("/api/blog/:id", updateBlog);
 blogsRoute.delete("/api/blog/:id", deleteBlog);
