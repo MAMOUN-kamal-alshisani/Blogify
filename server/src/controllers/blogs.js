@@ -132,7 +132,7 @@ export const createBlog = async (req, res) => {
       category: category,
       photo: photo,
       watched: watched,
-      UserId: UserId,
+//       UserId: UserId,
     });
     res.status(201).send(blogs);
   } catch (err) {
