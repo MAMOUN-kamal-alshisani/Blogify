@@ -22,7 +22,7 @@ export async function signup(req, res) {
       if (userEmail)
         return res.status(409).send([{ message: "email already in use!" }]);
 
-      const genSalt = bcrypt.genSaltSync(16);
+      const genSalt = bcrypt.genSaltSync(10);
       const hashedPassword = bcrypt.hashSync(req.body.Password, genSalt);
       const newUser = await User.create({
         UserName: UserName,
