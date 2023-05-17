@@ -26,7 +26,7 @@ export const Profile = db.define('Profile',{
         type:DataTypes.STRING 
     }
 }) 
-Profile.sync()
+Profile.sync({alter:true})
 .then(() => console.log("Profile created successfully"))
 .catch((err) => console.error(err));
  Profile.belongsTo(User)
