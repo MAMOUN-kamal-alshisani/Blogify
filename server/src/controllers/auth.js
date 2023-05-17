@@ -46,7 +46,7 @@ export async function signin(req, res) {
     const user = await User.findOne({ where: { Email: req.body.Email } });
     if (!user) return res.status(401).send("email is invalid!");
 
-    const validPassword = bcrypt.compareSync(req.body.Password, user.Password);
+    const validPassword =await bcrypt.compareSync(req.body.Password, user.Password);
     if (!validPassword)
       return res.status(401).send("password or email is incorrect!");
 
