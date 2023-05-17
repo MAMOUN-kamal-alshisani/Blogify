@@ -16,15 +16,15 @@ export const Blogs = db.define("Blogs", {
     allowNull: false,
   },
 
-//   category: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 
-//   photo: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
+  photo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   // liked: {
   //   type: DataTypes.STRING,
   //   allowNull: false,
