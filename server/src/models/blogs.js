@@ -11,19 +11,19 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  desc: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
+//   desc: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//   },
 
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
+//   category: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//   },
 
-  photo: {
-    type: DataTypes.STRING,
-    allowNull: false,
+//   photo: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
   },
   // liked: {
   //   type: DataTypes.STRING,
@@ -35,12 +35,12 @@ export const Blogs = db.define("Blogs", {
   //     return this.setDataValue("liked", value.join(";"));
   //   },
   // },
-  watched: {
-    type: DataTypes.STRING,
-  },
-  UserId:{
-    type: DataTypes.STRING,
-  },
+//   watched: {
+//     type: DataTypes.STRING,
+//   },
+//   UserId:{
+//     type: DataTypes.STRING,
+//   },
 });
 Blogs.sync({alter:true})
 .then(() => console.log("Profile created successfully"))
