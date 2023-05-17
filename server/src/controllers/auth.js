@@ -53,7 +53,7 @@ export async function signin(req, res) {
     const token = createToken(user.id);
 
     const { Password, ...details } = user.toJSON();
-    await res
+     res
       .cookie("token", token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,
