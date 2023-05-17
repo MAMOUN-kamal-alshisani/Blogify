@@ -27,7 +27,7 @@ sql
   })
   .catch((err) => console.error(err));
 
-  sql.sync()
+  sql.sync({alter:true})
   .then(() => console.log("models created successfully"))
   .catch((err) => console.error(err));
 
