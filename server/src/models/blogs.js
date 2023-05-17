@@ -15,10 +15,10 @@ export const Blogs = db.define("Blogs", {
 //     type: DataTypes.STRING,
 //     allowNull: false,
 //   },
-  category: {
-     type: DataTypes.STRING,
-    allowNull: false,
-  }
+//   category: {
+//      type: DataTypes.STRING,
+//     allowNull: false,
+//   }
 
 //   photo: {
 //     type: DataTypes.STRING,
@@ -34,9 +34,9 @@ export const Blogs = db.define("Blogs", {
   //     return this.setDataValue("liked", value.join(";"));
   //   },
   // },
-//   watched: {
-//     type: DataTypes.STRING,
-//   },
+  watched: {
+    type: DataTypes.STRING,
+  },
 //   UserId:{
 //     type: DataTypes.STRING,
 //   },
