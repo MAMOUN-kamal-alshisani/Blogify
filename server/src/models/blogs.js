@@ -15,11 +15,10 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
   category: {
      type: DataTypes.STRING,
     allowNull: false,
-  },
+  }
 
 //   photo: {
 //     type: DataTypes.STRING,
