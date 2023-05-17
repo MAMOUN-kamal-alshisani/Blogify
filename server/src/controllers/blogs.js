@@ -128,7 +128,8 @@ export const createBlog = async (req, res) => {
     const UserId = req.params.UserId;
     const blogs = await Blogs.create({
        title: title,
-       desc: desc
+       desc: desc,
+      UserId:UserId
     });
     res.status(201).send(blogs);
   } catch (err) {
