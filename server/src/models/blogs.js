@@ -42,5 +42,5 @@ export const Blogs = db.define("Blogs", {
 Blogs.sync()
 .then(() => console.log("Profile created successfully"))
 .catch((err) => console.error(err));
-
-Blogs.belongsTo(User,{ constraints: false})
+Blogs.belongsTo(User)
+// Blogs.belongsTo(User,{ constraints: false})
