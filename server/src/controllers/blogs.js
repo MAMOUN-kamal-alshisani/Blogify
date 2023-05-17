@@ -126,14 +126,14 @@ export const createBlog = async (req, res) => {
   try {
     const { title, desc, category, photo, watched } = req.body;
     const UserId = req.params.UserId;
-    const blogs = await Blogs.create({ req.body
-//       title: title,
-//       desc: desc,
-//       category: category,
-//       photo: photo,
-//       watched: watched,
-//       UserId: UserId,
-    });
+    const blogs = await Blogs.create(req.body /*{
+       title: title,
+       desc: desc,
+      category: category,
+      photo: photo,
+      watched: watched,
+    UserId: UserId,
+    }*/);
     res.status(201).send(blogs);
   } catch (err) {
     res.status(500).send(err);
