@@ -126,10 +126,10 @@ export const createBlog = async (req, res) => {
   try {
     const { title, desc, category, photo, watched } = req.body;
     const UserId = req.params.UserId;
-    const blogs = await Blogs.create(
+    const blogs = await Blogs.create({
        title: title,
        desc: desc
-    );
+    });
     res.status(201).send(blogs);
   } catch (err) {
     res.status(500).send(err);
