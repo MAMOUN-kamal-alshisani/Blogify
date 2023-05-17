@@ -39,7 +39,7 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
   },
   UserId:{
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
   },
 });
 Blogs.sync()
