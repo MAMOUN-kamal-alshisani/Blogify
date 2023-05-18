@@ -11,10 +11,10 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-//   desc: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
+  desc: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   category: {
     type: DataTypes.STRING,
 //     allowNull: false,
@@ -22,7 +22,7 @@ export const Blogs = db.define("Blogs", {
 
   photo: {
     type: DataTypes.STRING,
-    allowNull: false,
+//     allowNull: false,
   },
   // liked: {
   //   type: DataTypes.STRING,
