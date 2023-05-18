@@ -128,7 +128,7 @@ export const createBlog = async (req, res) => {
     const UserId = req.params.UserId;
     const blogs = await Blogs.create({
        title: title,
-//        desc: desc,
+       desc: desc,
       category:category,
       photo:photo,
       watched:watched,
