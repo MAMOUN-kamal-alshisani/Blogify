@@ -130,7 +130,7 @@ export const createBlog = async (req, res) => {
        title: title,
 //        desc: desc,
 //       category:category,
-      watched:watched
+      watched:watched,
       UserId:UserId
     });
     res.status(201).send(blogs);
