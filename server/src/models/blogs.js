@@ -17,7 +17,7 @@ export const Blogs = db.define("Blogs", {
 //   },
   category: {
     type: DataTypes.STRING,
-    allowNull: false,
+//     allowNull: false,
   },
 
 //   photo: {
