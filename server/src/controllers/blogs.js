@@ -124,13 +124,13 @@ export const getAdminBlog = async (req, res) => {
 
 export const createBlog = async (req, res) => {
   try {
-    const { title, desc, category, photos, watched } = req.body;
+    const { title, desc, category, photo, watched } = req.body;
     const UserId = req.params.UserId;
     const blogs = await Blogs.create({
        title: title,
 //        desc: desc,
       category:category,
-      photos:photos,
+      photo:photo,
       watched:watched,
       UserId:UserId
     });
