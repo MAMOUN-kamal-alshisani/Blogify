@@ -15,7 +15,6 @@ const server = express();
 
 
 
-
 server.use(cors({ origin: "http://localhost:3000", credentials: true }));
 server.use(cookieParser());
 server.use(express.json());
@@ -50,6 +49,7 @@ server.post("/post", (req, res) => {
   console.log(req.body);
   res.status(200).send(name);
 });
+server.use(express.static('uploads'));
 
 server.listen(PORT, () => console.log(`running on port ${PORT}`));
 
