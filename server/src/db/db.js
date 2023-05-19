@@ -8,13 +8,13 @@ dotenv.config()
 // 'mysql://oo5jqvt1kl5f26uqlj6r:************@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":true}'
 // const sql = new Sequelize('mysql://oo5jqvt1kl5f26uqlj6r:00000000@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":false}&sslcert=/etc/ssl/certs/ca-certificates.crt')
 const sql = new Sequelize(process.env.DATABASE_URL
-,{
+/* ,{  
   dialectOptions: {
     ssl: { // <1>
       rejectUnauthorized: true,
     }
   },
-})
+}  */ )
 // const sql = new Sequelize("blogsDB", "root", "", {
 //   // host: "localhost",
 //   host:'mysql://oo5jqvt1kl5f26uqlj6r:pscale_pw_QdbMV8FWIBo0YPg6p1lzx2T5UNONiYdwksxGE6OYWBN@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":true}',

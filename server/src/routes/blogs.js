@@ -24,7 +24,6 @@ blogsRoute.get("/api/blogs/count", getCategoryCount);
 
 blogsRoute.get("/api/blog/latest", getBlogsByLatest);
 blogsRoute.get("/api/blog/recent", getBlogsByRecent);
-
 blogsRoute.get("/api/blog/admin", getAdminBlog);
 
 

@@ -60,7 +60,7 @@ export const getUserBlogs = async (req, res) => {
 
 export const getBlogsByLatest = async (req, res) => {
   try {
-    const adminUser = await User.findOne({ where: { UserName: "Admin" } });
+    const adminUser = await User.findOne({ where: { UserName: "admin" } });
     if (!adminUser) return res.status(404).send("admin is not found");
 
     const blogs = await Blogs.findAll({
@@ -134,6 +134,7 @@ export const createBlog = async (req, res) => {
       watched:watched,
       UserId:UserId
     });
+
     res.status(201).send(blogs);
   } catch (err) {
     res.status(500).send(err);

@@ -34,15 +34,20 @@ export const Blogs = db.define("Blogs", {
   //     return this.setDataValue("liked", value.join(";"));
   //   },
   // },
+
   watched: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  UserId: {
     type: DataTypes.STRING,
   },
 //   UserId:{
 //     type: DataTypes.STRING,
 //   },
 });
-Blogs.sync({alter:true})
-.then(() => console.log("Profile created successfully"))
-.catch((err) => console.error(err));
+// Blogs.sync({alter:true})
+// .then(() => console.log("Blogs created successfully"))
+// .catch((err) => console.error(err));
 Blogs.belongsTo(User)
 // Blogs.belongsTo(User,{ constraints: false})

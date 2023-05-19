@@ -77,16 +77,16 @@ export default function Home() {
         queryKey: ["AdminBlogs"],
         queryFn: getAdminBlogs,
       },
-      {
-        queryKey: ["BlogsCount"],
-        queryFn: getBlogsCategoryCount,
-      },
+      // {
+      //   queryKey: ["BlogsCount"],
+      //   queryFn: getBlogsCategoryCount,
+      // },
     ],
   });
   const RecentBlog = results[0];
   const mainBlog = results[1];
   const userData = results[0]?.data?.users;
-  const categoryCount = results[2]?.data;
+  // const categoryCount = results[2]?.data;
 
   // console.log(results);
   useEffect(() => {
@@ -137,7 +137,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* <section className="row1_section1">
+        <section className="row1_section1">
           <div className="container">
             <div className="firstCard">
               <img
@@ -205,7 +205,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section> */}
+        </section>
 
         <section className="row2_section2">
           <div className="section2_cn">
@@ -215,7 +215,7 @@ export default function Home() {
                   <h1 className="featured_header">Featured Blogs</h1>
                 </div>
 
-                {/* {mainBlog?.isFetched && (
+                {mainBlog?.isFetched && (
                   <div className="part1_cn">
                     <img
                       loading={"lazy"}
@@ -237,10 +237,10 @@ export default function Home() {
                       <p className="mainImg_desc">{mainBlog?.data[0]?.desc}</p>
                     </div>
                   </div>
-                )} */}
+                )}
 
                 <div className="part2_cn">
-                  {/* {mainBlog?.isFetched && (
+                  {mainBlog?.isFetched && (
                     <article className="artical1 artical">
                       <img
                         loading={"lazy"}
@@ -249,7 +249,7 @@ export default function Home() {
                         className="articalImg"
                       />
                       <p className="title_paragraph">
-                        {mainBlog.data[1].title}
+                        {mainBlog?.data[1]?.title}
                       </p>
                       <div className="articalDetails">
                         <span className="user_cn">
@@ -268,62 +268,62 @@ export default function Home() {
                         </span>
                       </div>
                     </article>
-                  )} */}
+                  )}
 
-                  {/* {mainBlog?.isFetched && (
+                  {mainBlog?.isFetched && (
                     <article className="artical2 artical">
                       <img
                         loading={"lazy"}
-                        src={mainBlog.data[2].photo}
-                        alt={mainBlog.data[2].category}
+                        src={mainBlog?.data[2]?.photo}
+                        alt={mainBlog?.data[2]?.category}
                         className="articalImg"
                       />
                       <p className="title_paragraph">
-                        {mainBlog.data[2].title}
+                        {mainBlog?.data[2]?.title}
                       </p>
 
                       <div className="articalDetails">
                         <span className="user_cn">
                           <BsPersonFill className="user_icon" />
-                          <User blog={mainBlog.data[2]} />
+                          <User blog={mainBlog?.data[2]} />
                         </span>
                         <span className="time_cn">
                           <b className="timeIcon">
                             <BsCalendarDate />
                           </b>
-                          {mainBlog?.data[2].createdAt.slice(
+                          {mainBlog?.data[2]?.createdAt.slice(
                             0,
-                            mainBlog?.data[2].createdAt.indexOf("T")
+                            mainBlog?.data[2]?.createdAt.indexOf("T")
                           )}
                         </span>
                       </div>
                     </article>
-                  )} */}
+                  )}
                 </div>
 
-                {/* {mainBlog?.isFetched && (
+                {mainBlog?.isFetched && (
                   <div className="part1_cn var_part3">
                     <img
                       loading={"lazy"}
                       src={mainBlog?.data[0]?.photo}
-                      alt={mainBlog.data[0].category}
+                      alt={mainBlog?.data[0]?.category}
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
-                        <h4>{mainBlog.data[0].category}</h4>
+                        <h4>{mainBlog?.data[0]?.category}</h4>
                         <b className="timeIcon">
                           <BsCalendarDate />
-                          {mainBlog.data[0].createdAt.slice(
+                          {mainBlog?.data[0]?.createdAt.slice(
                             0,
-                            mainBlog.data[0].createdAt.indexOf("T")
+                            mainBlog?.data[0]?.createdAt.indexOf("T")
                           )}
                         </b>
                       </span>
                       <p className="mainImg_desc">{mainBlog?.data[0]?.desc}</p>
                     </div>
                   </div>
-                )} */}
+                )}
               </div>
               {/* //////////////////////////////// */}
 {/* <img src={require('../../uploads/1682787207019wolf-seg.jpeg')} alt="" /> */}
@@ -346,7 +346,7 @@ export default function Home() {
                         <div className="sideBlog_cn" key={data.id}>
                           <div
                             className="img_Section"
-                            onClick={() => increaseWatch(data.watched, data.id)}
+                            onClick={() => increaseWatch(data?.watched, data?.id)}
                           >
                               {/* src={data.photo.startsWith('.') ? require(data.photo) : data.photo} */}
 
@@ -374,7 +374,7 @@ export default function Home() {
 
                           <div className="details_Section">
                             <div className="blog1Div">
-                              <h4>{data.category}</h4>
+                              <h4>{data?.category}</h4>
                             </div>
 
                             <div className="blog2Div">
@@ -390,9 +390,9 @@ export default function Home() {
                                 <b className="timeIcon">
                                   <BsCalendarDate />
                                 </b>
-                                {data.createdAt.slice(
+                                {data?.createdAt.slice(
                                   0,
-                                  data.createdAt.indexOf("T")
+                                  data?.createdAt.indexOf("T")
                                 )}
                               </span>
                             </div>
@@ -424,7 +424,7 @@ export default function Home() {
 
                   <div className="post_categories">
                     <ul className="categoryList">
-                      {categoryCount?.map((blog, i) => {
+                      {/* {categoryCount?.map((blog, i) => {
                         return (
                           <li
                             className="categoryItem"
@@ -435,7 +435,7 @@ export default function Home() {
                             <span>{blog.Count}</span>
                           </li>
                         );
-                      })}
+                      })} */}
                     </ul>
                   </div>
                 </div>
