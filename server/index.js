@@ -10,11 +10,12 @@ import multer from "multer";
 dotenv.config();
 const PORT = process.env.PORT || 4005;
 const server = express();
+// import path from 'path'
 /// middleware
 // {credentials:true,allowedHeaders:true}
 
 
-
+// const __dirname =path.dirname()
 server.use(cors({ origin: "http://localhost:3000", credentials: true }));
 server.use(cookieParser());
 server.use(express.json());
@@ -49,7 +50,7 @@ server.post("/post", (req, res) => {
   console.log(req.body);
   res.status(200).send(name);
 });
-server.use(express.static('uploads'));
+server.use(express.static('public'))
 
 server.listen(PORT, () => console.log(`running on port ${PORT}`));
 
