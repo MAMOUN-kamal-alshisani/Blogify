@@ -29,13 +29,11 @@ export const Profile = db.define('Profile',{
         allowNull: true,
     },
     picture:{
-        type:DataTypes.STRING ,
-        allowNull: true,
-    },
-    
-},{timestamps:true}) 
+        type:DataTypes.STRING 
+    }
+}) 
 Profile.sync({alter:true})
 .then(() => console.log("Profile created successfully"))
 .catch((err) => console.error(err));
-
-Profile.belongsTo(User)
+ Profile.belongsTo(User)
+// Profile.belongsTo(User,{ constraints: false})

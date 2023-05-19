@@ -11,19 +11,18 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  desc: {
-    type: DataTypes.STRING,
-    allowNull: false,
+   desc: {
+   type: DataTypes.STRING,
+//     allowNull: false,
   },
-
   category: {
     type: DataTypes.STRING,
-    allowNull: false,
+//     allowNull: false,
   },
 
   photo: {
     type: DataTypes.STRING,
-    allowNull: false,
+//    allowNull: false,
   },
   // liked: {
   //   type: DataTypes.STRING,
@@ -43,9 +42,12 @@ export const Blogs = db.define("Blogs", {
   UserId: {
     type: DataTypes.STRING,
   },
-},{timestamps:true});
+//   UserId:{
+//     type: DataTypes.STRING,
+//   },
+});
 Blogs.sync({alter:true})
 .then(() => console.log("Profile created successfully"))
 .catch((err) => console.error(err));
-
 Blogs.belongsTo(User)
+// Blogs.belongsTo(User,{ constraints: false})

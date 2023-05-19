@@ -127,13 +127,12 @@ export const createBlog = async (req, res) => {
     const { title, desc, category, photo, watched } = req.body;
     const UserId = req.params.UserId;
     const blogs = await Blogs.create({
-      title: title,
-      desc: desc,
-      category: category, /*  */     
-      // photo: photo,
-      // watched: watched,
-      // UserId: UserId,
-
+       title: title,
+       desc: desc,
+      category:category,
+      photo:photo,
+      watched:watched,
+      UserId:UserId
     });
 
     res.status(201).send(blogs);

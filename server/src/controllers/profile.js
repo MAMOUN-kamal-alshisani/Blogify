@@ -23,10 +23,11 @@ export const getProfile = async (req, res) => {
 
 export const createProfile = async (req, res) => {
   try {
-    const { LastName, country, city, phone, birthDate, picture } = req.body;
+    const { fullName, gender, country, city, phone, birthDate, picture } = req.body;
     const UserId = req.params.UserId;
     const profile = await Profile.create({
-      LastName: LastName,
+      fullName: fullName,
+      gender:gender,
       country: country,
       city: city,
       phone: phone,
