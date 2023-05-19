@@ -22,7 +22,7 @@ export async function signup(req, res) {
       if (userEmail)
         return res.status(409).send([{ message: "email already in use!" }]);
 
-      const genSalt = bcrypt.genSaltSync(16);
+      const genSalt = bcrypt.genSaltSync(10);
       const hashedPassword = bcrypt.hashSync(req.body.Password, genSalt);
       const newUser = await User.create({
         UserName: UserName,
@@ -46,14 +46,14 @@ export async function signin(req, res) {
     const user = await User.findOne({ where: { Email: req.body.Email } });
     if (!user) return res.status(401).send("email is invalid!");
 
-    const validPassword = bcrypt.compareSync(req.body.Password, user.Password);
+    const validPassword = await bcrypt.compare(req.body.Password, user.Password);
     if (!validPassword)
       return res.status(401).send("password or email is incorrect!");
 
     const token = createToken(user.id);
 
     const { Password, ...details } = user.toJSON();
-    await res
+     res
       .cookie("token", token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,

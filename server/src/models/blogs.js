@@ -35,12 +35,17 @@ export const Blogs = db.define("Blogs", {
   //     return this.setDataValue("liked", value.join(";"));
   //   },
   // },
+
   watched: {
     type: DataTypes.STRING,
+    allowNull: true,
   },
-});
-Blogs.sync()
+  UserId: {
+    type: DataTypes.STRING,
+  },
+},{timestamps:true});
+Blogs.sync({alter:true})
 .then(() => console.log("Profile created successfully"))
 .catch((err) => console.error(err));
 
-Blogs.belongsTo(User,{ constraints: false})
+Blogs.belongsTo(User)
