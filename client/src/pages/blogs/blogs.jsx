@@ -8,25 +8,21 @@ import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
-
-
 import { useNavigate } from "react-router-dom";
-// import User from "../../components/user/user";
 import Pagination from "../../components/pagination/pagination";
+import Skeleton from "react-loading-skeleton";
 
 export default function Blogs() {
   const navigate = useNavigate();
   // const categoryBtn = document.querySelector('.categoryBtn')
   const title = document.querySelector(".title");
 
+
+
   const getBlogs = async () => {
     const res = await axios.get(`http://localhost:4000/api/blog`);
     return res.data;
   };
-  // const { data, error } = useQuery({
-  //   queryKey: ["blogs"],
-  //   queryFn: () => getUser(blog),
-  // });
 
   const { data, isLoading, isError, isFetched } = useQuery({
     queryFn: getBlogs,
@@ -49,7 +45,9 @@ export default function Blogs() {
   const [blogs, setBlogs] = useState(data);
   const [toggle, setToggle] = useState(false);
 
-  // const [page, setPage] = useState(1);
+
+
+  /// set up pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -79,16 +77,17 @@ export default function Blogs() {
   }, [data, blogs]);
 
   const handleExtraFilter = async (e) => {
-    console.log(e.target.textContent);
+    // console.log(e.target.textContent);
     if (e.target.textContent === "most recent") {
       const api = await axios.get("http://localhost:4000/api/blog/recent");
       setFilteredBlogs(api.data);
     }
     if (e.target.textContent === "most viewed") {
-      const api = await axios.get("http://localhost:4000/api/blog/recent");
-      const sortFromMostToLeast = api.data.map((blg) => {
-        return blg.watched;
-      });
+      const api = await axios.get("http://localhost:4000/api/blogs/viewed");
+      setFilteredBlogs(api.data);
+    }
+    if (e.target.textContent === "featured") {
+      const api = await axios.get("http://localhost:4000/api/blog/featured");
       setFilteredBlogs(api.data);
     }
   };
@@ -103,6 +102,9 @@ export default function Blogs() {
     navigate(`/blogs/${id}`);
   };
 
+  if(isLoading){
+  return <Skeleton count={10} />;
+}
   return (
     <div className="blogs">
       <div className="blogs_cn">
@@ -144,10 +146,10 @@ export default function Blogs() {
                   </div>
                 </div>
                 <div className="filterBtn_cr">
-                  <div className="optionBtn">most viewed</div>
+                  <div className="optionBtn"  onClick={(e) => handleExtraFilter(e)}>most viewed</div>
                 </div>
                 <div className="filterBtn_cr">
-                  <div className="optionBtn">recent</div>
+                  <div className="optionBtn" onClick={(e) => handleExtraFilter(e)}>featured</div>
                 </div>
               </div>
             )}
@@ -222,21 +224,3 @@ export default function Blogs() {
     </div>
   );
 }
-
-// function diamond(n) {
-//   let item = "";
-//   for (let i = 0; i <= n; i += 2) {
-//     item += "*";
-
-//     for (let j = 0; j < i; j += 1) {
-//       item += "*";
-//     }
-
-//     item += "\n";
-
-//   }
-// // console.log(item.split('\n'));
-//   return item += item.split('\n').reverse().join('\n');
-// }
-
-// console.log(diamond(3));

@@ -5,7 +5,8 @@ import "./scss/post.css";
 import { useCookies } from "react-cookie";
 // import { useEffect } from "react";
 import axios from "axios";
-
+// import dotenv from 'dotenv'
+// dotenv.config()
 export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -29,6 +30,8 @@ export default function Post() {
   //   },[])
   // console.log(img);
   // console.log(imgFile?.name);
+
+  // console.log(process.env.REACT_APP_SERVER_API);
   const upload = async () => {
     try {
       const formData = new FormData();
@@ -58,8 +61,9 @@ export default function Post() {
         category: category,
         watched: "12",
         // photo: `file:///c://home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/${File}`,
-        photo:`../../uploads/${File}`
+        photo:`${process.env.REACT_APP_SERVER_API}/uploads/${File}`
       });
+      
       return res.data;
     } catch (err) {
       console.log(err);

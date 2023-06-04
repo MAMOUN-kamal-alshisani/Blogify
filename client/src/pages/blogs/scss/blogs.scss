@@ -2,7 +2,7 @@
 
 .blogs {
   @include flex(flex, unset, nowrap, column);
-  padding: 40px 0px;
+  padding: 100px 0px;
   background-color: #f1f1f1;
   .blogs_cn {
     @include flex(flex, unset, nowrap, column);
@@ -11,10 +11,8 @@
       @include flex(flex, space-between, wrap, row);
       align-items: center;
       border-radius: 6px;
-      // width: 950px;
       width: 75%;
       min-width: fit-content;
-      // word-break:;
       box-shadow: 0px 0px 1px 0px grey;
       border-bottom: 2px solid #9c27b0;
       background: white;
@@ -23,7 +21,7 @@
         align-items: center;
         height: 40px;
         font-weight: 300;
-padding-right: 50px;
+        padding-right: 50px;
         .titleContainer {
           @include flex(flex, unset, nowrap, row);
           align-items: center;
@@ -140,10 +138,6 @@ padding-right: 50px;
             &:hover .card-body {
               position: unset;
               color: black;
-              .category_title {
-                p {
-                }
-              }
             }
             &:hover .card_img {
               height: 250px;
@@ -153,29 +147,34 @@ padding-right: 50px;
               height: 450px;
               border-top-right-radius: 15px;
               border-top-left-radius: 15px;
-              filter: brightness(90%);
-              object-fit: fill;
-              // transition: all ease-out 1s;
+              // filter: brightness(90%);
+              filter: contrast(2);
+              // filter: blur(2px);
 
+
+              object-fit: fill;
+              transition: all linear 0.5s;
             }
             .card-body {
               @include flex(flex, space-between, nowrap, column);
               color: white;
+              text-shadow: 0px 1px 2px grey;
               gap: 10px;
               padding: 10px;
               overflow: auto;
               margin-bottom: 25px;
               position: absolute;
-              bottom: 0;
+              // bottom: 0;
+              top: 50%;
               transition: all linear 1s;
               .category_title {
                 p {
-                  background-color: #040303;
-                  border: 1px solid rgb(193, 9, 230);
+                  // background-color: #040303;
+                  border: 1px solid #d4cccc;
                   width: fit-content;
                   padding: 5px 15px;
                   border-radius: 6px;
-                  color: white;
+                  // color: #e109fe;
                 }
               }
               .card-text {
@@ -187,6 +186,8 @@ padding-right: 50px;
                 line-height: 25px;
                 height: 100px;
                 overflow: auto;
+                word-wrap: break-word;
+                word-break: break-all;
                 .cardBtn {
                   background-color: transparent;
                   border: transparent;

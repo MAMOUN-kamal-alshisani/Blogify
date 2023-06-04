@@ -51,7 +51,7 @@
 .footer .footer_cn .first_section .second_cn {
   display: flex;
   justify-content: space-around;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   padding-left: 45px;

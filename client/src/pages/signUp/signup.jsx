@@ -34,7 +34,9 @@ export default function SignUp() {
   const PassErr = document.querySelector(".Password_error");
 
   const signUp = async () => {
-    const url = `https://omega-8pd2.onrender.com/api/signup`;
+    // const url = `https://omega-8pd2.onrender.com/api/signup`;
+    const url = `http://localhost:4000/api/signup`;
+
     const res = await axios.post(url, formInput);
   };
 

@@ -94,8 +94,8 @@
         .firstCard {
           flex: 1;
           position: relative;
-          overflow:hidden ;
-          &:hover .img_textarea .text2  {
+          overflow: hidden;
+          &:hover .img_textarea .text2 {
             text-decoration: underline;
           }
           .img1 {
@@ -107,9 +107,8 @@
             position: absolute;
             bottom: 30px;
 
-            &:hover{
+            &:hover {
               cursor: pointer;
-
             }
           }
         }
@@ -121,10 +120,10 @@
           height: 100%;
           .card_Img1 {
             // background-color: black;
-          cursor: pointer;
+            cursor: pointer;
 
             position: relative;
-            overflow:hidden ;
+            overflow: hidden;
             &:hover .img_textarea .text2 {
               text-decoration: underline;
             }
@@ -144,18 +143,18 @@
           }
           .card_Img2 {
             @include flex(flex, unset, nowrap, row);
-          cursor: pointer;
+            cursor: pointer;
 
             // background-color: black;
             gap: 5px;
             width: 100%;
             height: 100%;
-       
+
             .card_Img2_text {
               position: relative;
               width: 100%;
               // height: 100%;
-              overflow:hidden ;
+              overflow: hidden;
 
               .img_smalltext {
                 position: absolute;
@@ -179,7 +178,7 @@
                 //  object-fit:fill
               }
 
-              &:hover .img_smalltext   {
+              &:hover .img_smalltext {
                 text-decoration: underline;
               }
             }
@@ -218,7 +217,7 @@
               padding-top: 40px;
             }
             .part1_cn {
-              padding-top: 20px;
+              padding-top: 0px;
               margin-bottom: 20px;
               background-color: white;
               box-shadow: 0px 0px 1px 0px grey;
@@ -277,6 +276,7 @@
               // border-bottom: 2px solid #e6e6e6;
 
               .artical {
+                position: relative;
                 width: 50%;
                 // padding: 10px;
                 background-color: white;
@@ -287,13 +287,17 @@
 
                 .title_paragraph {
                   padding: 20px 10px;
+                  margin: 10px;
                 }
                 .articalDetails {
                   @include flex(flex, space-between, wrap, row);
+                  width: 100%;
                   // padding-top: 5px;
                   padding: 5px 10px;
                   // padding: 5px;
                   font-size: small;
+                  position: absolute;
+                  bottom: 0;
                   .user_cn {
                     @include flex(flex, space-between, wrap, row);
                     gap: 5px;
@@ -354,17 +358,17 @@
                 background: white;
                 width: 100%;
                 min-width: min-content;
-                padding-bottom: 10px;
+                // padding: 10px 0px;
                 .sideBlog_cn {
                   @include flex(flex, unset, nowrap, row);
                   align-items: center;
                   gap: 5px;
-                  margin: 10px;
+                  // margin: 10px;
                   border-bottom: 2px solid #ebebeb;
                   cursor: pointer;
 
                   &:hover .details_Section {
-                    background-color: #f0f0f0;
+                    // background-color: #f0f0f0;
                   }
                   &:hover .img_Section {
                     filter: contrast(80%);
@@ -484,7 +488,7 @@
                   padding: 8px;
                   border-bottom: 2px solid #ebebeb;
                   transition: all linear 1s;
-                  &:hover{
+                  &:hover {
                     background-color: #f0f0f0;
                   }
                   .link {
@@ -495,7 +499,7 @@
                     font-size: x-large;
                     color: black;
 
-                    &:hover{
+                    &:hover {
                       // border-bottom: 1px solid red;
                       // text-decoration: underline;
                       // text-decoration-color: royalblue
@@ -563,7 +567,7 @@
 
 //    }
 
-//     }
+//     }.part1_cn
 //     .home_cn {
 //       @include flex(flex, center, nowrap, row);
 

@@ -9,14 +9,16 @@ import { useQueries } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
 export default function Blog() {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [filBlogs, setfilBlogs] = useState([]);
-  const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
+  // const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
+  // const [textDesc, setTextDesc] = useState('');
+
+
 
   const [StartIndex, setStartIndex] = useState(0);
   const [EndIndex, setEndIndex] = useState(3);
@@ -35,7 +37,7 @@ export default function Blog() {
   const [blogId, setBlogId] = useState(
     location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
   );
-
+/////////////////////////
   const getBlog = async () => {
     const res = await axios.get(`http://localhost:4000/api/blog/${blogId}`);
     return res.data;
@@ -69,6 +71,7 @@ export default function Blog() {
       },
     ],
   });
+  /////////////////////////// 
   const [allBlogs, setAllBlogs] = useState(results[2]?.data?.slice(0, 3));
   // console.log(results);
 
@@ -124,8 +127,11 @@ export default function Blog() {
     // Calculating the no. of days between two dates
     const diffInDays = Math.round(diffInTime / oneDay);
     // console.log(diffInDays);
-    return diffInDays;
+    if (diffInDays === 0) return "today";
+    else if (diffInDays === 1) return diffInDays + " Day Ago";
+    return diffInDays + " Days Ago";
   }
+  //// increment blogs watch number when the blog is clicked on
   const increaseWatch = (watch, id) => {
     const url = `http://localhost:4000/api/blog/${id}`;
     watch = Number(watch);
@@ -137,6 +143,18 @@ export default function Blog() {
     navigate(`/blogs/${id}`);
   };
   // console.log(getNumberOfDays("2/1/2021", "3/1/2021"));
+
+
+  useEffect(()=>{
+    if(blog){
+  const blogDesc = document.querySelector('.blogDesc')
+      blogDesc.innerHTML = blog?.desc
+    }
+  },[blog])
+
+  if(results[0].isLoading && results[1].isLoading && results[2].isLoading){
+    return <Skeleton count={10} />;
+  }
   return (
     <div className="SBlog">
       <div className="blog_cn">
@@ -155,37 +173,35 @@ export default function Blog() {
                       posted by <User blog={blog} />
                     </p>
                     <p>
-                      <AiOutlineEye /> {blog?.watched} veiws
+                      <AiOutlineEye /> {blog?.watched} views
                     </p>
                   </div>
                 </div>
               </div>
 
               <div className="cardInfoCn">
-
-                  <div className="textAreaDiv">
-                    <div className="title_div">
-                      <p>{blog?.category}</p>
-                      <p>
-                        posted
-                        {" " +
-                          getNumberOfDays(
-                            blog?.createdAt.slice(
-                              0,
-                              blog?.createdAt.indexOf("T")
-                            ),
-                            DateNow
-                          ) +
-                          " "}
-                        days ago
-                      </p>
-                    </div>
-                    <div className="desc_div">
-                      <h2>{blog?.title}</h2>
-                      <h3>{blog?.desc}</h3>
-                    </div>
+                <div className="textAreaDiv">
+                  <div className="title_div">
+                    <p>{blog?.category}</p>
+                    <p>
+                    
+                      {" " +
+                        getNumberOfDays(
+                          blog?.createdAt.slice(
+                            0,
+                            blog?.createdAt.indexOf("T")
+                          ),
+                          DateNow
+                        ) +
+                        " "}
+                
+                    </p>
                   </div>
-
+                  <div className="desc_div">
+                    <h2>{blog?.title}</h2>
+                    <div className="blogDesc"></div>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
@@ -254,9 +270,13 @@ export default function Blog() {
             </h4>
 
             <div className="sideBlog_cr">
-              {filBlogs?.map((sideBlog) => {
+              {blogs.isLoading == true ? <Skeleton count={10}/> :  filBlogs?.map((sideBlog) => {
                 return (
-                  <div className="sideBlogCards" key={sideBlog.id}>
+                  <div
+                    className="sideBlogCards"
+                    key={sideBlog.id}
+                    onClick={() => increaseWatch(sideBlog.watched, sideBlog.id)}
+                  >
                     <img
                       // style={{ width: "200px", height: "200px" }}
                       src={sideBlog.photo}
@@ -264,17 +284,16 @@ export default function Blog() {
                       className="sideBlogImg"
                     />
                     <div className="textAreaCr">
-                      <div className="title_div">
-                        <p>{sideBlog?.category}</p>
-                      </div>
-
                       <div className="desc_div">
-                        <p>
-                          {blog?.desc?.length > 100
-                            ? blog?.desc.substring(0, 100)
-                            : blog?.desc}
+                        <div>
+                          {blog?.title?.length > 100
+                            ? blog?.title.substring(0, 60)
+                            : blog?.title
+                            
+                            } ...
+                             </div>
                           {/* {sideBlog?.desc} */}
-                          <button
+                          {/* <button
                             // onClick={() => blogChange(sideBlog.id)}
                             onClick={() =>
                               increaseWatch(sideBlog.watched, sideBlog.id)
@@ -282,9 +301,21 @@ export default function Blog() {
                             className="sideBlogBtn"
                           >
                             read more...
-                          </button>
-                        </p>
+                          </button> */}
+                       
                       </div>
+
+                      <div className="title_div">
+                        <h5>{sideBlog?.category}</h5>
+                        <h5>{ getNumberOfDays(
+                          blog?.createdAt.slice(
+                            0,
+                            blog?.createdAt.indexOf("T")
+                          ),
+                          DateNow
+                        )}</h5>
+                      </div>
+
                     </div>
                   </div>
                 );
@@ -292,7 +323,9 @@ export default function Blog() {
               {filBlogs?.length == 0 && (
                 <div
                   className="sideBlog_cr"
-                  style={{/* justifyContent: "flex-end", */ overflow: "hidden" }}
+                  style={{
+                    /* justifyContent: "flex-end", */ overflow: "hidden",
+                  }}
                 >
                   <div className="sideBlogCards" style={{ overflow: "hidden" }}>
                     <p
@@ -332,13 +365,14 @@ export default function Blog() {
                     <div className="allBlogs_title">
                       <p>{blog?.category}</p>
                       <p>
+                      <User blog={blog} />
                         {/* {getNumberOfDays(blog?.createdAt.slice(0, blog?.createdAt.indexOf("T")),DateNow)} */}
-                        {blog?.createdAt.slice(0, blog?.createdAt.indexOf("T"))}
+                        {/* {blog?.createdAt.slice(0, blog?.createdAt.indexOf("T"))} */}
                       </p>
                     </div>
 
                     <div className="desc_div">
-                      <p>{blog?.desc.substring(0, 100)}...</p>
+                      <p>{blog?.title.substring(0, 100)}...</p>
                     </div>
 
                     <button

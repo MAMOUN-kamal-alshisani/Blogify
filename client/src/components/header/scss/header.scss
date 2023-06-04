@@ -9,7 +9,9 @@
   // background-color: rgb(42, 40, 40);
   // background: #673ab7;
   // height: 7vh;
-
+position: sticky;
+top: 0;
+z-index: 1000;
   .header_cn {
     @include flex(flex, space-between, wrap, row);
     padding: 5px 10px;
@@ -72,6 +74,7 @@
         }
         .dropdown_menu {
           @include flex(flex, space-between, nowrap, column);
+          z-index: 999;
           position: absolute;
           right: 5px;
           background-color: rgb(255, 255, 255);

@@ -43,7 +43,9 @@ export default function SignIn() {
   };
 
   const handleSignIn = async () => {
-    const url = `https://omega-8pd2.onrender.com/api/signin`;
+    // const url = `https://omega-8pd2.onrender.com/api/signin`;
+    const url = `http://localhost:4000/api/signin`;
+
     const res = await axios.post(url, formInput, { withCredentials: true });
 
     // localStorage.setItem('user',res?.data)
