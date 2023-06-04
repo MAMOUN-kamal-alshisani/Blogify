@@ -20,7 +20,16 @@ export const getProfile = async (req, res) => {
     res.status(500).send(err);
   }
 };
-
+export const getUserProfile = async (req, res) => {
+  try {
+    const UserId = req.params.UserId;
+    const profile = await Profile.findOne({ where: { UserId: UserId } });
+    if(!profile) return res.status(404).send('profile with specified (id) is not found!')
+    res.status(200).send(profile);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
 export const createProfile = async (req, res) => {
   try {
     const { fullName, gender, country, city, phone, birthDate, picture } = req.body;
@@ -48,6 +57,18 @@ export const updateProfile = async (req, res) => {
     const SearchProfile = await Profile.findOne({ where: { id: id } });
     if(!SearchProfile) return res.status(404).send('profile with specified (id) is not found!')
     const profile = await Profile.update(req.body, { where: { id: id } });
+    res.status(201).send('specified profile updated successfully!');
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+export const updateUserProfile = async (req, res) => {
+  try {
+    // const { title, desc, category, photo, watched } = req.body;
+    const UserId = req.params.UserId;
+    const SearchProfile = await Profile.findOne({ where: { UserId: UserId } });
+    if(!SearchProfile) return res.status(404).send('profile with specified (UserId) is not found!')
+    const profile = await Profile.update(req.body, { where: { UserId: UserId } });
     res.status(201).send('specified profile updated successfully!');
   } catch (err) {
     res.status(500).send(err);

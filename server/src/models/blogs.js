@@ -12,7 +12,7 @@ export const Blogs = db.define("Blogs", {
     allowNull: false,
   },
    desc: {
-   type: DataTypes.STRING,
+   type: DataTypes.STRING(1000),
 //     allowNull: false,
   },
   category: {
@@ -38,6 +38,10 @@ export const Blogs = db.define("Blogs", {
   watched: {
     type: DataTypes.STRING,
     allowNull: true,
+  },
+  featured: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   },
   UserId: {
     type: DataTypes.STRING,

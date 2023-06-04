@@ -10,7 +10,10 @@ import {
   getAdminBlog,
   getUserBlogsbyID,
   getBlogsByRecent,
-  getCategoryCount
+  getCategoryCount,
+  getBlogsByViewed,
+  getFeaturedBlogs
+
 } from "../controllers/blogs.js";
 // import { verifyToken,verifyAdmin } from '../middleware/auth.js'
 
@@ -20,11 +23,13 @@ blogsRoute.get("/api/blog", getAllBlogs);
 blogsRoute.get("/api/blog/user/:UserId", getUserBlogs);
 blogsRoute.get("/api/blogs/user/:id", getUserBlogsbyID);
 blogsRoute.get("/api/blogs/count", getCategoryCount);
+blogsRoute.get("/api/blogs/viewed", getBlogsByViewed);
 
 
 blogsRoute.get("/api/blog/latest", getBlogsByLatest);
 blogsRoute.get("/api/blog/recent", getBlogsByRecent);
 blogsRoute.get("/api/blog/admin", getAdminBlog);
+blogsRoute.get("/api/blog/featured", getFeaturedBlogs);
 
 
 // :UserId

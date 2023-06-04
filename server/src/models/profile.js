@@ -29,8 +29,25 @@ export const Profile = db.define('Profile',{
         allowNull: true,
     },
     picture:{
-        type:DataTypes.STRING 
-    }
+        type:DataTypes.STRING,
+        defaultValue: "http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
+    },
+    linkedIn:{
+        type:DataTypes.STRING,
+        allowNull:true,
+        defaultValue: null
+    },
+    github:{
+        type:DataTypes.STRING,
+        allowNull:true,
+        defaultValue: null
+    },
+    email:{
+        type:DataTypes.STRING,
+        allowNull:true,
+        defaultValue: null
+    },
+    
 }) 
 // Profile.sync({alter:true})
 // .then(() => console.log("Profile created successfully"))

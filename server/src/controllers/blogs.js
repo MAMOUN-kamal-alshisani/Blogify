@@ -14,10 +14,14 @@ export const getAllBlogs = async (req, res) => {
 
 export const getCategoryCount = async (req, res) => {
   try {
-    
-    const blogs=await Blogs.sequelize.query('SELECT Blogs.category, COUNT(*) AS Count FROM Blogs GROUP BY Blogs.category')
+    const blogs=await Blogs.findAll({
+      group: ['category'],
+      attributes: ['category', [Sequelize.fn('COUNT', 'category'), 'count']],
+    })
 
-    res.status(200).send(blogs);
+    // const blogs=await Blogs.sequelize.query('SELECT Blogs.category, COUNT(*) AS Count FROM Blogs GROUP BY Blogs.category')
+
+    res.status(200).send([blogs]);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -81,8 +85,8 @@ export const getBlogsByLatest = async (req, res) => {
 
 export const getBlogsByRecent = async(req,res)=>{
   try {
-    const adminUser = await User.findOne({ where: { UserName: "Admin" } });
-    if (!adminUser) return res.status(404).send("admin is not found");
+    // const adminUser = await User.findOne({ where: { UserName: "Admin" } });
+    // if (!adminUser) return res.status(404).send("admin is not found");
 
     const blogs = await Blogs.findAll({
       raw: true,
@@ -99,8 +103,27 @@ export const getBlogsByRecent = async(req,res)=>{
   }
 }
 
-
-
+export const getBlogsByViewed = async(req,res)=>{
+  try {
+    const blogs = await Blogs.findAll({
+      raw: true,
+      order: [["watched", "DESC"]],
+    });
+    res.status(200).send( blogs );
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+export const getFeaturedBlogs = async(req,res)=>{
+  try {
+    const blogs = await Blogs.findAll({
+   where:{'featured':true}
+    });
+    res.status(200).send( blogs );
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
 export const getBlog = async (req, res) => {
   try {
     const id = req.params.id;

@@ -24,16 +24,33 @@ server.use([userRoute, authRoute, blogsRoute,profileRoute]);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './../client/src/uploads')
+    cb(null, './public/uploads')
   },
   filename: function (req, file, cb) {
     // const uniqueSuffix =  )
     cb(null,Date.now() + file.originalname)
   }
 })
-
+// public/uploads/1682790453544abstract-colorful-lines-art-wallpapers-pictures-photos-1-1-wolf-wallpapers.pro.jpg
 const upload = multer({ storage: storage })
 
+const profileStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/pictures')
+  },
+  filename: function (req, file, cb) {
+    // const uniqueSuffix =  )
+    cb(null,Date.now() + file.originalname)
+  }
+})
+// public/uploads/1682790453544abstract-colorful-lines-art-wallpapers-pictures-photos-1-1-wolf-wallpapers.pro.jpg
+const profilePicture = multer({ storage: profileStorage })
+
+server.post('/api/upload/profile', profilePicture.single('file'), function (req, res) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  res.status(201).json(req.file.filename)
+})
 
 server.post('/api/upload', upload.single('file'), function (req, res) {
   // req.file is the `avatar` file
@@ -53,8 +70,3 @@ server.post("/post", (req, res) => {
 server.use(express.static('public'))
 
 server.listen(PORT, () => console.log(`running on port ${PORT}`));
-
-
-
-
-
