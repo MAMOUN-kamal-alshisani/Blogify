@@ -1,2 +1,2 @@
-# Social-Omega
-social media website built using react.js 
+# MnBlog
+blogs website built using react.js and node.js
