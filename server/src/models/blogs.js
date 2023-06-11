@@ -12,7 +12,7 @@ export const Blogs = db.define("Blogs", {
     allowNull: false,
   },
    desc: {
-   type: DataTypes.STRING(1000),
+   type: DataTypes.STRING(3000),
 //     allowNull: false,
   },
   category: {
@@ -24,16 +24,6 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.STRING,
 //    allowNull: false,
   },
-  // liked: {
-  //   type: DataTypes.STRING,
-  //   allowNull: false,
-  //   get() {
-  //     return this.getDataValue("liked").split(";");
-  //   },
-  //   set(value) {
-  //     return this.setDataValue("liked", value.join(";"));
-  //   },
-  // },
 
   watched: {
     type: DataTypes.STRING,
