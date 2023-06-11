@@ -38,7 +38,7 @@
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn .mainBlogImg {
   width: 100%;
-  height: 500px;
+  height: 450px;
   border-radius: 6px 6px 0px 0px;
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn:hover .moreDetailsCn {
@@ -116,6 +116,8 @@
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div .blogDesc {
   padding: 20px;
   line-height: 25px;
+  overflow: auto;
+  max-height: 200px;
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details {
   display: flex;

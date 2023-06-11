@@ -60,7 +60,7 @@ export const getUserBlogs = async (req, res) => {
 
 export const getBlogsByLatest = async (req, res) => {
   try {
-    const adminUser = await User.findOne({ where: { UserName: "admin" } });
+    const adminUser = await User.findOne({ where: { isAdmin: true } });
     if (!adminUser) return res.status(404).send("admin is not found");
 
     const blogs = await Blogs.findAll({
@@ -194,7 +194,7 @@ export const getBlog = async (req, res) => {
 
 export const getAdminBlog = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { UserName: "admin" } });
+    const user = await User.findOne({ where: { isAdmin: true } });
     if (!user) return res.status(404).send("admin account not found!");
     const blogs = await Blogs.findAll({ where: { UserId: user.id } });
     res.status(200).send(blogs);
