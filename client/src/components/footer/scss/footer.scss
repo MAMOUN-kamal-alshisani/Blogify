@@ -3,6 +3,10 @@
 .footer {
   // height:100ch;
   // margin-top: 62.5vh;
+  .footer_cn > * {
+    flex: 1;
+
+  }
   .footer_cn {
     @include flex(flex, center, wrap, row);
     background-color: rgb(42, 40, 40);
@@ -10,9 +14,10 @@
     word-break: break-word;
     //     height: 30vh;
     // height: 200px;
+ 
     .first_section {
       @include flex(flex, space-around, nowrap, column);
-      flex: 1;
+
 
       padding: 10px;
       .first_cn {
@@ -83,7 +88,6 @@
       margin: 20px;
       border-right: 2px solid #424242;
       // text-align: center;
-      flex: 1;
       h1 {
         color: #9c27b0;
         padding-bottom: 15px;
@@ -96,7 +100,6 @@
     .third_section {
       @include flex(flex, center, nowrap, column);
       align-items: center;
-      flex: 1;
       margin: 20px;
       border-left: 2px solid #424242;
       h1 {

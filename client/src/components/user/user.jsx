@@ -8,7 +8,7 @@ export default function User({ blog }) {
   const getUser = async (blog) => {
     if(blog.UserId !== undefined){
       const res = await axios.get(
-        `http://localhost:4000/api/user/${blog?.UserId}`
+        `${process.env.REACT_APP_SERVER_API}/api/user/${blog?.UserId}`
       );
       return res.data;
     }

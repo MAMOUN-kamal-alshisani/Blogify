@@ -39,10 +39,13 @@
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn .mainBlogImg {
   width: 100%;
   height: 500px;
-  border-radius: 6px;
+  border-radius: 6px 6px 0px 0px;
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn:hover .moreDetailsCn {
   visibility: visible;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn:hover .mainBlogImg {
+  filter: brightness(90%);
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn .moreDetailsCn {
   visibility: collapse;
@@ -82,39 +85,67 @@
   flex-direction: row;
   gap: 2px;
 }
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn {
+  padding-top: 20px;
+}
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   flex-direction: column;
-  gap: 10px;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .title_div {
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .category_div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: nowrap;
   flex-direction: row;
-  padding: 10px;
-  color: grey;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .title_div p:first-child {
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .category_div p:first-child {
+  color: #9c27b0;
   padding: 5px;
-  border: 1px solid;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .desc_div {
-  padding: 20px;
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div {
   overflow: auto;
+  text-align: center;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .desc_div h2 {
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div h2 {
   color: #3c3c3c;
   text-shadow: 0px 1px 1px grey;
   font-size: larger;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .desc_div div {
-  font-family: Arial, Helvetica, sans-serif;
-  padding-top: 20px;
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div .blogDesc {
+  padding: 20px;
   line-height: 25px;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  border-top: 2px solid #ebebeb;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn {
+  border: transparent;
+  background-color: transparent;
+  font-size: x-large;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogLikedBtn {
+  color: #9c27b0;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogLikedBtn:hover {
+  color: black;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogNotLikedBtn {
+  color: black;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogNotLikedBtn:hover {
+  color: #9c27b0;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .DateCn {
+  color: grey;
+  font-size: 0.9rem;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div {
   display: flex;
@@ -134,7 +165,7 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
   padding-left: 10px;
-  border-bottom: 2px solid #673ab7;
+  border-bottom: 2px solid #9c27b0;
   width: 100%;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr {
@@ -205,6 +236,7 @@
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .title_div h5:last-child {
   color: grey;
+  font-size: small;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .desc_div {
   display: flex;
@@ -221,24 +253,25 @@
   margin: 10px auto;
   padding-bottom: 5px;
   border-bottom: 2px solid #d6d5da;
-  max-width: 1080px;
+  max-width: 1280px;
   font-size: larger;
+  padding-left: 10px;
 }
 .SBlog .allBlogs .allBlogs_cn {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   padding: 5px;
   gap: 5px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 .SBlog .allBlogs .allBlogs_cn:hover .blogs_cards_btn {
   visibility: visible;
 }
 .SBlog .allBlogs .allBlogs_cn .card_div {
-  opacity: 0.7;
+  opacity: 0.8;
   width: 20%;
   height: 300px;
   box-shadow: 0px 0px 4px 1px grey;
@@ -296,7 +329,7 @@
   padding-bottom: 5px;
 }
 .SBlog .allBlogs .allBlogs_cn .card_div .allBlogsText_Cr .allBlogs_Btn {
-  background-color: #673AB7;
+  background-color: #9c27b0;
   color: white;
   cursor: pointer;
   border: transparent;

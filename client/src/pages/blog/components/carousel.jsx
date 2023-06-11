@@ -3,33 +3,25 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 export default function CarouselCT() {
-  const [userId,setUserId] = useState('')
+  const [userId, setUserId] = useState("");
   const location = useLocation();
-  // const userId =  location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
-  const id =  location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
-
-  // /api/blog/:id
+  const id = location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1);
   const Arr = Array(6).fill(10);
-
-  // const getBlogs = async () => {
-  //   const res = await axios.get(`http://localhost:4000/api/blog/user/${userId}`);
-  //   return res.data
-  // };
-
-    const getBlog = async () => {
-    const res = await axios.get(`http://localhost:4000/api/blog/${id}`);
-    return res.data
+  const getBlog = async () => {
+    const res = await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`
+    );
+    return res.data;
   };
-  const {data,isLoading,isError} = useQuery({
-    queryKey:['userBlogs',userId],
-    queryFn:getBlog,
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["userBlogs", userId],
+    queryFn: getBlog,
 
-    onSuccess:(data)=>{
-      setUserId(data.UserId)
-    }
-  })
+    onSuccess: (data) => {
+      setUserId(data.UserId);
+    },
+  });
 
-  console.log(data);
   return (
     <>
       <div className="carousel">

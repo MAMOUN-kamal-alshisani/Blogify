@@ -80,6 +80,8 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   flex-direction: column;
+  text-align: center;
+  width: 100px;
   z-index: 999;
   position: absolute;
   right: 5px;
@@ -104,7 +106,7 @@
 .header .header_cn .personal_cn .dropdown .dropdown_menu .link {
   width: 100%;
   text-decoration: none;
-  font-size: medium;
+  font-size: 1.1rem;
   color: #3e1c7a;
 }
 .header .header_cn .personal_cn .write_link .link {

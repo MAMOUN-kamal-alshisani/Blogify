@@ -2,23 +2,22 @@ import "./scss/blog.css";
 import { GiNextButton } from "react-icons/gi";
 import { GiPreviousButton } from "react-icons/gi";
 import { AiOutlineEye } from "react-icons/ai";
-import { MdOutlineKeyboardArrowUp } from "react-icons/md";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { AiFillLike } from "react-icons/ai";
+import { AiOutlineLike } from "react-icons/ai";
 
-import { useQueries } from "@tanstack/react-query";
+import { useCookies } from "react-cookie";
+import { useQueries, useMutation } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
 export default function Blog() {
+    
+  const [cookies] = useCookies("user");
   const navigate = useNavigate();
   const location = useLocation();
   const [filBlogs, setfilBlogs] = useState([]);
-  // const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
-  // const [textDesc, setTextDesc] = useState('');
-
-
 
   const [StartIndex, setStartIndex] = useState(0);
   const [EndIndex, setEndIndex] = useState(3);
@@ -27,31 +26,26 @@ export default function Blog() {
   const month = dateObj.getUTCMonth() + 1; //months from 1-12
   const day = dateObj.getUTCDate();
   const year = dateObj.getUTCFullYear();
-
   const DateNow = year + "-" + month + "-" + day;
 
-  // console.log(DateNow);
-  // const id = location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1);
-  // const [userId,setUserId] = useState('')
-  // const Arr = Array(6).fill(10);
   const [blogId, setBlogId] = useState(
     location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
   );
-/////////////////////////
+  /////////////////////////
   const getBlog = async () => {
-    const res = await axios.get(`http://localhost:4000/api/blog/${blogId}`);
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog/${blogId}`);
     return res.data;
   };
 
   const getBlogs = async () => {
     const res = await axios.get(
-      `http://localhost:4000/api/blogs/user/${blogId}`
+      `${process.env.REACT_APP_SERVER_API}/api/blogs/user/${blogId}`
     );
     return res.data;
   };
 
   const getAllBlogs = async () => {
-    const res = await axios.get(`http://localhost:4000/api/blog`);
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog`);
     return res.data;
   };
 
@@ -71,7 +65,26 @@ export default function Blog() {
       },
     ],
   });
-  /////////////////////////// 
+
+
+  const handleBlogLikes = async (id, userid) => {
+    if (userid) {
+      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/liked/${id}/${userid}`;
+      const res = await axios.put(url);
+
+      return res.data;
+    } else {
+      navigate("/signin");
+    }
+  };
+  const mutateBlogLikes = useMutation({
+    mutationKey: ["blogs"],
+    mutationFn: ([id, userid]) => handleBlogLikes(id, userid),
+    onSuccess: () => {
+      results[0].refetch();
+    },
+  });
+  ///////////////////////////
   const [allBlogs, setAllBlogs] = useState(results[2]?.data?.slice(0, 3));
   // console.log(results);
 
@@ -110,10 +123,6 @@ export default function Blog() {
     setAllBlogs(results[2]?.data?.slice(6, 9));
   }, [blogs.isSuccess, location.pathname]);
 
-  // const blogChange = (id) => {
-  //   navigate(`/blogs/${id}`);
-  //   setBlogId(id);
-  // };
 
   function getNumberOfDays(start, end) {
     const date1 = new Date(start);
@@ -133,7 +142,7 @@ export default function Blog() {
   }
   //// increment blogs watch number when the blog is clicked on
   const increaseWatch = (watch, id) => {
-    const url = `http://localhost:4000/api/blog/${id}`;
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`;
     watch = Number(watch);
     const res = axios.put(url, {
       watched: (watch += 1).toString(),
@@ -144,15 +153,16 @@ export default function Blog() {
   };
   // console.log(getNumberOfDays("2/1/2021", "3/1/2021"));
 
+  useEffect(() => {
+    if (blog) {
+      ///////// api data comes with html elements so using innerhtml to kinda filter them out ////
 
-  useEffect(()=>{
-    if(blog){
-  const blogDesc = document.querySelector('.blogDesc')
-      blogDesc.innerHTML = blog?.desc
+      const blogDesc = document.querySelector(".blogDesc");
+      blogDesc.innerHTML = blog?.desc;
     }
-  },[blog])
+  }, [blog]);
 
-  if(results[0].isLoading && results[1].isLoading && results[2].isLoading){
+  if (results[0].isLoading && results[1].isLoading && results[2].isLoading) {
     return <Skeleton count={10} />;
   }
   return (
@@ -181,9 +191,32 @@ export default function Blog() {
 
               <div className="cardInfoCn">
                 <div className="textAreaDiv">
-                  <div className="title_div">
+                  <div className="category_div">
                     <p>{blog?.category}</p>
-                    <p>
+                  </div>
+                  <div className="body_details_div">
+                    <h2>{blog?.title}</h2>
+                    <div className="blogDesc">
+                      {/* this div is not empty! using dom to display text in     */}
+                    </div>
+                  </div>
+
+                  <div className="footer_blog_details">
+                    <span className="likeBtnCn">
+                    <button className="likeBtn"
+                          onClick={() =>
+                            mutateBlogLikes.mutate([
+                              blog?.id,
+                              cookies?.user?.id,
+                            ])
+                          }
+                        >
+                          {(blog?.liked?.includes(
+                            parseInt(cookies?.user?.id)
+                          ) && <AiFillLike className="BlogLikedBtn"/>) || <AiOutlineLike className="BlogNotLikedBtn"/>}
+                        </button>
+                    </span>
+                      <span className="DateCn">
                     
                       {" " +
                         getNumberOfDays(
@@ -194,132 +227,62 @@ export default function Blog() {
                           DateNow
                         ) +
                         " "}
-                
-                    </p>
-                  </div>
-                  <div className="desc_div">
-                    <h2>{blog?.title}</h2>
-                    <div className="blogDesc"></div>
+                    </span> 
                   </div>
                 </div>
               </div>
             </article>
           </div>
-          {/* <div className="mainBlog">
-            <article className="card_article">
-              <img
-                src={blog?.photo}
-                alt={blog?.category}
-                className="mainBlogImg"
-              />
-              <div className="cardInfoCn">
-                <div className="textAreaContainer">
-                  <div className="textAreaDiv">
-                    <div className="title_div">
-                      <p>{blog?.category}</p>
-                      <p>
-                        posted
-                        {" " +
-                          getNumberOfDays(
-                            blog?.createdAt.slice(
-                              0,
-                              blog?.createdAt.indexOf("T")
-                            ),
-                            DateNow
-                          ) +
-                          " "}
-                        days ago
-                      </p>
-                    </div>
-                    <div className="desc_div">
-                      <h2>{blog?.title}</h2>
-                      <h3>{blog?.desc}</h3>
-                    </div>
-                  </div>
-      
-                  <div className="moreDetailsCn">
-                    <button
-                      className={
-                        (showAdditionalInfo && "moreDetailsBtn") ||
-                        "noDetailsBtn"
-                      }
-                      onClick={() => setShowAdditionalInfo(!showAdditionalInfo)}
-                    >
-                      {showAdditionalInfo ? (
-                        <MdOutlineKeyboardArrowDown className="moreDetailsIcon" />
-                      ) : (
-                        <MdOutlineKeyboardArrowUp className="moreDetailsIcon" />
-                      )}
-                    </button>
-                    {showAdditionalInfo && (
-                      <div className="write_div">
-                        <User blog={blog} />
-                        <p>
-                          <AiOutlineEye /> {blog?.watched}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div> */}
+       
           <div className="sideBlog_Div">
             <h4>
               blogs from <User blog={blog} />
             </h4>
 
             <div className="sideBlog_cr">
-              {blogs.isLoading == true ? <Skeleton count={10}/> :  filBlogs?.map((sideBlog) => {
-                return (
-                  <div
-                    className="sideBlogCards"
-                    key={sideBlog.id}
-                    onClick={() => increaseWatch(sideBlog.watched, sideBlog.id)}
-                  >
-                    <img
-                      // style={{ width: "200px", height: "200px" }}
-                      src={sideBlog.photo}
-                      alt="img"
-                      className="sideBlogImg"
-                    />
-                    <div className="textAreaCr">
-                      <div className="desc_div">
-                        <div>
+              {blogs.isLoading == true ? (
+                <Skeleton count={10} />
+              ) : (
+                filBlogs?.map((sideBlog) => {
+                  return (
+                    <div
+                      className="sideBlogCards"
+                      key={sideBlog.id}
+                      onClick={() =>
+                        increaseWatch(sideBlog.watched, sideBlog.id)
+                      }
+                    >
+                      <img
+                        // style={{ width: "200px", height: "200px" }}
+                        src={sideBlog.photo}
+                        alt="img"
+                        className="sideBlogImg"
+                      />
+
+                      <div className="textAreaCr">
+                        <div className="desc_div">
                           {blog?.title?.length > 100
                             ? blog?.title.substring(0, 60)
-                            : blog?.title
-                            
-                            } ...
-                             </div>
-                          {/* {sideBlog?.desc} */}
-                          {/* <button
-                            // onClick={() => blogChange(sideBlog.id)}
-                            onClick={() =>
-                              increaseWatch(sideBlog.watched, sideBlog.id)
-                            }
-                            className="sideBlogBtn"
-                          >
-                            read more...
-                          </button> */}
-                       
+                            : blog?.title}{" "}
+                          ...
+                        </div>
+                        <div className="title_div">
+                          <h5>{sideBlog?.category}</h5>
+                          <h5>
+                            {getNumberOfDays(
+                              blog?.createdAt.slice(
+                                0,
+                                blog?.createdAt.indexOf("T")
+                              ),
+                              DateNow
+                            )}
+                          </h5>
+                        </div>
                       </div>
-
-                      <div className="title_div">
-                        <h5>{sideBlog?.category}</h5>
-                        <h5>{ getNumberOfDays(
-                          blog?.createdAt.slice(
-                            0,
-                            blog?.createdAt.indexOf("T")
-                          ),
-                          DateNow
-                        )}</h5>
-                      </div>
-
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
               {filBlogs?.length == 0 && (
                 <div
                   className="sideBlog_cr"
@@ -365,7 +328,7 @@ export default function Blog() {
                     <div className="allBlogs_title">
                       <p>{blog?.category}</p>
                       <p>
-                      <User blog={blog} />
+                        <User blog={blog} />
                         {/* {getNumberOfDays(blog?.createdAt.slice(0, blog?.createdAt.indexOf("T")),DateNow)} */}
                         {/* {blog?.createdAt.slice(0, blog?.createdAt.indexOf("T"))} */}
                       </p>

@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import DeleteModal from "./components/deleteModal/deleteModal";
 import Skeleton from "react-loading-skeleton";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { CgGenderMale } from "react-icons/cg";
 import { CgGenderFemale } from "react-icons/cg";
@@ -15,7 +15,7 @@ import { TbMapPinFilled } from "react-icons/tb";
 import { BsFillPersonFill } from "react-icons/bs";
 import { RiPhoneFill } from "react-icons/ri";
 import { BsCalendarDate } from "react-icons/bs";
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillTwitterSquare } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
 import { AiOutlineUpload } from "react-icons/ai";
@@ -28,7 +28,7 @@ import { FiEdit } from "react-icons/fi";
 // import { CgSpinnerAlt } from "react-icons/cg";
 
 export default function Profile() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [navBtn, setNavBtn] = useState("content");
   const [showModal, setShowModal] = useState(false);
   const [showPopUpDelete, setShowPopUpDelete] = useState(false);
@@ -54,6 +54,9 @@ export default function Profile() {
     phone: "",
     country: "",
     city: "",
+    linkedIn: "",
+    twitter: "",
+    socialEmail: "",
   });
 
   /// form input change function
@@ -140,12 +143,12 @@ export default function Profile() {
     }
   };
 
-  const handleUpdateSocials = async (blog) => {
-    try {
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleUpdateSocials = async (blog) => {
+  //   try {
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   /// get the user information that was sent from the form input data
   const fetchUserData = async (UserId) => {
@@ -199,12 +202,18 @@ export default function Profile() {
           setUserBlogs(data);
         },
       },
+      // {
+      //   queryKey: ["socials"],
+      //   queryFn: () => fetchUserBlogs(cookies.user.id),
+      //   onSuccess: (data) => {
+      //     setUserBlogs(data);
+      //   },
+      // },
     ],
   });
   /// query data
   const userData = api[0]?.data;
-  // const ownBlog = api[1]?.data;
-  /// function to post user information
+
   const mutateUserData = async (UserId, id) => {
     try {
       if (userData) {
@@ -226,7 +235,14 @@ export default function Profile() {
     mutationKey: ["formInput"],
     mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
     onSuccess: () => {
-      alert("updated successfully!");
+      // alert("updated successfully!");
+      const success_div = document.querySelector(".success_div");
+      success_div.textContent = "user information updated successfully!";
+
+      setTimeout(() => {
+        success_div.textContent = "";
+        // setShowModal(false)
+      }, 4000);
     },
   });
   // console.log(updateState);
@@ -254,14 +270,14 @@ export default function Profile() {
     },
   });
 
-  const updateSocialMedia = useMutation({
-    mutationKey: ["formInput"],
-    mutationFn: (blog) => handleUpdateSocials(blog),
-    onSuccess: () => {
-      // alert("updated successfully!");
-    },
-  });
-  // console.log(deleteBlog.mutate);
+  // const updateSocialMedia = useMutation({
+  //   mutationKey: ["formInput"],
+  //   mutationFn: (blog) => handleUpdateSocials(blog),
+  //   onSuccess: () => {
+  //     // alert("updated successfully!");
+  //     // setShowModal(false)
+  //   },
+  // });
   /// get todays date ///
   const dateObj = new Date();
   const month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -313,6 +329,7 @@ export default function Profile() {
   // if(!blogFile){
   //   setDisplayText('no image selected')
   // }
+  console.log(profileInput);
   return (
     <div className="profile">
       <div className={`profile_cn ${showEditSec && "bgcl"}`}>
@@ -429,7 +446,9 @@ export default function Profile() {
                   <div className="blogItemEmpty">
                     <h2>no blogs are posted yet!</h2>
 
-                    <button onClick={()=>navigate('/post')}>post a blog</button>
+                    <button onClick={() => navigate("/post")}>
+                      post a blog
+                    </button>
                   </div>
                 ) : (
                   userBlogs?.map((blog) => {
@@ -498,18 +517,18 @@ export default function Profile() {
 
           <div className="socials_div">
             <div className="icon_cn">
-              <a href="">
-                {" "}
-                <AiFillGithub />
+              <a href={userInfo?.twitter || ''}>
+                <AiFillTwitterSquare />
               </a>
             </div>
+
             <div className="icon_cn">
-              <a href="">
+              <a href={`mailto:${userInfo?.socialMail}`}>
                 <AiOutlineMail />
-              </a>
+              </a> 
             </div>
             <div className="icon_cn">
-              <a href="">
+              <a href={userInfo?.linkedIn || ''}>
                 <AiFillLinkedin />
               </a>
             </div>
@@ -606,10 +625,44 @@ export default function Profile() {
                   value={profileInput.city}
                 />
               </div>
+              <div className="formSocialsInput">
+                {/* <label htmlFor="twitter">twitter</label> */}
+                <input
+                  type="text"
+                  name="twitter"
+                  onChange={(e) => {
+                    formInputHandler(e);
+                  }}
+                  placeholder="Enter twitter link"
+                  value={profileInput.twitter || ''}
+                />
+                {/* <label htmlFor="socialEmail">socialEmail</label> */}
+                 <input
+                  type="text" 
+                  name="socialEmail"
+                  onChange={(e) => {
+                    formInputHandler(e);
+                  }}
+                  placeholder="Enter socialEmail link"
+                  value={profileInput.socialEmail || ''}
+                />
+                {/* <label htmlFor="linkedIn">linkedIn</label> */}
+                 <input
+                  type="text"
+                  name="linkedIn"
+                  onChange={(e) => {
+                    formInputHandler(e);
+                  }}
+                  placeholder="Enter linkedIn link"
+                  value={profileInput.linkedIn || ''}
+                />
+              </div>
               <button onClick={() => mutate()} className="formBtn">
                 {" "}
                 save changes
               </button>
+
+              <div className="success_div"></div>
             </form>
           </div>
         </section>

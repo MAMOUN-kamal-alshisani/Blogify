@@ -8,8 +8,8 @@ export default function Footer() {
     <div className="footer">
       <div className="footer_cn">
         <div className="second_section">
-          <h1>OmegaBlog</h1>
-          <p>OmegaBlog is created for the purpose of building a community for users 
+          <h1>MNBlog</h1>
+          <p>MNBlog is created for the purpose of building a community for users 
             to interact with, share information,thoughts and ideas with each other!
           </p>
         </div>

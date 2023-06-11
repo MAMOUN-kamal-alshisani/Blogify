@@ -15,35 +15,18 @@ import axios from "axios";
 import "./scss/home.css";
 import { useEffect, useState } from "react";
 import React from "react";
-// import dotenv from 'dotenv'
-// dotenv.config()
-// import env from "react-dotenv";
-// import { SlNote } from "react-icons/sl";
-// import { AiOutlineEye } from "react-icons/ai";
-// import { BiTimeFive } from "react-icons/bi";
-// import { SlNote } from "react-icons/sl";
-// let imgg = ''
-// import img from imgg
 
 export default function Home() {
   const navigate = useNavigate();
-  const [user, setUser] = useState([]);
-  // let [img,setImg] = useState([])
-  // console.log(img);
-  // const [localImg, setLocalImg] = useState([]);
+  // const [user, setUser] = useState([]);
   const getRecentBlogs = async () => {
-    const url = "http://localhost:4000/api/blog/latest";
-    // const url = `https://omega-8pd2.onrender.com/api/blog/latest`
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/latest`;
     const res = await axios.get(url);
-    // res.data.blogs.map(blog=>{
-    //   setImg(prev=> [...prev, blog.photo])
-    // })
-
     return res.data;
   };
 
   const getAdminBlogs = async () => {
-    const url = "http://localhost:4000/api/blog/admin";
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/admin`;
     // const url = `https://omega-8pd2.onrender.com/api/blog/admin`
     const res = await axios.get(url);
     return res.data;
@@ -51,7 +34,7 @@ export default function Home() {
 
 
   const getFeaturedBlogs = async () => {
-    const url = "http://localhost:4000/api/blog/featured";
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/featured`;
     // const url = `https://omega-8pd2.onrender.com/api/blog/admin`
     const res = await axios.get(url);
     return res.data;
@@ -60,22 +43,13 @@ export default function Home() {
 
   // /api/blogs/count
   const getBlogsCategoryCount = async () => {
-    const url = "http://localhost:4000/api/blogs/count";
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blogs/count`;
     // const url = `https://omega-8pd2.onrender.com/api/blogs/count`
 
     const res = await axios.get(url);
     return res.data[0];
   };
 
-  // const getUser = async (blog) => {
-  //   const res = await axios.get(
-  //     `http://localhost:4000/api/user/get/${blog?.UserId}`
-  //   );
-  //   // console.log(res.data);
-  //   return res.data;
-  // };
-  // const Photos =React.lazy(() => import(img));
-  // const arr = ["Travel", "Technology", "Food", "Science", "Design"];
   const results = useQueries({
     queries: [
       {
@@ -100,22 +74,22 @@ export default function Home() {
   });
   const RecentBlog = results[0];
   const AdminBlog = results[1];
-  const userData = results[0]?.data?.users;
+  // const userData = results[0]?.data?.users;
   const categoryCount = results[2].data;
   const FeaturedBlogs = results[3]
-
+// console.log(user);
   // console.log(categoryCount);
-  useEffect(() => {
-    if (userData) {
-      const r = userData?.filter((elem) =>
-        RecentBlog?.data?.blogs.find(({ UserId }) => elem.id === UserId)
-      );
-      setUser(r);
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData) {
+  //     const r = userData?.filter((elem) =>
+  //       RecentBlog?.data?.blogs.find(({ UserId }) => elem.id === UserId)
+  //     );
+  //     setUser(r);
+  //   }
+  // }, [userData]);
 
   const increaseWatch = (watch, id) => {
-    const url = `http://localhost:4000/api/blog/${id}`;
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`;
     watch = Number(watch);
     const res = axios.put(url, {
       watched: (watch += 1).toString(),
@@ -128,25 +102,18 @@ export default function Home() {
     return <Skeleton count={10} />;
   }
 
-  // console.log(FeaturedBlogs);
   return (
     <div className="home">
-      {/* <img
-    
-        loading={"lazy"}
-        src={"https://omega-8pd2.onrender.com/uploads/1682787207019wolf-seg.jpeg"}
-        alt={"213"}
-        className="sideBlogImg"
-      /> */}
       <div className="home_cn">
         <section className="row0_section0">
           <div className="header_cn">
             <div className="text_part">
-              <h1>Be Part Of OmegaBlog, Write And Review Diverse Topics</h1>
+              <h1>Be Part Of MNBlog
+                 Write And Review Diverse Topics</h1>
             </div>
             <div className="img_part">
               <p>
-                omegaBlog provides diverse categories of topics where you can
+              MNBlog provides diverse categories of topics where you can
                 read or write a topic of your interest
               </p>
             </div>

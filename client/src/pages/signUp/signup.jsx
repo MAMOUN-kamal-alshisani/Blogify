@@ -35,7 +35,7 @@ export default function SignUp() {
 
   const signUp = async () => {
     // const url = `https://omega-8pd2.onrender.com/api/signup`;
-    const url = `http://localhost:4000/api/signup`;
+    const url = `${process.env.REACT_APP_SERVER_API}/api/signup`;
 
     const res = await axios.post(url, formInput);
   };
