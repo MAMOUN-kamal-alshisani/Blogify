@@ -15,58 +15,41 @@ import axios from "axios";
 import "./scss/home.css";
 import { useEffect, useState } from "react";
 import React from "react";
-// import dotenv from 'dotenv'
-// dotenv.config()
-// import env from "react-dotenv";
-// import { SlNote } from "react-icons/sl";
-// import { AiOutlineEye } from "react-icons/ai";
-// import { BiTimeFive } from "react-icons/bi";
-// import { SlNote } from "react-icons/sl";
-// let imgg = ''
-// import img from imgg
 
 export default function Home() {
   const navigate = useNavigate();
-  const [user, setUser] = useState([]);
-  // let [img,setImg] = useState([])
-  // console.log(img);
-  // const [localImg, setLocalImg] = useState([]);
+  // const [user, setUser] = useState([]);
   const getRecentBlogs = async () => {
-    // const url = "http://localhost:4000/api/blog/latest";
-    const url = `https://omega-8pd2.onrender.com/api/blog/latest`
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/latest`;
     const res = await axios.get(url);
-    // res.data.blogs.map(blog=>{
-    //   setImg(prev=> [...prev, blog.photo])
-    // })
- 
     return res.data;
   };
 
   const getAdminBlogs = async () => {
-    // const url = "http://localhost:4000/api/blog/admin";
-    const url = `https://omega-8pd2.onrender.com/api/blog/admin`
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/admin`;
+    // const url = `https://omega-8pd2.onrender.com/api/blog/admin`
     const res = await axios.get(url);
     return res.data;
   };
 
+
+  const getFeaturedBlogs = async () => {
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/featured`;
+    // const url = `https://omega-8pd2.onrender.com/api/blog/admin`
+    const res = await axios.get(url);
+    return res.data;
+  };
+
+
   // /api/blogs/count
   const getBlogsCategoryCount = async () => {
-    // const url = "http://localhost:4000/api/blogs/count";
-    const url = `https://omega-8pd2.onrender.com/api/blogs/count`
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blogs/count`;
+    // const url = `https://omega-8pd2.onrender.com/api/blogs/count`
 
     const res = await axios.get(url);
     return res.data[0];
   };
 
-  // const getUser = async (blog) => {
-  //   const res = await axios.get(
-  //     `http://localhost:4000/api/user/get/${blog?.UserId}`
-  //   );
-  //   // console.log(res.data);
-  //   return res.data;
-  // };
-  // const Photos =React.lazy(() => import(img));
-  // const arr = ["Travel", "Technology", "Food", "Science", "Design"];
   const results = useQueries({
     queries: [
       {
@@ -77,29 +60,36 @@ export default function Home() {
         queryKey: ["AdminBlogs"],
         queryFn: getAdminBlogs,
       },
-      // {
-      //   queryKey: ["BlogsCount"],
-      //   queryFn: getBlogsCategoryCount,
-      // },
+  
+      {
+        queryKey: ["BlogsCount"],
+        queryFn: getBlogsCategoryCount,
+      },
+
+      {
+        queryKey: ["FeaturedBlogs"],
+        queryFn: getFeaturedBlogs,
+      },
     ],
   });
   const RecentBlog = results[0];
-  const mainBlog = results[1];
-  const userData = results[0]?.data?.users;
-  // const categoryCount = results[2]?.data;
-
-  // console.log(results);
-  useEffect(() => {
-    if (userData) {
-      const r = userData?.filter((elem) =>
-        RecentBlog?.data?.blogs.find(({ UserId }) => elem.id === UserId)
-      );
-      setUser(r);
-    }
-  }, [userData]);
+  const AdminBlog = results[1];
+  // const userData = results[0]?.data?.users;
+  const categoryCount = results[2].data;
+  const FeaturedBlogs = results[3]
+// console.log(user);
+  // console.log(categoryCount);
+  // useEffect(() => {
+  //   if (userData) {
+  //     const r = userData?.filter((elem) =>
+  //       RecentBlog?.data?.blogs.find(({ UserId }) => elem.id === UserId)
+  //     );
+  //     setUser(r);
+  //   }
+  // }, [userData]);
 
   const increaseWatch = (watch, id) => {
-    const url = `http://localhost:4000/api/blog/${id}`;
+    const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`;
     watch = Number(watch);
     const res = axios.put(url, {
       watched: (watch += 1).toString(),
@@ -111,23 +101,19 @@ export default function Home() {
   if (results[0]?.isLoading || results[1].isLoading) {
     return <Skeleton count={10} />;
   }
+
   return (
     <div className="home">
-             <img
-                              loading={"lazy"}
-                              src={'Photos'}
-                              alt={'213'}
-                              className="sideBlogImg"
-                            />
       <div className="home_cn">
         <section className="row0_section0">
           <div className="header_cn">
             <div className="text_part">
-              <h1>Be Part Of OmegaBlog, Write And Review Diverse Topics</h1>
+              <h1>Be Part Of MNBlog
+                 Write And Review Diverse Topics</h1>
             </div>
             <div className="img_part">
               <p>
-                omegaBlog provides diverse categories of topics where you can
+              MNBlog provides diverse categories of topics where you can
                 read or write a topic of your interest
               </p>
             </div>
@@ -137,6 +123,84 @@ export default function Home() {
           </div>
         </section>
 
+
+        <section className="row1_section1">
+          <div className="container">
+            <div className="firstCard">
+              <img
+                src={AdminBlog?.data[0]?.photo}
+                alt={AdminBlog?.data[0]?.category}
+                className="mainImage img1"
+              />
+              <div className="img_textarea textarea">
+                <p className="text2">
+                {AdminBlog?.data[0]?.title}
+                </p>
+                <div className="text1">
+                  <h5>{AdminBlog?.data[0]?.category}</h5>-<h5> {AdminBlog?.data[0]?.createdAt.slice(
+                            0,
+                            AdminBlog?.data[0]?.createdAt.indexOf("T")
+               )}</h5>
+                </div>
+              </div>
+            </div>
+            <div className="secondCard">
+              <div className="card_Img1 cards">
+                <img
+                  loading={"lazy"}
+                  src={AdminBlog?.data[1]?.photo}
+                alt={AdminBlog?.data[1]?.category}
+                  className="mainImage img2"
+                />
+                <div className="img_textarea textarea">
+                  <p className="text2">
+                  {AdminBlog?.data[1]?.title}
+                  </p>
+
+                  <div className="text1">
+                    <h5>{AdminBlog?.data[0]?.category}</h5>
+                    <h5>{AdminBlog?.data[0]?.createdAt.slice(
+                            0,
+                            AdminBlog?.data[0]?.createdAt.indexOf("T")
+               )}</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="card_Img2 cards">
+                <div className="card_Img2_text">
+                  <img
+                    loading={"lazy"}
+                    src={AdminBlog?.data[2]?.photo}
+                    alt={AdminBlog?.data[2]?.category}
+                    className="mainImage img3"
+                  />
+
+                  <div className="img_smalltext textarea">
+                    <p className="text4">
+                    {AdminBlog?.data[2]?.title}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="card_Img2_text">
+                  <img
+                    loading={"lazy"}
+                    src={AdminBlog?.data[3]?.photo}
+                    alt={AdminBlog?.data[3]?.category}
+                    className="mainImage img4"
+                  />
+                  <div className="img_smalltext textarea">
+                    <p className="text4">
+                    {AdminBlog?.data[3]?.title}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+{/* 
         <section className="row1_section1">
           <div className="container">
             <div className="firstCard">
@@ -205,7 +269,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="row2_section2">
           <div className="section2_cn">
@@ -215,118 +279,132 @@ export default function Home() {
                   <h1 className="featured_header">Featured Blogs</h1>
                 </div>
 
-                {mainBlog?.isFetched && (
+                {FeaturedBlogs?.isFetched && (
                   <div className="part1_cn">
                     <img
                       loading={"lazy"}
-                      src={mainBlog?.data[0]?.photo}
-                      alt={mainBlog?.data[0].category}
+                      src={FeaturedBlogs?.data[0]?.photo || AdminBlog?.data[0]?.photo}
+                      alt={FeaturedBlogs?.data[0]?.category || AdminBlog?.data[0]?.category}
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
-                        <h4>{mainBlog?.data[0]?.category}</h4>
+                        <h4>{FeaturedBlogs?.data[0]?.category || AdminBlog?.data[0]?.category}</h4>
                         <b className="timeIcon">
                           <BsCalendarDate />
-                          {mainBlog?.data[0]?.createdAt.slice(
+                          {FeaturedBlogs?.data[0]?.createdAt.slice(
                             0,
-                            mainBlog?.data[0]?.createdAt.indexOf("T")
-                          )}
+                            AdminBlog?.data[0]?.createdAt.indexOf("T")
+                          ) || AdminBlog?.data[0]?.createdAt.slice(
+                            0,
+                            AdminBlog?.data[0]?.createdAt.indexOf("T")
+                          ) }
                         </b>
                       </span>
-                      <p className="mainImg_desc">{mainBlog?.data[0]?.desc}</p>
+                      <p className="mainImg_desc">{FeaturedBlogs?.data[0]?.title || AdminBlog?.data[0]?.title}</p>
                     </div>
                   </div>
                 )}
 
                 <div className="part2_cn">
-                  {mainBlog?.isFetched && (
+                  {FeaturedBlogs?.isFetched && (
                     <article className="artical1 artical">
                       <img
                         loading={"lazy"}
-                        src={mainBlog?.data[1]?.photo}
-                        alt={mainBlog?.data[1]?.category}
+                        src={FeaturedBlogs?.data[1]?.photo || AdminBlog?.data[1]?.photo}
+                        alt={FeaturedBlogs?.data[1]?.category || AdminBlog?.data[1]?.category}
                         className="articalImg"
                       />
                       <p className="title_paragraph">
-                        {mainBlog?.data[1]?.title}
+                        {FeaturedBlogs?.data[1]?.title || AdminBlog?.data[1]?.title}
                       </p>
                       <div className="articalDetails">
                         <span className="user_cn">
                           <BsPersonFill className="user_icon" />
-                          <User blog={mainBlog?.data[1]} />
+                          <User blog={FeaturedBlogs?.data[1] || AdminBlog?.data[1]} />
                         </span>
 
                         <span className="time_cn">
                           <b className="timeIcon">
                             <BsCalendarDate />
                           </b>
-                          {mainBlog?.data[1]?.createdAt?.slice(
+                          {FeaturedBlogs?.data[1]?.createdAt?.slice(
                             0,
-                            mainBlog?.data[1]?.createdAt?.indexOf("T")
+                            FeaturedBlogs?.data[1]?.createdAt?.indexOf("T")
+                          )  ||  AdminBlog?.data[1]?.createdAt?.slice(
+                          0,
+                            AdminBlog?.data[1]?.createdAt?.indexOf("T")
                           )}
                         </span>
                       </div>
                     </article>
                   )}
 
-                  {mainBlog?.isFetched && (
+                  {FeaturedBlogs?.isFetched && (
                     <article className="artical2 artical">
                       <img
                         loading={"lazy"}
-                        src={mainBlog?.data[2]?.photo}
-                        alt={mainBlog?.data[2]?.category}
+                        src={FeaturedBlogs?.data[2]?.photo || AdminBlog?.data[2]?.photo}
+                        alt={FeaturedBlogs?.data[2]?.category || AdminBlog?.data[2]?.category}
                         className="articalImg"
                       />
                       <p className="title_paragraph">
-                        {mainBlog?.data[2]?.title}
+                        {FeaturedBlogs?.data[2]?.title || AdminBlog?.data[2]?.title}
                       </p>
 
                       <div className="articalDetails">
                         <span className="user_cn">
                           <BsPersonFill className="user_icon" />
-                          <User blog={mainBlog?.data[2]} />
+                          <User blog={FeaturedBlogs?.data[2] || AdminBlog?.data[2] } />
                         </span>
                         <span className="time_cn">
                           <b className="timeIcon">
                             <BsCalendarDate />
                           </b>
-                          {mainBlog?.data[2]?.createdAt.slice(
+                          {FeaturedBlogs?.data[2]?.createdAt.slice(
                             0,
-                            mainBlog?.data[2]?.createdAt.indexOf("T")
-                          )}
+                            FeaturedBlogs?.data[2]?.createdAt.indexOf("T")
+
+                          ) || AdminBlog?.data[2]?.createdAt.slice(
+                            0,
+                            AdminBlog?.data[2]?.createdAt.indexOf("T")
+                          )} 
                         </span>
                       </div>
                     </article>
                   )}
                 </div>
 
-                {mainBlog?.isFetched && (
+                {FeaturedBlogs?.isFetched && (
                   <div className="part1_cn var_part3">
                     <img
                       loading={"lazy"}
-                      src={mainBlog?.data[0]?.photo}
-                      alt={mainBlog?.data[0]?.category}
+                      src={FeaturedBlogs?.data[3]?.photo || AdminBlog?.data[3]?.photo}
+                      alt={FeaturedBlogs?.data[3]?.category || AdminBlog?.data[3]?.category}
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
-                        <h4>{mainBlog?.data[0]?.category}</h4>
+                        <h4>{FeaturedBlogs?.data[3]?.category || AdminBlog?.data[3]?.category}</h4>
                         <b className="timeIcon">
                           <BsCalendarDate />
-                          {mainBlog?.data[0]?.createdAt.slice(
+                          {FeaturedBlogs?.data[3]?.createdAt.slice(
                             0,
-                            mainBlog?.data[0]?.createdAt.indexOf("T")
+                            FeaturedBlogs?.data[3]?.createdAt.indexOf("T")
+
+                          ) || AdminBlog?.data[3]?.createdAt.slice(
+                            0,
+                            AdminBlog?.data[3]?.createdAt.indexOf("T")
                           )}
                         </b>
                       </span>
-                      <p className="mainImg_desc">{mainBlog?.data[0]?.desc}</p>
+                      <p className="mainImg_desc">{FeaturedBlogs?.data[3]?.title || AdminBlog?.data[3]?.title}</p>
                     </div>
                   </div>
                 )}
               </div>
               {/* //////////////////////////////// */}
-{/* <img src={require('../../uploads/1682787207019wolf-seg.jpeg')} alt="" /> */}
+              {/* <img src={require('../../uploads/1682787207019wolf-seg.jpeg')} alt="" /> */}
               <div className="part2 section">
                 <div className="blog_cn">
                   <div className="header_cn2">
@@ -346,16 +424,18 @@ export default function Home() {
                         <div className="sideBlog_cn" key={data.id}>
                           <div
                             className="img_Section"
-                            onClick={() => increaseWatch(data?.watched, data?.id)}
+                            onClick={() =>
+                              increaseWatch(data?.watched, data?.id)
+                            }
                           >
-                              {/* src={data.photo.startsWith('.') ? require(data.photo) : data.photo} */}
+                            {/* src={data.photo.startsWith('.') ? require(data.photo) : data.photo} */}
 
-                            {/* <img
+                            <img
                               loading={"lazy"}
-                              src={require(data.photo)}
+                              src={data.photo}
                               alt={data.id}
                               className="sideBlogImg"
-                            /> */}
+                            />
                             {/* <div className="blog1Div">
                               <h4>{data.category}</h4>
                               <span>
@@ -424,7 +504,7 @@ export default function Home() {
 
                   <div className="post_categories">
                     <ul className="categoryList">
-                      {/* {categoryCount?.map((blog, i) => {
+                      {categoryCount?.map((blog, i) => {
                         return (
                           <li
                             className="categoryItem"
@@ -432,10 +512,10 @@ export default function Home() {
                             onClick={() => navigate("/blogs")}
                           >
                             <span>{blog.category}</span>
-                            <span>{blog.Count}</span>
+                            <span>{blog.count}</span>
                           </li>
                         );
-                      })} */}
+                      })}
                     </ul>
                   </div>
                 </div>

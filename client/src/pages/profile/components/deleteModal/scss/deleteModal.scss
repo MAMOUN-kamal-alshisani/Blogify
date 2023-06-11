@@ -1,0 +1,84 @@
+@import "../../../../../variables/_variables.scss";
+
+.deleteModal {
+  backdrop-filter: blur(3px);
+  position: fixed;
+  top: 50%;
+  bottom: 50%;
+  left: 25%;
+  right: 25%;
+  z-index: 99;
+  background-color: white;
+  border: 1px solid #d4cccc;
+  box-shadow: 0px 0px 5px 1px grey;
+  width: 100%;
+  max-width: 500px;
+  min-width: fit-content;
+  height: 200px;
+  // right: 50%;
+  // right: 50%;
+
+  .deleteModalCn {
+    @include flex(flex, space-between, wrap, column);
+    width: inherit;
+    height: inherit;
+    .HeaderCn {
+      @include flex(flex, space-between, wrap, row);
+      padding: 10px;
+      border-bottom: 2px solid rgb(244, 242, 242);
+      h1 {
+      }
+      .CancelBtn {
+        background-color: transparent;
+        border: transparent;
+      }
+    }
+    .middlePartCn {
+      padding: 10px;
+    }
+    .footerCn {
+      @include flex(flex, flex-end, wrap, row);
+      border-top: 2px solid rgb(244, 242, 242);
+      gap: 10px;
+      padding: 10px;
+      .deleteModalBtn {
+        height: 30px;
+        padding: 5px;
+        border: transparent;
+      }
+      .CancelBtn {
+        background-color: transparent;
+
+        &:hover {
+          color: royalblue;
+        }
+      }
+      .deleteBtn {
+        background-color: crimson;
+        color: white;
+
+        &:hover {
+          background-color: rgb(240, 15, 60);
+        }
+
+  
+        .BtnSpinner{
+          animation: spin 5s;
+          font-size: medium;
+        }
+        @keyframes spin {
+          0%   {rotate:(0)}
+          10%   {rotate:(30deg)}
+          25%  {rotate:(90deg)}
+          35%  {rotate:(130deg)}
+          50%  {rotate:(180deg)}
+          60%  {rotate:(220deg)}
+          70%  {rotate:(260deg)}
+          80%  {rotate:(300deg)}
+          90% {rotate:(360deg)}
+          100% {display: none;}
+        }
+      }
+    }
+  }
+}

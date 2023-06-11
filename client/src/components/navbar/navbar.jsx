@@ -9,7 +9,7 @@ export default function Navbar() {
     <div className="Navbar">
       <div className="navbar_cn">
         <div className="siteName_cn">
-            <h2>OmegaBlog</h2>
+            <h2>MNBlog</h2>
             <div className="nav_text">
             <a href="!#" className="tags">BLOG</a> /
             <a href="" className="tags"> ARCHIVES </a> /

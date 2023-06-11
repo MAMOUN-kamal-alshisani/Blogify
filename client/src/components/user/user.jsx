@@ -2,16 +2,13 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-import { SlNote } from "react-icons/sl";
-
-
 export default function User({ blog }) {
-  const [user, setUser] = useState();
-  
+  const [user, setUser] = useState('');
+  // console.log(blog);
   const getUser = async (blog) => {
     if(blog.UserId !== undefined){
       const res = await axios.get(
-        `http://localhost:4000/api/user/${blog?.UserId}`
+        `${process.env.REACT_APP_SERVER_API}/api/user/${blog?.UserId}`
       );
       return res.data;
     }

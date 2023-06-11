@@ -5,16 +5,17 @@ import "./scss/post.css";
 import { useCookies } from "react-cookie";
 // import { useEffect } from "react";
 import axios from "axios";
-
+// import dotenv from 'dotenv'
+// dotenv.config()
 export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("");
   const [imgFile, setImgFile] = useState(null);
-  const [cookies, setCookies] = useCookies("user");
+  const [cookies] = useCookies("user");
 
   // console.log(cookies);
-  const [img,setImg] = useState('')
+  // const [img,setImg] = useState('')
   // console.log(cookies.user.id);
   //   useEffect(()=>{
   // const getUser = async()=>{
@@ -29,28 +30,28 @@ export default function Post() {
   //   },[])
   // console.log(img);
   // console.log(imgFile?.name);
+
+  // console.log(process.env.REACT_APP_SERVER_API);
   const upload = async () => {
     try {
       const formData = new FormData();
       formData.append("file", imgFile);
       const res = await axios.post(
-        "http://localhost:4000/api/upload",
+        `${process.env.REACT_APP_SERVER_API}/api/upload`,
         formData
       );
       console.log(res.data);
-      setImg(res.data)
+      // setImg(res.data)
       return res.data;
     } catch (err) {
       console.log(err);
-      // res.status(500).send(err)
     }
   };
 
   const handleFile = async () => {
     try {
       const File = await upload();
-      // console.log(ImgFile);
-      const url = `http://localhost:4000/api/blog/${cookies.user.id}`;
+      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
 
       const res = await axios.post(url, {
         title: title,
@@ -58,8 +59,9 @@ export default function Post() {
         category: category,
         watched: "12",
         // photo: `file:///c://home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/${File}`,
-        photo:`../../uploads/${File}`
+        photo:`${process.env.REACT_APP_SERVER_API}/uploads/${File}`
       });
+      
       return res.data;
     } catch (err) {
       console.log(err);
@@ -68,7 +70,6 @@ export default function Post() {
   return (
     <div className="Post">
       <div className="Post_cn">
-        {/* <div><img src={`../../../../server/uploads/${img}`} alt="23" /></div> */}
         <div className="TextCn1">
           <div className="titleContainer">
             <input
@@ -160,7 +161,6 @@ export default function Post() {
               <button
                 onClick={() => {
                   handleFile();
-                  // upload()
                 }}
               >
                 Update

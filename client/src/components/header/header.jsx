@@ -64,11 +64,11 @@ export default function Header() {
             />
             {toggle && (
               <div className="dropdown_menu">
-                <div className="dropdown_item">
+                <div className="dropdown_item" onClick={()=> mutate()}>
                   {cookies.get("user") ? (
-                    <button onClick={mutate} className="logout_btn">
+                    <Link  className="link"/*"logout_btn*/>
                       Logout
-                    </button>
+                    </Link>
                   ) : (
                     <Link to={"/signin"} className="link">
                       Login

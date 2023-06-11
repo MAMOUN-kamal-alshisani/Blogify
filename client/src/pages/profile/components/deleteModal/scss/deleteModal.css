@@ -1,0 +1,104 @@
+.deleteModal {
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  position: fixed;
+  top: 50%;
+  bottom: 50%;
+  left: 25%;
+  right: 25%;
+  z-index: 99;
+  background-color: white;
+  border: 1px solid #d4cccc;
+  box-shadow: 0px 0px 5px 1px grey;
+  width: 100%;
+  max-width: 500px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  height: 200px;
+}
+.deleteModal .deleteModalCn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+}
+.deleteModal .deleteModalCn .HeaderCn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 2px solid rgb(244, 242, 242);
+}
+.deleteModal .deleteModalCn .HeaderCn .CancelBtn {
+  background-color: transparent;
+  border: transparent;
+}
+.deleteModal .deleteModalCn .middlePartCn {
+  padding: 10px;
+}
+.deleteModal .deleteModalCn .footerCn {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border-top: 2px solid rgb(244, 242, 242);
+  gap: 10px;
+  padding: 10px;
+}
+.deleteModal .deleteModalCn .footerCn .deleteModalBtn {
+  height: 30px;
+  padding: 5px;
+  border: transparent;
+}
+.deleteModal .deleteModalCn .footerCn .CancelBtn {
+  background-color: transparent;
+}
+.deleteModal .deleteModalCn .footerCn .CancelBtn:hover {
+  color: royalblue;
+}
+.deleteModal .deleteModalCn .footerCn .deleteBtn {
+  background-color: crimson;
+  color: white;
+}
+.deleteModal .deleteModalCn .footerCn .deleteBtn:hover {
+  background-color: rgb(240, 15, 60);
+}
+.deleteModal .deleteModalCn .footerCn .deleteBtn .BtnSpinner {
+  animation: spin 5s;
+  font-size: medium;
+}
+@keyframes spin {
+  0% {
+    rotate: 0;
+  }
+  10% {
+    rotate: 30deg;
+  }
+  25% {
+    rotate: 90deg;
+  }
+  35% {
+    rotate: 130deg;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  60% {
+    rotate: 220deg;
+  }
+  70% {
+    rotate: 260deg;
+  }
+  80% {
+    rotate: 300deg;
+  }
+  90% {
+    rotate: 360deg;
+  }
+  100% {
+    display: none;
+  }
+}/*# sourceMappingURL=deleteModal.css.map */

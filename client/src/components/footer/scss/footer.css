@@ -1,3 +1,6 @@
+.footer .footer_cn > * {
+  flex: 1;
+}
 .footer .footer_cn {
   display: flex;
   justify-content: center;
@@ -12,7 +15,6 @@
   justify-content: space-around;
   flex-wrap: nowrap;
   flex-direction: column;
-  flex: 1;
   padding: 10px;
 }
 .footer .footer_cn .first_section .first_cn {
@@ -51,7 +53,7 @@
 .footer .footer_cn .first_section .second_cn {
   display: flex;
   justify-content: space-around;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   padding-left: 45px;
@@ -81,7 +83,6 @@
   align-items: center;
   margin: 20px;
   border-right: 2px solid #424242;
-  flex: 1;
 }
 .footer .footer_cn .second_section h1 {
   color: #9c27b0;
@@ -96,7 +97,6 @@
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
-  flex: 1;
   margin: 20px;
   border-left: 2px solid #424242;
 }

@@ -39,14 +39,13 @@
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn .mainBlogImg {
   width: 100%;
   height: 500px;
-  border-radius: 6px;
-  transition: all ease-in-out 2s;
-}
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn .mainBlogImg:hover {
-  filter: brightness(80%);
+  border-radius: 6px 6px 0px 0px;
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn:hover .moreDetailsCn {
   visibility: visible;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn:hover .mainBlogImg {
+  filter: brightness(90%);
 }
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .img_cn .moreDetailsCn {
   visibility: collapse;
@@ -60,7 +59,7 @@
   word-break: break-all;
   position: absolute;
   color: white;
-  text-shadow: 0px 2px 1px grey;
+  text-shadow: 1px 1px 1px grey;
   font-weight: bold;
   min-height: -moz-fit-content;
   min-height: fit-content;
@@ -86,42 +85,67 @@
   flex-direction: row;
   gap: 2px;
 }
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn {
+  padding-top: 20px;
+}
 .SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   flex-direction: column;
-  gap: 10px;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .title_div {
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .category_div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: nowrap;
   flex-direction: row;
-  padding: 10px;
-  color: grey;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .title_div p:first-child {
-  color: brown;
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .category_div p:first-child {
+  color: #9c27b0;
   padding: 5px;
-  border: 1px solid;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .desc_div {
-  padding: 20px;
-  text-align: center;
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div {
   overflow: auto;
+  text-align: center;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .desc_div h2 {
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div h2 {
   color: #3c3c3c;
   text-shadow: 0px 1px 1px grey;
   font-size: larger;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .desc_div h3 {
-  font-size: large;
-  font-family: Arial, Helvetica, sans-serif;
-  padding-top: 20px;
-  line-height: 30px;
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .body_details_div .blogDesc {
+  padding: 20px;
+  line-height: 25px;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  border-top: 2px solid #ebebeb;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn {
+  border: transparent;
+  background-color: transparent;
+  font-size: x-large;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogLikedBtn {
+  color: #9c27b0;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogLikedBtn:hover {
+  color: black;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogNotLikedBtn {
+  color: black;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .likeBtnCn .likeBtn .BlogNotLikedBtn:hover {
+  color: #9c27b0;
+}
+.SBlog .blog_cn .personalBlog .mainBlog .card_article .cardInfoCn .textAreaDiv .footer_blog_details .DateCn {
+  color: grey;
+  font-size: 0.9rem;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div {
   display: flex;
@@ -141,7 +165,7 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
   padding-left: 10px;
-  border-bottom: 2px solid #673ab7;
+  border-bottom: 2px solid #9c27b0;
   width: 100%;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr {
@@ -161,15 +185,24 @@
   overflow: auto;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards {
-  width: 250px;
-  height: 300px;
+  width: 200px;
+  max-height: 250px;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   background: white;
   border-radius: 6px;
+  cursor: pointer;
+}
+.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards:hover .sideBlogImg {
+  filter: brightness(90%);
+}
+.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards:hover {
+  background: snow;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .sideBlogImg {
   border-radius: 6px;
   width: 100%;
-  height: 150px;
+  height: 100px;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr {
   padding: 5px;
@@ -178,14 +211,31 @@
   flex-wrap: nowrap;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: auto;
 }
-.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .title_div p {
-  background-color: rgba(0, 0, 0, 0.57);
-  color: white;
+.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .title_div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid #e9e7e7;
+}
+.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .title_div h5:first-child {
+  color: #9c27b0;
   width: -moz-fit-content;
   width: fit-content;
   padding: 5px;
   border-radius: 6px;
+  font-size: small;
+}
+.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .title_div h5:last-child {
+  color: grey;
   font-size: small;
 }
 .SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .desc_div {
@@ -195,41 +245,33 @@
   flex-direction: column;
   gap: 10px;
 }
-.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .desc_div .sideBlogBtn {
-  background-color: transparent;
-  color: blueviolet;
-  width: -moz-fit-content;
-  width: fit-content;
-  border: transparent;
-  padding: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.SBlog .blog_cn .personalBlog .sideBlog_Div .sideBlog_cr .sideBlogCards .textAreaCr .desc_div .sideBlogBtn:hover {
-  color: rgb(208, 4, 254);
-}
 .SBlog .allBlogs {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 60px 0px;
   width: 100%;
 }
 .SBlog .allBlogs h2 {
   margin: 10px auto;
   padding-bottom: 5px;
   border-bottom: 2px solid #d6d5da;
-  max-width: 1080px;
+  max-width: 1280px;
   font-size: larger;
+  padding-left: 10px;
 }
 .SBlog .allBlogs .allBlogs_cn {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   padding: 5px;
   gap: 5px;
+  margin-top: 30px;
+}
+.SBlog .allBlogs .allBlogs_cn:hover .blogs_cards_btn {
+  visibility: visible;
 }
 .SBlog .allBlogs .allBlogs_cn .card_div {
+  opacity: 0.8;
   width: 20%;
   height: 300px;
   box-shadow: 0px 0px 4px 1px grey;
@@ -237,6 +279,10 @@
   background-color: white;
   cursor: pointer;
   transition: linear 1s;
+}
+.SBlog .allBlogs .allBlogs_cn .card_div:hover {
+  opacity: 1;
+  transform: scale(1.05);
 }
 .SBlog .allBlogs .allBlogs_cn .card_div:hover {
   background-color: #ebebeb;
@@ -268,7 +314,7 @@
   font-size: small;
 }
 .SBlog .allBlogs .allBlogs_cn .card_div .allBlogsText_Cr .allBlogs_title p:first-child {
-  color: royalblue;
+  color: #673AB7;
   border: 1px solid;
   padding: 5px;
   text-shadow: 0px 0px 1px grey;
@@ -283,7 +329,7 @@
   padding-bottom: 5px;
 }
 .SBlog .allBlogs .allBlogs_cn .card_div .allBlogsText_Cr .allBlogs_Btn {
-  background-color: #3f51b5;
+  background-color: #9c27b0;
   color: white;
   cursor: pointer;
   border: transparent;
@@ -301,7 +347,9 @@
   height: 35px;
   font-size: x-large;
   text-align: center;
+  visibility: collapse;
   margin: 0px 10px;
+  transition: all ease-in-out 2s;
 }
 .SBlog .allBlogs .allBlogs_cn .blogs_cards_btn .blogs_cards_icon:hover {
   border-radius: 50%;

@@ -2,17 +2,13 @@ import "./scss/signin.css";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
-import { FaLongArrowAltRight } from "react-icons/fa";
 import { ImSpinner2 } from "react-icons/im";
 import { AiOutlineHome } from "react-icons/ai";
-
-
-import Cookies from "universal-cookie";
-// import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function SignIn() {
   const cookies = new Cookies()
@@ -27,27 +23,14 @@ export default function SignIn() {
 
   const inputError = document.querySelector(".password_error");
   const emailError = document.querySelector(".email_error");
-  // const signinBtn = document.querySelector(".signin_btn");
-
-  // useEffect(() => {
-  //   // if (localStorage.getItem("user")) {
-  //   //   // signinBtn.disabled = true
-  //   //     alert('a user already is signed in, you will be redirected to home page!')
-  //   //     navigate("/");
-  //   // }
-  
-  // }, []);
 
   const handleChange = (e) => {
     setFormInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSignIn = async () => {
-    const url = `https://omega-8pd2.onrender.com/api/signin`;
+    const url = `${process.env.REACT_APP_SERVER_API}/api/signin`;
     const res = await axios.post(url, formInput, { withCredentials: true });
-
-    // localStorage.setItem('user',res?.data)
-    // return localStorage.setItem("user", JSON.stringify(res.data.user));
     cookies.set("user", res.data.user,{maxAge:60*60*24});
   };
   const { mutate, isLoading, error } = useMutation({
@@ -68,11 +51,15 @@ export default function SignIn() {
       navigate("/");
     },
   });
-  if (cookies.get('user')) {
-    // signinBtn.disabled = true
-      alert('a user already is signed in, you will be redirected to home page!')
-      navigate("/");
-  }
+
+  useEffect(()=>{
+    if (cookies.get('user')) {
+      // signinBtn.disabled = true
+        alert('a user already is signed in, logout first!')
+        navigate("/");
+    }
+  },[])
+
   return (
     <div className="signin">
       <div className="signin_cn">
