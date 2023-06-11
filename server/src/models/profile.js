@@ -3,7 +3,12 @@ import { db } from "../db/db.js";
 import { User } from "./user.js";
 
 export const Profile = db.define('Profile',{
-
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+    
     fullName:{
         type:DataTypes.STRING,
         allowNull: true,
