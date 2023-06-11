@@ -49,7 +49,7 @@ export const Blogs = db.define("Blogs", {
     defaultValue:[]
   },
   UserId: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
   },
 //   UserId:{
 //     type: DataTypes.STRING,
