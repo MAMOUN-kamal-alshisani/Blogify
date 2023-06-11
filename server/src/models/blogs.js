@@ -28,6 +28,8 @@ export const Blogs = db.define("Blogs", {
   watched: {
     type: DataTypes.STRING,
     allowNull: true,
+    defaultValue: '0'
+
   },
   featured: {
     type: DataTypes.BOOLEAN,
