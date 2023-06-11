@@ -43,6 +43,11 @@ export const Blogs = db.define("Blogs", {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   },
+  liked: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    allowNull: true,
+    defaultValue:[]
+  },
   UserId: {
     type: DataTypes.STRING,
   },

@@ -37,12 +37,12 @@ export const Profile = db.define('Profile',{
         allowNull:true,
         defaultValue: null
     },
-    github:{
+    twitter:{
         type:DataTypes.STRING,
         allowNull:true,
         defaultValue: null
     },
-    email:{
+    socialEmail:{
         type:DataTypes.STRING,
         allowNull:true,
         defaultValue: null
