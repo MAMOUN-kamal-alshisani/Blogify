@@ -81,7 +81,7 @@ export default function Profile() {
       console.log(err);
     }
   };
-
+  // console.log(cookies.user);
   /// for recording image path that has been uploaded on the api
   const handleFile = async () => {
     try {
@@ -167,7 +167,7 @@ export default function Profile() {
     try {
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/user/${UserId}`;
       const res = await axios.get(url);
-      // setUserBlogs(res.data);
+      setUserBlogs(res.data);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -193,6 +193,11 @@ export default function Profile() {
           setUserInfo(data);
           setProfileInput(data);
         },
+        // onerror:()=>{
+        //   setUserInfo([])
+        //   setProfileInput([])
+        // }
+      
       },
 
       {
@@ -231,7 +236,7 @@ export default function Profile() {
       console.log(err);
     }
   };
-  const { isLoading, mutate, isSuccess } = useMutation({
+  const { mutate, isSuccess } = useMutation({
     mutationKey: ["formInput"],
     mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
     onSuccess: () => {
@@ -395,7 +400,7 @@ export default function Profile() {
             )}
           </div>
 
-          {navBtn == "content" && (
+          {navBtn === "content" && (
             <div className="user_info_div">
               <ul className="InfoDiv">
                 <li>FullName: </li>
@@ -439,7 +444,7 @@ export default function Profile() {
             </div>
           )}
 
-          {navBtn == "blogs" && (
+          {navBtn === "blogs" && (
             <div className="blogsDiv">
               <div className="blogsCn">
                 {userBlogs.length === 0 ? (

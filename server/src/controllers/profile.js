@@ -24,7 +24,7 @@ export const getUserProfile = async (req, res) => {
   try {
     const UserId = req.params.UserId;
     const profile = await Profile.findOne({ where: { UserId: UserId } });
-    if(!profile) return res.status(404).send('profile with specified (id) is not found!')
+    // if(!profile) return res.status(404).send('profile with specified (id) is not found!')
     res.status(200).send(profile);
   } catch (err) {
     res.status(500).send(err);
