@@ -37,52 +37,50 @@
 
               // filter: brightness(90%);
               &:hover {
-                // filter: brightness(20%);
-                // filter: blur(1px);
+                filter: brightness(90%);
+
               }
             }
+            // &:hover .mainBlogImg {
+            //   filter: brightness(90%);
+            // }
+            // &:hover .moreDetailsCn {
+            //   // visibility: visible;
+            // }
+          }
+          .moreDetailsCn {
+            // visibility: collapse;
+            transition: all ease-in-out 2s;
 
-            &:hover .moreDetailsCn {
-              visibility: visible;
-            }
-            &:hover .mainBlogImg {
-              filter: brightness(90%);
-            }
-            .moreDetailsCn {
-              visibility: collapse;
-              transition: all ease-in-out 2s;
+            .write_div {
+              @include flex(flex, space-between, wrap, row);
+              align-items: center;
+              word-break: break-all;
+              text-shadow: 1px 1px 1px grey;
+              // font-weight: bold;
+              min-height: fit-content;
+              bottom: 3px;
+              // padding: 5px;
+              width: 100%;
+              height: 100%;
 
-              .write_div {
-                @include flex(flex, space-between, wrap, row);
-                word-break: break-all;
-                position: absolute;
-                color: white;
-                text-shadow: 1px 1px 1px grey;
-                font-weight: bold;
-                min-height: fit-content;
-                // background-color: rgba(46, 41, 41, 0.068);
-                bottom: 3px;
-                padding: 5px;
-                width: 100%;
-                height: 100%;
-
-                p {
-                  align-items: flex-start;
-                  padding: 10px;
-                }
-                p:first-child {
-                  @include flex(flex, flex-end, nowrap, row);
-                }
-                p:last-child {
-                  @include flex(flex, unset, nowrap, row);
-                  gap: 2px;
-                }
+              span {
+                align-items: flex-start;
+                padding: 10px;
+                color: grey;
+                font-size: smaller
+              }
+              .DateCn {
+                @include flex(flex, flex-end, nowrap, row);
+              }
+              span:last-child {
+                @include flex(flex, unset, nowrap, row);
+                gap: 2px;
               }
             }
           }
-
           .cardInfoCn {
-            padding-top: 20px;
+            // padding-top: 20px;
             .textAreaDiv {
               @include flex(flex, space-between, nowrap, column);
               .category_div {
@@ -95,55 +93,55 @@
               .body_details_div {
                 overflow: auto;
                 text-align: center;
-                
+
                 h2 {
                   color: #3c3c3c;
                   text-shadow: 0px 1px 1px grey;
                   font-size: larger;
+                  border-bottom: 2px solid #ebebeb;
+                  padding: 5px 5px 10px 5px;
                 }
                 .blogDesc {
                   padding: 20px;
                   line-height: 25px;
                   overflow: auto;
-    max-height: 200px;
+                  max-height: 200px;
                 }
               }
 
-
-              .footer_blog_details{
+              .footer_blog_details {
                 @include flex(flex, space-between, wrap, row);
                 align-items: center;
                 padding: 10px;
-                border-top: 2px solid #ebebeb;;
+                border-top: 2px solid #ebebeb;
 
-                .likeBtnCn{
-
+                .user_para{
+                  @include flex(flex, space-between, wrap, row);
+                  gap:5px
+                }
+                .likeBtnCn {
                   .likeBtn {
                     border: transparent;
                     background-color: transparent;
                     font-size: x-large;
-    
-                    .BlogLikedBtn{
-                        color: #9c27b0;
-                        &:hover{
-                          color: black;
-                        }
+
+                    .BlogLikedBtn {
+                      color: #9c27b0;
+                      &:hover {
+                        color: black;
+                      }
                     }
-                    .BlogNotLikedBtn{
+                    .BlogNotLikedBtn {
                       color: black;
-                      &:hover{
+                      &:hover {
                         color: #9c27b0;
                       }
                     }
                   }
                 }
-                .DateCn{
-                  color: grey;
-                  font-size: 0.9rem
-                }
+              
+
               }
-
-
             }
           }
         }
@@ -163,6 +161,8 @@
           padding-left: 10px;
           border-bottom: 2px solid #9c27b0;
           width: 100%;
+        gap: 5px;
+
         }
         .sideBlog_cr {
           @include flex(flex, unset, nowrap, column);
@@ -197,8 +197,7 @@
             }
             &:hover {
               // background-color: #b099f0;
-            background: snow;
-
+              background: snow;
             }
             // box-shadow: 0px 0px 1px 0px grey;
             .sideBlogImg {
@@ -214,7 +213,7 @@
               width: 100%;
               min-width: fit-content;
               height: fit-content;
-            overflow: auto;
+              overflow: auto;
 
               // box-shadow: 0px 0px 2px 0px grey;
               .title_div {
@@ -232,7 +231,7 @@
                 }
                 h5:last-child {
                   color: grey;
-                  font-size: small
+                  font-size: small;
                 }
               }
 
@@ -279,22 +278,23 @@
       padding: 5px;
       gap: 5px;
       margin-top: 30px;
-      &:hover .blogs_cards_btn{
+      &:hover .blogs_cards_btn {
         visibility: visible;
-
       }
       .card_div {
+        flex: 1;
         opacity: 0.8;
-        width: 20%;
+        // width: 20%;
+        max-width: 300px;
+        min-width: 200px;
         height: 300px;
         box-shadow: 0px 0px 4px 1px grey;
         border-radius: 6px;
         background-color: white;
 
-
-        &:hover{
-          opacity: 1; 
-        transform: scale(1.05);
+        &:hover {
+          opacity: 1;
+          transform: scale(1.05);
         }
         cursor: pointer;
         transition: linear 1s;
@@ -327,7 +327,7 @@
             p:first-child {
               // color: white;
               // background-color: crimson;
-              color: #673AB7;
+              color: #673ab7;
               border: 1px solid;
               padding: 5px;
               text-shadow: 0px 0px 1px grey;
@@ -351,7 +351,7 @@
           .allBlogs_Btn {
             // background-color: #9e9e9e;
             // background-color: #673ab7;
-            background-color: #9c27b0;;
+            background-color: #9c27b0;
             color: white;
             cursor: pointer;
             border: transparent;
@@ -377,10 +377,10 @@
         // padding:10px;
         visibility: collapse;
         margin: 0px 10px;
-      transition: all ease-in-out 2s;
+        transition: all ease-in-out 2s;
 
         .blogs_cards_icon {
-          // width: 40px;
+
           &:hover {
             border-radius: 50%;
             color: rgb(61, 60, 60);
@@ -395,310 +395,3 @@
   }
 }
 
-// @import "../../../variables/_variables.scss";
-
-// .SBlog {
-//   @include flex(flex, unset, nowrap, column);
-//   padding-top: 30px;
-//   padding-bottom: 30px;
-//   background-color: #f1f1f1;
-//   .blog_cn {
-//     @include flex(flex, unset, nowrap, column);
-//     align-items: center;
-//     .personalBlog {
-//       @include flex(flex, unset, nowrap, row);
-//       gap: 20px;
-//       width: 85%;
-//       // min-width: 500px;
-//       .mainBlog {
-//         min-width: fit-content;
-//         box-shadow: 0px 0px 2px 3px grey;
-//         height: 500px;
-//         border-radius: 6px;
-//         cursor: pointer;
-//         .card_article {
-//           @include flex(flex, unset, nowrap, row);
-//           height: 100%;
-//           width: 800px;
-//           .mainBlogImg {
-//             width: 50%;
-//             max-height: fit-content;
-//             object-fit: fill;
-//             border-bottom-left-radius: 6px;
-//             border-top-left-radius: 6px;
-//           }
-
-//           .cardInfoCn {
-//             width: 100%;
-//             min-width: 50%;
-//             height: 100%;
-//             .textAreaContainer {
-//               @include flex(flex, space-between, nowrap, column);
-
-//               border-top-right-radius: 6px;
-//               border-bottom-right-radius: 6px;
-//               position: relative;
-//               overflow: auto;
-//               width: 100%;
-//               min-width: 50%;
-//               height: 100%;
-//               // background-color: rgb(42, 40, 40);
-//               // background: radial-gradient(#76b2fe, #b69efe);
-//               // background: radial-gradient(#BA68C8, #673AB7);
-//               // background: radial-gradient(#000000, #673AB7);
-//               // background: radial-gradient(#211e1e, #353333);
-//               background: radial-gradient(#ffffff, #d1caca);
-//               font-family: Poppins, sans-serif;
-
-//               &:hover {
-//                 // background: radial-gradient(#050505, #353333);
-//               background: radial-gradient(#e1dede, #cbc9c9);
-
-//               &:hover .title_div {
-//                 background: #0c0c0cc1;
-
-//                 p:first-child {
-//                   color: white;
-//                 }
-//                 p:last-child {
-//                   color: #ffffff;
-//                 }
-//               }
-//               }
-
-//               .textAreaDiv {
-//                 @include flex(flex, unset, nowrap, column);
-//                 gap: 20px;
-//                 height: 50%;
-//                 // overflow: auto;
-
-//                 .title_div {
-//                   @include flex(flex, space-between, nowrap, row);
-//                   padding: 10px 20px;
-//                   // background: #673ab7ad;
-//                   background-color: rgb(0 0 0 / 68%);
-//                   border-bottom-right-radius: 50px;
-//                   border-bottom-left-radius: 50px;
-
-//                   p:first-child {
-//                     color: white;
-//                     font-size: large;
-//                     border-radius: 7px;
-//                   }
-//                   p:last-child {
-//                     color: #ffffffb0;
-//                   }
-//                 }
-
-//                 .desc_div {
-//                   @include flex(flex, space-between, nowrap, column);
-
-//                   padding: 10px;
-//                   gap: 20px;
-//                   font-family: emoji;
-//                   h2 {
-//                     color: #020202;
-//                     text-shadow: 0px 0px 2px rgb(234, 234, 234);
-//                     // font-family: fantasy;
-//                     word-spacing: 5px;
-//                   }
-//                   h3 {
-//                     line-height: 25px;
-//                     // color: #673ab7;
-//                     font-weight: bold;
-//                   }
-//                 }
-//               }
-
-//               .moreDetailsCn {
-//                 @include flex(flex, center, nowrap, row);
-
-//                 .noDetailsBtn {
-//                   background-color: transparent;
-//                   border: transparent;
-//                   cursor: pointer;
-//                   transition: all ease-in-out 1s;
-//                   color: #9e9e9e;
-//                   &:hover {
-//                     color: white;
-//                   }
-//                   .moreDetailsIcon {
-//                     font-size: xx-large;
-//                   }
-//                 }
-//                 .moreDetailsBtn {
-//                   margin-bottom: 35px;
-//                   background-color: transparent;
-//                   border: transparent;
-//                   cursor: pointer;
-//                   color: #9e9e9e;
-//                   .moreDetailsIcon {
-//                     font-size: xx-large;
-//                     &:hover {
-//                       color: white;
-//                     }
-//                   }
-//                 }
-//                 .write_div {
-//                   @include flex(flex, space-between, nowrap, row);
-//                   padding: 5px;
-//                   position: absolute;
-//                   bottom: 0;
-//                   padding: 10px 5px;
-//                   width: 80%;
-//                   background-color: rgb(11 11 11 / 60%);
-//                   border-radius: 4px;
-//                   p {
-//                     @include flex(flex, unset, nowrap, row);
-//                     align-items: center;
-//                     gap: 5px;
-//                     color: #acaaacdc;
-
-//                   }
-
-//                   span {
-//                     color: rgba(255, 255, 255, 0.6901960784);
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//       .sideBlog_Div {
-//         h4 {
-//           @include flex(flex, unset, nowrap, row);
-//           font-size: larger;
-//           margin-bottom: 10px;
-//           padding-bottom: 5px;
-
-//           border-bottom: 2px solid #673ab7;
-//         }
-//         .sideBlog_cr {
-//           @include flex(flex, unset, nowrap, column);
-//           // align-items: center;
-//           gap: 20px;
-//           width: 300px;
-//           // height: 600px;
-//           height: 500px;
-//           overflow: hidden;
-//           // background-color: white;
-//           border-radius: 3px;
-//           // box-shadow: 0px 0px 2px 0px grey;
-//           padding: 10px;
-
-//           &:hover {
-//             overflow: auto;
-//             // overflow:
-//           }
-
-//           .sideBlogCards {
-//             @include flex(flex, unset, nowrap, row);
-
-//             // width: 200px;
-//             width: 100%;
-//             height: 300px;
-//             height: 150px;
-
-//             // box-shadow: 0px 0px 1px 0px grey;
-//             .sideBlogImg {
-//               border-radius: 6px;
-//               width: 50%;
-//               height: 150px;
-//               object-fit: fill
-//             }
-
-//             .textAreaCr {
-//           @include flex(flex, unset, nowrap, column);
-//               padding: 5px;
-//               gap: 10px;
-//               // width: fit-content;
-//               // box-shadow: 0px 0px 2px 0px grey;
-//               font-size: small;
-//               width: 100%;
-//               .title_div {
-//                p{
-//                 background-color: rgb(0 0 0 / 57%);
-//                 color: white;
-//                 width: fit-content;
-//                 padding: 5px;
-//                 border-radius: 6px
-//                }
-//               }
-
-//               .desc_div {
-//                 @include flex(flex, unset, nowrap, column);
-//                 gap: 10px;
-//                 .sideBlogBtn{
-//                   background-color: #683ab792;
-//                   // box-shadow: 0px 0px 4px 0px grey;
-//                   width: fit-content;
-//                   color: white;
-//                   border: transparent;
-//                   padding: 5px;
-//                   border-radius: 6px;
-//                   cursor: pointer;
-
-//                   &:hover{
-//                     // background-color: #673ab7;
-//                     background: #683ab78f;
-//                     color: white;
-//                     box-shadow: 0 0 1px grey,
-//                                 0 0 2px grey,
-//                                 0 0 3px grey,
-//                                 0 0 4px grey;
-//                     //  -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   .allBlogs {
-//     // @include flex(flex, unset, wrap, row);
-//     margin-top: 25px;
-//     margin-bottom: 25px;
-
-//     width: 85%;
-//     // box-shadow: 0px 0px 1px 0px grey;
-//     .allBlogs_cn {
-//       @include flex(flex, space-between, nowrap, row);
-//       align-items: center;
-//       box-shadow: 0px 0px 1px 0px grey;
-//       padding: 5px;
-//       .card_div {
-//         width: 300px;
-//         height: 400px;
-
-//         .footer_side_photo {
-//           width: inherit;
-//           height: 250px;
-//           border-radius: 4px;
-//           // width: 250px;
-
-//           // object-fit:contain;
-//         }
-//       }
-
-//       .blogs_cards_btn {
-//         background-color: transparent;
-//         border: transparent;
-//         width: 30px;
-//         height: 35px;
-//         font-size: x-large;
-//         color: rgb(108, 101, 101);
-//         cursor: pointer;
-//         border-radius: 50%;
-//         text-align: center;
-
-//         &:hover {
-//           background-color: rgba(20, 18, 18, 0.175);
-//         }
-//       }
-//     }
-//   }
-// }

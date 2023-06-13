@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
 export default function Blog() {
-    
   const [cookies] = useCookies("user");
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,7 +32,9 @@ export default function Blog() {
   );
   /////////////////////////
   const getBlog = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog/${blogId}`);
+    const res = await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/api/blog/${blogId}`
+    );
     return res.data;
   };
 
@@ -65,7 +66,6 @@ export default function Blog() {
       },
     ],
   });
-
 
   const handleBlogLikes = async (id, userid) => {
     if (userid) {
@@ -123,7 +123,6 @@ export default function Blog() {
     setAllBlogs(results[2]?.data?.slice(6, 9));
   }, [blogs.isSuccess, location.pathname]);
 
-
   function getNumberOfDays(start, end) {
     const date1 = new Date(start);
     const date2 = new Date(end);
@@ -177,18 +176,28 @@ export default function Blog() {
                   alt={blog?.category}
                   className="mainBlogImg"
                 />
-                <div className="moreDetailsCn">
-                  <div className="write_div">
-                    <p>
-                      posted by <User blog={blog} />
-                    </p>
-                    <p>
-                      <AiOutlineEye /> {blog?.watched} views
-                    </p>
-                  </div>
-                </div>
+           
               </div>
-
+              <div className="moreDetailsCn">
+                  <div className="write_div">
+                    <span className="DateCn">
+                      {" " +
+                        getNumberOfDays(
+                          blog?.createdAt.slice(
+                            0,
+                            blog?.createdAt.indexOf("T")
+                          ),
+                          DateNow
+                        ) +
+                        " "}
+                    </span>
+                    <span>
+                      <AiOutlineEye />
+                      {blog?.watched}
+                    </span>
+                  </div>
+                  
+                </div>
               <div className="cardInfoCn">
                 <div className="textAreaDiv">
                   <div className="category_div">
@@ -202,38 +211,29 @@ export default function Blog() {
                   </div>
 
                   <div className="footer_blog_details">
-                    <span className="likeBtnCn">
-                    <button className="likeBtn"
-                          onClick={() =>
-                            mutateBlogLikes.mutate([
-                              blog?.id,
-                              cookies?.user?.id,
-                            ])
-                          }
-                        >
-                          {(blog?.liked?.includes(
-                            parseInt(cookies?.user?.id)
-                          ) && <AiFillLike className="BlogLikedBtn"/>) || <AiOutlineLike className="BlogNotLikedBtn"/>}
-                        </button>
+                  <span className="user_para">
+                      posted by <User blog={blog} />
                     </span>
-                      <span className="DateCn">
-                    
-                      {" " +
-                        getNumberOfDays(
-                          blog?.createdAt.slice(
-                            0,
-                            blog?.createdAt.indexOf("T")
-                          ),
-                          DateNow
-                        ) +
-                        " "}
-                    </span> 
+                    <span className="likeBtnCn">
+                      <button
+                        className="likeBtn"
+                        onClick={() =>
+                          mutateBlogLikes.mutate([blog?.id, cookies?.user?.id])
+                        }
+                      >
+                        {(blog?.liked?.includes(
+                          parseInt(cookies?.user?.id)
+                        ) && <AiFillLike className="BlogLikedBtn" />) || (
+                          <AiOutlineLike className="BlogNotLikedBtn" />
+                        )}
+                      </button>
+                    </span>
                   </div>
                 </div>
               </div>
             </article>
           </div>
-       
+
           <div className="sideBlog_Div">
             <h4>
               blogs from <User blog={blog} />

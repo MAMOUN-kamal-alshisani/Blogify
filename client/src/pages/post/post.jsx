@@ -81,7 +81,7 @@ export default function Post() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div className="edithContainer">
+          <div className="editeContainer">
             <ReactQuill theme="snow" value={desc} onChange={setDesc} />
           </div>
         </div>

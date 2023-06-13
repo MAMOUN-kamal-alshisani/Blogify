@@ -13,7 +13,7 @@ import { useQueries } from "@tanstack/react-query";
 import User from "../../components/user/user";
 import axios from "axios";
 import "./scss/home.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import React from "react";
 
 export default function Home() {
@@ -55,6 +55,9 @@ export default function Home() {
       {
         queryKey: ["RecentBlogs"],
         queryFn: getRecentBlogs,
+        onSuccess:(data)=>{
+          console.log(data);
+        }
       },
       {
         queryKey: ["AdminBlogs"],
