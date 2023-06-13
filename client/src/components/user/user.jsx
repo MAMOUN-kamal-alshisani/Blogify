@@ -29,7 +29,7 @@ export default function User({ blog }) {
           return <span key={user?.id}> by <b>{user.UserName}</b></span>
      })}  */}
       <span key={user?.id} style={{display:'flex',flexDirection:'row',gap:"2px",alignItems:'center'}}>
-       <b className="noteIcon" style={{color:'#673ab7'}}></b> { user?.UserName}
+       <b className="noteIcon" style={{color:'#673ab7'}}>{ user?.UserName}</b> 
       </span>
     </>
   );

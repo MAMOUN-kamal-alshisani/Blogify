@@ -69,11 +69,11 @@ export const getBlogsByLatest = async (req, res) => {
       limit: 5,
       where: { UserId: { [Op.ne]: adminUser.id } },
     });
-    const users = await User.findAll({ attributes: { exclude: ["Password"] } });
+    // const users = await User.findAll({ attributes: { exclude: ["Password"] } });
     //  const { Password, ...details } = users.toJSON();
-
+    // , users 
     // console.log(details);
-    res.status(200).json({ blogs, users });
+    res.status(200).json({ blogs});
   } catch (err) {
     res.status(500).send(err);
   }

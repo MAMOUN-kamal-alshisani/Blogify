@@ -5,12 +5,14 @@
   margin-bottom: 155px;
 text-transform: none;
   .Post_cn {
-    @include flex(flex, center, nowrap, row);
+    @include flex(flex, center, wrap, row);
     gap: 20px;
 
     .TextCn1 {
-      width: 50%;
-      min-width: fit-content;
+      max-width: 65%;
+      min-width: 54%;
+      margin-bottom: 80px;
+      // min-width: fit-content;
       
       .titleContainer {
         @include flex(flex, center, nowrap, column);
@@ -23,11 +25,11 @@ text-transform: none;
           border: 1px solid rgb(184, 184, 184);
           outline: transparent;
           font-size: large;
-
         }
       }
-      .edithContainer {
+      .editeContainer {
         // height: 310px;
+        // max-width: 700px;
         .quill {
           height: 300px;
 
@@ -130,4 +132,5 @@ text-transform: none;
       }
     }
   }
+  
 }

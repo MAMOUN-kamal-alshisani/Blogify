@@ -151,8 +151,8 @@
             &:hover .card_img {
               height: 250px;
               filter: brightness(100%);
-              border-top-right-radius: 15px;
-              border-bottom-left-radius: unset;
+              // border-top-right-radius: 15px;
+              border-bottom-right-radius: unset;
               border-bottom-left-radius: unset;
             }
             .card_img {
