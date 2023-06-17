@@ -69,9 +69,8 @@ export default function Blog() {
 
   const handleBlogLikes = async (id, userid) => {
     if (userid) {
-      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/liked/${id}/${userid}`;
+      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}/liked/${userid}`;
       const res = await axios.put(url);
-
       return res.data;
     } else {
       navigate("/signin");

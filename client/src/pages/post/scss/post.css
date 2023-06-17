@@ -3,6 +3,14 @@
   margin-bottom: 155px;
   text-transform: none;
 }
+.Post .successfull_upload_cn {
+  text-align: center;
+  color: #9c27b0;
+  background-color: rgba(200, 198, 198, 0.348);
+  font-size: large;
+  padding: 10px;
+  margin-bottom: 20px;
+}
 .Post .Post_cn {
   display: flex;
   justify-content: center;
@@ -38,6 +46,9 @@
 }
 .Post .Post_cn .TextCn1 .editeContainer .quill .ql-container {
   box-shadow: 0px 0px 1px 0px grey;
+}
+.Post .Post_cn .TextCn1 .editeContainer .quill .ql-container p {
+  text-transform: none;
 }
 .Post .Post_cn .TextCn2 {
   min-width: -moz-fit-content;
@@ -113,7 +124,7 @@
   transform: scale(1.05);
   box-shadow: 0px 0px 1px 0px rgb(183, 182, 182);
 }
-.Post .Post_cn .TextCn2 .publishContainer .publishBtn button:last-child {
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn {
   height: 30px;
   width: 70px;
   padding: 5px;
@@ -122,6 +133,9 @@
   color: white;
   cursor: pointer;
 }
-.Post .Post_cn .TextCn2 .publishContainer .publishBtn button:last-child:hover {
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn:hover {
   background-color: #794aca;
+}
+.Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn:disabled {
+  background-color: #250f4a;
 }/*# sourceMappingURL=post.css.map */

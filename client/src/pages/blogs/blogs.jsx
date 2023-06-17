@@ -46,7 +46,7 @@ export default function Blogs() {
   const handleBlogLikes = async (id, userid) => {
     console.log(id, userid);
     if (userid) {
-      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/liked/${id}/${userid}`;
+      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}/liked/${userid}`;
       const res = await axios.put(url);
 
       return res.data;
