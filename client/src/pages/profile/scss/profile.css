@@ -27,8 +27,9 @@
   text-align: center;
 }
 .profile .profile_cn .profile_pic_section .pic_div .userImg {
-  width: 300px;
-  max-width: 100%;
+  max-width: 300px;
+  width: 100%;
+  max-height: 400px;
   border-radius: 50%;
 }
 .profile .profile_cn .profile_pic_section .pic_div:hover .upload_cn {
@@ -62,6 +63,9 @@
 }
 .profile .profile_cn .profile_pic_section .pic_div .user_info {
   margin: 10px 0px;
+}
+.profile .profile_cn .profile_pic_section .pic_div .pic_upload_status_cn {
+  color: #673ab7;
 }
 .profile .profile_cn .profile_pic_section .profile_nav {
   position: relative;
@@ -239,6 +243,9 @@
   padding: 20px 0px;
   font-size: xx-large;
 }
+.profile .profile_cn .profile_pic_section .socials_div .icon_cn a {
+  color: #673ab7;
+}
 .profile .profile_cn .profile_info_section {
   visibility: collapse;
   background-color: rgba(30, 29, 31, 0.4745098039);
@@ -273,7 +280,8 @@
   width: 75%;
   min-width: -moz-fit-content;
   min-width: fit-content;
-  height: 50%;
+  max-height: 75%;
+  min-width: fit-content;
 }
 .profile .profile_cn .profile_info_section .profile_edit_cn form .closeBtn {
   position: absolute;
@@ -291,7 +299,7 @@
 .profile .profile_cn .profile_info_section .profile_edit_cn form .modalHeader {
   color: #9c27b0;
   font-size: xx-large;
-  padding-bottom: 20px;
+  padding: 10px 0px;
 }
 .profile .profile_cn .profile_info_section .profile_edit_cn form .input_cn {
   display: flex;
@@ -352,7 +360,7 @@
   border: transparent;
   padding: 10px;
   border-radius: 3px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .profile .profile_cn .profile_info_section .profile_edit_cn form .formBtn:hover {
   background-color: #b429cd;
@@ -374,8 +382,6 @@
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
-  max-width: 500px;
-  width: 100%;
   margin: 40px 20px;
 }
 .profile .profile_cn .edit_blogs_cn .closeDiv {
@@ -396,16 +402,12 @@
   gap: 20px;
   background-color: white;
   box-shadow: 0px 0px 5px 0px grey;
-  height: -moz-fit-content;
-  height: fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn {
   border-bottom: 2px solid rgb(232, 229, 229);
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn .editImg {
-  height: 300px;
+  max-height: 300px;
   width: 100%;
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn .uploadInputDiv {

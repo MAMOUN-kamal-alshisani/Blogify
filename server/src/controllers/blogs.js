@@ -121,23 +121,7 @@ export const getFeaturedBlogs = async (req, res) => {
   }
 };
 
-export const getLikedBlogUserId = async (req, res) => {
-  try {
-    const UserId = req.params.UserId;
-    const id = req.params.id;
-    const blogs = await Blogs.findOne({
-      where: { id: id },
-    });
-    // console.log(blogs);
-    // let liked =  blogs.liked.find((int)=> int == 15)
-    let liked = await blogs.liked.includes(parseInt(UserId));
-    res.status(200).send(liked);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
-
-// export const getLikedUserId = async (req, res) => {
+// export const getLikedBlogUserId = async (req, res) => {
 //   try {
 //     const UserId = req.params.UserId;
 //     const id = req.params.id;
@@ -145,9 +129,9 @@ export const getLikedBlogUserId = async (req, res) => {
 //       where: { id: id },
 //     });
 //     // console.log(blogs);
-//   // let liked =  blogs.liked.find((int)=> int == 15)
-//   let liked = await blogs.liked.includes(parseInt(UserId))
-//     res.status(200).send({liked});
+//     // let liked =  blogs.liked.find((int)=> int == 15)
+//     let liked = await blogs.liked.includes(parseInt(UserId));
+//     res.status(200).send(liked);
 //   } catch (err) {
 //     res.status(500).send(err);
 //   }

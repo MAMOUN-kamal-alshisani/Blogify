@@ -3,10 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./scss/post.css";
 import { useCookies } from "react-cookie";
-// import { useEffect } from "react";
 import axios from "axios";
-// import dotenv from 'dotenv'
-// dotenv.config()
+import {useMutation } from "@tanstack/react-query";
 export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -14,24 +12,6 @@ export default function Post() {
   const [imgFile, setImgFile] = useState(null);
   const [cookies] = useCookies("user");
 
-  // console.log(cookies);
-  // const [img,setImg] = useState('')
-  // console.log(cookies.user.id);
-  //   useEffect(()=>{
-  // const getUser = async()=>{
-
-  //   const url = 'http://localhost:4000/api/user'
-  //   // console.log(req.cookies);
-  //   const res = await axios.get(url,{withCredentials:true})
-  // console.log(res);
-  //   return res.data
-  // }
-  // getUser()
-  //   },[])
-  // console.log(img);
-  // console.log(imgFile?.name);
-
-  // console.log(process.env.REACT_APP_SERVER_API);
   const upload = async () => {
     try {
       const formData = new FormData();
@@ -52,21 +32,57 @@ export default function Post() {
     try {
       const File = await upload();
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
-
+console.log('hamdle');
       const res = await axios.post(url, {
         title: title,
         desc: desc,
         category: category,
         watched: "12",
         // photo: `file:///c://home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/${File}`,
-        photo:`${process.env.REACT_APP_SERVER_API}/uploads/${File}`
+        photo: `${process.env.REACT_APP_SERVER_API}/uploads/${File}`,
       });
-      
+
       return res.data;
     } catch (err) {
       console.log(err);
     }
   };
+  const {mutate,isLoading,isError} = useMutation({
+    mutationKey:['blog_upload'],
+    mutationFn: handleFile,
+    onSuccess:()=>{
+      const update_btn = document.querySelector('.update_btn')
+      update_btn.disabled = true
+      let successfull_upload_cn = document.createElement('div')
+      successfull_upload_cn.className = 'successfull_upload_cn'
+      const parent = document.querySelector('.Post')
+      successfull_upload_cn.textContent = 'blog uploaded successfully!'
+      parent.prepend(successfull_upload_cn)
+      
+      setTimeout(()=>{
+        const update_btn = document.querySelector('.update_btn')
+        update_btn.disabled = false
+        successfull_upload_cn.remove()
+      },8000)
+    },
+    onerror:(error)=>{
+      let successfull_upload_cn = document.createElement('div')
+      successfull_upload_cn.className = 'successfull_upload_cn'
+      const parent = document.querySelector('.Post')
+      successfull_upload_cn.textContent = error
+      parent.prepend(successfull_upload_cn)
+      setTimeout(()=>{
+        // successfull_upload_cn.textContent = ''
+      
+        successfull_upload_cn.remove()
+      },8000)
+    }
+  })
+
+  if(isLoading){
+const update_btn = document.querySelector('.update_btn')
+update_btn.disabled = true
+  }
   return (
     <div className="Post">
       <div className="Post_cn">
@@ -78,6 +94,7 @@ export default function Post() {
               name="title"
               placeholder="Title"
               value={title}
+              required
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -95,6 +112,7 @@ export default function Post() {
                 name="category"
                 value="travel"
                 onChange={(e) => setCategory(e.target.value)}
+                
               />
               <label htmlFor="travel">Travel</label>
             </div>
@@ -154,14 +172,14 @@ export default function Post() {
               // accept="image/png, image/jpeg"
               style={{ display: "none" }}
               onChange={(e) => setImgFile(e.target.files[0])}
+              required
             />
 
             <div className="publishBtn">
               <button>Save as a draft</button>
-              <button
-                onClick={() => {
-                  handleFile();
-                }}
+              <button className="update_btn"
+                onClick={() => mutate()
+                  }
               >
                 Update
               </button>

@@ -25,8 +25,6 @@ import { FaUserEdit } from "react-icons/fa";
 import { FiDelete } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 
-// import { CgSpinnerAlt } from "react-icons/cg";
-
 export default function Profile() {
   const navigate = useNavigate();
   const [navBtn, setNavBtn] = useState("content");
@@ -81,7 +79,6 @@ export default function Profile() {
       console.log(err);
     }
   };
-  // console.log(cookies.user);
   /// for recording image path that has been uploaded on the api
   const handleFile = async () => {
     try {
@@ -120,7 +117,6 @@ export default function Profile() {
       const File = await uploadBlogPhoto();
 
       if (File) {
-        // console.log(File);
         const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${blog.id}`;
         const res = await axios.put(url, {
           title: editBlogData.title,
@@ -142,13 +138,6 @@ export default function Profile() {
       console.log(err);
     }
   };
-
-  // const handleUpdateSocials = async (blog) => {
-  //   try {
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   /// get the user information that was sent from the form input data
   const fetchUserData = async (UserId) => {
@@ -193,11 +182,6 @@ export default function Profile() {
           setUserInfo(data);
           setProfileInput(data);
         },
-        // onerror:()=>{
-        //   setUserInfo([])
-        //   setProfileInput([])
-        // }
-      
       },
 
       {
@@ -207,13 +191,6 @@ export default function Profile() {
           setUserBlogs(data);
         },
       },
-      // {
-      //   queryKey: ["socials"],
-      //   queryFn: () => fetchUserBlogs(cookies.user.id),
-      //   onSuccess: (data) => {
-      //     setUserBlogs(data);
-      //   },
-      // },
     ],
   });
   /// query data
@@ -240,17 +217,14 @@ export default function Profile() {
     mutationKey: ["formInput"],
     mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
     onSuccess: () => {
-      // alert("updated successfully!");
       const success_div = document.querySelector(".success_div");
       success_div.textContent = "user information updated successfully!";
 
       setTimeout(() => {
         success_div.textContent = "";
-        // setShowModal(false)
       }, 4000);
     },
   });
-  // console.log(updateState);
   const deleteBlog = useMutation({
     mutationKey: ["blogs"],
     mutationFn: (id) => removeBlogHandler(id),
@@ -262,8 +236,17 @@ export default function Profile() {
   const updateUserFile = useMutation({
     mutationKey: ["user_picture"],
     mutationFn: () => handleFile(),
-    onSuccess: () => {
-      alert("updated successfully!");
+    onSuccess:()=>{
+      let successfull_upload_cn = document.createElement('div')
+      successfull_upload_cn.className = 'pic_upload_status_cn'
+      const parent = document.querySelector('.pic_div')
+      successfull_upload_cn.textContent = 'picture uploaded successfully!'
+      parent.appendChild(successfull_upload_cn)
+      
+      setTimeout(()=>{
+  
+        successfull_upload_cn.remove()
+      },5000)
     },
   });
 
@@ -271,18 +254,11 @@ export default function Profile() {
     mutationKey: ["formInput"],
     mutationFn: (blog) => handleBlogFile(blog),
     onSuccess: () => {
-      alert("updated successfully!");
+      setShowEditSec(false)
+      
     },
   });
 
-  // const updateSocialMedia = useMutation({
-  //   mutationKey: ["formInput"],
-  //   mutationFn: (blog) => handleUpdateSocials(blog),
-  //   onSuccess: () => {
-  //     // alert("updated successfully!");
-  //     // setShowModal(false)
-  //   },
-  // });
   /// get todays date ///
   const dateObj = new Date();
   const month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -298,16 +274,13 @@ export default function Profile() {
 
     // Calculating the time difference between two dates
     const diffInTime = date2.getTime() - date1.getTime();
-    // console.log(diffInTime);
     // Calculating the no. of days between two dates
     const diffInDays = Math.round(diffInTime / oneDay);
-    // console.log(diffInDays);
 
     if (diffInDays === 0) return "today";
     else if (diffInDays === 1) return diffInDays + " Day Ago";
     return diffInDays + " Days Ago";
   }
-  // console.log(editBlogData);
   const EditBlogHandler = (blog) => {
     setEditBlogData(blog);
     setShowEditSec(true);
@@ -327,14 +300,7 @@ export default function Profile() {
   if (updateUserFile.isSuccess) {
     api[0].refetch();
   }
-  // console.log(editBlogData);
-  // if(profileInput.phone){
-  //   setDisplayText(blogFile)
-  // }
-  // if(!blogFile){
-  //   setDisplayText('no image selected')
-  // }
-  console.log(profileInput);
+
   return (
     <div className="profile">
       <div className={`profile_cn ${showEditSec && "bgcl"}`}>
@@ -801,62 +767,3 @@ export default function Profile() {
   );
 }
 
-// {
-
-// }
-
-/* <section className="profile_pic_section">
-<div className="pic_div">
-  <img
-    src="http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
-    alt="img"
-    style={{ width: "200px" }}
-    className="userImg"
-  />
-  <div className="user_info_div">
-    <h4>my name is mamoun</h4>
-    <p>mamoun.bursi@yahoo.com</p>
-  </div>
-  <button className="userImgBtn">update profile image</button>
-</div>
-
-<div className="socials_div"></div>
-</section>
-
-<section className="profile_info_section">
-<h2>profile information</h2>
-<form>
-  <div className="formInput">
-    <label htmlFor="fullName">Full Name</label>
-    <input type="text" name="fullName" value={userInfo?.fullName} onChange={(e)=>{formInputHandler(e)}}/>
-  </div>
-  <div className="formInput">
-    <label htmlFor="birthDate">birthDate</label>
-    <input type="date" name="birthDate" value={userInfo?.fullName} onChange={(e)=>{formInputHandler(e)}}/>
-  </div>
-  <div className="formInput">
-    <label htmlFor="gender">Gender</label>
-    <select onChange={(e)=>{formInputHandler(e)}}  name="gender">
-      <option name="male" id="">
-        male
-      </option>
-      <option name="female" id="">
-        female
-      </option>
-    </select>
-  </div>
-  <div className="formInput">
-    <label htmlFor="phone">Phone</label>
-    <input type="number" name="phone" value={userInfo?.phone} onChange={(e)=>{formInputHandler(e)}}/>
-  </div>
-  <div className="formInput">
-    <label htmlFor="country">country</label>
-    <input type="text" name="country" value={userInfo?.country} onChange={(e)=>{formInputHandler(e)}}/>
-  </div>
-  <div className="formInput">
-    <label htmlFor="city">city</label>
-    <input type="text" name="city"  value={userInfo?.city} onChange={(e)=>{formInputHandler(e)}}/>
-  </div>
-</form>
-<button onClick={()=>mutate()}> save changes</button>
-</section> */

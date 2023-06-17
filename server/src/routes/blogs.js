@@ -13,7 +13,7 @@ import {
   getCategoryCount,
   getBlogsByViewed,
   getFeaturedBlogs,
-  getLikedBlogUserId,
+  // getLikedBlogUserId,
   handleBlogLike
   // getLikedUserId
 } from "../controllers/blogs.js";
@@ -35,8 +35,8 @@ blogsRoute.get("/api/blog/featured", getFeaturedBlogs);
 
 
 /// like column routes /// 
-blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
-blogsRoute.put("/api/blog/liked/:id/:UserId", handleBlogLike);
+// blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
+blogsRoute.put("/api/blog/:id/liked/:UserId", handleBlogLike);
 
 // blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
 // blogsRoute.get("/api/blog/liked/:UserId", getLikedUserId);

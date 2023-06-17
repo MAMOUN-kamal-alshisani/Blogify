@@ -4,6 +4,18 @@
   margin-top: 25px;
   margin-bottom: 155px;
 text-transform: none;
+
+.successfull_upload_cn{
+  text-align: center;
+  color:#9c27b0;
+  background-color: rgba(200, 198, 198, 0.348);
+
+  font-size:large;
+  padding:10px;
+  margin-bottom: 20px;
+  // width:fit-content
+    // margin: 20px auto;
+}
   .Post_cn {
     @include flex(flex, center, wrap, row);
     gap: 20px;
@@ -39,7 +51,10 @@ text-transform: none;
           }
           .ql-container{
         box-shadow: 0px 0px 1px 0px grey;
+            p{
+        text-transform: none;
 
+            }
           }
         }
       }
@@ -113,7 +128,7 @@ text-transform: none;
             }
           }
 
-          button:last-child {
+          .update_btn {
             height: 30px;
             width: 70px;
             padding: 5px;
@@ -126,6 +141,9 @@ text-transform: none;
 
             &:hover {
               background-color: #794aca;
+            }
+            &:disabled{
+              background-color: #250f4a;
             }
           }
         }
