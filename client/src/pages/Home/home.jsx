@@ -162,6 +162,7 @@ export default function Home() {
 
                   <div className="text1">
                     <h5>{AdminBlog?.data[0]?.category}</h5>
+                    -
                     <h5>{AdminBlog?.data[0]?.createdAt.slice(
                             0,
                             AdminBlog?.data[0]?.createdAt.indexOf("T")
@@ -202,77 +203,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-{/* 
-        <section className="row1_section1">
-          <div className="container">
-            <div className="firstCard">
-              <img
-                src="https://tse1.mm.bing.net/th?id=OIP.ALbc1y5sbJcfhItXEKIrFAHaDa&pid=Api&P=0"
-                alt="main"
-                className="mainImage img1"
-              />
-              <div className="img_textarea textarea">
-                <p className="text2">
-                  here comes title of the blog , it is absolute for me
-                </p>
-                <div className="text1">
-                  <h5>category</h5> -<h5>2025/5/12</h5>
-                </div>
-              </div>
-            </div>
-            <div className="secondCard">
-              <div className="card_Img1 cards">
-                <img
-                  loading={"lazy"}
-                  src="https://tse4.mm.bing.net/th?id=OIP._Q_kEGcoZ6A4IvhYC9xcmgHaEK&pid=Api&P=0"
-                  alt="img2"
-                  className="mainImage img2"
-                />
-                <div className="img_textarea textarea">
-                  <p className="text2">
-                    here comes title of the blog , it is absolute for me
-                  </p>
-
-                  <div className="text1">
-                    <h5>category</h5>
-                    <h5>2025/5/12</h5>
-                  </div>
-                </div>
-              </div>
-              <div className="card_Img2 cards">
-                <div className="card_Img2_text">
-                  <img
-                    loading={"lazy"}
-                    src="https://cdn.dribbble.com/users/1731254/screenshots/11649852/media/5551243bcbf041d5aa0b30abb6168215.png"
-                    alt="img2"
-                    className="mainImage img3"
-                  />
-
-                  <div className="img_smalltext textarea">
-                    <p className="text4">
-                      here comes title of the blog , it is absolute for me
-                    </p>
-                  </div>
-                </div>
-
-                <div className="card_Img2_text">
-                  <img
-                    loading={"lazy"}
-                    src="https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/56/565/565674/env_07-o.jpg?1444727677"
-                    alt="img2"
-                    className="mainImage img4"
-                  />
-                  <div className="img_smalltext textarea">
-                    <p className="text4">
-                      here comes title of the blog , it is absolute for me
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
 
         <section className="row2_section2">
           <div className="section2_cn">
