@@ -38,7 +38,6 @@ console.log('hamdle');
         desc: desc,
         category: category,
         watched: "12",
-        // photo: `file:///c://home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/${File}`,
         photo: `${process.env.REACT_APP_SERVER_API}/uploads/${File}`,
       });
 
@@ -47,7 +46,7 @@ console.log('hamdle');
       console.log(err);
     }
   };
-  const {mutate,isLoading,isError} = useMutation({
+  const {mutate,isLoading} = useMutation({
     mutationKey:['blog_upload'],
     mutationFn: handleFile,
     onSuccess:()=>{

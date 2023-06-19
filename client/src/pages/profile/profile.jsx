@@ -37,7 +37,6 @@ export default function Profile() {
   const [cookies] = useCookies("user");
   const [imgFile, setImgFile] = useState("");
   const [blogFile, setBlogFile] = useState("");
-  // const [displayText, setDisplayText] = useState('No Image Is Selected');
   const [editBlogData, setEditBlogData] = useState({
     title: "",
     desc: "",

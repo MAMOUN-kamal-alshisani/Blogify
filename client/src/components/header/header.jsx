@@ -17,7 +17,7 @@ export default function Header() {
   const [toggle, setToggle] = useState(false);
   // const [cookies,setCookies,removeCookies] = useCookies('user')
   const logout = async () => {
-    const url = `http://localhost:4000/api/signout`;
+    const url = `${process.env.REACT_APP_SERVER_API}/api/signout`;
     const res = await axios.post(url);
     if (cookies.get("user")) {
       return cookies.remove("user");
