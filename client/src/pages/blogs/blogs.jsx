@@ -16,6 +16,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../components/pagination/pagination";
 import Skeleton from "react-loading-skeleton";
+import User from '../../components/user/user'
 export default function Blogs() {
   const navigate = useNavigate();
   const title = document.querySelector(".title");
@@ -250,9 +251,11 @@ export default function Blogs() {
                             <AiOutlineLike className="BlogNotLikedBtn" />
                           )}
                         </button>
-                        <span>
-                          <AiOutlineEye /> {blog?.watched}
-                        </span>
+                        <div className="footer_user_details">
+                       <span>posted by<User blog={blog}/> </span> 
+                            {'  ' } 
+                          <span><AiOutlineEye /> {blog?.watched}</span>
+                        </div>
                       </Card.Footer>
                     </Card>
                   </div>
