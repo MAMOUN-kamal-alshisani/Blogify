@@ -3,40 +3,39 @@
 .blogs {
   @include flex(flex, unset, nowrap, column);
   padding: 100px 0px;
-  background-color: #f1f1f1;
+  background-color: $primary_bg_clr;
   .blogs_cn {
     @include flex(flex, unset, nowrap, column);
-    align-items: center;
+    align-items: $alignItems;
     .toolbar_section {
       @include flex(flex, space-between, nowrap, row);
-      align-items: center;
-      border-radius: 6px;
+      align-items: $alignItems;
+      border-radius: $px6_borderRadius;
       width: 100%;
       max-width: 1024px;
       min-width: fit-content;
       height: 45px;
-      box-shadow: 0px 0px 1px 0px grey;
-      border-bottom: 2px solid #9c27b0;
-      background: white;
+      box-shadow: 0px 0px 1px 0px $primary_gry_clr;
+      border-bottom: 2px solid $primary_prp_clr;
+      background: $primary_wh_clr;
 
       .toolbar_category {
         @include flex(flex, space-between, nowrap, row);
-        align-items: center;
+        align-items: $alignItems;
         height: 45px;
         font-weight: 300;
         padding-right: 50px;
         .titleContainer {
           @include flex(flex, unset, nowrap, row);
-          align-items: center;
-          background-color: #9c27b0;
+          align-items: $alignItems;
+          background-color: $primary_prp_clr;
           border-top-left-radius: 6px;
           border-bottom-left-radius: 6px;
           height: inherit;
           .title {
-            color: white;
+            color: $primary_wh_clr;
             padding-left: 30px;
             padding-right: 30px;
-     
           }
         }
 
@@ -46,57 +45,46 @@
           gap: 20px;
           width: 100%;
           .categoryBtn {
-            background-color: transparent;
-            border: transparent;
-            // font-family: Arial, Helvetica, sans-serif;
+            @include element_transparency();
+            font-size: $mediumFont;
+            cursor: $cursorPointer;
             color: #080808b5;
-            font-size: medium;
-            cursor: pointer;
-            // font-family:;
             &:hover {
-              // color: royalblue;
-              color: #7541ce;
+              color: $primary_dkprp_clr;
             }
           }
         }
       }
       .toolbar_filter {
-        position: relative;
+        position: $relative;
         .filterBtn {
           @include flex(flex, unset, nowrap, row);
-          align-items: center;
+          @include element_transparency();
+          align-items: $alignItems;
           margin-right: 20px;
-          border: transparent;
-          background: transparent;
-          cursor: pointer;
+          cursor: $cursorPointer;
           width: 100%;
-          // font-family: Arial, Helvetica, sans-serif;
-          font-size: medium;
+          font-size: $mediumFont;
           color: rgba(8, 8, 8, 0.7098039216);
-
           &:hover {
-            color: black;
+            color: $primary_black_clr;
           }
         }
         .filter_option_cr {
           @include flex(flex, unset, nowrap, column);
-          // gap: 20px;
-          position: absolute;
+          position: $absolute;
           top: 25px;
           z-index: 110;
-          background-color: white;
-          border: 1px solid #e0e0e0;
+          background-color: $primary_wh_clr;
+          border: 1px solid $primary_wh_clr2;
 
           .filterBtn_cr {
             width: 100%;
             padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-            cursor: pointer;
+            border-bottom: 1px solid $primary_wh_clr2;
+            cursor: $cursorPointer;
             &:hover {
               background-color: #efeded;
-            }
-
-            .optionBtn {
             }
           }
         }
@@ -111,11 +99,10 @@
         @include flex(flex, space-evenly, wrap, row);
         gap: 60px;
         .card_div {
-          box-shadow: 0px 0px 5px 0px grey;
+          box-shadow: 0px 0px 5px 0px $primary_gry_clr;
           border-radius: 15px;
-          background-color: white;
-          position: relative;
-          // transition: all ease-in-out 1s;
+          background-color: $primary_wh_clr;
+          position: $relative;
           &:hover {
             background-color: rgb(247, 248, 248);
           }
@@ -124,132 +111,120 @@
             max-width: 355px;
             min-width: 350px;
             transition: all ease-out 1s;
-            &:hover .card-body{
-              visibility:visible;
+            &:hover .card-body {
+              visibility: visible;
               position: unset;
             }
-            &:hover .card-footer{
-              visibility:visible;
-      
+            &:hover .card-footer {
+              visibility: visible;
             }
             &:hover .card_img {
-              height: 250px;
               filter: brightness(100%);
-              // border-top-right-radius: 15px;
               border-bottom-right-radius: unset;
               border-bottom-left-radius: unset;
             }
             .card_img {
-              // height: 250px;
-              height: 450px;
+              height: 250px;
               width: 100%;
-              // max-width: 350px;
               border-radius: 15px;
-           
-              // filter: brightness(90%);
-              filter: contrast(2);
-              // filter: blur(2px);
+              filter: contrast(1.5);
               object-fit: fill;
               transition: all linear 0.5s;
             }
 
-            .card-body{
-              visibility: collapse;
+            .card-body {
+              // visibility: collapse;
             }
-            .card-footer{
-              visibility: collapse;
-
+            .card-footer {
+              // visibility: collapse;
             }
             .card-body {
               @include flex(flex, space-between, nowrap, column);
-              // color: white;
-              text-shadow: 0px 1px 2px grey;
+              text-shadow: 0px 1px 2px $primary_gry_clr;
               gap: 10px;
               padding: 10px;
               overflow: auto;
               margin-bottom: 25px;
-              position: absolute;
-              bottom: 0;
-              top: 50%;
-              // transition: all linear 1s;
               width: 100%;
+               // position: absolute;
+              // bottom: 0;
+              // top: 50%;
+              // transition: all linear 1s;
               .category_title {
                 @include flex(flex, space-between, nowrap, row);
-                align-items: center;
+                align-items: $alignItems;
                 span:first-child {
-                  // background-color: #040303;
                   border: 1px solid #d4cccc;
                   width: fit-content;
                   padding: 5px 15px;
-                  border-radius: 6px;
-                  // color: #e109fe;
+                  border-radius: $px6_borderRadius;
                 }
                 span:last-child {
                   @include flex(flex, space-between, nowrap, row);
-                  align-items: center;
+                  align-items: $alignItems;
+                  color: $primary_gry_clr;
                   width: fit-content;
-                  color: grey;
                   font-size: smaller;
-                  // background-color: #040303;
-                  // border: 1px solid #d4cccc;
-                  // padding: 5px 15px;
-                  // color: #e109fe;
                 }
               }
               .card-text {
-                // font-family: Arial, Helvetica, sans-serif;
-                // font-family: cursive;
-                // color: grey;
-                font-weight: bold;
                 padding: 5px;
                 line-height: 25px;
                 height: 100px;
+                font-weight: bold;
                 overflow: auto;
                 word-wrap: break-word;
                 word-break: break-all;
                 .cardBtn {
-                  background-color: transparent;
-                  border: transparent;
-                  cursor: pointer;
+                  @include element_transparency();
+                  cursor: $cursorPointer;
                   padding-left: 10px;
-                  color: grey;
+                  color: $primary_gry_clr;
                   &:hover {
-                    color: #9c27b0;
+                    color: $primary_prp_clr;
                   }
                 }
               }
             }
             .card-footer {
               @include flex(flex, space-between, nowrap, row);
-              align-items: center;
+              align-items: $alignItems;
               width: 100%;
-              position: absolute;
+              position: $absolute;
               bottom: 0;
               padding: 10px;
-              border-top: 2px solid #e0e0e0;
-              span {
+              border-top: 2px solid $primary_wh_clr2;
+              .footer_user_details {
                 @include flex(flex, space-between, nowrap, row);
-                text-align: center;
-                font-size: small;
+
                 gap: 5px;
-                color: grey;
+                span {
+                  @include flex(flex, space-between, nowrap, row);
+                  text-align: $alignItems;
+                  font-size: small;
+                  gap: 5px;
+                  color: $primary_gry_clr;
+                }
+                span:first-child {
+                  padding-right: 5px;
+                  border-right: 2px solid $primary_wh_clr2;
+                }
               }
 
               .likeBtn {
-                border: transparent;
-                background-color: transparent;
+                @include element_transparency();
                 font-size: larger;
 
-                .BlogLikedBtn{
-                    color: #9c27b0;
-                    &:hover{
-                      color: black;
-                    }
+                .BlogLikedBtn {
+                  color: $primary_prp_clr;
+                  &:hover {
+                    color: $primary_black_clr;
+                  }
                 }
-                .BlogNotLikedBtn{
-                  color: black;
-                  &:hover{
-                    color: #9c27b0;
+                .BlogNotLikedBtn {
+                  color: $primary_black_clr;
+                  &:hover {
+                    color: $primary_prp_clr;
                   }
                 }
               }
@@ -261,115 +236,101 @@
   }
 }
 
-
-
-@media screen and (max-width: 700px){
-
-
+@media screen and (max-width: 700px) {
   .blogs {
     @include flex(flex, unset, nowrap, column);
     padding: 100px 0px;
-    background-color: #f1f1f1;
+    background-color: $primary_bg_clr;
     .blogs_cn {
       @include flex(flex, unset, nowrap, column);
-      align-items: center;
+      align-items: $alignItems;
       .toolbar_section {
         @include flex(flex, space-between, nowrap, row);
-        align-items: center;
+        align-items: $alignItems;
         border-radius: 6px;
         width: 100%;
         max-width: 400px;
         min-width: fit-content;
         height: 45px;
-        box-shadow: 0px 0px 1px 0px grey;
-        border-bottom: 2px solid #9c27b0;
-        background: white;
-  
+        box-shadow: 0px 0px 1px 0px $primary_gry_clr;
+        border-bottom: 2px solid $primary_prp_clr;
+        background: $primary_wh_clr;
+
         .toolbar_category {
           @include flex(flex, space-between, nowrap, row);
-          align-items: center;
+          align-items: $alignItems;
           height: 45px;
           font-weight: 300;
           padding-right: 10px;
           .titleContainer {
             @include flex(flex, unset, nowrap, row);
-            align-items: center;
-            background-color: #9c27b0;
+            align-items: $alignItems;
+            background-color: $primary_prp_clr;
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
             height: inherit;
             .title {
-              color: white;
+              color: $primary_wh_clr;
               padding-left: 10px;
               padding-right: 10px;
-       
             }
           }
-  
+
           .categoryBtnContainer {
             @include flex(flex, unset, nowrap, row);
             padding-left: 10px;
             gap: 10px;
             width: 100%;
             .categoryBtn {
-              
-              background-color: transparent;
-              border: transparent;
-              // font-family: Arial, Helvetica, sans-serif;
+              @include element_transparency();
               color: #080808b5;
               font-size: smaller;
-              cursor: pointer;
-              // font-family:;
+              cursor: $cursorPointer;
               &:hover {
-                // color: royalblue;
                 color: #7541ce;
               }
             }
           }
         }
         .toolbar_filter {
-          position: relative;
+          position: $relative;
           .filterBtn {
             @include flex(flex, unset, nowrap, row);
-            align-items: center;
+            @include element_transparency();
+            align-items: $alignItems;
             margin-right: 20px;
-            border: transparent;
-            background: transparent;
-            cursor: pointer;
+            cursor: $cursorPointer;
             width: 100%;
             // font-family: Arial, Helvetica, sans-serif;
             font-size: smaller;
             color: rgba(8, 8, 8, 0.7098039216);
-  
+
             &:hover {
-              color: black;
+              color: $primary_black_clr;
             }
           }
           .filter_option_cr {
             @include flex(flex, unset, nowrap, column);
             // gap: 20px;
-            position: absolute;
+            position: $absolute;
             top: 25px;
             z-index: 110;
-            background-color: white;
-            border: 1px solid #e0e0e0;
-  
+            background-color: $primary_wh_clr;
+            border: 1px solid $primary_wh_clr2;
+
             .filterBtn_cr {
               width: 100%;
               padding: 10px;
-              border-bottom: 1px solid #e0e0e0;
-              cursor: pointer;
+              border-bottom: 1px solid $primary_wh_clr2;
+              cursor: $cursorPointer;
               &:hover {
                 background-color: #efeded;
-              }
-  
-              .optionBtn {
               }
             }
           }
         }
       }
-  
+
       .cards_section {
         @include flex(flex, center, nowrap, row);
         max-width: 1024px;
@@ -378,10 +339,10 @@
           @include flex(flex, space-evenly, wrap, row);
           gap: 60px;
           .card_div {
-            box-shadow: 0px 0px 5px 0px grey;
+            box-shadow: 0px 0px 5px 0px $primary_gry_clr;
             border-radius: 15px;
-            background-color: white;
-            position: relative;
+            background-color: $primary_wh_clr;
+            position: $relative;
             // transition: all ease-in-out 1s;
             &:hover {
               background-color: rgb(247, 248, 248);
@@ -392,73 +353,60 @@
               // min-width: unset;
               width: 350px;
               transition: all ease-out 1s;
-              &:hover .card-body{
-                visibility:visible;
+              &:hover .card-body {
+                visibility: visible;
                 position: unset;
               }
-              &:hover .card-footer{
-                visibility:visible;
-        
+              &:hover .card-footer {
+                visibility: visible;
               }
               &:hover .card_img {
                 height: 150px;
                 filter: brightness(100%);
-                // border-top-right-radius: 15px;
                 border-bottom-right-radius: unset;
                 border-bottom-left-radius: unset;
               }
               .card_img {
-                // height: 250px;
                 height: 150px;
                 width: 100%;
-                // max-width: 350px;
                 border-radius: 15px;
-             
-                // filter: brightness(90%);
                 filter: contrast(2);
-                // filter: blur(2px);
                 object-fit: fill;
                 transition: all linear 0.5s;
               }
-  
-              .card-body{
+
+              .card-body {
                 visibility: collapse;
               }
-              .card-footer{
+              .card-footer {
                 visibility: collapse;
-  
               }
               .card-body {
                 @include flex(flex, space-between, nowrap, column);
-                // color: white;
-                text-shadow: 0px 1px 2px grey;
+                text-shadow: 0px 1px 2px $primary_gry_clr;
                 gap: 10px;
                 padding: 10px;
                 overflow: auto;
                 margin-bottom: 25px;
-                position: absolute;
+                position: $absolute;
                 bottom: 0;
                 top: 50%;
-                // transition: all linear 1s;
                 width: 100%;
                 .category_title {
                   @include flex(flex, space-between, nowrap, row);
-                  align-items: center;
+                  align-items: $alignItems;
                   span:first-child {
-                    // background-color: #040303;
                     border: 1px solid #d4cccc;
                     width: fit-content;
                     padding: 5px 15px;
                     border-radius: 6px;
-                    // color: #e109fe;
                   }
                   span:last-child {
                     @include flex(flex, space-between, nowrap, row);
-                    align-items: center;
+                    align-items: $alignItems;
                     width: fit-content;
-                    color: grey;
+                    color: $primary_gry_clr;
                     font-size: smaller;
-      
                   }
                 }
                 .card-text {
@@ -470,48 +418,46 @@
                   word-wrap: break-word;
                   word-break: break-all;
                   .cardBtn {
-                    background-color: transparent;
-                    border: transparent;
-                    cursor: pointer;
+                    @include element_transparency();
+                    cursor: $cursorPointer;
                     padding-left: 10px;
-                    color: grey;
+                    color: $primary_gry_clr;
                     &:hover {
-                      color: #9c27b0;
+                      color: $primary_prp_clr;
                     }
                   }
                 }
               }
               .card-footer {
                 @include flex(flex, space-between, nowrap, row);
-                align-items: center;
+                align-items: $alignItems;
                 width: 100%;
-                position: absolute;
+                position: $absolute;
                 bottom: 0;
                 padding: 10px;
-                border-top: 2px solid #e0e0e0;
+                border-top: 2px solid $primary_wh_clr2;
                 span {
                   @include flex(flex, space-between, nowrap, row);
-                  text-align: center;
+                  text-align: $alignItems;
                   font-size: small;
                   gap: 5px;
-                  color: grey;
+                  color: $primary_gry_clr;
                 }
-  
+
                 .likeBtn {
-                  border: transparent;
-                  background-color: transparent;
+                  @include element_transparency();
                   font-size: larger;
-  
-                  .BlogLikedBtn{
-                      color: #9c27b0;
-                      &:hover{
-                        color: black;
-                      }
+
+                  .BlogLikedBtn {
+                    color: $primary_prp_clr;
+                    &:hover {
+                      color: $primary_black_clr;
+                    }
                   }
-                  .BlogNotLikedBtn{
-                    color: black;
-                    &:hover{
-                      color: #9c27b0;
+                  .BlogNotLikedBtn {
+                    color: $primary_black_clr;
+                    &:hover {
+                      color: $primary_prp_clr;
                     }
                   }
                 }

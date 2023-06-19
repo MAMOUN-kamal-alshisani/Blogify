@@ -65,11 +65,11 @@
   width: 100%;
 }
 .blogs .blogs_cn .toolbar_section .toolbar_category .categoryBtnContainer .categoryBtn {
-  background-color: transparent;
   border: transparent;
-  color: rgba(8, 8, 8, 0.7098039216);
+  background: transparent;
   font-size: medium;
   cursor: pointer;
+  color: rgba(8, 8, 8, 0.7098039216);
 }
 .blogs .blogs_cn .toolbar_section .toolbar_category .categoryBtnContainer .categoryBtn:hover {
   color: #7541ce;
@@ -82,10 +82,10 @@
   justify-content: unset;
   flex-wrap: nowrap;
   flex-direction: row;
-  align-items: center;
-  margin-right: 20px;
   border: transparent;
   background: transparent;
+  align-items: center;
+  margin-right: 20px;
   cursor: pointer;
   width: 100%;
   font-size: medium;
@@ -155,25 +155,18 @@
   visibility: visible;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card:hover .card_img {
-  height: 250px;
   filter: brightness(100%);
   border-bottom-right-radius: unset;
   border-bottom-left-radius: unset;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card_img {
-  height: 450px;
+  height: 250px;
   width: 100%;
   border-radius: 15px;
-  filter: contrast(2);
+  filter: contrast(1.5);
   -o-object-fit: fill;
      object-fit: fill;
   transition: all linear 0.5s;
-}
-.blogs .blogs_cn .cards_section .card_container .card_div .card .card-body {
-  visibility: collapse;
-}
-.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer {
-  visibility: collapse;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-body {
   display: flex;
@@ -185,9 +178,6 @@
   padding: 10px;
   overflow: auto;
   margin-bottom: 25px;
-  position: absolute;
-  bottom: 0;
-  top: 50%;
   width: 100%;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-body .category_title {
@@ -210,23 +200,23 @@
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
+  color: grey;
   width: -moz-fit-content;
   width: fit-content;
-  color: grey;
   font-size: smaller;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-body .card-text {
-  font-weight: bold;
   padding: 5px;
   line-height: 25px;
   height: 100px;
+  font-weight: bold;
   overflow: auto;
   word-wrap: break-word;
   word-break: break-all;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-body .card-text .cardBtn {
-  background-color: transparent;
   border: transparent;
+  background: transparent;
   cursor: pointer;
   padding-left: 10px;
   color: grey;
@@ -246,7 +236,14 @@
   padding: 10px;
   border-top: 2px solid #e0e0e0;
 }
-.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer span {
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .footer_user_details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 5px;
+}
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .footer_user_details span {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -256,9 +253,13 @@
   gap: 5px;
   color: grey;
 }
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .footer_user_details span:first-child {
+  padding-right: 5px;
+  border-right: 2px solid #e0e0e0;
+}
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn {
   border: transparent;
-  background-color: transparent;
+  background: transparent;
   font-size: larger;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogLikedBtn {
@@ -342,8 +343,8 @@
     width: 100%;
   }
   .blogs .blogs_cn .toolbar_section .toolbar_category .categoryBtnContainer .categoryBtn {
-    background-color: transparent;
     border: transparent;
+    background: transparent;
     color: rgba(8, 8, 8, 0.7098039216);
     font-size: smaller;
     cursor: pointer;
@@ -359,10 +360,10 @@
     justify-content: unset;
     flex-wrap: nowrap;
     flex-direction: row;
-    align-items: center;
-    margin-right: 20px;
     border: transparent;
     background: transparent;
+    align-items: center;
+    margin-right: 20px;
     cursor: pointer;
     width: 100%;
     font-size: smaller;
@@ -501,8 +502,8 @@
     word-break: break-all;
   }
   .blogs .blogs_cn .cards_section .card_container .card_div .card .card-body .card-text .cardBtn {
-    background-color: transparent;
     border: transparent;
+    background: transparent;
     cursor: pointer;
     padding-left: 10px;
     color: grey;
@@ -534,7 +535,7 @@
   }
   .blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn {
     border: transparent;
-    background-color: transparent;
+    background: transparent;
     font-size: larger;
   }
   .blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogLikedBtn {
