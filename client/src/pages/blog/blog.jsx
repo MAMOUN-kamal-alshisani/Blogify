@@ -85,7 +85,6 @@ export default function Blog() {
   });
   ///////////////////////////
   const [allBlogs, setAllBlogs] = useState(results[2]?.data?.slice(0, 3));
-  // console.log(results);
 
   const HandleNext = () => {
     // EndIndex
@@ -107,8 +106,7 @@ export default function Blog() {
   };
   const blog = results[0].data;
   const blogs = results[1];
-  // const AllBlogs = results[2]
-  // console.log(results[2]);
+
   useEffect(() => {
     if (blogs.isSuccess) {
       const filteredData = blogs?.data?.filter((bl) => {
@@ -130,10 +128,8 @@ export default function Blog() {
 
     // Calculating the time difference between two dates
     const diffInTime = date2.getTime() - date1.getTime();
-    // console.log(diffInTime);
     // Calculating the no. of days between two dates
     const diffInDays = Math.round(diffInTime / oneDay);
-    // console.log(diffInDays);
     if (diffInDays === 0) return "today";
     else if (diffInDays === 1) return diffInDays + " Day Ago";
     return diffInDays + " Days Ago";
@@ -145,16 +141,13 @@ export default function Blog() {
     const res = axios.put(url, {
       watched: (watch += 1).toString(),
     });
-    // console.log(res);
     setBlogId(id);
     navigate(`/blogs/${id}`);
   };
-  // console.log(getNumberOfDays("2/1/2021", "3/1/2021"));
 
   useEffect(() => {
     if (blog) {
       ///////// api data comes with html elements so using innerhtml to kinda filter them out ////
-
       const blogDesc = document.querySelector(".blogDesc");
       blogDesc.innerHTML = blog?.desc;
     }
@@ -252,7 +245,6 @@ export default function Blog() {
                       }
                     >
                       <img
-                        // style={{ width: "200px", height: "200px" }}
                         src={sideBlog.photo}
                         alt="img"
                         className="sideBlogImg"
@@ -328,8 +320,6 @@ export default function Blog() {
                       <p>{blog?.category}</p>
                       <p>
                         <User blog={blog} />
-                        {/* {getNumberOfDays(blog?.createdAt.slice(0, blog?.createdAt.indexOf("T")),DateNow)} */}
-                        {/* {blog?.createdAt.slice(0, blog?.createdAt.indexOf("T"))} */}
                       </p>
                     </div>
 
@@ -339,7 +329,6 @@ export default function Blog() {
 
                     <button
                       className="allBlogs_Btn"
-                      // onClick={() => blogChange(blog?.id)}
                       onClick={() => increaseWatch(blog.watched, blog.id)}
                     >
                       read more...

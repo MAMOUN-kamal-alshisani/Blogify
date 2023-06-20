@@ -96,7 +96,7 @@ export default function Home() {
     <div className="home">
       <div className="home_cn">
         <section className="row0_section0">
-          <div className="header_cn">
+          <div className="first_section_cn">
             <div className="text_part">
               <h1>Be Part Of MNBlog Write And Review Diverse Topics</h1>
             </div>
