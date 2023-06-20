@@ -1,5 +1,5 @@
 $primary_bg_clr: #f1f1f1;
-// $primary_bg_clr3: #f2f2f2;
+$border_wh_clr: #ebebeb;
 $primary_wh_clr: white;
 $primary_wh_clr2: #e0e0e0;
 $primary_bl_clr: #080808b5;
@@ -7,20 +7,12 @@ $primary_black_clr:black;
 $primary_prp_clr: #9c27b0;
 $primary_dkprp_clr: #7541ce;
 $primary_gry_clr: grey;
-// $primary_clr5: #e0d40cfa;
-// $primary_clr6:#b9b00bfa;
-// $primary_clr7:gainsboro;
-// $primary_clr8:#849095;
-// $primary_clr9:#25af04;
-// $primary_clr11:#111111c9;
-// $primary_clr12:royalblue;
-// $primary_clr13:#111111c9;
+
 $fontweight:bold;
 $cursorPointer:pointer;
-$border:transparent;
+$border_tr:transparent;
 $captext:capitalize;
 $textspace:1px;
-// $textshadow:1px 4px 6px $primary_clr4;
 $px6_borderRadius:6px;
 $relative:relative;
 $absolute:absolute;
@@ -28,6 +20,14 @@ $alignItems:center;
 $objfit: cover;
 $grey_boxShadow:0px 0px 1px 0px grey;
 $mediumFont:medium;
+$smallFont:small;
+$smallerFont:smaller;
+$largeFont:large;
+$largerFont:larger;
+$xLargeFont:x-large;
+$hid_overFlow:hidden;
+$underline_decore:underline;
+
 @mixin flex($display,$jstcontent,$flexwarp,$flexdirection) {
     display: $display;
     justify-content:$jstcontent ;
@@ -39,3 +39,13 @@ $mediumFont:medium;
     border: transparent;
     background: transparent;
 }
+
+// $primary_clr5: #e0d40cfa;
+// $primary_clr6:#b9b00bfa;
+// $primary_clr7:gainsboro;
+// $primary_clr8:#849095;
+// $primary_clr9:#25af04;
+// $primary_clr11:#111111c9;
+// $primary_clr12:royalblue;
+// $primary_clr13:#111111c9;
+// $primary_bg_clr3: #f2f2f2;

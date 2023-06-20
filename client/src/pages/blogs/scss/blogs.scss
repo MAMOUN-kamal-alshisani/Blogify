@@ -161,6 +161,8 @@
                 }
                 span:last-child {
                   @include flex(flex, space-between, nowrap, row);
+                gap: 3px;
+
                   align-items: $alignItems;
                   color: $primary_gry_clr;
                   width: fit-content;

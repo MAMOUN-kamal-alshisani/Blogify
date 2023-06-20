@@ -11,16 +11,21 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
+import { MdDateRange } from "react-icons/md";
+
 
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../components/pagination/pagination";
 import Skeleton from "react-loading-skeleton";
 import User from '../../components/user/user'
+
 export default function Blogs() {
+
   const navigate = useNavigate();
   const title = document.querySelector(".title");
   const [cookies] = useCookies("user");
+
 
   const getBlogs = async () => {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog`);
@@ -213,7 +218,7 @@ export default function Blogs() {
                         <Card.Title className="category_title">
                           <span>{blog?.category}</span>
                           <span>
-                            <BiTimeFive />
+                            <MdDateRange />
                             {blog?.createdAt?.slice(
                               0,
                               blog?.createdAt?.indexOf("T")
