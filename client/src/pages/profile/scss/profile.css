@@ -393,6 +393,9 @@
 .profile .profile_cn .edit_blogs_cn .closeDiv .close_icon:hover {
   color: #61665d;
 }
+.profile .profile_cn .edit_blogs_cn .edit_cn > * {
+  flex: 1;
+}
 .profile .profile_cn .edit_blogs_cn .edit_cn {
   display: flex;
   justify-content: center;
@@ -405,6 +408,7 @@
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn {
   border-bottom: 2px solid rgb(232, 229, 229);
+  width: 100%;
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn .editImg {
   max-height: 300px;

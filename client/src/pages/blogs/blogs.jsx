@@ -147,7 +147,6 @@ export default function Blogs() {
             <div className="titleContainer">
               <span className="title">Blogs</span>
             </div>
-
             <div className="categoryBtnContainer">
               {category?.map((category, i) => {
                 return (
@@ -160,14 +159,11 @@ export default function Blogs() {
                   </button>
                 );
               })}
-            </div>
-          </div>
-          <div className="toolbar_filter">
+            <div className="toolbar_filter">
             <button className="filterBtn" onClick={() => setToggle(!toggle)}>
               additional filter
               {toggle ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
             </button>
-            {/* <select value={'options'} name="opt" className="filter_options" > */}
 
             {toggle && (
               <div className="filter_option_cr">
@@ -198,6 +194,9 @@ export default function Blogs() {
               </div>
             )}
           </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="cards_section">
@@ -210,7 +209,7 @@ export default function Blogs() {
                       <Card.Img
                         variant="top"
                         src={blog?.photo} // || '/home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/'
-                        style={{ width: "inherit" }}
+               /* style={{ width: "inherit" }}*/
                         className="card_img"
                       />
 

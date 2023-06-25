@@ -4,17 +4,13 @@
   margin-top: 25px;
   margin-bottom: 155px;
 text-transform: none;
-
 .successfull_upload_cn{
   text-align: center;
   color:#9c27b0;
   background-color: rgba(200, 198, 198, 0.348);
-
   font-size:large;
   padding:10px;
   margin-bottom: 20px;
-  // width:fit-content
-    // margin: 20px auto;
 }
   .Post_cn {
     @include flex(flex, center, wrap, row);
