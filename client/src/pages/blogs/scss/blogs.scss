@@ -25,6 +25,7 @@
         height: 45px;
         font-weight: 300;
         padding-right: 50px;
+        width: 100%;
         .titleContainer {
           @include flex(flex, unset, nowrap, row);
           align-items: $alignItems;
@@ -41,6 +42,7 @@
 
         .categoryBtnContainer {
           @include flex(flex, unset, nowrap, row);
+          position: $relative;
           padding-left: 10px;
           gap: 20px;
           width: 100%;
@@ -53,38 +55,40 @@
               color: $primary_dkprp_clr;
             }
           }
-        }
-      }
-      .toolbar_filter {
-        position: $relative;
-        .filterBtn {
-          @include flex(flex, unset, nowrap, row);
-          @include element_transparency();
-          align-items: $alignItems;
-          margin-right: 20px;
-          cursor: $cursorPointer;
-          width: 100%;
-          font-size: $mediumFont;
-          color: rgba(8, 8, 8, 0.7098039216);
-          &:hover {
-            color: $primary_black_clr;
-          }
-        }
-        .filter_option_cr {
-          @include flex(flex, unset, nowrap, column);
-          position: $absolute;
-          top: 25px;
-          z-index: 110;
-          background-color: $primary_wh_clr;
-          border: 1px solid $primary_wh_clr2;
+          .toolbar_filter {
+            position: $absolute;
+            right: 0;
 
-          .filterBtn_cr {
-            width: 100%;
-            padding: 10px;
-            border-bottom: 1px solid $primary_wh_clr2;
-            cursor: $cursorPointer;
-            &:hover {
-              background-color: #efeded;
+            .filterBtn {
+              @include flex(flex, unset, nowrap, row);
+              @include element_transparency();
+              align-items: $alignItems;
+              margin-right: 20px;
+              cursor: $cursorPointer;
+              width: 100%;
+              font-size: $mediumFont;
+              color: rgba(8, 8, 8, 0.7098039216);
+              &:hover {
+                color: $primary_black_clr;
+              }
+            }
+            .filter_option_cr {
+              @include flex(flex, unset, nowrap, column);
+              position: $absolute;
+              top: 25px;
+              z-index: 110;
+              background-color: $primary_wh_clr;
+              border: 1px solid $primary_wh_clr2;
+
+              .filterBtn_cr {
+                width: 100%;
+                padding: 10px;
+                border-bottom: 1px solid $primary_wh_clr2;
+                cursor: $cursorPointer;
+                &:hover {
+                  background-color: #efeded;
+                }
+              }
             }
           }
         }
@@ -119,7 +123,6 @@
               visibility: visible;
             }
             &:hover .card_img {
-              filter: brightness(100%);
               border-bottom-right-radius: unset;
               border-bottom-left-radius: unset;
             }
@@ -127,7 +130,6 @@
               height: 250px;
               width: 100%;
               border-radius: 15px;
-              filter: contrast(1.5);
               object-fit: fill;
               transition: all linear 0.5s;
             }
@@ -146,10 +148,6 @@
               overflow: auto;
               margin-bottom: 25px;
               width: 100%;
-               // position: absolute;
-              // bottom: 0;
-              // top: 50%;
-              // transition: all linear 1s;
               .category_title {
                 @include flex(flex, space-between, nowrap, row);
                 align-items: $alignItems;
@@ -161,7 +159,7 @@
                 }
                 span:last-child {
                   @include flex(flex, space-between, nowrap, row);
-                gap: 3px;
+                  gap: 3px;
 
                   align-items: $alignItems;
                   color: $primary_gry_clr;
@@ -180,6 +178,7 @@
                 .cardBtn {
                   @include element_transparency();
                   cursor: $cursorPointer;
+                  font-size: small;
                   padding-left: 10px;
                   color: $primary_gry_clr;
                   &:hover {
@@ -292,41 +291,40 @@
                 color: #7541ce;
               }
             }
-          }
-        }
-        .toolbar_filter {
-          position: $relative;
-          .filterBtn {
-            @include flex(flex, unset, nowrap, row);
-            @include element_transparency();
-            align-items: $alignItems;
-            margin-right: 20px;
-            cursor: $cursorPointer;
-            width: 100%;
-            // font-family: Arial, Helvetica, sans-serif;
-            font-size: smaller;
-            color: rgba(8, 8, 8, 0.7098039216);
 
-            &:hover {
-              color: $primary_black_clr;
-            }
-          }
-          .filter_option_cr {
-            @include flex(flex, unset, nowrap, column);
-            // gap: 20px;
-            position: $absolute;
-            top: 25px;
-            z-index: 110;
-            background-color: $primary_wh_clr;
-            border: 1px solid $primary_wh_clr2;
+            .toolbar_filter {
+              position: $relative;
+              .filterBtn {
+                @include flex(flex, unset, nowrap, row);
+                @include element_transparency();
+                align-items: $alignItems;
+                margin-right: 20px;
+                cursor: $cursorPointer;
+                width: 100%;
+                font-size: smaller;
+                color: rgba(8, 8, 8, 0.7098039216);
 
-            .filterBtn_cr {
-              width: 100%;
-              padding: 10px;
-              border-bottom: 1px solid $primary_wh_clr2;
-              cursor: $cursorPointer;
-              &:hover {
-                background-color: #efeded;
+                &:hover {
+                  color: $primary_black_clr;
+                }
+              }
+              .filter_option_cr {
+                @include flex(flex, unset, nowrap, column);
+                position: $absolute;
+                top: 25px;
+                z-index: 110;
+                background-color: $primary_wh_clr;
+                border: 1px solid $primary_wh_clr2;
+
+                .filterBtn_cr {
+                  width: 100%;
+                  padding: 10px;
+                  border-bottom: 1px solid $primary_wh_clr2;
+                  cursor: $cursorPointer;
+                  &:hover {
+                    background-color: #efeded;
+                  }
+                }
               }
             }
           }
@@ -345,14 +343,11 @@
             border-radius: 15px;
             background-color: $primary_wh_clr;
             position: $relative;
-            // transition: all ease-in-out 1s;
             &:hover {
               background-color: rgb(247, 248, 248);
             }
             .card {
               @include flex(flex, space-between, nowrap, column);
-              // max-width: 355px;
-              // min-width: unset;
               width: 350px;
               transition: all ease-out 1s;
               &:hover .card-body {
@@ -364,7 +359,6 @@
               }
               &:hover .card_img {
                 height: 150px;
-                filter: brightness(100%);
                 border-bottom-right-radius: unset;
                 border-bottom-left-radius: unset;
               }
@@ -372,28 +366,18 @@
                 height: 150px;
                 width: 100%;
                 border-radius: 15px;
-                filter: contrast(2);
                 object-fit: fill;
                 transition: all linear 0.5s;
-              }
-
-              .card-body {
-                visibility: collapse;
-              }
-              .card-footer {
-                visibility: collapse;
               }
               .card-body {
                 @include flex(flex, space-between, nowrap, column);
                 text-shadow: 0px 1px 2px $primary_gry_clr;
                 gap: 10px;
                 padding: 10px;
+                width: 100%;
                 overflow: auto;
                 margin-bottom: 25px;
-                position: $absolute;
-                bottom: 0;
-                top: 50%;
-                width: 100%;
+
                 .category_title {
                   @include flex(flex, space-between, nowrap, row);
                   align-items: $alignItems;
@@ -450,6 +434,231 @@
                   @include element_transparency();
                   font-size: larger;
 
+                  .BlogLikedBtn {
+                    color: $primary_prp_clr;
+                    &:hover {
+                      color: $primary_black_clr;
+                    }
+                  }
+                  .BlogNotLikedBtn {
+                    color: $primary_black_clr;
+                    &:hover {
+                      color: $primary_prp_clr;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .blogs {
+    @include flex(flex, unset, nowrap, column);
+    padding: 100px 0px;
+    background-color: $primary_bg_clr;
+    .blogs_cn {
+      @include flex(flex, unset, nowrap, column);
+      align-items: $alignItems;
+      .toolbar_section {
+        @include flex(flex, space-between, wrap, column);
+        align-items: $alignItems;
+        border-radius: 6px;
+        width: 100%;
+        max-width: 200px;
+        min-width: fit-content;
+        // height: 45px;
+        max-height: 65px;
+        box-shadow: 0px 0px 1px 0px $primary_gry_clr;
+        border-bottom: 2px solid $primary_prp_clr;
+        background: $primary_wh_clr;
+        font-size: small;
+        .toolbar_category {
+          @include flex(flex, space-between, nowrap, row);
+          align-items: $alignItems;
+          height: 45px;
+          font-weight: 300;
+          padding-right: 10px;
+          .titleContainer {
+            @include flex(flex, unset, wrap, row);
+            align-items: $alignItems;
+            background-color: $primary_prp_clr;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            height: inherit;
+            .title {
+              color: $primary_wh_clr;
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+          }
+
+          .categoryBtnContainer {
+            @include flex(flex, unset, wrap, row);
+            padding-left: 10px;
+            gap: 10px;
+            width: 100%;
+            .categoryBtn {
+              @include element_transparency();
+              color: #080808b5;
+              cursor: $cursorPointer;
+              &:hover {
+                color: #7541ce;
+              }
+            }
+
+            .toolbar_filter {
+              position: $relative;
+              .filterBtn {
+                @include flex(flex, unset, wrap, row);
+                @include element_transparency();
+                align-items: $alignItems;
+                margin-right: 20px;
+                cursor: $cursorPointer;
+                width: 100%;
+                color: rgba(8, 8, 8, 0.7098039216);
+
+                &:hover {
+                  color: $primary_black_clr;
+                }
+              }
+              .filter_option_cr {
+                @include flex(flex, unset, nowrap, column);
+                position: $absolute;
+                top: 25px;
+                z-index: 110;
+                background-color: $primary_wh_clr;
+                border: 1px solid $primary_wh_clr2;
+
+                .filterBtn_cr {
+                  width: 100%;
+                  padding: 10px;
+                  border-bottom: 1px solid $primary_wh_clr2;
+                  cursor: $cursorPointer;
+                  &:hover {
+                    background-color: #efeded;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .cards_section {
+        @include flex(flex, center, nowrap, row);
+        max-width: 1024px;
+        margin-top: 40px;
+        .card_container {
+          @include flex(flex, space-evenly, wrap, row);
+          gap: 60px;
+          .card_div {
+            box-shadow: 0px 0px 5px 0px $primary_gry_clr;
+            border-radius: 15px;
+            background-color: $primary_wh_clr;
+            position: $relative;
+            &:hover {
+              background-color: rgb(247, 248, 248);
+            }
+            .card {
+              @include flex(flex, space-between, nowrap, column);
+              // width: 100%;
+              min-width: 100px;
+              max-width: 200px;
+              transition: all ease-out 1s;
+              &:hover .card-body {
+                visibility: visible;
+                position: unset;
+              }
+              &:hover .card-footer {
+                visibility: visible;
+              }
+              &:hover .card_img {
+                height: 150px;
+                border-bottom-right-radius: unset;
+                border-bottom-left-radius: unset;
+              }
+              .card_img {
+                height: 150px;
+                width: 100%;
+                border-radius: 15px;
+                object-fit: fill;
+                transition: all linear 0.5s;
+              }
+              .card-body {
+                @include flex(flex, space-between, nowrap, column);
+                text-shadow: 0px 1px 2px $primary_gry_clr;
+                gap: 10px;
+                padding: 10px;
+                width: 100%;
+                overflow: auto;
+                margin-bottom: 25px;
+                .category_title {
+                  @include flex(flex, space-between, nowrap, row);
+                  align-items: $alignItems;
+                  font-size: small;
+                  span:first-child {
+                    border: 1px solid #d4cccc;
+                    width: fit-content;
+                    padding: 5px 15px;
+                    border-radius: 6px;
+                  }
+                  span:last-child {
+                    @include flex(flex, space-between, nowrap, row);
+                    align-items: $alignItems;
+                    width: fit-content;
+                    color: $primary_gry_clr;
+                    font-size: smaller;
+                  }
+                }
+                .card-text {
+                  font-weight: bold;
+                  padding: 5px;
+                  line-height: 25px;
+                  max-height: 100px;
+                  overflow: auto;
+                  word-wrap: break-word;
+                  word-break: break-all;
+                  font-size: small;
+
+                  .cardBtn {
+                    @include element_transparency();
+                    cursor: $cursorPointer;
+                    padding-left: 10px;
+                    color: $primary_gry_clr;
+                    font-size: small;
+
+                    &:hover {
+                      color: $primary_prp_clr;
+                    }
+                  }
+                }
+              }
+              .card-footer {
+                @include flex(flex, space-between, nowrap, row);
+                align-items: $alignItems;
+                width: 100%;
+                position: $absolute;
+                bottom: 0;
+                padding: 10px;
+                border-top: 2px solid $primary_wh_clr2;
+                font-size: small;
+
+                span {
+                  @include flex(flex, space-between, nowrap, row);
+                  text-align: $alignItems;
+                  font-size: small;
+                  gap: 5px;
+                  color: $primary_gry_clr;
+                }
+
+                .likeBtn {
+                  @include element_transparency();
+                  font-size: medium;
                   .BlogLikedBtn {
                     color: $primary_prp_clr;
                     &:hover {

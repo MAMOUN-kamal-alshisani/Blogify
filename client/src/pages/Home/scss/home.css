@@ -231,7 +231,7 @@
   text-align: center;
   font-size: larger;
   line-height: 40px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part2_cn {
   display: flex;
@@ -256,7 +256,7 @@
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part2_cn .artical .title_paragraph {
   margin: 10px 0px;
-  padding: 10px 10px 20px 10px;
+  padding: 0px 10px 20px 10px;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part2_cn .artical .articalDetails {
   display: flex;
@@ -717,7 +717,7 @@
     text-align: center;
     font-size: smaller;
     line-height: 40px;
-    padding-top: 20px;
+    padding-top: 10px;
   }
   .home .home_cn .row2_section2 .section2_cn .container .part1 .part2_cn {
     display: flex;
