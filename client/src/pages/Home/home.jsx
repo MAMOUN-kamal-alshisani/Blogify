@@ -18,7 +18,6 @@ import React from "react";
 export default function Home() {
   const navigate = useNavigate();
 
-
   const getRecentBlogs = async () => {
     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/latest`;
     const res = await axios.get(url);
@@ -43,7 +42,7 @@ export default function Home() {
     const res = await axios.get(url);
     return res.data[0];
   };
-  //// react query api 
+  //// react query api
   const results = useQueries({
     queries: [
       {
@@ -88,7 +87,7 @@ export default function Home() {
   };
 
   //// display loading Skeleton before data fetching is complete
-  if (results[0]?.isLoading || results[1].isLoading) {
+  if (results[0]?.isLoading) {
     return <Skeleton count={10} />;
   }
 
@@ -114,40 +113,19 @@ export default function Home() {
 
         <section className="row1_section1">
           <div className="container">
-            <div className="firstCard">
-              <img
-                src={AdminBlog?.data[0]?.photo}
-                alt={AdminBlog?.data[0]?.category}
-                className="mainImage img1"
-              />
-              <div className="img_textarea textarea">
-                <p className="text2">{AdminBlog?.data[0]?.title}</p>
-                <div className="text1">
-                  <h5>{AdminBlog?.data[0]?.category}</h5>-
-                  <h5>
-                    {" "}
-                    {AdminBlog?.data[0]?.createdAt.slice(
-                      0,
-                      AdminBlog?.data[0]?.createdAt.indexOf("T")
-                    )}
-                  </h5>
-                </div>
-              </div>
-            </div>
-            <div className="secondCard">
-              <div className="card_Img1 cards">
+            {AdminBlog.isFetched === true ? (
+              <div className="firstCard">
                 <img
-                  loading={"lazy"}
-                  src={AdminBlog?.data[1]?.photo}
-                  alt={AdminBlog?.data[1]?.category}
-                  className="mainImage img2"
+                  src={AdminBlog?.data[0]?.photo}
+                  alt={AdminBlog?.data[0]?.category}
+                  className="mainImage img1"
                 />
                 <div className="img_textarea textarea">
-                  <p className="text2">{AdminBlog?.data[1]?.title}</p>
-
+                  <p className="text2">{AdminBlog?.data[0]?.title}</p>
                   <div className="text1">
                     <h5>{AdminBlog?.data[0]?.category}</h5>-
                     <h5>
+                      {" "}
                       {AdminBlog?.data[0]?.createdAt.slice(
                         0,
                         AdminBlog?.data[0]?.createdAt.indexOf("T")
@@ -156,33 +134,115 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="card_Img2 cards">
-                <div className="card_Img2_text">
-                  <img
-                    loading={"lazy"}
-                    src={AdminBlog?.data[2]?.photo}
-                    alt={AdminBlog?.data[2]?.category}
-                    className="mainImage img3"
-                  />
-
-                  <div className="img_smalltext textarea">
-                    <p className="text4">{AdminBlog?.data[2]?.title}</p>
-                  </div>
-                </div>
-
-                <div className="card_Img2_text">
-                  <img
-                    loading={"lazy"}
-                    src={AdminBlog?.data[3]?.photo}
-                    alt={AdminBlog?.data[3]?.category}
-                    className="mainImage img4"
-                  />
-                  <div className="img_smalltext textarea">
-                    <p className="text4">{AdminBlog?.data[3]?.title}</p>
+            ) : (
+              <div className="firstCard">
+                <img
+                  src="https://cdn.projectexpedition.com/photos/43793touractivityislandhopping5_sized.jpg"
+                  alt="Travel"
+                  className="mainImage img1"
+                />
+                <div className="img_textarea textarea">
+                  <p className="text2">Tour of two Towns: Trogir and Split</p>
+                  <div className="text1">
+                    <h5>Travel</h5>-<h5>2023-06-11</h5>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {AdminBlog.isFetched === true ? (
+              <div className="secondCard">
+                <div className="card_Img1 cards">
+                  <img
+                    loading={"lazy"}
+                    src={AdminBlog?.data[1]?.photo}
+                    alt={AdminBlog?.data[1]?.category}
+                    className="mainImage img2"
+                  />
+                  <div className="img_textarea textarea">
+                    <p className="text2">{AdminBlog?.data[1]?.title}</p>
+
+                    <div className="text1">
+                      <h5>{AdminBlog?.data[1]?.category}</h5>-
+                      <h5>
+                        {AdminBlog?.data[1]?.createdAt.slice(
+                          0,
+                          AdminBlog?.data[1]?.createdAt.indexOf("T")
+                        )}
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div className="card_Img2 cards">
+                  <div className="card_Img2_text">
+                    <img
+                      loading={"lazy"}
+                      src={AdminBlog?.data[2]?.photo}
+                      alt={AdminBlog?.data[2]?.category}
+                      className="mainImage img3"
+                    />
+                    <div className="img_smalltext textarea">
+                      <p className="text4">{AdminBlog?.data[2]?.title}</p>
+                    </div>
+                  </div>
+                  <div className="card_Img2_text">
+                    <img
+                      loading={"lazy"}
+                      src={AdminBlog?.data[3]?.photo}
+                      alt={AdminBlog?.data[3]?.category}
+                      className="mainImage img4"
+                    />
+                    <div className="img_smalltext textarea">
+                      <p className="text4">{AdminBlog?.data[3]?.title}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="secondCard">
+                <div className="card_Img1 cards">
+                  <img
+                    loading={"lazy"}
+                    src="https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_540,w_960,x_0,y_0/dpr_1.5/c_limit,w_690/fl_lossy,q_auto/v1/galleries/2010/09/02/15-worst-hurricanes/destructive-hurricanes---andrew_jh8sjo"
+                    alt="science"
+                    className="mainImage img2"
+                  />
+                  <div className="img_textarea textarea">
+                    <p className="text2">15 Worst Hurricanes of All Time</p>
+
+                    <div className="text1">
+                      <h5>science</h5>-<h5>2023-06-11</h5>
+                    </div>
+                  </div>
+                </div>
+                <div className="card_Img2 cards">
+                  <div className="card_Img2_text">
+                    <img
+                      loading={"lazy"}
+                      src="https://fromscratchfast.com/wp-content/uploads/2016/12/Whipped-Ricotta-Crostini-4.jpg"
+                      alt="food"
+                      className="mainImage img3"
+                    />
+                    <div className="img_smalltext textarea">
+                      <p className="text4">
+                        Whipped Ricotta Toast Crostini With Roasted Tomatoes
+                      </p>
+                    </div>
+                  </div>
+                  <div className="card_Img2_text">
+                    <img
+                      loading={"lazy"}
+                      src='https://static01.nyt.com/images/2021/03/01/obituaries/Goodenough-01/Goodenough-01-facebookJumbo.jpg'
+                      alt='technology'
+                      className="mainImage img4"
+                    />
+                    <div className="img_smalltext textarea">
+                      <p className="text4">Lithium-ion battery creator John Goodenough dies at 100</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 

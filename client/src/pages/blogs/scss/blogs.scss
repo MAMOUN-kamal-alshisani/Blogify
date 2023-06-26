@@ -24,7 +24,7 @@
         align-items: $alignItems;
         height: 45px;
         font-weight: 300;
-        padding-right: 50px;
+        // padding-right: 50px;
         width: 100%;
         .titleContainer {
           @include flex(flex, unset, nowrap, row);
