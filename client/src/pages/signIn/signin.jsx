@@ -19,8 +19,6 @@ export default function SignIn() {
     Password: "",
   });
 
-  // const [cookies, setCookies] = useCookies();
-
   const inputError = document.querySelector(".password_error");
   const emailError = document.querySelector(".email_error");
 
@@ -54,7 +52,6 @@ export default function SignIn() {
 
   useEffect(()=>{
     if (cookies.get('user')) {
-      // signinBtn.disabled = true
         alert('a user already is signed in, logout first!')
         navigate("/");
     }
@@ -65,7 +62,7 @@ export default function SignIn() {
       <div className="signin_cn">
         <div className="signin_innerCn">
           <div className="signin_header">
-            <h1>Omega</h1>
+            <h1>MN-Blogger</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
                 Home page <AiOutlineHome />
@@ -76,7 +73,7 @@ export default function SignIn() {
           <form className="form" onSubmit={(e) => e.preventDefault()}>
             <div className="form_header">
               <h1>Sign In</h1>
-              <p>signIn now and enjoy omega social!</p>
+              <p>signIn now and enjoy MN-Blogger!</p>
             </div>
 
             <div className="input_cn">
@@ -111,7 +108,6 @@ export default function SignIn() {
                   onClick={() => setVisable(!visable)}
                 />
               )}
-              {/* {visable ? 'ssds' : 'sdsad'} */}
               <div className="password_error err"></div>
             </div>
 

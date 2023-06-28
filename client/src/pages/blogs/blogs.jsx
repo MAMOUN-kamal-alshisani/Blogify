@@ -4,8 +4,6 @@ import Card from "react-bootstrap/Card";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
@@ -13,29 +11,25 @@ import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 
-
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../components/pagination/pagination";
 import Skeleton from "react-loading-skeleton";
-import User from '../../components/user/user'
+import User from "../../components/user/user";
 
 export default function Blogs() {
-
   const navigate = useNavigate();
   const title = document.querySelector(".title");
   const [cookies] = useCookies("user");
-
 
   const getBlogs = async () => {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog`);
     return res.data;
   };
 
-  const { data, isLoading, isError, isFetched, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
-    // keepPreviousData: true,
     onSuccess: (data) => {
       setBlogs(data);
       setCategory([
@@ -50,7 +44,6 @@ export default function Blogs() {
   });
 
   const handleBlogLikes = async (id, userid) => {
-    console.log(id, userid);
     if (userid) {
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}/liked/${userid}`;
       const res = await axios.put(url);
@@ -68,7 +61,6 @@ export default function Blogs() {
       refetch();
     },
   });
-  // console.log(mutate());
   const [category, setCategory] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [blogs, setBlogs] = useState(data);
@@ -91,7 +83,6 @@ export default function Blogs() {
       const filteredData = blogs?.filter((blog) => {
         return blog.category === e.target.textContent;
       });
-      // DataList[0].data
       title.textContent = e.target.textContent;
       setFilteredBlogs(filteredData);
       return;
@@ -99,12 +90,10 @@ export default function Blogs() {
   };
 
   useEffect(() => {
-    // setBlogs(blogs);
     setFilteredBlogs(blogs);
   }, [data, blogs]);
 
   const handleExtraFilter = async (e) => {
-    // console.log(e.target.textContent);
     if (e.target.textContent === "most recent") {
       const api = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/api/blog/recent`
@@ -159,44 +148,46 @@ export default function Blogs() {
                   </button>
                 );
               })}
-            <div className="toolbar_filter">
-            <button className="filterBtn" onClick={() => setToggle(!toggle)}>
-              additional filter
-              {toggle ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
-            </button>
+              <div className="toolbar_filter">
+                <button
+                  className="filterBtn"
+                  onClick={() => setToggle(!toggle)}
+                >
+                  additional filter
+                  {toggle ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                </button>
 
-            {toggle && (
-              <div className="filter_option_cr">
-                <div className="filterBtn_cr">
-                  <div
-                    className="optionBtn"
-                    onClick={(e) => handleExtraFilter(e)}
-                  >
-                    most recent
+                {toggle && (
+                  <div className="filter_option_cr">
+                    <div className="filterBtn_cr">
+                      <div
+                        className="optionBtn"
+                        onClick={(e) => handleExtraFilter(e)}
+                      >
+                        most recent
+                      </div>
+                    </div>
+                    <div className="filterBtn_cr">
+                      <div
+                        className="optionBtn"
+                        onClick={(e) => handleExtraFilter(e)}
+                      >
+                        most viewed
+                      </div>
+                    </div>
+                    <div className="filterBtn_cr">
+                      <div
+                        className="optionBtn"
+                        onClick={(e) => handleExtraFilter(e)}
+                      >
+                        featured
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="filterBtn_cr">
-                  <div
-                    className="optionBtn"
-                    onClick={(e) => handleExtraFilter(e)}
-                  >
-                    most viewed
-                  </div>
-                </div>
-                <div className="filterBtn_cr">
-                  <div
-                    className="optionBtn"
-                    onClick={(e) => handleExtraFilter(e)}
-                  >
-                    featured
-                  </div>
-                </div>
+                )}
               </div>
-            )}
-          </div>
             </div>
           </div>
-
         </div>
 
         <div className="cards_section">
@@ -208,8 +199,7 @@ export default function Blogs() {
                     <Card>
                       <Card.Img
                         variant="top"
-                        src={blog?.photo} // || '/home/mamoun/fullstack_projects/OmegaBlogs/server/uploads/'
-               /* style={{ width: "inherit" }}*/
+                        src={blog?.photo}
                         className="card_img"
                       />
 
@@ -231,7 +221,6 @@ export default function Blogs() {
                           <Button
                             variant="primary"
                             className="cardBtn"
-                            // onClick={() => navigate(`/blogs/${blog?.id}`)}
                             onClick={() => increaseWatch(blog.watched, blog.id)}
                           >
                             read more...
@@ -256,9 +245,14 @@ export default function Blogs() {
                           )}
                         </button>
                         <div className="footer_user_details">
-                       <span>posted by<User blog={blog}/> </span> 
-                            {'  ' } 
-                          <span><AiOutlineEye /> {blog?.watched}</span>
+                          <span>
+                            posted by
+                            <User blog={blog} />{" "}
+                          </span>
+                          {"  "}
+                          <span>
+                            <AiOutlineEye /> {blog?.watched}
+                          </span>
                         </div>
                       </Card.Footer>
                     </Card>
