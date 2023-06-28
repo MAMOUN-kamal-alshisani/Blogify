@@ -1,21 +1,21 @@
 .header {
-  padding-top: 5px;
-  height: -moz-fit-content;
-  height: fit-content;
-  min-height: 50px;
   box-shadow: 0px 0px 1px 0px grey;
   background-color: rgb(42, 40, 40);
+  height: -moz-fit-content;
+  height: fit-content;
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding-top: 5px;
+  min-height: 50px;
 }
 .header .header_cn {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: row;
-  padding: 5px 10px;
   align-items: normal;
+  padding: 5px 10px;
 }
 .header .header_cn .header_links {
   display: flex;
@@ -26,14 +26,14 @@
   gap: 50px;
 }
 .header .header_cn .header_links .link {
-  text-decoration: none;
   font-size: large;
-  padding-bottom: 6px;
-  transition: ease-in-out;
   color: white;
+  text-decoration: none;
+  transition: ease-in-out;
+  padding-bottom: 6px;
 }
 .header .header_cn .header_links .link:hover {
-  color: #d4cccc;
+  color: #ebebeb;
 }
 .header .header_cn .categoryList {
   display: flex;
@@ -47,10 +47,10 @@
   justify-content: unset;
   flex-wrap: wrap;
   flex-direction: row;
+  font-size: x-large;
+  color: #e0e0e0;
   list-style: none;
   gap: 25px;
-  font-size: x-large;
-  color: #d4cccc;
 }
 .header .header_cn .personal_cn {
   display: flex;
@@ -65,14 +65,14 @@
   transition: all ease-in-out 1s;
 }
 .header .header_cn .personal_cn .dropdown .icon {
-  margin-right: 30px;
+  transition: all ease-in-out 1s;
   cursor: pointer;
   font-size: x-large;
-  color: #e4e4e6;
-  transition: all ease-in-out 1s;
+  color: #e0e0e0;
+  margin-right: 30px;
 }
 .header .header_cn .personal_cn .dropdown .icon:hover {
-  color: #d4cccc;
+  color: #ebebeb;
   transform: scale(1.1);
 }
 .header .header_cn .personal_cn .dropdown .dropdown_menu {
@@ -81,43 +81,43 @@
   flex-wrap: nowrap;
   flex-direction: column;
   text-align: center;
+  position: absolute;
+  background-color: white;
+  border: 1px solid rgb(219, 213, 213);
   width: 100px;
   z-index: 999;
-  position: absolute;
   right: 5px;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(219, 213, 213);
 }
 .header .header_cn .personal_cn .dropdown .dropdown_menu .dropdown_item {
-  padding: 10px;
-  cursor: pointer;
   border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  padding: 10px;
 }
 .header .header_cn .personal_cn .dropdown .dropdown_menu .dropdown_item:hover {
-  background-color: #efeded;
+  background-color: #f1f1f1;
 }
 .header .header_cn .personal_cn .dropdown .dropdown_menu .dropdown_item .logout_btn {
-  background-color: transparent;
   border: transparent;
+  background: transparent;
+  color: #7541ce;
   font-size: medium;
-  color: #3e1c7a;
   cursor: pointer;
 }
 .header .header_cn .personal_cn .dropdown .dropdown_menu .link {
-  width: 100%;
+  color: #7541ce;
   text-decoration: none;
   font-size: 1.1rem;
-  color: #3e1c7a;
+  width: 100%;
 }
 .header .header_cn .personal_cn .write_link .link {
-  text-decoration: none;
-  background-color: #e4e4e6;
+  background-color: #ebebeb;
   color: black;
   font-weight: bold;
+  text-decoration: none;
+  transition: all ease-in-out 1s;
   padding: 10px;
   border-radius: 50%;
-  transition: all ease-in-out 1s;
 }
 .header .header_cn .personal_cn .write_link .link:hover {
-  background-color: #f9f8f9;
+  background-color: white;
 }/*# sourceMappingURL=header.css.map */

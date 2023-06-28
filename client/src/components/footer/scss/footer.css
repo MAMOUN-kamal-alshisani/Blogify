@@ -18,11 +18,11 @@
   padding: 10px;
 }
 .footer .footer_cn .first_section .first_cn {
-  gap: 10px;
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
   flex-direction: row;
+  gap: 10px;
 }
 .footer .footer_cn .first_section .first_cn .links_cn {
   display: flex;
@@ -30,20 +30,20 @@
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
+  font-size: x-large;
   min-width: -moz-fit-content;
   min-width: fit-content;
   min-height: -moz-fit-content;
   min-height: fit-content;
-  font-size: x-large;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
 }
 .footer .footer_cn .first_section .first_cn .links_cn .link .navbar_icon {
   color: black;
+  font-size: xx-large;
   background-color: #9c27b0;
   padding: 5px;
-  font-size: xx-large;
   border-radius: 50%;
 }
 .footer .footer_cn .first_section .first_cn .links_cn .link .navbar_icon:hover {
@@ -59,9 +59,9 @@
   padding-left: 45px;
 }
 .footer .footer_cn .first_section .second_cn .link {
-  text-decoration: none;
   color: white;
-  font-size: large;
+  font-size: larger;
+  text-decoration: none;
 }
 .footer .footer_cn .first_section .third_cn {
   display: flex;
@@ -81,8 +81,8 @@
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
   border-right: 2px solid #424242;
+  margin: 20px;
 }
 .footer .footer_cn .second_section h1 {
   color: #9c27b0;
@@ -97,15 +97,15 @@
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
   border-left: 2px solid #424242;
+  margin: 20px;
 }
 .footer .footer_cn .third_section h1 {
   color: #9c27b0;
 }
 .footer .footer_cn .third_section .input_cn {
-  padding: 15px;
   text-align: center;
+  padding: 15px;
 }
 .footer .footer_cn .third_section .input_cn input {
   background-color: #e1e1e1;
@@ -118,8 +118,8 @@
 .footer .footer_cn .third_section .input_cn .subscribeBtn {
   background-color: #673ab7;
   color: white;
-  padding: 0px 15px;
   cursor: pointer;
+  padding: 0px 15px;
 }
 .footer .footer_cn .third_section .input_cn .subscribeBtn:hover {
   background-color: #7541ce;
@@ -129,6 +129,6 @@
   height: 30px;
 }
 .footer .footer_cn p {
-  padding-bottom: 10px;
   color: grey;
+  padding-bottom: 10px;
 }/*# sourceMappingURL=footer.css.map */

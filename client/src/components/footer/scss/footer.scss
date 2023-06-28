@@ -1,50 +1,35 @@
 @import "../../../variables/_variables.scss";
 
 .footer {
-  // height:100ch;
-  // margin-top: 62.5vh;
   .footer_cn > * {
     flex: 1;
-
   }
   .footer_cn {
     @include flex(flex, center, wrap, row);
     background-color: rgb(42, 40, 40);
     word-wrap: break-word;
     word-break: break-word;
-    //     height: 30vh;
-    // height: 200px;
- 
     .first_section {
       @include flex(flex, space-around, nowrap, column);
-
-
       padding: 10px;
       .first_cn {
-        gap: 10px;
-        // background-color: rgb(42, 40, 40);
         @include flex(flex, center, nowrap, row);
-        // gap: 25px;
-
+        gap: 10px;
         .links_cn {
           @include flex(flex, center, nowrap, row);
-          align-items: center;
-          // padding: 5px;
+          align-items: $alignItems;
+          font-size: $xLargeFont;
+          min-width: fit-content;
+          min-height: fit-content;
           width: 40px;
           height: 40px;
           border-radius: 25px;
-          min-width: fit-content;
-          min-height: fit-content;
-          // background-color: #9c27b0;
-          font-size: x-large;
           .link {
-            // color: black;
-            // background-color: red;
             .navbar_icon {
-              color: black;
-              background-color: #9c27b0;
+              color: $primary_black_clr;
+              font-size: $xxLargeFont;
+              background-color: $primary_prp_clr;
               padding: 5px;
-              font-size: xx-large;
               border-radius: 50%;
 
               &:hover {
@@ -57,39 +42,31 @@
       }
       .second_cn {
         @include flex(flex, space-around, wrap, row);
-        align-items: center;
+        align-items: $alignItems;
         padding-left: 45px;
-
-        // gap: 15px;
         .link {
-          // padding: 10px;
+          color: $primary_wh_clr;
+          font-size: $largerFont;
           text-decoration: none;
-          color: white;
-          font-size: large;
         }
       }
-
       .third_cn {
         @include flex(flex, space-around, nowrap, column);
-        align-items: center;
-        // margin-top: 20px;
-        background-color: #673ab7;
-        color: white;
-
+        align-items: $alignItems;
+        background-color: $primary_ltprp_clr;
+        color: $primary_wh_clr;
         h5 {
           padding: 5px;
         }
       }
     }
-
     .second_section {
       @include flex(flex, center, nowrap, column);
-      align-items: center;
-      margin: 20px;
+      align-items: $alignItems;
       border-right: 2px solid #424242;
-      // text-align: center;
+      margin: 20px;
       h1 {
-        color: #9c27b0;
+        color: $primary_prp_clr;
         padding-bottom: 15px;
       }
       p {
@@ -99,34 +76,30 @@
 
     .third_section {
       @include flex(flex, center, nowrap, column);
-      align-items: center;
-      margin: 20px;
+      align-items: $alignItems;
       border-left: 2px solid #424242;
+      margin: 20px;
       h1 {
-        color: #9c27b0;
+        color: $primary_prp_clr;
       }
-
       .input_cn {
+        text-align: $alignItems;
         padding: 15px;
-        text-align: center;
-
         input {
           background-color: #e1e1e1;
           padding: 5px;
-
           &:focus {
-            background-color: white;
-            outline: transparent;
+            background-color: $primary_wh_clr;
+            outline: $border_tr;
           }
         }
         .subscribeBtn {
-          background-color: #673ab7;
-          color: white;
+          background-color: $primary_ltprp_clr;
+          color: $primary_wh_clr;
+          cursor: $cursorPointer;
           padding: 0px 15px;
-          cursor: pointer;
-
           &:hover {
-            background-color: #7541ce;
+            background-color: $primary_dkprp_clr;
           }
         }
         input,
@@ -136,8 +109,8 @@
       }
     }
     p {
+      color: $primary_gry_clr;
       padding-bottom: 10px;
-      color: grey;
     }
   }
 }

@@ -17,14 +17,14 @@
   gap: 10px;
 }
 .pages__section .pagination_container .pagination .page-item {
-  list-style: none;
+  cursor: pointer;
+  color: #7541ce;
   background-color: white;
-  border: 1px solid rgb(189, 189, 189);
-  color: blueviolet;
+  border: 1px solid #e0e0e0;
+  list-style: none;
   padding: 3px 6px;
   border-radius: 3px;
-  cursor: pointer;
 }
 .pages__section .pagination_container .pagination .page-item:hover {
-  background-color: rgb(240, 240, 240);
+  box-shadow: 0px 0px 1px 0px grey;
 }/*# sourceMappingURL=pagination.css.map */

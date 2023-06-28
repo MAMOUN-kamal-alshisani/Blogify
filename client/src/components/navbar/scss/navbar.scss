@@ -1,42 +1,36 @@
 @import "../../../variables/_variables.scss";
 .Navbar {
   @include flex(flex, center, wrap, row);
-  // height: 45px;
   min-height: fit-content;
   background-color: rgb(42, 40, 40);
   box-shadow: 0px 0px 2px 0px rgb(213, 213, 213);
-  // min-height: fit-content;
-word-wrap: break-word;
-word-break: break-all;
+  word-wrap: break-word;
+  word-break: break-all;
   .navbar_cn {
     @include flex(flex, space-between, wrap, row);
-    padding: 5px 10px;
     align-items: $alignItems;
-    width: 100%;
     min-width: fit-content;
     min-height: fit-content;
+    width: 100%;
+    padding: 5px 10px;
     .siteName_cn {
       @include flex(flex, space-between, wrap, row);
-      align-items: center;
+      align-items: $alignItems;
       gap: 25px;
-
       h2 {
-        color: #673ab7;
-        font-family: 'Brush Script MT', cursive;
+        color: $primary_dkprp_clr;
+        font-family: "Brush Script MT", cursive;
         font-size: 2.5rem;
       }
-
-      // font-size: large
-
       .nav_text {
-        color: grey;
-        font-size: small;
+        color: $primary_gry_clr;
+        font-size: $smallFont;
         .tags {
+          color: $primary_gry_clr;
           text-decoration: none;
-          color: grey;
           transition: all ease-in-out 1s;
           &:hover {
-            color: white;
+            color: $primary_wh_clr;
           }
         }
       }
@@ -45,168 +39,52 @@ word-break: break-all;
       @include flex(flex, space-between, wrap, row);
       align-items: $alignItems;
       gap: 10px;
-
       .search_Input {
         .input {
+          outline: $border_tr;
+          background-color: $primary_bg_clr;
+          border: 1px solid $primary_ltprp_clr;
+          padding: 5px;
           height: 29px;
           width: 200px;
-          background-color: #e1e1e1;
-          border: 1px solid #673ab7;
-          padding: 5px;
-          outline: transparent;
-
-          &:focus{
-            background-color:white
+          &:focus {
+            background-color: $primary_wh_clr;
           }
         }
-
         .search_btn {
-          height: 29px;
-          background-color: #673ab7;
-          color: white;
+          cursor: $cursorPointer;
+          background-color: $primary_ltprp_clr;
+          color: $primary_wh_clr;
           padding: 0px 5px;
-          cursor: pointer;
+          height: 29px;
           &:hover {
-            background-color: #7541ce;
+            background-color: $primary_dkprp_clr;
           }
         }
       }
       .link_icon {
         margin-right: 20px;
-
         .navbar_icon {
-          font-size: x-large;
+          font-size: $xLargeFont;
+          color: $primary_ltprp_clr;
           margin-left: 15px;
-          color: #673ab7;
-
           padding-top: 3px;
-          // padding: 0px 10px;
-
           &:hover {
-            color: #7541ce;
-            // color: #8c5dde;
-
+            color: $primary_dkprp_clr;
           }
         }
       }
 
       .link {
+        font-size: $largeFont;
+        color: $primary_ltprp_clr;
         text-decoration: none;
-        font-size: large;
-        color: #673ab7;
         transition: all ease-in-out 1s;
         &:hover {
-          color: black;
+          color: $primary_black_clr;
           transform: scale(1.1);
-          // border-bottom:1px solid #673ab7;
         }
       }
     }
   }
 }
-
-// @import "../../../variables/_variables.scss";
-
-// .Navbar {
-//   height: 6vh;
-//   // background-color: #673ab7;
-//   box-shadow: 0px 0px 2px 0px rgb(213, 213, 213);
-
-//   .navbar_cn {
-//     @include flex(flex, space-between, nowrap, row);
-//     padding: 5px 10px;
-//     align-items: $alignItems;
-
-//     .navbar_links {
-//       @include flex(flex, space-between, nowrap, row);
-//       align-items: $alignItems;
-
-//       gap: 50px;
-
-//       .link {
-//         text-decoration: none;
-//         font-size: large;
-//         // color:grey;
-//         padding-bottom: 2px;
-//         transition: all ease-in-out 1s;
-//         &:hover {
-//           color: black;
-//           transform: scale(1.1);
-//           // border-bottom:1px solid #673ab7;
-//         }
-//       }
-
-//     }
-//     .siteName_cn {
-//       // color:
-//       color: #673ab7;
-//       font-size: large
-//     }
-//     .log_links {
-//       @include flex(flex, space-between, nowrap, row);
-//       align-items: $alignItems;
-//       gap: 10px;
-//       .link_icon {
-//         margin-right: 20px;
-
-//         .navbar_icon {
-//           font-size: x-large;
-//           margin-left: 15px;
-//           color: black;
-
-//           padding-top: 3px;
-//           // padding: 0px 10px;
-
-//           &:hover {
-//             color: #673ab7;
-//           }
-//         }
-//       }
-
-//       .link {
-//         text-decoration: none;
-//         font-size: large;
-//         color: #673ab7;
-//         transition: all ease-in-out 1s;
-//         &:hover {
-//           color: black;
-//           transform: scale(1.1);
-//           // border-bottom:1px solid #673ab7;
-//         }
-//       }
-
-//       .dropdown {
-//         position: relative;
-//         // padding-right: 10px;
-
-//         .icon {
-//           margin-right: 30px;
-//           cursor: pointer;
-//           font-size: x-large;
-//           color: grey;
-//           transition: all ease-in-out 1s;
-
-//           &:hover {
-//             color: black;
-//             transform: scale(1.1);
-//           }
-//         }
-//         .dropdown_menu {
-//           @include flex(flex, space-between, nowrap, column);
-//           position: absolute;
-//           right: 5px;
-//           background-color: rgb(255, 255, 255);
-//           border: 1px solid rgb(219, 213, 213);
-//           padding: 5px;
-//           .link {
-//             padding: 10px;
-
-//             &:hover {
-//               background-color: rgb(235, 230, 230);
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }

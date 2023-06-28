@@ -15,13 +15,13 @@
   justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: row;
-  padding: 5px 10px;
   align-items: center;
-  width: 100%;
   min-width: -moz-fit-content;
   min-width: fit-content;
   min-height: -moz-fit-content;
   min-height: fit-content;
+  width: 100%;
+  padding: 5px 10px;
 }
 .Navbar .navbar_cn .siteName_cn {
   display: flex;
@@ -32,7 +32,7 @@
   gap: 25px;
 }
 .Navbar .navbar_cn .siteName_cn h2 {
-  color: #673ab7;
+  color: #7541ce;
   font-family: "Brush Script MT", cursive;
   font-size: 2.5rem;
 }
@@ -41,8 +41,8 @@
   font-size: small;
 }
 .Navbar .navbar_cn .siteName_cn .nav_text .tags {
-  text-decoration: none;
   color: grey;
+  text-decoration: none;
   transition: all ease-in-out 1s;
 }
 .Navbar .navbar_cn .siteName_cn .nav_text .tags:hover {
@@ -57,22 +57,22 @@
   gap: 10px;
 }
 .Navbar .navbar_cn .log_links .search_Input .input {
-  height: 29px;
-  width: 200px;
-  background-color: #e1e1e1;
+  outline: transparent;
+  background-color: #f1f1f1;
   border: 1px solid #673ab7;
   padding: 5px;
-  outline: transparent;
+  height: 29px;
+  width: 200px;
 }
 .Navbar .navbar_cn .log_links .search_Input .input:focus {
   background-color: white;
 }
 .Navbar .navbar_cn .log_links .search_Input .search_btn {
-  height: 29px;
+  cursor: pointer;
   background-color: #673ab7;
   color: white;
   padding: 0px 5px;
-  cursor: pointer;
+  height: 29px;
 }
 .Navbar .navbar_cn .log_links .search_Input .search_btn:hover {
   background-color: #7541ce;
@@ -82,17 +82,17 @@
 }
 .Navbar .navbar_cn .log_links .link_icon .navbar_icon {
   font-size: x-large;
-  margin-left: 15px;
   color: #673ab7;
+  margin-left: 15px;
   padding-top: 3px;
 }
 .Navbar .navbar_cn .log_links .link_icon .navbar_icon:hover {
   color: #7541ce;
 }
 .Navbar .navbar_cn .log_links .link {
-  text-decoration: none;
   font-size: large;
   color: #673ab7;
+  text-decoration: none;
   transition: all ease-in-out 1s;
 }
 .Navbar .navbar_cn .log_links .link:hover {

@@ -348,11 +348,9 @@
               padding: 10px;
               .categoryList {
                 list-style: none;
-
                 .categoryItem {
                   @include flex(flex, space-between, nowrap, row);
                   border-bottom: 2px solid $border_wh_clr;
-                  // background-color: #7541ce;
                   margin: 10px;
                   padding: 8px;
                   span:first-child {
