@@ -26,7 +26,6 @@ export default function Home() {
 
   const getAdminBlogs = async () => {
     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/admin`;
-    // const url = `https://omega-8pd2.onrender.com/api/blog/admin`
     const res = await axios.get(url);
     return res.data;
   };
@@ -48,9 +47,6 @@ export default function Home() {
       {
         queryKey: ["RecentBlogs"],
         queryFn: getRecentBlogs,
-        onSuccess: (data) => {
-          console.log(data);
-        },
       },
       {
         queryKey: ["AdminBlogs"],

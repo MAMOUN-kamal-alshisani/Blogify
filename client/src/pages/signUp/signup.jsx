@@ -107,7 +107,7 @@ export default function SignUp() {
       <div className="signup_cn">
         <div className="signup_innerCn">
           <div className="signup_header">
-            <h1>Omega</h1>
+            <h1>MN-Blogger</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
                 Home page <AiOutlineHome />
@@ -118,7 +118,7 @@ export default function SignUp() {
           <form className="form" onSubmit={(e) => e.preventDefault()}>
             <div className="form_header">
               <h1>Sign Up</h1>
-              <p>signup now and enjoy omegaBlog!</p>
+              <p>signup now and enjoy MN-Blogger!</p>
             </div>
 
             <div className="input_cn">
