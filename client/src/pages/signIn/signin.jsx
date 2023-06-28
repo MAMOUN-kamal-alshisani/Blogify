@@ -86,6 +86,7 @@ export default function SignIn() {
                 name="Email"
                 value={formInput.Email}
                 onChange={handleChange}
+                autoFocus
               />
               <AiOutlineMail className="email_icon icon icon" />
               <div className="email_error err"></div>

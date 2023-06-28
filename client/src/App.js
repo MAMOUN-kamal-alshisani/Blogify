@@ -10,7 +10,6 @@ import axios from "axios";
 import RequireAuth from "./components/requireAuth/requireAuth";
 import Blog from "./pages/blog/blog";
 axios.defaults.withCredentials = true;
-// { path: "/post",  element:<RequireAuth/>,   children: <Post /> },
 
 const router = createBrowserRouter([
   {
@@ -55,26 +54,13 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
-  // {
-  //   path: "/post",
-  //   element: <SignUp />,
-  // },
 ]);
 function App() {
   return (
     <div className="App">
       <div className="all_cn">
         <RouterProvider router={router} />
-        {/* <Footer/> */}
       </div>
-      {/* <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-
-      </Routes>
-    </Router> */}
     </div>
   );
 }

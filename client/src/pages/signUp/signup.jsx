@@ -128,6 +128,7 @@ export default function SignUp() {
                 name="UserName"
                 value={formInput.UserName}
                 onChange={handleChange}
+                autoFocus
               />
               <HiOutlineUserCircle className="name_icon icon" />
               <div className="name_error err"></div>

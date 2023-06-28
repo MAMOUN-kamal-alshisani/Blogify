@@ -76,7 +76,7 @@
                 h2 {
                   color: #3c3c3c;
                   text-shadow: 0px 1px 1px $primary_gry_clr;
-                  text-align: center;
+                  text-align: $alignItems;
                   font-size: $largerFont;
                   border-bottom: 2px solid $border_wh_clr;
                   padding: 5px 5px 10px 5px;

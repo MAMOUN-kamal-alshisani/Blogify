@@ -87,7 +87,7 @@ export default function Home() {
   };
 
   //// display loading Skeleton before data fetching is complete
-  if (results[0]?.isLoading) {
+  if (results[1]?.isLoading ) {
     return <Skeleton count={10} />;
   }
 
@@ -253,7 +253,6 @@ export default function Home() {
                 <div className="featured_div">
                   <h1 className="featured_header">Featured Blogs</h1>
                 </div>
-
                 {FeaturedBlogs?.isFetched && (
                   <div className="part1_cn">
                     <img
