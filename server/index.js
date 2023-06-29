@@ -43,7 +43,6 @@ const profileStorage = multer.diskStorage({
     cb(null,Date.now() + file.originalname)
   }
 })
-// public/uploads/1682790453544abstract-colorful-lines-art-wallpapers-pictures-photos-1-1-wolf-wallpapers.pro.jpg
 const profilePicture = multer({ storage: profileStorage })
 
 server.post('/api/upload/profile', profilePicture.single('file'), function (req, res) {
