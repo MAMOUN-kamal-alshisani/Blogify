@@ -143,7 +143,6 @@ export default function Profile() {
     try {
       const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${UserId}`;
       const res = await axios.get(url);
-      // console.log(res);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -200,7 +199,6 @@ export default function Profile() {
       if (userData) {
         const url = `${process.env.REACT_APP_SERVER_API}/api/profile/${id}`;
         const res = await axios.put(url, profileInput);
-        // console.log(res);
         return res.data;
       } else {
         const url = `${process.env.REACT_APP_SERVER_API}/api/profile/${UserId}`;
@@ -218,7 +216,7 @@ export default function Profile() {
     onSuccess: () => {
       const success_div = document.querySelector(".success_div");
       success_div.textContent = "user information updated successfully!";
-
+      
       setTimeout(() => {
         success_div.textContent = "";
       }, 4000);

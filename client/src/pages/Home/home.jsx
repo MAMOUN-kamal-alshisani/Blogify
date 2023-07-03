@@ -83,9 +83,9 @@ export default function Home() {
   };
 
   //// display loading Skeleton before data fetching is complete
-  if (results[1]?.isLoading ) {
-    return <Skeleton count={10} />;
-  }
+  // if (results[1]?.isLoading ) {
+  //   return <Skeleton count={10} />;
+  // }
 
   return (
     <div className="home">
@@ -109,7 +109,7 @@ export default function Home() {
 
         <section className="row1_section1">
           <div className="container">
-            {AdminBlog.isFetched === true ? (
+            {AdminBlog.isFetched && (
               <div className="firstCard">
                 <img
                   src={AdminBlog?.data[0]?.photo}
@@ -130,7 +130,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            ) : (
+            )}
+
+            {AdminBlog.isLoading && (
               <div className="firstCard">
                 <img
                   src="https://cdn.projectexpedition.com/photos/43793touractivityislandhopping5_sized.jpg"
@@ -145,8 +147,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-
-            {AdminBlog.isFetched === true ? (
+            {AdminBlog.isFetched && (
               <div className="secondCard">
                 <div className="card_Img1 cards">
                   <img
@@ -194,7 +195,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            ) : (
+            )}
+
+            {AdminBlog.isLoading && (
               <div className="secondCard">
                 <div className="card_Img1 cards">
                   <img
@@ -228,12 +231,14 @@ export default function Home() {
                   <div className="card_Img2_text">
                     <img
                       loading={"lazy"}
-                      src='https://static01.nyt.com/images/2021/03/01/obituaries/Goodenough-01/Goodenough-01-facebookJumbo.jpg'
-                      alt='technology'
+                      src="https://static01.nyt.com/images/2021/03/01/obituaries/Goodenough-01/Goodenough-01-facebookJumbo.jpg"
+                      alt="technology"
                       className="mainImage img4"
                     />
                     <div className="img_smalltext textarea">
-                      <p className="text4">Lithium-ion battery creator John Goodenough dies at 100</p>
+                      <p className="text4">
+                        Lithium-ion battery creator John Goodenough dies at 100
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -249,41 +254,76 @@ export default function Home() {
                 <div className="featured_div">
                   <h1 className="featured_header">Featured Blogs</h1>
                 </div>
+
                 {FeaturedBlogs?.isFetched && (
                   <div className="part1_cn">
                     <img
                       loading={"lazy"}
                       src={
-                        FeaturedBlogs?.data[0]?.photo ||
-                        AdminBlog?.data[0]?.photo
+                        FeaturedBlogs?.data[0]?.photo
+                        // ||
+                        // AdminBlog?.data[0]?.photo
                       }
                       alt={
-                        FeaturedBlogs?.data[0]?.category ||
-                        AdminBlog?.data[0]?.category
+                        FeaturedBlogs?.data[0]?.category
+                        // ||
+                        // AdminBlog?.data[0]?.category
                       }
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
                         <h4>
-                          {FeaturedBlogs?.data[0]?.category ||
-                            AdminBlog?.data[0]?.category}
+                          {
+                            FeaturedBlogs?.data[0]?.category
+                            // || AdminBlog?.data[0]?.category
+                          }
                         </h4>
                         <b className="timeIcon">
                           <BsCalendarDate />
-                          {FeaturedBlogs?.data[0]?.createdAt.slice(
-                            0,
-                            AdminBlog?.data[0]?.createdAt.indexOf("T")
-                          ) ||
-                            AdminBlog?.data[0]?.createdAt.slice(
+                          {
+                            FeaturedBlogs?.data[0]?.createdAt.slice(
                               0,
-                              AdminBlog?.data[0]?.createdAt.indexOf("T")
-                            )}
+                              FeaturedBlogs?.data[0]?.createdAt.indexOf("T")
+                            )
+                            // ||
+                            //   AdminBlog?.data[0]?.createdAt.slice(
+                            //     0,
+                            //     AdminBlog?.data[0]?.createdAt.indexOf("T")
+                            // )
+                          }
                         </b>
                       </span>
                       <p className="mainImg_desc">
-                        {FeaturedBlogs?.data[0]?.title ||
-                          AdminBlog?.data[0]?.title}
+                        {
+                          FeaturedBlogs?.data[0]?.title
+                          // || AdminBlog?.data[0]?.title
+                        }
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {FeaturedBlogs.isLoading && (
+                  <div className="part1_cn">
+                    <img
+                      loading={"lazy"}
+                      src={
+                        "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
+                      }
+                      alt={"technology"}
+                      className="mainImg"
+                    />
+                    <div className="blog_detailsCn1">
+                      <span className="sp_text">
+                        <h4>{"technology"}</h4>
+                        <b className="timeIcon">
+                          <BsCalendarDate />
+                          {"2023/7/1"}
+                        </b>
+                      </span>
+                      <p className="mainImg_desc">
+                        {"what is new in tech world"}
                       </p>
                     </div>
                   </div>
