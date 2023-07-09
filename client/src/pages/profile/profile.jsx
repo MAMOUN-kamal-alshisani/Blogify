@@ -86,7 +86,7 @@ export default function Profile() {
       const File = await upload();
       // console.log(File.downloadURL);
       if (File) {
-        const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${cookies.user.id}`;
+        const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${cookies.token.id}`;
         const res = await axios.put(url, {
           picture: File.downloadURL,
         });
@@ -178,7 +178,7 @@ export default function Profile() {
     queries: [
       {
         queryKey: ["formInput"],
-        queryFn: () => fetchUserData(cookies.user.id),
+        queryFn: () => fetchUserData(cookies.token.id),
         onSuccess: (data) => {
           setUserInfo(data);
           setProfileInput(data);
@@ -187,7 +187,7 @@ export default function Profile() {
 
       {
         queryKey: ["blogs"],
-        queryFn: () => fetchUserBlogs(cookies.user.id),
+        queryFn: () => fetchUserBlogs(cookies.token.id),
         onSuccess: (data) => {
           setUserBlogs(data);
         },
@@ -214,7 +214,7 @@ export default function Profile() {
   };
   const { mutate, isSuccess } = useMutation({
     // mutationKey: ["formInput"],
-    mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
+    mutationFn: () => mutateUserData(cookies?.token?.id, userData?.id),
     onSuccess: () => {
       queryClient.invalidateQueries(['formInput'])
       const success_div = document.querySelector(".success_div");
@@ -324,8 +324,8 @@ export default function Profile() {
             </div>
 
             <div className="user_info">
-              <h4>{cookies.user.UserName}</h4>
-              <p>{cookies.user.Email}</p>
+              <h4>{cookies.token.UserName}</h4>
+              <p>{cookies.token.Email}</p>
             </div>
 
             <button

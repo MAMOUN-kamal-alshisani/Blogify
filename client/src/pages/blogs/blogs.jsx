@@ -1,6 +1,5 @@
 import "./scss/blogs.css";
 import {Button,Card} from "react-bootstrap";
-// import  from "react-bootstrap/Card";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
@@ -23,7 +22,7 @@ export default function Blogs() {
   const queryClient  = useQueryClient()
   const navigate = useNavigate();
   const title = document.querySelector(".title");
-  const [cookies] = useCookies("user");
+  const [cookies] = useCookies("token");
 
   const getBlogs = async () => {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog`);
@@ -235,12 +234,12 @@ export default function Blogs() {
                           onClick={() =>
                             mutateBlogLikes.mutate([
                               blog?.id,
-                              cookies?.user?.id,
+                              cookies?.token?.id,
                             ])
                           }
                         >
                           {(blog?.liked?.includes(
-                            parseInt(cookies?.user?.id)
+                            parseInt(cookies?.token?.id)
                           ) && <AiFillLike className="BlogLikedBtn" />) || (
                             <AiOutlineLike className="BlogNotLikedBtn" />
                           )}
