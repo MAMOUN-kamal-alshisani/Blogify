@@ -29,7 +29,7 @@ export default function SignIn() {
   const handleSignIn = async () => {
     const url = `${process.env.REACT_APP_SERVER_API}/api/signin`;
     const res = await axios.post(url, formInput, { withCredentials: true });
-    cookies.set("user", res.data.user,{maxAge:60*60*24});
+    cookies.set("token", res.data.user,{maxAge:60*60*24});
   };
   const { mutate, isLoading, error } = useMutation({
     mutationFn: handleSignIn,
@@ -51,7 +51,7 @@ export default function SignIn() {
   });
 
   useEffect(()=>{
-    if (cookies.get('user')) {
+    if (cookies.get('token')) {
         alert('a user already is signed in, logout first!')
         navigate("/");
     }
