@@ -36,7 +36,7 @@ export default function Profile() {
   const [blogId, setBlogId] = useState(null);
   const [userInfo, setUserInfo] = useState([]);
   const [userBlogs, setUserBlogs] = useState([]);
-  const [cookies] = useCookies("user");
+  const [cookies] = useCookies("token");
   const [imgFile, setImgFile] = useState("");
   const [blogFile, setBlogFile] = useState("");
   const [editBlogData, setEditBlogData] = useState({
