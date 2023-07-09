@@ -11,12 +11,12 @@ import {
   updateUserProfile
 } from "../controllers/profile.js";
 export const profileRoute = express.Router();
-profileRoute.get("/api/profile",getAllProfiles);
-profileRoute.get("/api/profile/:id", getProfile);
+profileRoute.get("/api/profile",verifyAdmin,getAllProfiles);
+profileRoute.get("/api/profile/:id",verifyToken, getProfile);
 profileRoute.get("/api/user/profile/:UserId", getUserProfile);
 
-profileRoute.post("/api/profile/:UserId",createProfile);
-profileRoute.put("/api/profile/:id",updateProfile);
-profileRoute.put("/api/user/profile/:UserId",updateUserProfile);
+profileRoute.post("/api/profile/:UserId",verifyToken,createProfile);
+profileRoute.put("/api/profile/:id",verifyToken,updateProfile);
+profileRoute.put("/api/user/profile/:UserId",verifyToken,updateUserProfile);
 
-profileRoute.delete("/api/profile/:id",deleteProfile);
+profileRoute.delete("/api/profile/:id",verifyToken,deleteProfile);

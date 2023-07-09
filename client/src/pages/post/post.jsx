@@ -1,10 +1,11 @@
+import { useCookies } from "react-cookie";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./scss/post.css";
-import { useCookies } from "react-cookie";
 import axios from "axios";
-import {useMutation } from "@tanstack/react-query";
+
 export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -17,11 +18,9 @@ export default function Post() {
       const formData = new FormData();
       formData.append("file", imgFile);
       const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_API}/api/upload`,
+        `${process.env.REACT_APP_SERVER_API}/api/upload/blog`,
         formData
       );
-      console.log(res.data);
-      // setImg(res.data)
       return res.data;
     } catch (err) {
       console.log(err);
@@ -32,13 +31,12 @@ export default function Post() {
     try {
       const File = await upload();
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
-console.log('hamdle');
       const res = await axios.post(url, {
         title: title,
         desc: desc,
         category: category,
         watched: "12",
-        photo: `${process.env.REACT_APP_SERVER_API}/uploads/${File}`,
+        photo: File.downloadURL,
       });
 
       return res.data;
@@ -46,41 +44,39 @@ console.log('hamdle');
       console.log(err);
     }
   };
-  const {mutate,isLoading} = useMutation({
-    mutationKey:['blog_upload'],
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["blog_upload"],
     mutationFn: handleFile,
-    onSuccess:()=>{
-      const update_btn = document.querySelector('.update_btn')
-      update_btn.disabled = true
-      let successfull_upload_cn = document.createElement('div')
-      successfull_upload_cn.className = 'successfull_upload_cn'
-      const parent = document.querySelector('.Post')
-      successfull_upload_cn.textContent = 'blog uploaded successfully!'
-      parent.prepend(successfull_upload_cn)
-      
-      setTimeout(()=>{
-        const update_btn = document.querySelector('.update_btn')
-        update_btn.disabled = false
-        successfull_upload_cn.remove()
-      },8000)
-    },
-    onerror:(error)=>{
-      let successfull_upload_cn = document.createElement('div')
-      successfull_upload_cn.className = 'successfull_upload_cn'
-      const parent = document.querySelector('.Post')
-      successfull_upload_cn.textContent = error
-      parent.prepend(successfull_upload_cn)
-      setTimeout(()=>{
-        // successfull_upload_cn.textContent = ''
-      
-        successfull_upload_cn.remove()
-      },8000)
-    }
-  })
+    onSuccess: () => {
+      const update_btn = document.querySelector(".update_btn");
+      update_btn.disabled = true;
+      let successfull_upload_cn = document.createElement("div");
+      successfull_upload_cn.className = "successfull_upload_cn";
+      const parent = document.querySelector(".Post");
+      successfull_upload_cn.textContent = "blog uploaded successfully!";
+      parent.prepend(successfull_upload_cn);
 
-  if(isLoading){
-const update_btn = document.querySelector('.update_btn')
-update_btn.disabled = true
+      setTimeout(() => {
+        const update_btn = document.querySelector(".update_btn");
+        update_btn.disabled = false;
+        successfull_upload_cn.remove();
+      }, 5000);
+    },
+    onerror: (error) => {
+      let successfull_upload_cn = document.createElement("div");
+      successfull_upload_cn.className = "successfull_upload_cn";
+      const parent = document.querySelector(".Post");
+      successfull_upload_cn.textContent = error;
+      parent.prepend(successfull_upload_cn);
+      setTimeout(() => {
+        successfull_upload_cn.remove();
+      }, 5000);
+    },
+  });
+
+  if (isLoading) {
+    const update_btn = document.querySelector(".update_btn");
+    update_btn.disabled = true;
   }
   return (
     <div className="Post">
@@ -111,7 +107,6 @@ update_btn.disabled = true
                 name="category"
                 value="travel"
                 onChange={(e) => setCategory(e.target.value)}
-                
               />
               <label htmlFor="travel">Travel</label>
             </div>
@@ -168,7 +163,6 @@ update_btn.disabled = true
               type="file"
               id="file"
               name="file"
-              // accept="image/png, image/jpeg"
               style={{ display: "none" }}
               onChange={(e) => setImgFile(e.target.files[0])}
               required
@@ -176,10 +170,7 @@ update_btn.disabled = true
 
             <div className="publishBtn">
               <button>Save as a draft</button>
-              <button className="update_btn"
-                onClick={() => mutate()
-                  }
-              >
+              <button className="update_btn" onClick={() => mutate()}>
                 Update
               </button>
             </div>

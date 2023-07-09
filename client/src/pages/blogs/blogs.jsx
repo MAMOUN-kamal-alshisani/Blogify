@@ -1,9 +1,16 @@
 import "./scss/blogs.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import {Button,Card} from "react-bootstrap";
+// import  from "react-bootstrap/Card";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import Pagination from "../../components/pagination/pagination";
+import Skeleton from "react-loading-skeleton";
+import User from "../../components/user/user";
 import axios from "axios";
+
+
 import { AiOutlineEye } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
@@ -11,13 +18,9 @@ import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import Pagination from "../../components/pagination/pagination";
-import Skeleton from "react-loading-skeleton";
-import User from "../../components/user/user";
 
 export default function Blogs() {
+  const queryClient  = useQueryClient()
   const navigate = useNavigate();
   const title = document.querySelector(".title");
   const [cookies] = useCookies("user");
@@ -27,7 +30,7 @@ export default function Blogs() {
     return res.data;
   };
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
     onSuccess: (data) => {
@@ -55,10 +58,9 @@ export default function Blogs() {
   };
 
   const mutateBlogLikes = useMutation({
-    mutationKey: ["blogs"],
     mutationFn: ([id, userid]) => handleBlogLikes(id, userid),
     onSuccess: () => {
-      refetch();
+      queryClient.invalidateQueries(["blogs"])
     },
   });
   const [category, setCategory] = useState([]);
@@ -120,7 +122,6 @@ export default function Blogs() {
     const res = axios.put(url, {
       watched: (watch += 1).toString(),
     });
-    console.log(res);
     navigate(`/blogs/${id}`);
   };
 

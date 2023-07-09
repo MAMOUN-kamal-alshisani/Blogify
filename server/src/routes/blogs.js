@@ -13,11 +13,9 @@ import {
   getCategoryCount,
   getBlogsByViewed,
   getFeaturedBlogs,
-  // getLikedBlogUserId,
   handleBlogLike
-  // getLikedUserId
 } from "../controllers/blogs.js";
-// import { verifyToken,verifyAdmin } from '../middleware/auth.js'
+import { verifyToken,verifyAdmin } from '../middleware/auth.js'
 
 export const blogsRoute = express.Router();
 
@@ -36,12 +34,12 @@ blogsRoute.get("/api/blog/featured", getFeaturedBlogs);
 
 /// like column routes /// 
 // blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
-blogsRoute.put("/api/blog/:id/liked/:UserId", handleBlogLike);
+blogsRoute.put("/api/blog/:id/liked/:UserId", verifyToken,handleBlogLike);
 
 // blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
 // blogsRoute.get("/api/blog/liked/:UserId", getLikedUserId);
 
 blogsRoute.get("/api/blog/:id", getBlog);
-blogsRoute.post("/api/blog/:UserId", createBlog);
-blogsRoute.put("/api/blog/:id", updateBlog);
-blogsRoute.delete("/api/blog/:id", deleteBlog);
+blogsRoute.post("/api/blog/:UserId", verifyToken,createBlog);
+blogsRoute.put("/api/blog/:id", verifyToken,updateBlog);
+blogsRoute.delete("/api/blog/:id", verifyToken,deleteBlog);

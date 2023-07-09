@@ -39,7 +39,7 @@ export default function Home() {
   const getBlogsCategoryCount = async () => {
     const url = `${process.env.REACT_APP_SERVER_API}/api/blogs/count`;
     const res = await axios.get(url);
-    return res.data[0];
+    return res.data;
   };
   //// react query api
   const results = useQueries({
