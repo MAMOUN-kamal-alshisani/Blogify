@@ -3,8 +3,8 @@
  mn-blogger enables users to share their thougts, ideas and blog about their journey in life`**
 
 # install
-**`you can clone the project using the (git clone) command you can copy this command to your terminal: **git@github.com:MAMOUN-kamal-alshisani/MNBlog.git`**
-
+**`you can clone the project using the (git clone) command`**
+type this command in to your terminal: `git@github.com:MAMOUN-kamal-alshisani/MNBlog.git`
 
 
 
