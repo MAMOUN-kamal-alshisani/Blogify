@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./scss/profile.css";
-import { useQueries, useMutation } from "@tanstack/react-query";
+import { useQueries, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import DeleteModal from "./components/deleteModal/deleteModal";
@@ -26,7 +26,9 @@ import { FiDelete } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 
 export default function Profile() {
+  const queryClient = useQueryClient()
   const navigate = useNavigate();
+  // const [profilePictureData,setProfilePictureData] = useState(null)
   const [navBtn, setNavBtn] = useState("content");
   const [showModal, setShowModal] = useState(false);
   const [showPopUpDelete, setShowPopUpDelete] = useState(false);
@@ -63,7 +65,6 @@ export default function Profile() {
   const editInputHandler = async (e) => {
     setEditBlogData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
   // for uploading an image to the server side
   const upload = async () => {
     try {
@@ -73,6 +74,7 @@ export default function Profile() {
         `${process.env.REACT_APP_SERVER_API}/api/upload/profile`,
         formData
       );
+      // setProfilePictureData(res.data)
       return res.data;
     } catch (err) {
       console.log(err);
@@ -82,10 +84,11 @@ export default function Profile() {
   const handleFile = async () => {
     try {
       const File = await upload();
+      // console.log(File.downloadURL);
       if (File) {
         const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${cookies.user.id}`;
         const res = await axios.put(url, {
-          picture: `${process.env.REACT_APP_SERVER_API}/pictures/${File}`,
+          picture: File.downloadURL,
         });
         return res.data;
       }
@@ -100,7 +103,7 @@ export default function Profile() {
       if (blogFile) {
         formData.append("file", blogFile);
         const res = await axios.post(
-          `${process.env.REACT_APP_SERVER_API}/api/upload`,
+          `${process.env.REACT_APP_SERVER_API}/api/upload/blog`,
           formData
         );
         return res.data;
@@ -121,7 +124,7 @@ export default function Profile() {
           title: editBlogData.title,
           category: editBlogData.category,
           desc: editBlogData.desc,
-          photo: `${process.env.REACT_APP_SERVER_API}/uploads/${File}`,
+          photo: File.downloadURL,
         });
         return res.data;
       } else {
@@ -203,7 +206,6 @@ export default function Profile() {
       } else {
         const url = `${process.env.REACT_APP_SERVER_API}/api/profile/${UserId}`;
         const res = await axios.post(url, profileInput);
-        console.log(res);
         return res.data;
       }
     } catch (err) {
@@ -211,9 +213,10 @@ export default function Profile() {
     }
   };
   const { mutate, isSuccess } = useMutation({
-    mutationKey: ["formInput"],
+    // mutationKey: ["formInput"],
     mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
     onSuccess: () => {
+      queryClient.invalidateQueries(['formInput'])
       const success_div = document.querySelector(".success_div");
       success_div.textContent = "user information updated successfully!";
       
@@ -223,17 +226,18 @@ export default function Profile() {
     },
   });
   const deleteBlog = useMutation({
-    mutationKey: ["blogs"],
     mutationFn: (id) => removeBlogHandler(id),
     onSuccess: () => {
+      queryClient.invalidateQueries(["blogs"])
       setShowPopUpDelete(false);
     },
   });
 
   const updateUserFile = useMutation({
-    mutationKey: ["user_picture"],
+    // mutationKey: ["formInput"],
     mutationFn: () => handleFile(),
     onSuccess:()=>{
+      queryClient.invalidateQueries(['formInput'])
       let successfull_upload_cn = document.createElement('div')
       successfull_upload_cn.className = 'pic_upload_status_cn'
       const parent = document.querySelector('.pic_div')
@@ -248,9 +252,10 @@ export default function Profile() {
   });
 
   const updateBlog = useMutation({
-    mutationKey: ["formInput"],
+    // mutationKey: ["blogs"],
     mutationFn: (blog) => handleBlogFile(blog),
     onSuccess: () => {
+      queryClient.invalidateQueries(['blogs'])
       setShowEditSec(false)
       
     },
@@ -283,20 +288,11 @@ export default function Profile() {
     setShowEditSec(true);
   };
 
-  useEffect(() => {
-    setUserInfo(userData);
-    api[1].refetch();
-    if (isSuccess) {
-      api[1].refetch();
-    }
-  }, [userData, imgFile, setImgFile, deleteBlog.isSuccess]);
-
   if (api[0]?.isLoading && api[1].isLoading) {
     return <Skeleton count={10} />;
   }
-  if (updateUserFile.isSuccess) {
-    api[0].refetch();
-  }
+
+
 
   return (
     <div className="profile">
@@ -310,7 +306,6 @@ export default function Profile() {
                   "http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
                 }
                 alt="img"
-                // style={{ width: "200px" }}
                 className="userImg"
               />
               <div className="upload_cn">

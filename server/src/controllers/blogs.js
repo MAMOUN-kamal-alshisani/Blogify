@@ -18,23 +18,16 @@ export const getCategoryCount = async (req, res) => {
       attributes: ["category", [Sequelize.fn("COUNT", "category"), "count"]],
     });
 
-    // const blogs=await Blogs.sequelize.query('SELECT Blogs.category, COUNT(*) AS Count FROM Blogs GROUP BY Blogs.category')
-
-    res.status(200).send([blogs]);
+    res.status(200).send(blogs);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-// SELECT Blogs.category,
-//        COUNT(*) AS Count
-// FROM   Blogs
-// GROUP  BY Blogs.category
+
 export const getUserBlogsbyID = async (req, res) => {
   try {
     const Id = req.params.id;
-    // const UserId = req.params.UserId;
-
     const blog = await Blogs.findOne({ where: { id: Id } });
     if (!blog)
       return res.status(404).send("no blog with specified (id) is found! ");
@@ -58,6 +51,7 @@ export const getUserBlogs = async (req, res) => {
   }
 };
 
+/// return the latest blogs posted by an admin
 export const getBlogsByLatest = async (req, res) => {
   try {
     const adminUser = await User.findOne({ where: { isAdmin: true } });
@@ -79,26 +73,21 @@ export const getBlogsByLatest = async (req, res) => {
   }
 };
 
+
+/// return most recent blogs
 export const getBlogsByRecent = async (req, res) => {
   try {
-    // const adminUser = await User.findOne({ where: { UserName: "Admin" } });
-    // if (!adminUser) return res.status(404).send("admin is not found");
-
     const blogs = await Blogs.findAll({
       raw: true,
       order: [["createdAt", "DESC"]],
-      // where: { UserId: { [Op.ne]: adminUser.id } },
     });
-    // const users = await User.findAll({  attributes: { exclude: ['Password'] }});
-    //  const { Password, ...details } = users.toJSON();
-
-    // console.log(details);
     res.status(200).send(blogs);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
+/// return blogs by the views
 export const getBlogsByViewed = async (req, res) => {
   try {
     const blogs = await Blogs.findAll({
@@ -110,6 +99,8 @@ export const getBlogsByViewed = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+/// return featured blogs
 export const getFeaturedBlogs = async (req, res) => {
   try {
     const blogs = await Blogs.findAll({
