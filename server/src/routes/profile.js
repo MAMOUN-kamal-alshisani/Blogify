@@ -18,5 +18,4 @@ profileRoute.get("/api/user/profile/:UserId", getUserProfile);
 profileRoute.post("/api/profile/:UserId",createProfile);
 profileRoute.put("/api/profile/:id",updateProfile);
 profileRoute.put("/api/user/profile/:UserId",updateUserProfile);
-
 profileRoute.delete("/api/profile/:id",verifyToken,deleteProfile);

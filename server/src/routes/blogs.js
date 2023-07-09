@@ -15,7 +15,7 @@ import {
   getFeaturedBlogs,
   handleBlogLike
 } from "../controllers/blogs.js";
-import { verifyToken,verifyAdmin } from '../middleware/auth.js'
+// import { verifyToken,verifyAdmin } from '../middleware/auth.js'
 
 export const blogsRoute = express.Router();
 
@@ -34,7 +34,7 @@ blogsRoute.get("/api/blog/:id", getBlog);
 
 
 
-blogsRoute.put("/api/blog/:id/liked/:UserId", verifyToken,handleBlogLike);
-blogsRoute.post("/api/blog/:UserId", verifyToken,createBlog);
-blogsRoute.put("/api/blog/:id", verifyToken,updateBlog);
-blogsRoute.delete("/api/blog/:id", verifyToken,deleteBlog);
+blogsRoute.put("/api/blog/:id/liked/:UserId",handleBlogLike);
+blogsRoute.post("/api/blog/:UserId",createBlog);
+blogsRoute.put("/api/blog/:id",updateBlog);
+blogsRoute.delete("/api/blog/:id",deleteBlog);
