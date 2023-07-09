@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
 export default function Blog() {
-  const [cookies] = useCookies("user");
+  const [cookies] = useCookies("token");
   const navigate = useNavigate();
   const location = useLocation();
   const [filBlogs, setfilBlogs] = useState([]);
@@ -210,11 +210,11 @@ export default function Blog() {
                       <button
                         className="likeBtn"
                         onClick={() =>
-                          mutateBlogLikes.mutate([blog?.id, cookies?.user?.id])
+                          mutateBlogLikes.mutate([blog?.id, cookies?.token?.id])
                         }
                       >
                         {(blog?.liked?.includes(
-                          parseInt(cookies?.user?.id)
+                          parseInt(cookies?.token?.id)
                         ) && <AiFillLike className="BlogLikedBtn" />) || (
                           <AiOutlineLike className="BlogNotLikedBtn" />
                         )}
