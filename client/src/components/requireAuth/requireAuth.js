@@ -5,11 +5,11 @@ import { useCookies } from "react-cookie";
 
 const RequireAuth =({children})=>{
 
-    const [cookies] = useCookies('user')
+    const [cookies] = useCookies('token')
 const location = useLocation()
 
     return(
-        cookies.user? children: <Navigate to={'/signin'} state={{from:location}} replace/>
+        cookies.token? children: <Navigate to={'/signin'} state={{from:location}} replace/>
     )
 }
 

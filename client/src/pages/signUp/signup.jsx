@@ -6,7 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { FaLongArrowAltRight } from "react-icons/fa";
+// import { FaLongArrowAltRight } from "react-icons/fa";
 import { ImSpinner2 } from "react-icons/im";
 import { AiOutlineHome } from "react-icons/ai";
 
@@ -36,7 +36,6 @@ export default function SignUp() {
   const signUp = async () => {
     // const url = `https://omega-8pd2.onrender.com/api/signup`;
     const url = `${process.env.REACT_APP_SERVER_API}/api/signup`;
-
     const res = await axios.post(url, formInput);
   };
 
