@@ -30,16 +30,11 @@ blogsRoute.get("/api/blog/latest", getBlogsByLatest);
 blogsRoute.get("/api/blog/recent", getBlogsByRecent);
 blogsRoute.get("/api/blog/admin", getAdminBlog);
 blogsRoute.get("/api/blog/featured", getFeaturedBlogs);
-
-
-/// like column routes /// 
-// blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
-blogsRoute.put("/api/blog/:id/liked/:UserId", verifyToken,handleBlogLike);
-
-// blogsRoute.get("/api/blog/liked/:id/:UserId", getLikedBlogUserId);
-// blogsRoute.get("/api/blog/liked/:UserId", getLikedUserId);
-
 blogsRoute.get("/api/blog/:id", getBlog);
+
+
+
+blogsRoute.put("/api/blog/:id/liked/:UserId", verifyToken,handleBlogLike);
 blogsRoute.post("/api/blog/:UserId", verifyToken,createBlog);
 blogsRoute.put("/api/blog/:id", verifyToken,updateBlog);
 blogsRoute.delete("/api/blog/:id", verifyToken,deleteBlog);
