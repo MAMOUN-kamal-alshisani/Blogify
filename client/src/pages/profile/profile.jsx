@@ -36,7 +36,7 @@ export default function Profile() {
   const [blogId, setBlogId] = useState(null);
   const [userInfo, setUserInfo] = useState([]);
   const [userBlogs, setUserBlogs] = useState([]);
-  const [cookies] = useCookies("token");
+  const [cookies] = useCookies("user");
   const [imgFile, setImgFile] = useState("");
   const [blogFile, setBlogFile] = useState("");
   const [editBlogData, setEditBlogData] = useState({
@@ -86,7 +86,7 @@ export default function Profile() {
       const File = await upload();
       // console.log(File.downloadURL);
       if (File) {
-        const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${cookies.token.id}`;
+        const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${cookies.user.id}`;
         const res = await axios.put(url, {
           picture: File.downloadURL,
         });
@@ -178,7 +178,7 @@ export default function Profile() {
     queries: [
       {
         queryKey: ["formInput"],
-        queryFn: () => fetchUserData(cookies.token.id),
+        queryFn: () => fetchUserData(cookies.user.id),
         onSuccess: (data) => {
           setUserInfo(data);
           setProfileInput(data);
@@ -187,7 +187,7 @@ export default function Profile() {
 
       {
         queryKey: ["blogs"],
-        queryFn: () => fetchUserBlogs(cookies.token.id),
+        queryFn: () => fetchUserBlogs(cookies.user.id),
         onSuccess: (data) => {
           setUserBlogs(data);
         },
@@ -214,7 +214,7 @@ export default function Profile() {
   };
   const { mutate, isSuccess } = useMutation({
     // mutationKey: ["formInput"],
-    mutationFn: () => mutateUserData(cookies?.token?.id, userData?.id),
+    mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
     onSuccess: () => {
       queryClient.invalidateQueries(['formInput'])
       const success_div = document.querySelector(".success_div");
@@ -324,8 +324,8 @@ export default function Profile() {
             </div>
 
             <div className="user_info">
-              <h4>{cookies.token.UserName}</h4>
-              <p>{cookies.token.Email}</p>
+              <h4>{cookies.user.UserName}</h4>
+              <p>{cookies.user.Email}</p>
             </div>
 
             <button

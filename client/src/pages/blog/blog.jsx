@@ -1,35 +1,54 @@
-import "./scss/blog.css";
 import { GiNextButton } from "react-icons/gi";
 import { GiPreviousButton } from "react-icons/gi";
 import { AiOutlineEye } from "react-icons/ai";
-import { AiFillLike } from "react-icons/ai";
-import { AiOutlineLike } from "react-icons/ai";
-
+// import { AiFillLike } from "react-icons/ai";
+// import { AiOutlineLike } from "react-icons/ai";
+import { FcLike,FcLikePlaceholder } from "react-icons/fc";
+// import { FcLikePlaceholder } from "react-icons/fc";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useQueries, useMutation } from "@tanstack/react-query";
+import { useQueries, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
+import "./scss/blog.css";
+
 export default function Blog() {
-  const [cookies] = useCookies("token");
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
-  const [filBlogs, setfilBlogs] = useState([]);
 
+  const [cookies] = useCookies("user");
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [StartIndex, setStartIndex] = useState(0);
   const [EndIndex, setEndIndex] = useState(3);
+  const [blogId, setBlogId] = useState(
+    location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
+  );
+  const [allCarouselBlogs, setAllCarouselBlogs] = useState();
 
+  //// to calculate how many days long a blog was posted
   const dateObj = new Date();
   const month = dateObj.getUTCMonth() + 1; //months from 1-12
   const day = dateObj.getUTCDate();
   const year = dateObj.getUTCFullYear();
   const DateNow = year + "-" + month + "-" + day;
 
-  const [blogId, setBlogId] = useState(
-    location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
-  );
+  function getNumberOfDays(start, end) {
+    const date1 = new Date(start);
+    const date2 = new Date(end);
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    // Calculating the time difference between two dates
+    const diffInTime = date2.getTime() - date1.getTime();
+    // Calculating the no. of days between two dates
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    if (diffInDays === 0) return "today";
+    else if (diffInDays === 1) return diffInDays + " Day Ago";
+    return diffInDays + " Days Ago";
+  }
   /////////////////////////
   const getBlog = async () => {
     const res = await axios.get(
@@ -63,10 +82,19 @@ export default function Blog() {
       {
         queryKey: ["Blogs", blogId],
         queryFn: getAllBlogs,
+        onSuccess: (data) => {
+          console.log(data?.slice(0, 3));
+          setAllCarouselBlogs(data?.slice(0, 3));
+        },
       },
     ],
   });
+  /// query api blogs data
+  const blog = results[0].data;
+  const blogs = results[1];
+  const CarouselBlogs = results[2].data;
 
+  //// function for liking and unliking blog button
   const handleBlogLikes = async (id, userid) => {
     if (userid) {
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}/liked/${userid}`;
@@ -76,64 +104,16 @@ export default function Blog() {
       navigate("/signin");
     }
   };
+
   const mutateBlogLikes = useMutation({
-    mutationKey: ["blogs"],
     mutationFn: ([id, userid]) => handleBlogLikes(id, userid),
     onSuccess: () => {
-      results[0].refetch();
+      queryClient.invalidateQueries(["userBlog"]);
+      // results[0].refetch();
     },
   });
   ///////////////////////////
-  const [allBlogs, setAllBlogs] = useState(results[2]?.data?.slice(0, 3));
 
-  const HandleNext = () => {
-    // EndIndex
-    if (EndIndex < results[2]?.data.length) {
-      setEndIndex((prev) => (prev += 3));
-      setStartIndex((prev) => (prev += 3));
-      const sliceBlog = results[2]?.data?.slice(StartIndex, EndIndex);
-      setAllBlogs(sliceBlog);
-    }
-  };
-
-  const HandlePrev = () => {
-    if (StartIndex > 0) {
-      setEndIndex((prev) => (prev -= 3));
-      setStartIndex((prev) => (prev -= 3));
-      const sliceBlog = results[2]?.data?.slice(StartIndex, EndIndex);
-      setAllBlogs(sliceBlog);
-    }
-  };
-  const blog = results[0].data;
-  const blogs = results[1];
-
-  useEffect(() => {
-    if (blogs.isSuccess) {
-      const filteredData = blogs?.data?.filter((bl) => {
-        return bl.id !== blog?.id;
-      });
-      setfilBlogs(filteredData);
-    } else {
-      setfilBlogs(results[1].data);
-    }
-
-    setAllBlogs(results[2]?.data?.slice(6, 9));
-  }, [blogs.isSuccess, location.pathname]);
-
-  function getNumberOfDays(start, end) {
-    const date1 = new Date(start);
-    const date2 = new Date(end);
-
-    const oneDay = 1000 * 60 * 60 * 24;
-
-    // Calculating the time difference between two dates
-    const diffInTime = date2.getTime() - date1.getTime();
-    // Calculating the no. of days between two dates
-    const diffInDays = Math.round(diffInTime / oneDay);
-    if (diffInDays === 0) return "today";
-    else if (diffInDays === 1) return diffInDays + " Day Ago";
-    return diffInDays + " Days Ago";
-  }
   //// increment blogs watch number when the blog is clicked on
   const increaseWatch = (watch, id) => {
     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`;
@@ -145,16 +125,53 @@ export default function Blog() {
     navigate(`/blogs/${id}`);
   };
 
+  /// blogs Carousel handling function
+  const HandleNext = () => {
+    // EndIndex
+    if (EndIndex < results[2]?.data.length) {
+      setEndIndex((prev) => (prev += 3));
+      setStartIndex((prev) => (prev += 3));
+      const sliceBlog = CarouselBlogs?.slice(StartIndex, EndIndex);
+      setAllCarouselBlogs(sliceBlog);
+    }
+  };
+
+  const HandlePrev = () => {
+    if (StartIndex > 0) {
+      setEndIndex((prev) => (prev -= 3));
+      setStartIndex((prev) => (prev -= 3));
+      const sliceBlog = CarouselBlogs?.slice(StartIndex, EndIndex);
+      setAllCarouselBlogs(sliceBlog);
+    }
+  };
+
+  useEffect(() => {
+    if (blogs.isSuccess) {
+      const filteredData = blogs?.data?.filter((bl) => {
+        return bl.id !== blog?.id;
+      });
+      setFilteredBlogs(filteredData);
+    } else {
+      setFilteredBlogs(results[1].data);
+    }
+
+  
+  }, [blogs.isSuccess, location.pathname]);
+
   useEffect(() => {
     if (blog) {
       ///////// api data comes with html elements so using innerhtml to kinda filter them out ////
       const blogDesc = document.querySelector(".blogDesc");
       blogDesc.innerHTML = blog?.desc;
     }
+  
   }, [blog]);
 
   if (results[0].isLoading && results[1].isLoading && results[2].isLoading) {
     return <Skeleton count={10} />;
+  }
+  if (results[0].isError || results[1].isError && results[2].isError) {
+    return 'something went wrong please try again'
   }
   return (
     <div className="SBlog">
@@ -168,28 +185,23 @@ export default function Blog() {
                   alt={blog?.category}
                   className="mainBlogImg"
                 />
-           
               </div>
               <div className="moreDetailsCn">
-                  <div className="write_div">
-                    <span className="DateCn">
-                      {" " +
-                        getNumberOfDays(
-                          blog?.createdAt.slice(
-                            0,
-                            blog?.createdAt.indexOf("T")
-                          ),
-                          DateNow
-                        ) +
-                        " "}
-                    </span>
-                    <span>
-                      <AiOutlineEye />
-                      {blog?.watched}
-                    </span>
-                  </div>
-                  
+                <div className="write_div">
+                  <span className="DateCn">
+                    {" " +
+                      getNumberOfDays(
+                        blog?.createdAt.slice(0, blog?.createdAt.indexOf("T")),
+                        DateNow
+                      ) +
+                      " "}
+                  </span>
+                  <span>
+                    <AiOutlineEye />
+                    {blog?.watched}
+                  </span>
                 </div>
+              </div>
               <div className="cardInfoCn">
                 <div className="textAreaDiv">
                   <div className="category_div">
@@ -203,20 +215,20 @@ export default function Blog() {
                   </div>
 
                   <div className="footer_blog_details">
-                  <span className="user_para">
+                    <span className="user_para">
                       posted by <User blog={blog} />
                     </span>
                     <span className="likeBtnCn">
                       <button
                         className="likeBtn"
                         onClick={() =>
-                          mutateBlogLikes.mutate([blog?.id, cookies?.token?.id])
+                          mutateBlogLikes.mutate([blog?.id, cookies?.user?.id])
                         }
                       >
                         {(blog?.liked?.includes(
-                          parseInt(cookies?.token?.id)
-                        ) && <AiFillLike className="BlogLikedBtn" />) || (
-                          <AiOutlineLike className="BlogNotLikedBtn" />
+                          parseInt(cookies?.user?.id)
+                        ) && <FcLike className="BlogLikedBtn" />) || (
+                          <FcLikePlaceholder className="BlogNotLikedBtn" />
                         )}
                       </button>
                     </span>
@@ -235,7 +247,7 @@ export default function Blog() {
               {blogs.isLoading == true ? (
                 <Skeleton count={10} />
               ) : (
-                filBlogs?.map((sideBlog) => {
+                filteredBlogs?.map((sideBlog) => {
                   return (
                     <div
                       className="sideBlogCards"
@@ -261,9 +273,9 @@ export default function Blog() {
                           <h5>{sideBlog?.category}</h5>
                           <h5>
                             {getNumberOfDays(
-                              blog?.createdAt.slice(
+                              sideBlog?.createdAt.slice(
                                 0,
-                                blog?.createdAt.indexOf("T")
+                                sideBlog?.createdAt.indexOf("T")
                               ),
                               DateNow
                             )}
@@ -274,7 +286,7 @@ export default function Blog() {
                   );
                 })
               )}
-              {filBlogs?.length == 0 && (
+              {filteredBlogs?.length == 0 && (
                 <div
                   className="sideBlog_cr"
                   style={{
@@ -306,7 +318,7 @@ export default function Blog() {
               <GiPreviousButton className="blogs_cards_icon" />
             </button>
 
-            {allBlogs?.map((blog, index) => {
+            {allCarouselBlogs?.map((blog, index) => {
               return (
                 <div className="card_div" key={index}>
                   <img

@@ -38,8 +38,8 @@ export default function Header() {
   const logout = async () => {
     const url = `${process.env.REACT_APP_SERVER_API}/api/signout`;
     const res = await axios.post(url);
-    if (cookies.get("token")) {
-      return cookies.remove("token");
+    if (cookies.get("user")) {
+      return cookies.remove("user");
     }
   };
 
@@ -87,7 +87,7 @@ export default function Header() {
             {toggle && (
               <div className="dropdown_menu" >
                 <div className="dropdown_item" onClick={()=> mutate()}>
-                  {cookies.get("token") ? (
+                  {cookies.get("user") ? (
                     <Link  className="link"/*"logout_btn*/>
                       Logout
                     </Link>

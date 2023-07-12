@@ -5,6 +5,7 @@
   background-color: $primary_bg_clr;
   padding-top: 40px;
   padding-bottom: 30px;
+
   .blog_cn {
     @include flex(flex, unset, nowrap, column);
     align-items: $alignItems;
@@ -14,8 +15,11 @@
       max-width: 1080px;
       width: 100%;
       margin-bottom: 40px;
+      background: white;
+      padding: 40px;
+      border-radius: 5px;
       .mainBlog {
-        flex: 3;
+        flex: 4;
         .card_article {
           width: 100%;
           background: $primary_wh_clr;
@@ -27,7 +31,7 @@
             .mainBlogImg {
               width: 100%;
               height: 450px;
-              border-radius: 6px 6px 0px 0px;
+              // border-radius: 6px 6px 0px 0px;
               &:hover {
                 filter: brightness(90%);
               }
@@ -85,8 +89,17 @@
                   margin-left: 5px;
                   overflow: auto;
                   padding: 20px;
-                  line-height: 25px;
-                  max-height: 200px;
+                  line-height: 30px;
+
+                  a {
+                    color: #9c27b0 !important;
+                    text-decoration: none;
+
+                    &:hover {
+                      text-decoration: underline;
+                    }
+                  }
+                  // max-height: 300px;
                 }
               }
 
@@ -101,20 +114,31 @@
                   gap: 5px;
                 }
                 .likeBtnCn {
+                  cursor: unset;
                   .likeBtn {
                     @include element_transparency();
                     font-size: $xLargeFont;
 
                     .BlogLikedBtn {
-                      color: $primary_prp_clr;
+                      cursor: pointer;
+                      path {
+                        fill: #9c27b0;
+                      }
                       &:hover {
-                        color: $primary_black_clr;
+                        path {
+                          fill: #9b27b067;
+                        }
                       }
                     }
                     .BlogNotLikedBtn {
-                      color: $primary_black_clr;
+                      cursor: pointer;
+                      path {
+                        fill: #9b27b067;
+                      }
                       &:hover {
-                        color: $primary_prp_clr;
+                        path {
+                          fill: #9c27b0;
+                        }
                       }
                     }
                   }
@@ -153,7 +177,8 @@
             overflow: auto;
           }
           .sideBlogCards {
-            background: $primary_wh_clr;
+            // background: $primary_wh_clr;
+            box-shadow: 0px 0px 2px 0px grey;
             cursor: $cursorPointer;
             min-height: fit-content;
             width: 200px;
@@ -166,7 +191,10 @@
               background: snow;
             }
             .sideBlogImg {
-              border-radius: 6px;
+              // border-radius: 6px;
+              border-top-left-radius: 6px;
+              border-top-right-radius: 6px;
+
               width: 100%;
               height: 100px;
             }
