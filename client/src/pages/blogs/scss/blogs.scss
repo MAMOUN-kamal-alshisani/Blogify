@@ -217,15 +217,25 @@
                 font-size: $largerFont;
 
                 .BlogLikedBtn {
-                  color: $primary_prp_clr;
+                  cursor: pointer;
+                  path {
+                    fill: #9c27b0;
+                  }
                   &:hover {
-                    color: $primary_black_clr;
+                    path {
+                      fill: #9b27b067;
+                    }
                   }
                 }
                 .BlogNotLikedBtn {
-                  color: $primary_black_clr;
+                  cursor: pointer;
+                  path {
+                    fill: #9b27b067;
+                  }
                   &:hover {
-                    color: $primary_prp_clr;
+                    path {
+                      fill: #9c27b0;
+                    }
                   }
                 }
               }

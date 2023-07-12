@@ -13,16 +13,16 @@ import axios from "axios";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
-import { AiFillLike } from "react-icons/ai";
-import { AiOutlineLike } from "react-icons/ai";
+// import { AiFillLike } from "react-icons/ai";
+// import { AiOutlineLike } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
-
+import { FcLike,FcLikePlaceholder } from "react-icons/fc";
 
 export default function Blogs() {
   const queryClient  = useQueryClient()
   const navigate = useNavigate();
   const title = document.querySelector(".title");
-  const [cookies] = useCookies("token");
+  const [cookies] = useCookies("user");
 
   const getBlogs = async () => {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog`);
@@ -234,14 +234,14 @@ export default function Blogs() {
                           onClick={() =>
                             mutateBlogLikes.mutate([
                               blog?.id,
-                              cookies?.token?.id,
+                              cookies?.user?.id,
                             ])
                           }
                         >
                           {(blog?.liked?.includes(
-                            parseInt(cookies?.token?.id)
-                          ) && <AiFillLike className="BlogLikedBtn" />) || (
-                            <AiOutlineLike className="BlogNotLikedBtn" />
+                            parseInt(cookies?.user?.id)
+                          ) && <FcLike className="BlogLikedBtn" />) || (
+                            <FcLikePlaceholder className="BlogNotLikedBtn" />
                           )}
                         </button>
                         <div className="footer_user_details">

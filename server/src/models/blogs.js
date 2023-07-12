@@ -12,7 +12,7 @@ export const Blogs = db.define("Blogs", {
     allowNull: false,
   },
    desc: {
-   type: DataTypes.STRING(3000),
+   type: DataTypes.TEXT,
 //     allowNull: false,
   },
   category: {

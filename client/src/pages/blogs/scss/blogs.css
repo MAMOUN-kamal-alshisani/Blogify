@@ -265,16 +265,22 @@
   font-size: larger;
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogLikedBtn {
-  color: #9c27b0;
+  cursor: pointer;
 }
-.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogLikedBtn:hover {
-  color: black;
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogLikedBtn path {
+  fill: #9c27b0;
+}
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogLikedBtn:hover path {
+  fill: rgba(155, 39, 176, 0.4039215686);
 }
 .blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogNotLikedBtn {
-  color: black;
+  cursor: pointer;
 }
-.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogNotLikedBtn:hover {
-  color: #9c27b0;
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogNotLikedBtn path {
+  fill: rgba(155, 39, 176, 0.4039215686);
+}
+.blogs .blogs_cn .cards_section .card_container .card_div .card .card-footer .likeBtn .BlogNotLikedBtn:hover path {
+  fill: #9c27b0;
 }
 
 @media screen and (max-width: 700px) {

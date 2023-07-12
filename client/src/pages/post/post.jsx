@@ -11,7 +11,7 @@ export default function Post() {
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("");
   const [imgFile, setImgFile] = useState(null);
-  const [cookies] = useCookies("token");
+  const [cookies] = useCookies("user");
 
   const upload = async () => {
     try {
@@ -30,7 +30,7 @@ export default function Post() {
   const handleFile = async () => {
     try {
       const File = await upload();
-      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.token.id}`;
+      const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
       const res = await axios.post(url, {
         title: title,
         desc: desc,

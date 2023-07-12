@@ -61,7 +61,7 @@ export const getBlogsByLatest = async (req, res) => {
       raw: true,
       order: [["createdAt", "DESC"]],
       limit: 5,
-      where: { UserId: { [Op.ne]: adminUser.id } },
+      where: { UserId: { [Op.ne]: adminUser.id , } },
     });
     // const users = await User.findAll({ attributes: { exclude: ["Password"] } });
     //  const { Password, ...details } = users.toJSON();
