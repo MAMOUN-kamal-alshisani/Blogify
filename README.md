@@ -15,8 +15,9 @@
 # Usage
 
 ## Server Backend
-**- Start postgreSQL service to connect to the database with the following command: `sudo service postgresql start`**
-* **`note that that local configurations must be provided in order to connect to the database`** * 
+**- Start postgreSQL service to connect to the database with the following command: `sudo service postgresql start`
+`note that that local configurations must be provided in order to connect to the database`** 
+  
 **- start the server with `(nodemon)` or `(npm start)`**
   
 ## Client Frontend
