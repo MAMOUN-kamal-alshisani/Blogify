@@ -34,9 +34,12 @@ Enable users to log in and log out securely**
 
 * **in server use JWT to create and store a token in cookies to authenticate and authorize a user or an admin making some end point actions**
 
-* **in client use cookies to store user information for authenicating authorizing user entring certain protected routes**
+* **in client use cookies to store user information for authenicating and authorizing user entring certain protected routes**
 
+## User Profile
 
+* **after signup users can enter their profile page and provide contact information about the user and and as well as the ability to upload personal picture**
+* **a list of the users own shared blogs with the ability to update or delete the blog**
 
 ## Error Handling
 **Implement error handling for various scenarios (e.g., invalid requests, server errors)
