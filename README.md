@@ -29,8 +29,11 @@
 
 **- Allow users to register an account with email and password
 Enable users to log in and log out securely**
+
 **-Implement password hashing and salting for enhanced security**
+
 **-in server use JWT to create and store a token in cookies to authenticate and authorize a user or an admin making some end point actions**
+
 **-in client use cookies to store user information for authenicating authorizing user entring certain protected routes**
 
 
