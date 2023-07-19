@@ -106,7 +106,9 @@ export const getFeaturedBlogs = async (req, res) => {
     const blogs = await Blogs.findAll({
       where: { featured: true },
     });
+    if(blogs == null || undefined || '')return res.status(200).send('no featured blogs found');
     res.status(200).send(blogs);
+
   } catch (err) {
     res.status(500).send(err);
   }

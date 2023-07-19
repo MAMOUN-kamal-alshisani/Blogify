@@ -61,6 +61,8 @@ export default function Home() {
       {
         queryKey: ["FeaturedBlogs"],
         queryFn: getFeaturedBlogs,
+
+    
       },
     ],
   });
@@ -78,7 +80,6 @@ export default function Home() {
     const res = axios.put(url, {
       watched: (watch += 1).toString(),
     });
-
     navigate(`/blogs/${id}`);
   };
 
@@ -122,9 +123,9 @@ export default function Home() {
                     <h5>{AdminBlog?.data[0]?.category}</h5>-
                     <h5>
                       {" "}
-                      {AdminBlog?.data[0]?.createdAt.slice(
+                      {AdminBlog?.data[0]?.createdAt?.slice(
                         0,
-                        AdminBlog?.data[0]?.createdAt.indexOf("T")
+                        AdminBlog?.data[0]?.createdAt?.indexOf("T")
                       )}
                     </h5>
                   </div>
@@ -254,81 +255,98 @@ export default function Home() {
                 <div className="featured_div">
                   <h1 className="featured_header">Featured Blogs</h1>
                 </div>
-
-                {FeaturedBlogs?.isFetched && (
+                {results[3].isError || results[3].isLoading && 
+                   <div className="part1_cn">
+                   <img
+                     loading={"lazy"}
+                     src={
+                       "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
+                     }
+                     alt={"technology"}
+                     className="mainImg"
+                   />
+                   <div className="blog_detailsCn1">
+                     <span className="sp_text">
+                       <h4>{"technology"}</h4>
+                       <b className="timeIcon">
+                         <BsCalendarDate />
+                         2023/7/1
+                       </b>
+                     </span>
+                     <p className="mainImg_desc">
+                       what is new in tech world
+                     </p>
+                   </div>
+                 </div>
+                }
+                {results[3].isFetched && (
                   <div className="part1_cn">
                     <img
                       loading={"lazy"}
                       src={
-                        FeaturedBlogs?.data[0]?.photo
-                        // ||
-                        // AdminBlog?.data[0]?.photo
+                        results[3]?.data[0]?.photo ||
+                        AdminBlog?.data[0]?.photo
                       }
                       alt={
-                        FeaturedBlogs?.data[0]?.category
-                        // ||
-                        // AdminBlog?.data[0]?.category
+                        results[3]?.data[0]?.category ||
+                        AdminBlog?.data[0]?.category
                       }
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
                         <h4>
-                          {
-                            FeaturedBlogs?.data[0]?.category
-                            // || AdminBlog?.data[0]?.category
-                          }
+                          {results[3]?.data[0]?.category ||
+                            AdminBlog?.data[0]?.category}
                         </h4>
                         <b className="timeIcon">
                           <BsCalendarDate />
-                          {
-                            FeaturedBlogs?.data[0]?.createdAt.slice(
-                              0,
-                              FeaturedBlogs?.data[0]?.createdAt.indexOf("T")
-                            )
-                            // ||
-                            //   AdminBlog?.data[0]?.createdAt.slice(
-                            //     0,
-                            //     AdminBlog?.data[0]?.createdAt.indexOf("T")
-                            // )
-                          }
+                          {results[3]?.data[0]?.createdAt?.slice(0,
+                            results[3]?.data[0]?.createdAt?.indexOf("T"))
+                            || AdminBlog?.data[0]?.createdAt?.slice(0,
+                              AdminBlog?.data[0]?.createdAt?.indexOf("T"))
+                            // || FeaturedBlogs?.data[0]?.createdAt?.slice(
+                            //   0,FeaturedBlogs?.data[0]?.createdAt?.indexOf("T")
+                             }
                         </b>
                       </span>
                       <p className="mainImg_desc">
-                        {
-                          FeaturedBlogs?.data[0]?.title
-                          // || AdminBlog?.data[0]?.title
-                        }
+                        {results[3]?.data[0]?.title ||AdminBlog?.data[0]?.title }
                       </p>
                     </div>
                   </div>
-                )}
-
-                {FeaturedBlogs.isLoading && (
-                  <div className="part1_cn">
-                    <img
-                      loading={"lazy"}
-                      src={
-                        "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
-                      }
-                      alt={"technology"}
-                      className="mainImg"
-                    />
-                    <div className="blog_detailsCn1">
-                      <span className="sp_text">
-                        <h4>{"technology"}</h4>
-                        <b className="timeIcon">
-                          <BsCalendarDate />
-                          {"2023/7/1"}
-                        </b>
-                      </span>
-                      <p className="mainImg_desc">
-                        {"what is new in tech world"}
-                      </p>
-                    </div>
+                )
+           
+}
+{
+     //   :(
+      results[3].isLoading || results[3].isError &&
+                <div className="part1_cn">
+                  <img
+                    loading={"lazy"}
+                    src={
+                      "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
+                    }
+                    alt={"technology"}
+                    className="mainImg"
+                  />
+                  <div className="blog_detailsCn1">
+                    <span className="sp_text">
+                      <h4>{"technology"}</h4>
+                      <b className="timeIcon">
+                        <BsCalendarDate />
+                        {"2023/7/1"}
+                      </b>
+                    </span>
+                    <p className="mainImg_desc">
+                      {"what is new in tech world"}
+                    </p>
                   </div>
-                )}
-
+                </div>
+              // )
+}
+                
+                
                 <div className="part2_cn">
                   {FeaturedBlogs?.isFetched && (
                     <article className="artical1 artical">
@@ -415,9 +433,9 @@ export default function Home() {
                       </div>
                     </article>
                   )}
-                </div>
+                </div> 
 
-                {FeaturedBlogs?.isFetched && (
+                 {FeaturedBlogs?.isFetched && (
                   <div className="part1_cn var_part3">
                     <img
                       loading={"lazy"}
@@ -455,7 +473,7 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                )}
+                )} 
               </div>
               <div className="part2 section">
                 <div className="blog_cn">
@@ -471,48 +489,83 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="blogList">
-                    {RecentBlog?.data?.blogs?.map((data) => {
-                      return (
-                        <div className="sideBlog_cn" key={data.id}>
-                          <div
-                            className="img_Section"
-                            onClick={() =>
-                              increaseWatch(data?.watched, data?.id)
-                            }
-                          >
-                            <img
-                              loading={"lazy"}
-                              src={data.photo}
-                              alt={data.id}
-                              className="sideBlogImg"
-                            />
-                          </div>
-                          <div className="details_Section">
-                            <div className="blog1Div">
-                              <h4>{data?.category}</h4>
+                    {RecentBlog.isFetched === true
+                      ? RecentBlog?.data?.blogs?.map((data) => {
+                          return (
+                            <div className="sideBlog_cn" key={data.id}>
+                              <div
+                                className="img_Section"
+                                onClick={() =>
+                                  increaseWatch(data?.watched, data?.id)
+                                }
+                              >
+                                <img
+                                  loading={"lazy"}
+                                  src={data.photo}
+                                  alt={data.id}
+                                  className="sideBlogImg"
+                                />
+                              </div>
+                              <div className="details_Section">
+                                <div className="blog1Div">
+                                  <h4>{data?.category}</h4>
+                                </div>
+                                <div className="blog2Div">
+                                  <p>
+                                    {data?.title.substring(
+                                      data?.title?.length - 100
+                                    )}
+                                  </p>
+                                </div>
+                                <div className="blog1Div">
+                                  <span>
+                                    <b className="timeIcon">
+                                      <BsCalendarDate />
+                                    </b>
+                                    {data?.createdAt.slice(
+                                      0,
+                                      data?.createdAt.indexOf("T")
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div className="blog2Div">
-                              <p>
-                                {data?.title.substring(
-                                  data?.title?.length - 100
-                                )}
-                              </p>
-                            </div>
-                            <div className="blog1Div">
-                              <span>
-                                <b className="timeIcon">
-                                  <BsCalendarDate />
-                                </b>
-                                {data?.createdAt.slice(
-                                  0,
-                                  data?.createdAt.indexOf("T")
-                                )}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                          );
+                        })
+                      : Array(4)
+                          .fill(4)
+                          .map((item, i) => {
+                            return (
+                              <div className="sideBlog_cn" key={i}>
+                                <div className="img_Section">
+                                  <img
+                                    loading={"lazy"}
+                                    src={
+                                      "https://tse1.mm.bing.net/th?id=OIP.E7432LcRmDnfzlwAN_DhEQHaEz&pid=Api&P=0&h=180"
+                                    }
+                                    alt="photo"
+                                    className="sideBlogImg"
+                                  />
+                                </div>
+                                <div className="details_Section">
+                                  <div className="blog1Div">
+                                    <h4>Travel</h4>
+                                  </div>
+                                  <div className="blog2Div">
+                                    <p>Your Ultimate Guide To Dubai</p>
+                                  </div>
+                                  <div className="blog1Div">
+                                    <span>
+                                      <b className="timeIcon">
+                                        <BsCalendarDate />
+                                      </b>
+                                      2023/6/12
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
                   </div>
                 </div>
                 <div className="part3 section">
@@ -521,18 +574,34 @@ export default function Home() {
                   </div>
                   <div className="post_categories">
                     <ul className="categoryList">
-                      {categoryCount?.map((blog, i) => {
-                        return (
-                          <li
-                            className="categoryItem"
-                            key={blog.category}
-                            onClick={() => navigate("/blogs")}
-                          >
-                            <span>{blog.category}</span>
-                            <span>{blog.count}</span>
-                          </li>
-                        );
-                      })}
+                      {results[2].isLoading || results[2].isError
+                        ? Array(5)
+                            .fill(0)
+                            .map((category, i) => {
+                              return (
+                                <li
+                                  className="categoryItem"
+                                  key={i}
+                                  onClick={() => navigate("/blogs")}
+                                >
+                                  <span>{"technology"}</span>
+                                  <span>{i}</span>
+                                </li>
+                              );
+                            })
+                        : results[2].isFetched &&
+                          categoryCount?.map((blog, i) => {
+                            return (
+                              <li
+                                className="categoryItem"
+                                key={blog.category}
+                                onClick={() => navigate("/blogs")}
+                              >
+                                <span>{blog.category}</span>
+                                <span>{blog.count}</span>
+                              </li>
+                            );
+                          })}
                     </ul>
                   </div>
                 </div>
