@@ -193,7 +193,7 @@
   font-size: larger;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .var_part3 {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part1_cn {
   position: relative;
@@ -217,14 +217,15 @@
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part1_cn .blog_detailsCn1 .sp_text {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: row;
   font-size: medium;
+  gap: 60px;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part1_cn .blog_detailsCn1 .sp_text .timeIcon {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
@@ -243,7 +244,7 @@
   flex-direction: row;
   gap: 20px;
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part1 .part2_cn .artical {
   position: relative;
@@ -686,7 +687,7 @@
   }
   .home .home_cn .row2_section2 .section2_cn .container .part1 .part1_cn {
     overflow: hidden;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     color: white;
   }
   .home .home_cn .row2_section2 .section2_cn .container .part1 .part1_cn:hover .mainImg {
@@ -706,7 +707,7 @@
   }
   .home .home_cn .row2_section2 .section2_cn .container .part1 .part1_cn .blog_detailsCn1 .sp_text {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     flex-direction: row;
     font-size: small;
@@ -733,7 +734,7 @@
     flex-direction: row;
     gap: 20px;
     padding-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
   }
   .home .home_cn .row2_section2 .section2_cn .container .part1 .part2_cn .artical {
     position: relative;
