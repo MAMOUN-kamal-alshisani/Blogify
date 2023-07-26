@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useQueries, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
@@ -180,7 +181,7 @@ export default function Blog() {
           <div className="mainBlog">
             <article className="card_article">
               <div className="img_cn">
-                <img
+                <LazyLoadImage
                   src={blog?.photo}
                   alt={blog?.category}
                   className="mainBlogImg"
@@ -256,7 +257,7 @@ export default function Blog() {
                         increaseWatch(sideBlog.watched, sideBlog.id)
                       }
                     >
-                      <img
+                      <LazyLoadImage
                         src={sideBlog.photo}
                         alt="img"
                         className="sideBlogImg"
@@ -321,7 +322,7 @@ export default function Blog() {
             {allCarouselBlogs?.map((blog, index) => {
               return (
                 <div className="card_div" key={index}>
-                  <img
+                  <LazyLoadImage
                     src={blog.photo}
                     alt={blog.id}
                     className="footer_side_photo"

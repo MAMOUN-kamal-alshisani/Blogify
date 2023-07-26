@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../components/pagination/pagination";
 import Skeleton from "react-loading-skeleton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import User from "../../components/user/user";
 import axios from "axios";
 
@@ -197,7 +198,7 @@ export default function Blogs() {
                 return (
                   <div className="card_div" key={blog?.id}>
                     <Card>
-                      <Card.Img
+                      <LazyLoadImage
                         variant="top"
                         src={blog?.photo}
                         className="card_img"

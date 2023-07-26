@@ -12,3 +12,7 @@ p{
 *:not(input,textarea){
     text-transform: capitalize;
 }
+
+html{
+    scroll-behavior: smooth;
+}

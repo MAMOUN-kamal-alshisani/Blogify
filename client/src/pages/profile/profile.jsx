@@ -6,6 +6,7 @@ import axios from "axios";
 import DeleteModal from "./components/deleteModal/deleteModal";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { CgGenderMale } from "react-icons/cg";
 import { CgGenderFemale } from "react-icons/cg";
@@ -300,7 +301,7 @@ export default function Profile() {
         <section className={`profile_pic_section ${showPopUpDelete && "bgcl"}`}>
           <div className="pic_div">
             <div className="picture_cn">
-              <img
+              <LazyLoadImage
                 src={
                   userInfo?.picture ||
                   "http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
@@ -417,7 +418,7 @@ export default function Profile() {
                   userBlogs?.map((blog) => {
                     return (
                       <div className="blogItem" key={blog.id}>
-                        <img
+                        <LazyLoadImage
                           src={
                             blog.photo ||
                             "http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
@@ -637,7 +638,7 @@ export default function Profile() {
             </div>
             <div className="edit_cn">
               <div className="imgCn">
-                <img
+                <LazyLoadImage
                   // style={{ width: "202px" }}
                   src={
                     editBlogData.photo ||
