@@ -24,14 +24,15 @@
         }
 
         .sg_btn {
-          margin-top: 20px;
-          width: 100px;
-          height: 35px;
+
           background-color: $primary_prp_clr;
           color: $primary_wh_clr;
           border: $border_tr;
-          cursor: $cursorPointer;
+          font-size: $mediumFont;
           transition: all linear 1s;
+          margin-top: 20px;
+          width: 120px;
+          height: 40px;
           &:hover {
             background-color: #b422ce;
           }
@@ -48,11 +49,13 @@
         gap: 5px;
         max-height: 600px;
         .textarea {
-          padding-left: 25px;
+          // padding-left: 25px;
+          padding: 15px;
           color: $primary_wh_clr;
           .text1 {
             @include flex(flex, unset, wrap, row);
             gap: 10px;
+            color: $primary_lgt_gry_clr;
           }
           .text2 {
             font-size: $xLargeFont;
@@ -82,8 +85,13 @@
           }
           .img_textarea {
             position: $absolute;
-            bottom: 30px;
-            padding: 20px;
+            bottom: 0px;
+            padding: 15px;
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0),
+              rgba(0, 0, 0, 0.5)
+            );
             &:hover {
               cursor: $cursorPointer;
             }
@@ -110,7 +118,13 @@
             }
             .img_textarea {
               position: $absolute;
-              bottom: 30px;
+              background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0),
+                rgba(0, 0, 0, 0.5)
+              );
+              bottom: 0px;
+              padding: 15px;
             }
           }
           .card_Img2 {
@@ -126,9 +140,9 @@
               overflow: $hid_overFlow;
               .img_smalltext {
                 position: $absolute;
-                bottom: 30px;
                 font-size: $smallFont;
-                padding: 10px;
+                bottom: 0px;
+                padding: 15px;
               }
               .img3 {
                 width: 100%;
@@ -180,25 +194,30 @@
               margin-bottom: 20px;
               // background-color: $primary_wh_clr;
               // box-shadow: 0px 0px 1px 0px $primary_gry_clr;
-              &:hover .mainImg{
-                filter:brightness(75%);
+              &:hover .mainImg {
+                filter: brightness(75%);
               }
               .mainImg {
                 cursor: $cursorPointer;
-                filter:brightness(80%);
+                filter: brightness(80%);
                 width: 100%;
                 height: 100%;
                 max-height: 500px;
               }
               .blog_detailsCn1 {
+                width: 100%;
                 position: $absolute;
-                bottom: 40px;
-                left: 20px;
-                // padding: 10px;
+                bottom: 0px;
+                padding: 30px;
+                background: linear-gradient(
+                  to bottom,
+                  rgba(0, 0, 0, 0),
+                  rgba(0, 0, 0, 0.8)
+                );
                 .sp_text {
                   @include flex(flex, flex-start, wrap, row);
-                  // color: #a3a3a3;
-                  font-size: $mediumFont;
+                  color: #c5c5ca;
+                  font-size: $smallFont;
                   gap: 60px;
                   .timeIcon {
                     @include flex(flex, flex-start, wrap, row);
@@ -208,10 +227,20 @@
                 }
                 .mainImg_desc {
                   overflow: $hid_overFlow;
-                  // text-align: $alignItems;
                   font-size: $largerFont;
                   line-height: 40px;
-                  padding-top: 10px;
+                  // padding-top: 10px;
+                }
+
+                .user_span {
+                  @include flex(flex, flex-start, wrap, row);
+                  color: #c5c5ca;
+                  font-size: small;
+                  gap: 5px;
+
+                  b {
+                    color: white !important;
+                  }
                 }
               }
             }
@@ -229,7 +258,7 @@
                 box-shadow: 0px 0px 1px 0px $primary_gry_clr;
                 word-wrap: break-word;
                 .articalImg {
-                  max-height: 220px;
+                  height: 220px;
                   width: 100%;
                 }
                 .title_paragraph {
@@ -247,6 +276,7 @@
                     @include flex(flex, space-between, wrap, row);
                     gap: 5px;
                     color: $primary_gry_clr;
+                    align-items: $alignItems;
                   }
                   .time_cn {
                     @include flex(flex, space-between, wrap, row);
@@ -295,9 +325,10 @@
                 .sideBlog_cn {
                   @include flex(flex, unset, nowrap, row);
                   align-items: $alignItems;
-                  gap: 5px;
-                  border-bottom: 2px solid $border_wh_clr;
                   cursor: $cursorPointer;
+                  border-bottom: 2px solid $border_wh_clr;
+                  gap: 5px;
+                  height: 120px;
                   &:hover .img_Section {
                     filter: contrast(80%);
                   }
@@ -312,8 +343,9 @@
                   }
 
                   .details_Section {
-                    @include flex(flex, unset, nowrap, column);
+                    @include flex(flex, space-around, nowrap, column);
                     width: 100%;
+                    height: 100%;
                     .blog1Div {
                       @include flex(flex, space-between, nowrap, column);
                       padding: 5px;
@@ -382,6 +414,12 @@
               background: $primary_prp_clr;
               padding: 10px;
               color: $primary_wh_clr;
+
+              // &::before{
+              //   content: '';
+              //   width: 10px;
+              //   background-color: #7136d6;
+              // }
               h1:first-child {
                 font-size: $largerFont;
               }
@@ -389,55 +427,142 @@
             .about_list {
               background-color: $primary_wh_clr;
               padding: 10px;
-              .about_cn {
-                .links_cn {
-                  margin: 10px;
-                  padding: 8px;
-                  border-bottom: 2px solid $border_wh_clr;
-                  transition: all linear 1s;
-                  &:hover {
-                    background-color: $primary_bg_clr;
-                  }
-                  .link {
-                    @include flex(flex, unset, nowrap, row);
-                    align-items: $alignItems;
-                    font-size: $xLargeFont;
-                    color: $primary_black_clr;
-                    gap: 5px;
-                    text-decoration: none;
+              .github {
+                .link {
+                  color: black;
+
+
+                  &:hover{
+                    color: rgba(0, 0, 0, 0.727);
                   }
                 }
-
-                .post_cn {
-                  margin: 10px;
-                  padding: 8px;
-                  border-bottom: 2px solid $border_wh_clr;
-                  .para {
-                    padding-bottom: 10px;
-                    text-align: $alignItems;
+              }
+              .mail {
+                .link {
+                  color: royalblue;
+                  &:hover{
+                    color: rgba(65, 105, 225, 0.727);
                   }
+                }
+                
+              }
+              .linkedin {
+                .link {
+                  color: #0077b5;
+                  &:hover{
+                    color:  rgba(0, 118, 181, 0.727)
+                  }
+                }
+              }
+              .facebook {
+                .link {
+                  color: #3b5999;
+                  &:hover{
+                    color: #3b5999b6;
+                  }
+                }
+              }
+              .links_cn {
+                margin: 10px;
+                padding: 8px;
+                border-bottom: 2px solid $border_wh_clr;
+                transition: all linear 1s;
+                // &:hover {
+                //   background-color: $primary_bg_clr;
+                // }
 
-                  .btn_cr {
-                    .signBtn {
-                      @include flex(flex, center, nowrap, row);
-                      transition: all ease-in-out 1s;
-                      align-items: $alignItems;
-                      border: $border_tr;
-                      cursor: $cursorPointer;
-                      background-color: $primary_dkprp_clr;
-                      color: $primary_wh_clr;
-                      font-size: $largeFont;
-                      gap: 5px;
-                      width: 100%;
-                      padding: 10px;
-                      &:hover {
-                        background-color: #7136d6;
-                      }
+                .link {
+                  @include flex(flex, unset, nowrap, row);
+                  align-items: $alignItems;
+                  font-size: $largeFont;
+                  text-decoration: none;
+                  gap: 10px;
+                  .navbar_icon {
+                    font-size: $xLargeFont;
+                  }
+                }
+              }
+
+              .post_cn {
+                margin: 10px;
+                padding: 8px;
+                border-bottom: 2px solid $border_wh_clr;
+                .para {
+                  padding-bottom: 10px;
+                  text-align: $alignItems;
+                }
+
+                .btn_cr {
+                  .signBtn {
+                    @include flex(flex, center, nowrap, row);
+                    transition: all ease-in-out 1s;
+                    align-items: $alignItems;
+                    border: 1px solid;
+                    background-color: $border_tr;
+                    color: $primary_prp_clr;
+                    font-size: $largeFont;
+                    gap: 5px;
+                    width: 100%;
+                    padding: 10px;
+                    &:hover {
+                      color: #bc23d6b4;
                     }
                   }
                 }
               }
             }
+            // .about_list {
+            //   background-color: $primary_wh_clr;
+            //   padding: 10px;
+            //   .about_cn {
+            //     .links_cn {
+            //       margin: 10px;
+            //       padding: 8px;
+            //       border-bottom: 2px solid $border_wh_clr;
+            //       transition: all linear 1s;
+            //       &:hover {
+            //         background-color: $primary_bg_clr;
+            //       }
+            //       .link {
+            //         @include flex(flex, unset, nowrap, row);
+            //         align-items: $alignItems;
+            //         font-size: $xLargeFont;
+            //         color: $primary_black_clr;
+            //         gap: 5px;
+            //         text-decoration: none;
+            //       }
+            //     }
+
+            //     .post_cn {
+            //       margin: 10px;
+            //       padding: 8px;
+            //       border-bottom: 2px solid $border_wh_clr;
+            //       .para {
+            //         padding-bottom: 10px;
+            //         text-align: $alignItems;
+            //       }
+
+            //       .btn_cr {
+            //         .signBtn {
+            //           @include flex(flex, center, nowrap, row);
+            //           transition: all ease-in-out 1s;
+            //           align-items: $alignItems;
+            //           border: $border_tr;
+            //           cursor: $cursorPointer;
+            //           background-color: $primary_dkprp_clr;
+            //           color: $primary_wh_clr;
+            //           font-size: $largeFont;
+            //           gap: 5px;
+            //           width: 100%;
+            //           padding: 10px;
+            //           &:hover {
+            //             background-color: #7136d6;
+            //           }
+            //         }
+            //       }
+            //     }
+            //   }
+            // }
           }
         }
       }
@@ -470,14 +595,15 @@
           }
 
           .sg_btn {
-            margin-top: 20px;
-            width: 100px;
-            height: 35px;
+          
             background-color: $primary_prp_clr;
             color: $primary_wh_clr;
             border: $border_tr;
-            cursor: $cursorPointer;
             transition: all linear 1s;
+            margin-top: 20px;
+            width: 120px;
+            height: 45px;
+
             &:hover {
               background-color: #b422ce;
             }
@@ -529,7 +655,7 @@
             }
             .img_textarea {
               position: $absolute;
-              bottom: 20px;
+              bottom: 0px;
               font-size: $smallerFont;
               &:hover {
                 cursor: $cursorPointer;
@@ -557,7 +683,7 @@
               }
               .img_textarea {
                 position: $absolute;
-                bottom: 20px;
+                bottom: 0px;
                 font-size: $smallerFont;
               }
             }
@@ -627,8 +753,8 @@
                 // box-shadow: 0px 0px 1px 0px $primary_gry_clr;
                 // padding-top: 0px;
                 padding-bottom: 20px;
-                color:white;
-                &:hover .mainImg{
+                color: white;
+                &:hover .mainImg {
                   filter: brightness(75%);
                 }
                 .mainImg {
@@ -637,15 +763,14 @@
                   width: 100%;
                   height: 100%;
                   max-height: 500px;
-                 
                 }
                 .blog_detailsCn1 {
                   padding: 10px;
                   overflow: hidden;
                   max-height: 100px;
+                  width: 100%;
                   .sp_text {
                     @include flex(flex, flex-start, wrap, row);
-                    // color: #a3a3a3;
                     font-size: $smallFont;
                     .timeIcon {
                       @include flex(flex, space-between, wrap, row);
@@ -759,8 +884,9 @@
                     }
 
                     .details_Section {
-                      @include flex(flex, unset, nowrap, column);
+                      @include flex(flex, space-around, nowrap, column);
                       width: 100%;
+                      height: 100%;
                       .blog1Div {
                         @include flex(flex, space-between, nowrap, column);
                         padding: 5px;
@@ -832,53 +958,51 @@
                   font-size: $largerFont;
                 }
               }
+
               .about_list {
                 background-color: $primary_wh_clr;
                 padding: 10px;
-                .about_cn {
-                  .links_cn {
-                    margin: 10px;
-                    padding: 8px;
-                    border-bottom: 2px solid $border_wh_clr;
-                    transition: all linear 1s;
-                    &:hover {
-                      background-color: $primary_bg_clr;
-                    }
-                    .link {
-                      @include flex(flex, unset, nowrap, row);
-                      align-items: $alignItems;
-                      gap: 5px;
-                      text-decoration: none;
-                      font-size: $xLargeFont;
-                      color: $primary_black_clr;
-                    }
+                .links_cn {
+                  margin: 10px;
+                  padding: 8px;
+                  border-bottom: 2px solid $border_wh_clr;
+                  transition: all linear 1s;
+                  &:hover {
+                    background-color: $primary_bg_clr;
+                  }
+                  .link {
+                    @include flex(flex, unset, nowrap, row);
+                    align-items: $alignItems;
+                    gap: 5px;
+                    text-decoration: none;
+                    font-size: $xLargeFont;
+                    color: $primary_black_clr;
+                  }
+                }
+
+                .post_cn {
+                  margin: 10px;
+                  padding: 8px;
+                  border-bottom: 2px solid $border_wh_clr;
+                  .para {
+                    padding-bottom: 10px;
+                    text-align: $alignItems;
                   }
 
-                  .post_cn {
-                    margin: 10px;
-                    padding: 8px;
-                    border-bottom: 2px solid $border_wh_clr;
-                    .para {
-                      padding-bottom: 10px;
-                      text-align: $alignItems;
-                    }
-
-                    .btn_cr {
-                      .signBtn {
-                        @include flex(flex, center, nowrap, row);
-                        transition: all ease-in-out 1s;
-                        align-items: $alignItems;
-                        border: $border_tr;
-                        cursor: $cursorPointer;
-                        background-color: $primary_dkprp_clr;
-                        color: $primary_wh_clr;
-                        font-size: $largeFont;
-                        gap: 5px;
-                        width: 100%;
-                        padding: 10px;
-                        &:hover {
-                          background-color: #7136d6;
-                        }
+                  .btn_cr {
+                    .signBtn {
+                      @include flex(flex, center, nowrap, row);
+                      transition: all ease-in-out 1s;
+                      align-items: $alignItems;
+                      border: 1px solid;
+                      background-color: $border_tr;
+                      color: $primary_prp_clr;
+                      font-size: $largeFont;
+                      gap: 5px;
+                      width: 100%;
+                      padding: 10px;
+                      &:hover {
+                        color: #bc23d6b4;
                       }
                     }
                   }

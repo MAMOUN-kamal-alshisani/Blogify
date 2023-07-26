@@ -31,7 +31,7 @@ export default function SignIn() {
     const res = await axios.post(url, formInput, { withCredentials: true });
     cookies.set("user", res.data.user,{maxAge:60*60*24});
   };
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: handleSignIn,
     onError: (error) => {
       emailError.textContent = "";

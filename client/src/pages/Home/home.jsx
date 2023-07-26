@@ -5,7 +5,9 @@ import { SiMicrodotblog } from "react-icons/si";
 import { FaSignInAlt } from "react-icons/fa";
 import { BsCalendarDate } from "react-icons/bs";
 import { BsPersonFill } from "react-icons/bs";
+import { FaFacebook } from "react-icons/fa";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,8 +63,6 @@ export default function Home() {
       {
         queryKey: ["FeaturedBlogs"],
         queryFn: getFeaturedBlogs,
-
-    
       },
     ],
   });
@@ -112,10 +112,11 @@ export default function Home() {
           <div className="container">
             {AdminBlog.isFetched && (
               <div className="firstCard">
-                <img
+                <LazyLoadImage
                   src={AdminBlog?.data[0]?.photo}
                   alt={AdminBlog?.data[0]?.category}
                   className="mainImage img1"
+                  loading="lazy"
                 />
                 <div className="img_textarea textarea">
                   <p className="text2">{AdminBlog?.data[0]?.title}</p>
@@ -135,7 +136,7 @@ export default function Home() {
 
             {AdminBlog.isLoading && (
               <div className="firstCard">
-                <img
+                <LazyLoadImage
                   src="https://cdn.projectexpedition.com/photos/43793touractivityislandhopping5_sized.jpg"
                   alt="Travel"
                   className="mainImage img1"
@@ -151,7 +152,7 @@ export default function Home() {
             {AdminBlog.isFetched && (
               <div className="secondCard">
                 <div className="card_Img1 cards">
-                  <img
+                  <LazyLoadImage
                     loading={"lazy"}
                     src={AdminBlog?.data[1]?.photo}
                     alt={AdminBlog?.data[1]?.category}
@@ -173,7 +174,7 @@ export default function Home() {
                 </div>
                 <div className="card_Img2 cards">
                   <div className="card_Img2_text">
-                    <img
+                    <LazyLoadImage
                       loading={"lazy"}
                       src={AdminBlog?.data[2]?.photo}
                       alt={AdminBlog?.data[2]?.category}
@@ -184,7 +185,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="card_Img2_text">
-                    <img
+                    <LazyLoadImage
                       loading={"lazy"}
                       src={AdminBlog?.data[3]?.photo}
                       alt={AdminBlog?.data[3]?.category}
@@ -201,7 +202,7 @@ export default function Home() {
             {AdminBlog.isLoading && (
               <div className="secondCard">
                 <div className="card_Img1 cards">
-                  <img
+                  <LazyLoadImage
                     loading={"lazy"}
                     src="https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_540,w_960,x_0,y_0/dpr_1.5/c_limit,w_690/fl_lossy,q_auto/v1/galleries/2010/09/02/15-worst-hurricanes/destructive-hurricanes---andrew_jh8sjo"
                     alt="science"
@@ -217,7 +218,7 @@ export default function Home() {
                 </div>
                 <div className="card_Img2 cards">
                   <div className="card_Img2_text">
-                    <img
+                    <LazyLoadImage
                       loading={"lazy"}
                       src="https://fromscratchfast.com/wp-content/uploads/2016/12/Whipped-Ricotta-Crostini-4.jpg"
                       alt="food"
@@ -230,7 +231,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="card_Img2_text">
-                    <img
+                    <LazyLoadImage
                       loading={"lazy"}
                       src="https://static01.nyt.com/images/2021/03/01/obituaries/Goodenough-01/Goodenough-01-facebookJumbo.jpg"
                       alt="technology"
@@ -255,122 +256,145 @@ export default function Home() {
                 <div className="featured_div">
                   <h1 className="featured_header">Featured Blogs</h1>
                 </div>
-                {results[3].isError || results[3].isLoading && 
-                   <div className="part1_cn">
-                   <img
-                     loading={"lazy"}
-                     src={
-                       "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
-                     }
-                     alt={"technology"}
-                     className="mainImg"
-                   />
-                   <div className="blog_detailsCn1">
-                     <span className="sp_text">
-                       <h4>{"technology"}</h4>
-                       <b className="timeIcon">
-                         <BsCalendarDate />
-                         2023/7/1
-                       </b>
-                     </span>
-                     <p className="mainImg_desc">
-                       what is new in tech world
-                     </p>
-                   </div>
-                 </div>
-                }
+                {results[3].isError ||
+                  (results[3].isLoading && (
+                    <div className="part1_cn">
+                      <LazyLoadImage
+                        loading={"lazy"}
+                        src={
+                          "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
+                        }
+                        alt={"technology"}
+                        className="mainImg"
+                      />
+                      <div className="blog_detailsCn1">
+                        <span className="sp_text">
+                          <h4>{"technology"}</h4>
+                          <b className="timeIcon">
+                            <BsCalendarDate />
+                            2023/7/1
+                          </b>
+                        </span>
+                        <p className="mainImg_desc">
+                          what is new in tech world
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 {results[3].isFetched && (
                   <div className="part1_cn">
-                    <img
+                    <LazyLoadImage
                       loading={"lazy"}
                       src={
-                        results[3]?.data[0]?.photo ||
-                        AdminBlog?.data[0]?.photo
+                        results[3]?.data[0]?.photo
+                        //  || AdminBlog?.data[0]?.photo
                       }
                       alt={
-                        results[3]?.data[0]?.category ||
-                        AdminBlog?.data[0]?.category
+                        results[3]?.data[0]?.category
+                        // || AdminBlog?.data[0]?.category
                       }
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
                         <h4>
-                          {results[3]?.data[0]?.category ||
-                            AdminBlog?.data[0]?.category}
+                          {
+                            results[3]?.data[0]?.category
+                            // || AdminBlog?.data[0]?.category
+                          }
                         </h4>
                         <b className="timeIcon">
-                          <BsCalendarDate />
-                          {results[3]?.data[0]?.createdAt?.slice(0,
-                            results[3]?.data[0]?.createdAt?.indexOf("T"))
-                            || AdminBlog?.data[0]?.createdAt?.slice(0,
-                              AdminBlog?.data[0]?.createdAt?.indexOf("T"))
+                          {/* <BsCalendarDate /> */}
+                          {
+                            results[3]?.data[0]?.createdAt?.slice(
+                              0,
+                              results[3]?.data[0]?.createdAt?.indexOf("T")
+                            )
+                            // ||
+                            //   AdminBlog?.data[0]?.createdAt?.slice(
+                            //     0,
+                            //     AdminBlog?.data[0]?.createdAt?.indexOf("T")
+                            //   )
                             // || FeaturedBlogs?.data[0]?.createdAt?.slice(
                             //   0,FeaturedBlogs?.data[0]?.createdAt?.indexOf("T")
-                             }
+                          }
                         </b>
                       </span>
                       <p className="mainImg_desc">
-                        {results[3]?.data[0]?.title ||AdminBlog?.data[0]?.title }
+                        {
+                          results[3]?.data[0]?.title
+                          // ||AdminBlog?.data[0]?.title
+                        }
                       </p>
+                      <span className="user_span">
+                        {" "}
+                        by{" "}
+                        <b>
+                          <User blog={results[3]?.data[0]} />
+                        </b>
+                      </span>
                     </div>
                   </div>
-                )
-           
-}
-{
-     //   :(
-      results[3].isLoading || results[3].isError &&
-                <div className="part1_cn">
-                  <img
-                    loading={"lazy"}
-                    src={
-                      "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
-                    }
-                    alt={"technology"}
-                    className="mainImg"
-                  />
-                  <div className="blog_detailsCn1">
-                    <span className="sp_text">
-                      <h4>{"technology"}</h4>
-                      <b className="timeIcon">
-                        <BsCalendarDate />
-                        {"2023/7/1"}
-                      </b>
-                    </span>
-                    <p className="mainImg_desc">
-                      {"what is new in tech world"}
-                    </p>
-                  </div>
-                </div>
-              // )
-}
-                
-                
+                )}
+                {
+                  results[3].isLoading ||
+                    (results[3].isError && (
+                      <div className="part1_cn">
+                        <LazyLoadImage
+                          loading={"lazy"}
+                          src={
+                            "https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds"
+                          }
+                          alt={"technology"}
+                          className="mainImg"
+                        />
+                        <div className="blog_detailsCn1">
+                          <span className="sp_text">
+                            <h4>{"technology"}</h4>
+                            <b className="timeIcon">
+                              <BsCalendarDate />
+                              {"2023/7/1"}
+                            </b>
+                          </span>
+                          <p className="mainImg_desc">
+                            {"what is new in tech world"}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  // )
+                }
+
                 <div className="part2_cn">
                   {FeaturedBlogs?.isFetched && (
                     <article className="artical1 artical">
-                      <img
+                      <LazyLoadImage
                         loading={"lazy"}
                         src={
-                          FeaturedBlogs?.data[1]?.photo ||
-                          AdminBlog?.data[1]?.photo
+                          FeaturedBlogs?.data[1]?.photo
+                          // || AdminBlog?.data[1]?.photo
                         }
                         alt={
-                          FeaturedBlogs?.data[1]?.category ||
-                          AdminBlog?.data[1]?.category
+                          FeaturedBlogs?.data[1]?.category
+
+                          // || AdminBlog?.data[1]?.category
                         }
                         className="articalImg"
                       />
                       <p className="title_paragraph">
-                        {FeaturedBlogs?.data[1]?.title ||
-                          AdminBlog?.data[1]?.title}
+                        {
+                          FeaturedBlogs?.data[1]?.title
+                          //  || AdminBlog?.data[1]?.title
+                        }
                       </p>
                       <div className="articalDetails">
                         <span className="user_cn">
                           <BsPersonFill className="user_icon" />
                           <User
-                            blog={FeaturedBlogs?.data[1] || AdminBlog?.data[1]}
+                            blog={
+                              FeaturedBlogs?.data[1]
+                              // || AdminBlog?.data[1]
+                            }
                           />
                         </span>
 
@@ -378,14 +402,17 @@ export default function Home() {
                           <b className="timeIcon">
                             <BsCalendarDate />
                           </b>
-                          {FeaturedBlogs?.data[1]?.createdAt?.slice(
-                            0,
-                            FeaturedBlogs?.data[1]?.createdAt?.indexOf("T")
-                          ) ||
-                            AdminBlog?.data[1]?.createdAt?.slice(
+                          {
+                            FeaturedBlogs?.data[1]?.createdAt?.slice(
                               0,
-                              AdminBlog?.data[1]?.createdAt?.indexOf("T")
-                            )}
+                              FeaturedBlogs?.data[1]?.createdAt?.indexOf("T")
+                            )
+                            // ||
+                            //   AdminBlog?.data[1]?.createdAt?.slice(
+                            //     0,
+                            //     AdminBlog?.data[1]?.createdAt?.indexOf("T")
+                            //   )
+                          }
                         </span>
                       </div>
                     </article>
@@ -393,87 +420,113 @@ export default function Home() {
 
                   {FeaturedBlogs?.isFetched && (
                     <article className="artical2 artical">
-                      <img
+                      <LazyLoadImage
                         loading={"lazy"}
                         src={
-                          FeaturedBlogs?.data[2]?.photo ||
-                          AdminBlog?.data[2]?.photo
+                          FeaturedBlogs?.data[2]?.photo
+
+                          // || AdminBlog?.data[2]?.photo
                         }
                         alt={
-                          FeaturedBlogs?.data[2]?.category ||
-                          AdminBlog?.data[2]?.category
+                          FeaturedBlogs?.data[2]?.category
+                          // || AdminBlog?.data[2]?.category
                         }
                         className="articalImg"
                       />
                       <p className="title_paragraph">
-                        {FeaturedBlogs?.data[2]?.title ||
-                          AdminBlog?.data[2]?.title}
+                        {
+                          FeaturedBlogs?.data[2]?.title
+                          // ||  AdminBlog?.data[2]?.title
+                        }
                       </p>
 
                       <div className="articalDetails">
                         <span className="user_cn">
                           <BsPersonFill className="user_icon" />
                           <User
-                            blog={FeaturedBlogs?.data[2] || AdminBlog?.data[2]}
+                            blog={
+                              FeaturedBlogs?.data[2]
+                              // || AdminBlog?.data[2]
+                            }
                           />
                         </span>
                         <span className="time_cn">
                           <b className="timeIcon">
                             <BsCalendarDate />
                           </b>
-                          {FeaturedBlogs?.data[2]?.createdAt.slice(
-                            0,
-                            FeaturedBlogs?.data[2]?.createdAt.indexOf("T")
-                          ) ||
-                            AdminBlog?.data[2]?.createdAt.slice(
+                          {
+                            FeaturedBlogs?.data[2]?.createdAt.slice(
                               0,
-                              AdminBlog?.data[2]?.createdAt.indexOf("T")
-                            )}
+                              FeaturedBlogs?.data[2]?.createdAt.indexOf("T")
+                            )
+                            // ||
+                            //   AdminBlog?.data[2]?.createdAt.slice(
+                            //     0,
+                            //     AdminBlog?.data[2]?.createdAt.indexOf("T")
+                            //   )
+                          }
                         </span>
                       </div>
                     </article>
                   )}
-                </div> 
+                </div>
 
-                 {FeaturedBlogs?.isFetched && (
+                {FeaturedBlogs?.isFetched && (
                   <div className="part1_cn var_part3">
-                    <img
+                    <LazyLoadImage
                       loading={"lazy"}
                       src={
-                        FeaturedBlogs?.data[3]?.photo ||
-                        AdminBlog?.data[3]?.photo
+                        FeaturedBlogs?.data[3]?.photo
+
+                        // || AdminBlog?.data[3]?.photo
                       }
                       alt={
-                        FeaturedBlogs?.data[3]?.category ||
-                        AdminBlog?.data[3]?.category
+                        FeaturedBlogs?.data[3]?.category
+
+                        // || AdminBlog?.data[3]?.category
                       }
                       className="mainImg"
                     />
                     <div className="blog_detailsCn1">
                       <span className="sp_text">
                         <h4>
-                          {FeaturedBlogs?.data[3]?.category ||
-                            AdminBlog?.data[3]?.category}
+                          {
+                            FeaturedBlogs?.data[3]?.category
+                            //  || AdminBlog?.data[3]?.category
+                          }
                         </h4>
                         <b className="timeIcon">
-                          <BsCalendarDate />
-                          {FeaturedBlogs?.data[3]?.createdAt.slice(
-                            0,
-                            FeaturedBlogs?.data[3]?.createdAt.indexOf("T")
-                          ) ||
-                            AdminBlog?.data[3]?.createdAt.slice(
+                          {/* <BsCalendarDate /> */}
+                          {
+                            FeaturedBlogs?.data[3]?.createdAt.slice(
                               0,
-                              AdminBlog?.data[3]?.createdAt.indexOf("T")
-                            )}
+                              FeaturedBlogs?.data[3]?.createdAt.indexOf("T")
+                            )
+                            // ||
+                            //   AdminBlog?.data[3]?.createdAt.slice(
+                            //     0,
+                            //     AdminBlog?.data[3]?.createdAt.indexOf("T")
+                            //   )
+                          }
                         </b>
                       </span>
                       <p className="mainImg_desc">
-                        {FeaturedBlogs?.data[3]?.title ||
-                          AdminBlog?.data[3]?.title}
+                        {
+                          FeaturedBlogs?.data[3]?.title
+                          // ||
+                          //   AdminBlog?.data[3]?.title
+                        }
                       </p>
+                      <span className="user_span">
+                        {" "}
+                        by{" "}
+                        <b>
+                          <User blog={FeaturedBlogs?.data[3]} />
+                        </b>
+                      </span>
                     </div>
                   </div>
-                )} 
+                )}
               </div>
               <div className="part2 section">
                 <div className="blog_cn">
@@ -499,7 +552,7 @@ export default function Home() {
                                   increaseWatch(data?.watched, data?.id)
                                 }
                               >
-                                <img
+                                <LazyLoadImage
                                   loading={"lazy"}
                                   src={data.photo}
                                   alt={data.id}
@@ -538,7 +591,7 @@ export default function Home() {
                             return (
                               <div className="sideBlog_cn" key={i}>
                                 <div className="img_Section">
-                                  <img
+                                  <LazyLoadImage
                                     loading={"lazy"}
                                     src={
                                       "https://tse1.mm.bing.net/th?id=OIP.E7432LcRmDnfzlwAN_DhEQHaEz&pid=Api&P=0&h=180"
@@ -609,7 +662,81 @@ export default function Home() {
                   <div className="about_header">
                     <h1>follow us</h1>
                   </div>
-                  <div className="about_list">
+
+                    <div className="about_list">
+                  
+                      <div className="links_cn github">
+                        <Link
+                          to={
+                            "https://github.com/MAMOUN-kamal-alshisani?tab=repositories"
+                          }
+                          className="link"
+                        >
+                          <AiFillGithub className="navbar_icon" /> GitHub
+                        </Link>
+                      </div>
+                      <div className="links_cn facebook">
+                        <Link
+                          to={"https://www.facebook.com/mamoun.bursi"}
+                          className="link"
+                        >
+                          <FaFacebook className="navbar_icon" /> Facebook
+                        </Link>
+                      </div>
+                      <div className="links_cn linkedin">
+                        <Link
+                          to={
+                            "http://linkedin.com/in/mamounalshishani-350277210"
+                          }
+                          className="link"
+                        >
+                          <AiFillLinkedin className="navbar_icon" /> LinkedIn
+                        </Link>
+                      </div>
+                      <div className="links_cn mail">
+                        <Link
+                          to={"mailto:mamoun.bursi@yahoo.com"}
+                          className="link"
+                        >
+                          <AiOutlineMail className="navbar_icon" /> Mail
+                        </Link>
+                      </div>
+                   
+                    
+                      
+                      <div className="post_cn">
+                        <p className="para">
+                          sign-up for free and enjoy access to variety of
+                          topics!
+                        </p>
+                        <div className="btn_cr">
+                          <button
+                            className="signBtn"
+                            onClick={() => navigate("/signup")}
+                          >
+                            <FaSignInAlt /> sign-up
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="post_cn">
+                        <p className="para">
+                          write up a blog and be part of the community!
+                        </p>
+                        <div className="btn_cr">
+                          <button
+                            className="signBtn"
+                            onClick={() => navigate("/post")}
+                          >
+                           <SiMicrodotblog /> post a blog! 
+                          </button>
+                        </div>
+                      </div>
+                   
+                  </div>
+
+
+                  {/* <div className="about_list">
                     <div className="about_cn">
                       <div className="links_cn">
                         <Link
@@ -669,7 +796,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
