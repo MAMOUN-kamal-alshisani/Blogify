@@ -1,4 +1,4 @@
-# Mn-Blogger
+# Blogify
 **`blogs website built using react.js for frontend (client), and node.js for backend (server)
  mn-blogger was built with the thought of spreading knowledge, awareness and awesomeness, users can share their thougts, ideas and blog about their journey in life with just a click `**
 
