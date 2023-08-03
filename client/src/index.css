@@ -3,6 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
 }
+
 button{
     cursor: pointer;
 }
@@ -15,4 +16,8 @@ p{
 
 html{
     scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
 }

@@ -7,6 +7,9 @@ import { BsCalendarDate } from "react-icons/bs";
 import { BsPersonFill } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 
+
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -84,21 +87,35 @@ export default function Home() {
   };
 
   //// display loading Skeleton before data fetching is complete
-  // if (results[1]?.isLoading ) {
-  //   return <Skeleton count={10} />;
-  // }
+  if (results[1]?.isLoading) {
+    return <Skeleton count={10} />;
+  }
 
+  // const allBoxes = document.querySelectorAll(".box");
+  // window.addEventListener("scroll", () => checkBoxes());
+  // function checkBoxes() {
+  //   const triggerBottom = (window.innerHeight / 5 * 4) ;
+  //   allBoxes.forEach(box=>{
+  //     const topBox =box.getBoundingClientRect().top
+
+  //     if(topBox < triggerBottom){
+  //       box.classList.add('show')
+  //     }else{
+  //       box.classList.remove('show')
+  //     }
+  //   })
+  // }
   return (
     <div className="home">
       <div className="home_cn">
-        <section className="row0_section0">
+        <section className="row0_section0 box">
           <div className="first_section_cn">
             <div className="text_part">
-              <h1>Be Part Of MNBlog Write And Review Diverse Topics</h1>
+              <h1>Be Part Of Blogify Write And Review Diverse Topics</h1>
             </div>
             <div className="img_part">
               <p>
-                MNBlog provides diverse categories of topics where you can read
+                Blogify provides diverse categories of topics where you can read
                 or write a topic of your interest
               </p>
             </div>
@@ -108,11 +125,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="row1_section1">
+        <section className="row1_section1 box">
           <div className="container">
             {AdminBlog.isFetched && (
               <div className="firstCard">
-                <LazyLoadImage
+                <LazyLoadImage 
                   src={AdminBlog?.data[0]?.photo}
                   alt={AdminBlog?.data[0]?.category}
                   className="mainImage img1"
@@ -198,7 +215,6 @@ export default function Home() {
                 </div>
               </div>
             )}
-
             {AdminBlog.isLoading && (
               <div className="secondCard">
                 <div className="card_Img1 cards">
@@ -249,7 +265,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="row2_section2">
+        <section className="row2_section2 box">
           <div className="section2_cn">
             <div className="container">
               <div className="part1 section">
@@ -663,140 +679,74 @@ export default function Home() {
                     <h1>follow us</h1>
                   </div>
 
-                    <div className="about_list">
-                  
-                      <div className="links_cn github">
-                        <Link
-                          to={
-                            "https://github.com/MAMOUN-kamal-alshisani?tab=repositories"
-                          }
-                          className="link"
-                        >
-                          <AiFillGithub className="navbar_icon" /> GitHub
-                        </Link>
-                      </div>
-                      <div className="links_cn facebook">
-                        <Link
-                          to={"https://www.facebook.com/mamoun.bursi"}
-                          className="link"
-                        >
-                          <FaFacebook className="navbar_icon" /> Facebook
-                        </Link>
-                      </div>
-                      <div className="links_cn linkedin">
-                        <Link
-                          to={
-                            "http://linkedin.com/in/mamounalshishani-350277210"
-                          }
-                          className="link"
-                        >
-                          <AiFillLinkedin className="navbar_icon" /> LinkedIn
-                        </Link>
-                      </div>
-                      <div className="links_cn mail">
-                        <Link
-                          to={"mailto:mamoun.bursi@yahoo.com"}
-                          className="link"
-                        >
-                          <AiOutlineMail className="navbar_icon" /> Mail
-                        </Link>
-                      </div>
-                   
-                    
-                      
-                      <div className="post_cn">
-                        <p className="para">
-                          sign-up for free and enjoy access to variety of
-                          topics!
-                        </p>
-                        <div className="btn_cr">
-                          <button
-                            className="signBtn"
-                            onClick={() => navigate("/signup")}
-                          >
-                            <FaSignInAlt /> sign-up
-                          </button>
-                        </div>
-                      </div>
+                  <div className="about_list">
+                    <div className="links_cn github">
+                      <Link
+                        to={
+                          "https://github.com/MAMOUN-kamal-alshisani?tab=repositories"
+                        }
+                        className="link"
+                        target="_blank"
+                      >
+                        <AiFillGithub className="navbar_icon" /> GitHub
+                      </Link>
+                    </div>
+                    <div className="links_cn facebook">
+                      <Link
+                        to={"https://www.facebook.com/mamoun.bursi"}
+                        className="link"
+                        target="_blank"
+                      >
+                        <FaFacebook className="navbar_icon" /> Facebook
+                      </Link>
+                    </div>
+                    <div className="links_cn linkedin">
+                      <Link
+                        to={"http://linkedin.com/in/mamounalshishani-350277210"}
+                        className="link"
+                        target="_blank"
+                      >
+                        <AiFillLinkedin className="navbar_icon" /> LinkedIn
+                      </Link>
+                    </div>
+                    <div className="links_cn mail">
+                      <Link
+                        to={"mailto:mamoun.bursi@yahoo.com"}
+                        className="link"
+                        target="_blank"
+                      >
+                        <AiOutlineMail className="navbar_icon" /> Mail
+                      </Link>
+                    </div>
 
-                      <div className="post_cn">
-                        <p className="para">
-                          write up a blog and be part of the community!
-                        </p>
-                        <div className="btn_cr">
-                          <button
-                            className="signBtn"
-                            onClick={() => navigate("/post")}
-                          >
-                           <SiMicrodotblog /> post a blog! 
-                          </button>
-                        </div>
-                      </div>
-                   
-                  </div>
-
-
-                  {/* <div className="about_list">
-                    <div className="about_cn">
-                      <div className="links_cn">
-                        <Link
-                          to={
-                            "https://github.com/MAMOUN-kamal-alshisani?tab=repositories"
-                          }
-                          className="link"
+                    <div className="post_cn">
+                      <p className="para">
+                        sign-up for free and enjoy access to variety of topics!
+                      </p>
+                      <div className="btn_cr">
+                        <button
+                          className="signBtn"
+                          onClick={() => navigate("/signup")}
                         >
-                          <AiFillGithub className="navbar_icon" /> GitHub
-                        </Link>
-                      </div>
-                      <div className="links_cn">
-                        <Link
-                          to={"mailto:mamoun.bursi@yahoo.com"}
-                          className="link"
-                        >
-                          <AiOutlineMail className="navbar_icon" /> Mail
-                        </Link>
-                      </div>
-                      <div className="links_cn">
-                        <Link
-                          to={
-                            "http://linkedin.com/in/mamounalshishani-350277210"
-                          }
-                          className="link"
-                        >
-                          <AiFillLinkedin className="navbar_icon" /> LinkedIn
-                        </Link>
-                      </div>
-
-                      <div className="post_cn">
-                        <p className="para">
-                          sign-up for free and enjoy access to variety of
-                          topics!
-                        </p>
-                        <div className="btn_cr">
-                          <button
-                            className="signBtn"
-                            onClick={() => navigate("/signup")}
-                          >
-                            sign-up <FaSignInAlt />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="post_cn">
-                        <p className="para">
-                          write up a blog and be part of the community!
-                        </p>
-                        <div className="btn_cr">
-                          <button
-                            className="signBtn"
-                            onClick={() => navigate("/post")}
-                          >
-                            post a blog! <SiMicrodotblog />
-                          </button>
-                        </div>
+                          sign-up <FaSignInAlt />
+                        </button>
                       </div>
                     </div>
-                  </div> */}
+
+                    <div className="post_cn">
+                      <p className="para">
+                        write up a blog and be part of the community!
+                      </p>
+                      <div className="btn_cr">
+                        <button
+                          className="signBtn"
+                          onClick={() => navigate("/post")}
+                        >
+                          post <SiMicrodotblog />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

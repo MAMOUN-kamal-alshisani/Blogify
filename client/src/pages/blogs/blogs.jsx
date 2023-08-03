@@ -1,26 +1,25 @@
 import "./scss/blogs.css";
-import {Button,Card} from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import Pagination from "../../components/pagination/pagination";
 import Skeleton from "react-loading-skeleton";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import User from "../../components/user/user";
 import axios from "axios";
-
 
 import { AiOutlineEye } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
-// import { AiFillLike } from "react-icons/ai";
-// import { AiOutlineLike } from "react-icons/ai";
+
 import { MdDateRange } from "react-icons/md";
-import { FcLike,FcLikePlaceholder } from "react-icons/fc";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 
 export default function Blogs() {
-  const queryClient  = useQueryClient()
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const title = document.querySelector(".title");
   const [cookies] = useCookies("user");
@@ -50,7 +49,6 @@ export default function Blogs() {
     if (userid) {
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}/liked/${userid}`;
       const res = await axios.put(url);
-
       return res.data;
     } else {
       navigate("/signin");
@@ -60,9 +58,10 @@ export default function Blogs() {
   const mutateBlogLikes = useMutation({
     mutationFn: ([id, userid]) => handleBlogLikes(id, userid),
     onSuccess: () => {
-      queryClient.invalidateQueries(["blogs"])
+      queryClient.invalidateQueries(["blogs"]);
     },
   });
+
   const [category, setCategory] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [blogs, setBlogs] = useState(data);
