@@ -62,7 +62,7 @@ export default function SignIn() {
       <div className="signin_cn">
         <div className="signin_innerCn">
           <div className="signin_header">
-            <h1>MN-Blogger</h1>
+            <h1>Blogify</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
                 Home page <AiOutlineHome />
@@ -73,7 +73,7 @@ export default function SignIn() {
           <form className="form" onSubmit={(e) => e.preventDefault()}>
             <div className="form_header">
               <h1>Sign In</h1>
-              <p>signIn now and enjoy MN-Blogger!</p>
+              <p>signIn now and enjoy Blogify!</p>
             </div>
 
             <div className="input_cn">

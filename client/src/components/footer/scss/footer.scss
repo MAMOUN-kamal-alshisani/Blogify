@@ -1,33 +1,29 @@
 @import "../../../variables/_variables.scss";
 
 .footer {
-  .footer_cn > * {
-    flex: 1;
-  }
+
   .footer_cn {
-    @include flex(flex, center, wrap, row);
-    background-color: rgb(42, 40, 40);
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    text-align: center;
     word-wrap: break-word;
-    word-break: break-word;
+    background-color: rgb(42, 40, 40);
+    padding: 15px;
+    gap: 10px;
+    line-height: 1.5rem;
     .first_section {
-      @include flex(flex, space-around, nowrap, column);
+      @include flex(flex, space-between, nowrap, column);
       padding: 10px;
+      height: 100%;
       .first_cn {
         @include flex(flex, center, nowrap, row);
-        gap: 10px;
+        gap: 40px;
         .links_cn {
-          @include flex(flex, center, nowrap, row);
-          align-items: $alignItems;
-          font-size: $xLargeFont;
-          min-width: fit-content;
-          min-height: fit-content;
-          width: 40px;
-          height: 40px;
-          border-radius: 25px;
           .link {
+            font-size: $xxLargeFont;
+            color: $primary_black_clr;
             .navbar_icon {
-              color: $primary_black_clr;
-              font-size: $xxLargeFont;
               background-color: $primary_prp_clr;
               padding: 5px;
               border-radius: 50%;
@@ -42,49 +38,46 @@
       }
       .second_cn {
         @include flex(flex, space-around, wrap, row);
-        align-items: $alignItems;
-        padding-left: 45px;
+
         .link {
-          color: $primary_wh_clr;
+          color: $primary_bg_clr;
           font-size: $largerFont;
-          text-decoration: none;
         }
       }
       .third_cn {
-        @include flex(flex, space-around, nowrap, column);
-        align-items: $alignItems;
         background-color: $primary_ltprp_clr;
-        color: $primary_wh_clr;
+        color: $primary_bg_clr;
+        margin: 5px;
         h5 {
-          padding: 5px;
+          padding: 5px 0px;
         }
       }
     }
     .second_section {
-      @include flex(flex, center, nowrap, column);
-      align-items: $alignItems;
       border-right: 2px solid #424242;
-      margin: 20px;
+      padding: 20px;
       h1 {
         color: $primary_prp_clr;
         padding-bottom: 15px;
+        font-size: $xxLargeFont;
       }
       p {
-        padding: 15px;
+        padding-top: 10px;
+        text-align: start;
+        color: $primary_bg_clr;
       }
     }
 
     .third_section {
       @include flex(flex, center, nowrap, column);
-      align-items: $alignItems;
+      height: 100%;
+      gap: 30px;
       border-left: 2px solid #424242;
-      margin: 20px;
       h1 {
         color: $primary_prp_clr;
+        font-size: xx-large;
       }
       .input_cn {
-        text-align: $alignItems;
-        padding: 15px;
         input {
           background-color: #e1e1e1;
           padding: 5px;
@@ -96,7 +89,6 @@
         .subscribeBtn {
           background-color: $primary_ltprp_clr;
           color: $primary_wh_clr;
-          cursor: $cursorPointer;
           padding: 0px 15px;
           &:hover {
             background-color: $primary_dkprp_clr;
@@ -107,10 +99,352 @@
           height: 30px;
         }
       }
-    }
-    p {
-      color: $primary_gry_clr;
-      padding-bottom: 10px;
+
+      p {
+        color: $primary_bg_clr;
+        padding-bottom: 5px;
+      }
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .footer { 
+    .footer_cn {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: repeat(3, minmax(100px, 1fr));
+      text-align: center;
+      word-wrap: break-word;
+      background-color: rgb(42, 40, 40);
+      padding: 15px;
+      gap: 0px;
+      line-height: 1.5rem;
+      .first_section {
+        @include flex(flex, space-between, nowrap, column);
+        padding: 10px;
+        height: 100%;
+        .first_cn {
+          @include flex(flex, center, wrap, row);
+          gap: 10px;
+          .links_cn {
+            .link {
+              font-size: $xxLargeFont;
+              color: $primary_black_clr;
+              .navbar_icon {
+                background-color: $primary_prp_clr;
+                padding: 5px;
+                border-radius: 50%;
+                &:hover {
+                  color: rgb(49, 45, 45);
+                  transform: scale(1.05);
+                }
+              }
+            }
+          }
+        }
+        .second_cn {
+          @include flex(flex, space-around, wrap, row);
+          .link {
+            color: $primary_bg_clr;
+            font-size: $largerFont;
+          }
+        }
+        .third_cn {
+          background-color: $primary_ltprp_clr;
+          color: $primary_bg_clr;
+          margin: 5px;
+          h5 {
+            padding: 5px 0px;
+          }
+        }
+      }
+      .second_section {
+        border-right: 2px solid #424242;
+        padding: 10px;
+        h1 {
+          color: $primary_prp_clr;
+          padding-bottom: 15px;
+          font-size: $xxLargeFont;
+        }
+        p {
+          padding-top: 10px;
+          text-align: start;
+          color: $primary_bg_clr;
+        }
+      }
+  
+      .third_section {
+        @include flex(flex, center, nowrap, column);
+        padding: 10px;
+        height: 100%;
+        gap: 30px;
+        border-left: 2px solid #424242;
+        h1 {
+          color: $primary_prp_clr;
+          font-size: xx-large;
+        }
+        .input_cn {
+          input {
+            width: 100%;
+            background-color: #e1e1e1;
+            padding: 5px;
+            &:focus {
+              background-color: $primary_wh_clr;
+              outline: $border_tr;
+            }
+          }
+          .subscribeBtn {
+            background-color: $primary_ltprp_clr;
+            color: $primary_wh_clr;
+            padding: 0px 15px;
+            width: 100%;
+            height: fit-content;
+            &:hover {
+              background-color: $primary_dkprp_clr;
+            }
+          }
+          input,
+          button {
+            height: 30px;
+          }
+        }
+  
+        p {
+          color: $primary_bg_clr;
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+@media screen and (max-width: 300px) {
+  .footer { 
+    .footer_cn {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: repeat(3, minmax(50px, 1fr));
+      text-align: center;
+      word-wrap: break-word;
+      background-color: rgb(42, 40, 40);
+      padding: 15px;
+      gap: 0px;
+      line-height: 1.5rem;
+      .first_section {
+        @include flex(flex, space-between, nowrap, column);
+        padding: 10px;
+        height: 100%;
+        .first_cn {
+          @include flex(flex, center, wrap, row);
+          gap: 10px;
+          .links_cn {
+            .link {
+              font-size: $xxLargeFont;
+              color: $primary_black_clr;
+              .navbar_icon {
+                background-color: $primary_prp_clr;
+                padding: 5px;
+                border-radius: 50%;
+                &:hover {
+                  color: rgb(49, 45, 45);
+                  transform: scale(1.05);
+                }
+              }
+            }
+          }
+        }
+        .second_cn {
+          @include flex(flex, space-around, wrap, row);
+          .link {
+            color: $primary_bg_clr;
+            font-size: $largerFont;
+          }
+        }
+        .third_cn {
+          background-color: $primary_ltprp_clr;
+          color: $primary_bg_clr;
+          margin: 5px;
+          h5 {
+            padding: 5px 0px;
+          }
+        }
+      }
+      .second_section {
+        border-right: 2px solid #424242;
+        padding: 10px;
+        h1 {
+          color: $primary_prp_clr;
+          padding-bottom: 15px;
+          font-size: $mediumFont;
+        }
+        p {
+          // padding: 15px;
+          padding-top: 10px;
+          text-align: start;
+          color: $primary_bg_clr;
+        }
+      }
+  
+      .third_section {
+        @include flex(flex, flex-start, nowrap, column);
+        padding: 10px;
+        height: 100%;
+        gap: 30px;
+        border-left: 2px solid #424242;
+        h1 {
+          color: $primary_prp_clr;
+          font-size:$mediumFont;
+        }
+        .input_cn {
+          input {
+            width: 100%;
+            background-color: #e1e1e1;
+            padding: 5px;
+            &:focus {
+              background-color: $primary_wh_clr;
+              outline: $border_tr;
+            }
+          }
+          .subscribeBtn {
+            background-color: $primary_ltprp_clr;
+            color: $primary_wh_clr;
+            padding: 0px 15px;
+            width: 100%;
+            height: fit-content;
+            &:hover {
+              background-color: $primary_dkprp_clr;
+            }
+          }
+          input,
+          button {
+            height: 30px;
+          }
+        }
+  
+        p {
+          color: $primary_bg_clr;
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+
+}
+// .footer {
+//   .footer_cn > * {
+//     flex: 1;
+//   }
+//   .footer_cn {
+//     @include flex(flex, center, wrap, row);
+//     background-color: rgb(42, 40, 40);
+//     word-wrap: break-word;
+//     word-break: break-word;
+//     .first_section {
+//       @include flex(flex, space-around, nowrap, column);
+//       padding: 10px;
+//       .first_cn {
+//         @include flex(flex, center, nowrap, row);
+//         gap: 10px;
+//         .links_cn {
+//           @include flex(flex, center, nowrap, row);
+//           align-items: $alignItems;
+//           font-size: $xLargeFont;
+//           min-width: fit-content;
+//           min-height: fit-content;
+//           width: 40px;
+//           height: 40px;
+//           border-radius: 25px;
+//           .link {
+//             .navbar_icon {
+//               color: $primary_black_clr;
+//               font-size: $xxLargeFont;
+//               background-color: $primary_prp_clr;
+//               padding: 5px;
+//               border-radius: 50%;
+
+//               &:hover {
+//                 color: rgb(49, 45, 45);
+//                 transform: scale(1.05);
+//               }
+//             }
+//           }
+//         }
+//       }
+//       .second_cn {
+//         @include flex(flex, space-around, wrap, row);
+//         align-items: $alignItems;
+//         padding-left: 45px;
+//         .link {
+//           color: $primary_wh_clr;
+//           font-size: $largerFont;
+//           text-decoration: none;
+//         }
+//       }
+//       .third_cn {
+//         @include flex(flex, space-around, nowrap, column);
+//         align-items: $alignItems;
+//         background-color: $primary_ltprp_clr;
+//         color: $primary_wh_clr;
+//         h5 {
+//           padding: 5px;
+//         }
+//       }
+//     }
+//     .second_section {
+//       @include flex(flex, center, nowrap, column);
+//       align-items: $alignItems;
+//       border-right: 2px solid #424242;
+//       margin: 20px;
+//       h1 {
+//         color: $primary_prp_clr;
+//         padding-bottom: 15px;
+//       }
+//       p {
+//         padding: 15px;
+//       }
+//     }
+
+//     .third_section {
+//       @include flex(flex, center, nowrap, column);
+//       align-items: $alignItems;
+//       border-left: 2px solid #424242;
+//       margin: 20px;
+//       h1 {
+//         color: $primary_prp_clr;
+//       }
+//       .input_cn {
+//         text-align: $alignItems;
+//         padding: 15px;
+//         input {
+//           background-color: #e1e1e1;
+//           padding: 5px;
+//           &:focus {
+//             background-color: $primary_wh_clr;
+//             outline: $border_tr;
+//           }
+//         }
+//         .subscribeBtn {
+//           background-color: $primary_ltprp_clr;
+//           color: $primary_wh_clr;
+//           cursor: $cursorPointer;
+//           padding: 0px 15px;
+//           &:hover {
+//             background-color: $primary_dkprp_clr;
+//           }
+//         }
+//         input,
+//         button {
+//           height: 30px;
+//         }
+//       }
+//     }
+//     p {
+//       color: $primary_gry_clr;
+//       padding-bottom: 10px;
+//     }
+//   }
+// }
