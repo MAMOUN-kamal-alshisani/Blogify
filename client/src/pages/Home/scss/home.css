@@ -338,7 +338,7 @@
   flex-direction: row;
   border-bottom: 2px solid #9c27b0;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .home .home_cn .row2_section2 .section2_cn .container .part2 .blog_cn .header_cn2 h1:first-child {
   font-size: larger;
@@ -889,7 +889,7 @@
     flex-direction: row;
     border-bottom: 2px solid #9c27b0;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   .home .home_cn .row2_section2 .section2_cn .container .part2 .blog_cn .header_cn2 h1:first-child {
     font-size: larger;

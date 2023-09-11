@@ -2,7 +2,7 @@
 
 .signup {
   @include flex(flex, center, nowrap, column);
-  background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+  background: url("../../../assets/sign_ground.jpg");
   background-position: $alignItems;
   background-size: cover;
   width: 100vw;
@@ -179,7 +179,7 @@
 @media screen and (max-width: 500px) {
   .signup {
     @include flex(flex, center, nowrap, column);
-    background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+    background: url("../../../assets/sign_ground.jpg");
     background-position: $alignItems;
     background-size: cover;
     width: 100vw;
@@ -362,7 +362,7 @@
 @media screen and (max-width: 350px) {
   .signup {
     @include flex(flex, center, nowrap, column);
-    background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+    background: url("../../../assets/sign_ground.jpg");
     background-position: $alignItems;
     background-size: cover;
     width: 100vw;
