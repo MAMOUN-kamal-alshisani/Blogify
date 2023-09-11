@@ -20,23 +20,29 @@
 //   res.status(201).json(req.file.filename);
 // });
 import express from 'express'
-import {
-  uploadBlogPic,
-  uploadProfilePic,
-  handleUserBlogUpload,
-  handleUserPictureUpload,
-} from "../controllers/uploads.js";
+// import {
+//   uploadBlogPic,
+//   uploadProfilePic,
+//   handleUserBlogUpload,
+//   handleUserPictureUpload,
+// } from "../controllers/uploads.js";
 
 export const uploadRoute =express.Router()
 
-uploadRoute.post(
-  "/api/upload/profile",
-  uploadProfilePic.single("file"),
-  handleUserPictureUpload
-);
+// uploadRoute.post(
+//   "/api/upload/profile",
+//   uploadProfilePic.single("file"),
+//   handleUserPictureUpload
+// );
 
-uploadRoute.post(
-  "/api/upload/blog",
-  uploadBlogPic.single("file"),
-  handleUserBlogUpload
-);
+// uploadRoute.post(
+//   "/api/upload/blog",
+//   uploadBlogPic.single("file"),
+//   handleUserBlogUpload
+// );
+
+uploadRoute.get('/api/upload/blog',(res,req)=>{
+
+
+  res.status(404).send('all goood')
+})

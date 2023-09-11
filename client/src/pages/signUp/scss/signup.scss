@@ -25,6 +25,7 @@
         padding: 10px;
         h1 {
           color: $primary_bg_clr;
+        
         }
         .link_cn {
           .link {
@@ -169,6 +170,365 @@
         p {
           color: $primary_wh_clr;
           font-size: $largeFont;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .signup {
+    @include flex(flex, center, nowrap, column);
+    background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+    background-position: $alignItems;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    .signup_cn {
+      @include flex(flex, center, nowrap, column);
+      align-items: $alignItems;
+      .signup_innerCn {
+        align-items: $alignItems;
+        min-width: max-content;
+        width: 75%;
+        min-height: fit-content;
+        backdrop-filter: blur(10px);
+        background-color: rgb(0 0 0 / 75%);
+        width: 50vw;
+        .signup_header {
+          @include flex(flex, space-between, nowrap, row);
+          align-items: $alignItems;
+          width: 100%;
+          padding: 10px;
+          h1 {
+            color: $primary_bg_clr;
+            font-size: 1rem
+          }
+          .link_cn {
+            .link {
+              @include flex(flex, unset, nowrap, row);
+              color: $primary_wh_clr;
+              align-items: $alignItems;
+              transition: all ease-in-out 1s;
+              text-decoration: none;
+              gap: 5px;
+              &:hover {
+                transform: scale(1.01);
+              }
+            }
+          }
+        }
+        .form {
+          @include flex(flex, center, nowrap, column);
+          align-items: $alignItems;
+          color: $primary_wh_clr;
+          padding: 10px;
+          .form_header {
+            padding-bottom: 60px;
+            padding-top: 25px;
+            h1 {
+              color: $primary_prp_clr;
+              text-align: $alignItems;
+              margin-bottom: 10px;
+              font-size: 3rem;
+            }
+            p {
+              color: $border_wh_clr;
+            }
+          }
+          .input_cn {
+            @include flex(flex, center, nowrap, column);
+            position: $relative;
+            gap: 20px;
+            margin-bottom: 10px;
+            input {
+              background-color: inherit;
+              border: $border_tr;
+              font-size: $largeFont;
+              color: $primary_wh_clr;
+              border-bottom: 1px solid #9e9e9e;
+              // max-width: 200px;
+              width:300px ;
+              min-width: 150px;
+              height: 35px;
+              padding: 5px;
+              &::selection {
+                outline: $border_tr;
+                background-color: #6a7886;
+              }
+              &:focus {
+                outline: $border_tr;
+                border-bottom: 1px solid $primary_prp_clr;
+              }
+              &:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 0.602) inset; /* Change the color to your own background color */
+                -webkit-text-fill-color: red;
+                background-color: #3d95ec;
+              }
+            }
+            .icon {
+              color: grey;
+              font-size: $largeFont;
+              position: $absolute;
+              right: 0;
+              top: 7px;
+            }
+            .visible_icon {
+              cursor: pointer;
+              &:hover {
+                color: rgb(252, 246, 246);
+              }
+            }
+            .err {
+              font-size: $smallFont;
+              color: red;
+            }
+          }
+          .sign_btn_cn {
+            padding-top: 10px;
+            .signup_btn {
+              @include flex(flex, center, nowrap, row);
+              align-items: $alignItems;
+              background-color: $primary_prp_clr;
+              color: $primary_wh_clr;
+              border: $border_tr;
+              font-size: $mediumFont;
+              // cursor: $cursorPointer;
+              box-shadow: 0px 0px 2px 1px $primary_gry_clr;
+              gap: 4px;
+              width: 120px;
+              height: 40px;
+              &:hover {
+                background-color: #b52dcd;
+              }
+              &:disabled {
+                background-color: #4d0f58;
+              }
+  
+              .spinnerIcon {
+                font-size: $mediumFont;
+  
+                animation: spin 5s;
+              }
+              @keyframes spin {
+                0% {
+                  rotate: (0);
+                }
+                25% {
+                  rotate: (90deg);
+                }
+                50% {
+                  rotate: (180deg);
+                }
+                90% {
+                  rotate: (360deg);
+                }
+                100% {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+        .signup_footer {
+          @include flex(flex, center, nowrap, column);
+          align-items: $alignItems;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          .link {
+            font-size: $mediumFont;
+            transition: all ease-in-out 1s;
+            text-decoration: none;
+            color: #9e9e9e;
+            letter-spacing: 1px;
+            &:hover {
+              color: $primary_wh_clr;
+              transform: scale(1.05);
+            }
+          }
+          p {
+            color: $primary_wh_clr;
+            font-size: $mediumFont;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+@media screen and (max-width: 350px) {
+  .signup {
+    @include flex(flex, center, nowrap, column);
+    background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+    background-position: $alignItems;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    .signup_cn {
+      @include flex(flex, center, nowrap, column);
+      align-items: $alignItems;
+      .signup_innerCn {
+        min-width: max-content;
+        width: 50%;
+        min-height: fit-content;
+        backdrop-filter: blur(10px);
+        background-color: rgb(0 0 0 / 75%);
+        // width: 50vw;
+        .signup_header {
+          @include flex(flex, space-between, nowrap, row);
+          align-items: $alignItems;
+          width: 100%;
+          padding: 10px;
+          h1 {
+            color: $primary_bg_clr;
+            font-size: 1rem
+          }
+          .link_cn {
+            .link {
+              @include flex(flex, unset, nowrap, row);
+              color: $primary_wh_clr;
+              align-items: $alignItems;
+              transition: all ease-in-out 1s;
+              gap: 5px;
+              &:hover {
+                transform: scale(1.01);
+              }
+            }
+          }
+        }
+        .form {
+          @include flex(flex, center, nowrap, column);
+          align-items: $alignItems;
+          color: $primary_wh_clr;
+          padding: 10px;
+          .form_header {
+            padding-bottom: 60px;
+            padding-top: 25px;
+            h1 {
+              color: $primary_prp_clr;
+              margin-bottom: 10px;
+              font-size: 3rem;
+            }
+            p {
+              color: $border_wh_clr;
+            }
+          }
+          .input_cn {
+            @include flex(flex, center, nowrap, column);
+            position: $relative;
+            gap: 20px;
+            margin-bottom: 10px;
+            input {
+              border: $border_tr;
+              font-size: $mediumFont;
+              color: $primary_wh_clr;
+              background-color: inherit;
+              border-bottom: 1px solid #9e9e9e;
+              // max-width: 200px;
+              width:275px ;
+              min-width: 150px;
+              height: 35px;
+              padding: 5px;
+              &::selection {
+                outline: $border_tr;
+                background-color: #6a7886;
+              }
+              &:focus {
+                outline: $border_tr;
+                border-bottom: 1px solid $primary_prp_clr;
+              }
+              &:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 0.602) inset; /* Change the color to your own background color */
+                -webkit-text-fill-color: red;
+                background-color: #3d95ec;
+              }
+            }
+            .icon {
+              color: grey;
+              font-size: $largeFont;
+              position: $absolute;
+              right: 0;
+              top: 7px;
+            }
+            .visible_icon {
+              cursor: pointer;
+              &:hover {
+                color: rgb(252, 246, 246);
+              }
+            }
+            .err {
+              font-size: $smallFont;
+              color: red;
+            }
+          }
+          .sign_btn_cn {
+            padding-top: 10px;
+            .signup_btn {
+              @include flex(flex, center, nowrap, row);
+              align-items: $alignItems;
+              background-color: $primary_prp_clr;
+              color: $primary_wh_clr;
+              border: $border_tr;
+              font-size: $mediumFont;
+              box-shadow: 0px 0px 2px 1px $primary_gry_clr;
+              gap: 4px;
+              width: 100px;
+              height: 40px;
+              &:hover {
+                background-color: #b52dcd;
+              }
+              &:disabled {
+                background-color: #4d0f58;
+              }
+  
+              .spinnerIcon {
+                font-size: $mediumFont;
+  
+                animation: spin 5s;
+              }
+              @keyframes spin {
+                0% {
+                  rotate: (0);
+                }
+                25% {
+                  rotate: (90deg);
+                }
+                50% {
+                  rotate: (180deg);
+                }
+                90% {
+                  rotate: (360deg);
+                }
+                100% {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+        .signup_footer {
+          @include flex(flex, center, nowrap, column);
+          align-items: $alignItems;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          .link {
+            font-size: $mediumFont;
+            transition: all ease-in-out 1s;
+            text-decoration: none;
+            color: #9e9e9e;
+            letter-spacing: 1px;
+            &:hover {
+              color: $primary_wh_clr;
+              transform: scale(1.05);
+            }
+          }
+          p {
+            color: $primary_wh_clr;
+            font-size: $mediumFont;
+          }
         }
       }
     }

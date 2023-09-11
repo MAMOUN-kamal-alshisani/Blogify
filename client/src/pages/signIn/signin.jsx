@@ -65,7 +65,7 @@ export default function SignIn() {
             <h1>Blogify</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
-                Home page <AiOutlineHome />
+                <AiOutlineHome />
               </Link>
             </div>
           </div>

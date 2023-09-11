@@ -24,14 +24,16 @@ export const getCategoryCount = async (req, res) => {
   }
 };
 
-
 export const getUserBlogsbyID = async (req, res) => {
   try {
     const Id = req.params.id;
     const blog = await Blogs.findOne({ where: { id: Id } });
     if (!blog)
       return res.status(404).send("no blog with specified (id) is found! ");
-    const blogs = await Blogs.findAll({ where: { UserId: blog.UserId } });
+    const blogs = await Blogs.findAll({
+      where: { UserId: blog.UserId },
+      limit: 5,
+    });
     res.status(200).send(blogs);
   } catch (err) {
     res.status(500).send(err);
@@ -61,18 +63,17 @@ export const getBlogsByLatest = async (req, res) => {
       raw: true,
       order: [["createdAt", "DESC"]],
       limit: 5,
-      where: { UserId: { [Op.ne]: adminUser.id , } },
+      where: { UserId: { [Op.ne]: adminUser.id } },
     });
     // const users = await User.findAll({ attributes: { exclude: ["Password"] } });
     //  const { Password, ...details } = users.toJSON();
-    // , users 
+    // , users
     // console.log(details);
-    res.status(200).json({ blogs});
+    res.status(200).json({ blogs });
   } catch (err) {
     res.status(500).send(err);
   }
 };
-
 
 /// return most recent blogs
 export const getBlogsByRecent = async (req, res) => {
@@ -106,9 +107,9 @@ export const getFeaturedBlogs = async (req, res) => {
     const blogs = await Blogs.findAll({
       where: { featured: true },
     });
-    if(blogs == null || undefined || '')return res.status(200).send('no featured blogs found');
+    if (blogs == null || undefined || "")
+      return res.status(200).send("no featured blogs found");
     res.status(200).send(blogs);
-
   } catch (err) {
     res.status(500).send(err);
   }
@@ -135,7 +136,7 @@ export const handleBlogLike = async (req, res) => {
     const UserId = req.params.UserId;
     const id = req.params.id;
     const blogs = await Blogs.findOne({
-      where: { id: id }
+      where: { id: id },
     });
     // console.log(blogs);
     // let liked =  blogs.liked.find((int)=> int == 15)
@@ -143,16 +144,14 @@ export const handleBlogLike = async (req, res) => {
     // console.log( blogs.liked.filter(ele=> ele !== parseInt(UserId)), 'sadsasadasdasdasdasdasdasdassssssssssssssssssssssss');
 
     if (liked) {
-      let removeLike = blogs.liked.filter(
-        (ele) => ele !== parseInt(UserId)
-      );
-      await Blogs.update({ liked: removeLike },{where:{id:id}});
+      let removeLike = blogs.liked.filter((ele) => ele !== parseInt(UserId));
+      await Blogs.update({ liked: removeLike }, { where: { id: id } });
       res.status(200).send("blog unliked successfully!");
     } else {
-      let userLike =  blogs.liked
-        userLike.push(parseInt(UserId));
+      let userLike = blogs.liked;
+      userLike.push(parseInt(UserId));
       // console.log('sfafafasfasfasfasfasfasf',userLike);
-      await Blogs.update({ liked: userLike },{where:{id:id}});
+      await Blogs.update({ liked: userLike }, { where: { id: id } });
       res.status(200).send("blog liked successfully!");
     }
   } catch (err) {
@@ -164,6 +163,7 @@ export const getBlog = async (req, res) => {
     const id = req.params.id;
     const blogs = await Blogs.findOne({ where: { id: id } });
     res.status(200).send(blogs);
+    console.log(blogs);
   } catch (err) {
     res.status(500).send(err);
   }

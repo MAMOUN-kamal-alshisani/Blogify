@@ -138,4 +138,148 @@
 }
 .Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn:disabled {
   background-color: #250f4a;
+}
+
+@media screen and (max-width: 600px) {
+  .Post {
+    margin-top: 25px;
+    margin-bottom: 155px;
+    text-transform: none;
+  }
+  .Post .successfull_upload_cn {
+    text-align: center;
+    color: #9c27b0;
+    background-color: rgba(200, 198, 198, 0.348);
+    font-size: large;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .Post .Post_cn {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .Post .Post_cn .TextCn1 {
+    max-width: 65%;
+    min-width: 54%;
+    margin-bottom: 80px;
+  }
+  .Post .Post_cn .TextCn1 .titleContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 1px 0px grey;
+  }
+  .Post .Post_cn .TextCn1 .titleContainer input {
+    height: 35px;
+    padding: 5px;
+    border: 1px solid rgb(184, 184, 184);
+    outline: transparent;
+    font-size: large;
+  }
+  .Post .Post_cn .TextCn1 .editeContainer .quill {
+    height: 300px;
+  }
+  .Post .Post_cn .TextCn1 .editeContainer .quill .ql-toolbar {
+    box-shadow: 0px 0px 1px 0px grey;
+  }
+  .Post .Post_cn .TextCn1 .editeContainer .quill .ql-container {
+    box-shadow: 0px 0px 1px 0px grey;
+  }
+  .Post .Post_cn .TextCn1 .editeContainer .quill .ql-container p {
+    text-transform: none;
+  }
+  .Post .Post_cn .TextCn2 {
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    width: 20%;
+    display: flex;
+    justify-content: unset;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .Post .Post_cn .TextCn2 .categoryContainer {
+    display: flex;
+    justify-content: unset;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    background-color: rgba(158, 158, 158, 0.09);
+    box-shadow: 0px 0px 1px 0px grey;
+    padding: 10px;
+    gap: 10px;
+  }
+  .Post .Post_cn .TextCn2 .categoryContainer .inputContainer {
+    display: flex;
+    justify-content: unset;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+  .Post .Post_cn .TextCn2 .categoryContainer .inputContainer input {
+    cursor: pointer;
+  }
+  .Post .Post_cn .TextCn2 .categoryContainer .inputContainer label {
+    padding-left: 10px;
+    color: #7541ce;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer {
+    display: flex;
+    justify-content: unset;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    background-color: rgba(158, 158, 158, 0.09);
+    gap: 10px;
+    box-shadow: 0px 0px 1px 0px grey;
+    padding: 10px;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer span {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer label {
+    text-decoration: underline;
+    color: grey;
+    cursor: pointer;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer label:hover {
+    color: black;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer .publishBtn {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer .publishBtn button:first-child {
+    height: 30px;
+    padding: 5px;
+    box-shadow: 0px 0px 1px 0px grey;
+    color: #7541ce;
+    cursor: pointer;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer .publishBtn button:first-child:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 1px 0px rgb(183, 182, 182);
+  }
+  .Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn {
+    height: 30px;
+    width: 70px;
+    padding: 5px;
+    background-color: #673ab7;
+    border: transparent;
+    color: white;
+    cursor: pointer;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn:hover {
+    background-color: #794aca;
+  }
+  .Post .Post_cn .TextCn2 .publishContainer .publishBtn .update_btn:disabled {
+    background-color: #250f4a;
+  }
 }/*# sourceMappingURL=post.css.map */

@@ -129,3 +129,141 @@
     }
   }
 }
+
+
+
+@media screen and (max-width: 600px) {
+
+
+  .Post {
+    margin-top: 25px;
+    margin-bottom: 155px;
+    text-transform: none;
+    .successfull_upload_cn {
+      text-align: $alignItems;
+      color: $primary_prp_clr;
+      background-color: rgba(200, 198, 198, 0.348);
+      font-size: $largeFont;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .Post_cn {
+      @include flex(flex, center, wrap, row);
+      gap: 20px;
+  
+      .TextCn1 {
+        max-width: 65%;
+        min-width: 54%;
+        margin-bottom: 80px;
+        .titleContainer {
+          @include flex(flex, center, nowrap, column);
+          margin-bottom: 20px;
+          box-shadow: $grey_boxShadow;
+  
+          input {
+            height: 35px;
+            padding: 5px;
+            border: 1px solid rgb(184, 184, 184);
+            outline: $border_tr;
+            font-size: $largeFont;
+          }
+        }
+        .editeContainer {
+          .quill {
+            height: 300px;
+  
+            .ql-toolbar {
+              box-shadow: $grey_boxShadow;
+            }
+            .ql-container {
+              box-shadow: $grey_boxShadow;
+              p {
+                text-transform: none;
+              }
+            }
+          }
+        }
+      }
+  
+      .TextCn2 {
+        min-width: fit-content;
+        width: 20%;
+        @include flex(flex, unset, nowrap, column);
+        gap: 20px;
+        .categoryContainer {
+          @include flex(flex, unset, nowrap, column);
+          background-color: rgb(158 158 158 / 9%);
+          box-shadow: $grey_boxShadow;
+          padding: 10px;
+          gap: 10px;
+          .inputContainer {
+            @include flex(flex, unset, nowrap, row);
+  
+            input {
+              cursor: $cursorPointer;
+            }
+            label {
+              padding-left: 10px;
+              color: $primary_dkprp_clr;
+            }
+          }
+        }
+        .publishContainer {
+          @include flex(flex, unset, nowrap, column);
+          background-color: rgb(158 158 158 / 9%);
+          gap: 10px;
+          box-shadow: $grey_boxShadow;
+          padding: 10px;
+  
+          span {
+            @include flex(flex, space-between, nowrap, row);
+          }
+          label {
+            text-decoration: underline;
+            color: $primary_gry_clr;
+            cursor: $cursorPointer;
+  
+            &:hover {
+              color: $primary_black_clr;
+            }
+          }
+          .publishBtn {
+            @include flex(flex, space-between, nowrap, row);
+  
+            button:first-child {
+              height: 30px;
+              padding: 5px;
+              box-shadow: $grey_boxShadow;
+              color: $primary_dkprp_clr;
+              cursor: $cursorPointer;
+  
+              &:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 0px 1px 0px rgb(183, 182, 182);
+              }
+            }
+  
+            .update_btn {
+              height: 30px;
+              width: 70px;
+              padding: 5px;
+              background-color: $primary_ltprp_clr;
+              border: $border_tr;
+              color: $primary_wh_clr;
+              cursor: $cursorPointer;
+  
+              &:hover {
+                background-color: #794aca;
+              }
+              &:disabled {
+                background-color: #250f4a;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+}
