@@ -26,17 +26,15 @@ export default function Post() {
       console.log(err);
     }
   };
-
   const handleFile = async () => {
     try {
-      const File = await upload();
+      // const File = await upload();
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
       const res = await axios.post(url, {
         title: title,
         desc: desc,
         category: category,
         watched: "12",
-        photo: File.downloadURL,
       });
 
       return res.data;
@@ -44,6 +42,23 @@ export default function Post() {
       console.log(err);
     }
   };
+  // const handleFile = async () => {
+  //   try {
+  //     const File = await upload();
+  //     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
+  //     const res = await axios.post(url, {
+  //       title: title,
+  //       desc: desc,
+  //       category: category,
+  //       watched: "12",
+  //       photo: File.downloadURL,
+  //     });
+
+  //     return res.data;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   const { mutate, isLoading } = useMutation({
     mutationKey: ["blog_upload"],
     mutationFn: handleFile,

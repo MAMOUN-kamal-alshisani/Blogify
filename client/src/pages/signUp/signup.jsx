@@ -10,7 +10,6 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { ImSpinner2 } from "react-icons/im";
 import { AiOutlineHome } from "react-icons/ai";
 
-
 import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -39,7 +38,7 @@ export default function SignUp() {
     const res = await axios.post(url, formInput);
   };
 
-  const { isLoading, mutate, error} = useMutation({
+  const { isLoading, mutate, error } = useMutation({
     mutationFn: signUp,
     onError: (error) => {
       //  console.log(error.response.data[0].message);
@@ -70,9 +69,9 @@ export default function SignUp() {
       EmailErr.textContent = "";
       PassErr.textContent = "";
     },
-    onSuccess:()=>{
-      navigate('/signin')
-    }
+    onSuccess: () => {
+      navigate("/signin");
+    },
   });
   console.log(error);
   const handleChange = (e) => {
@@ -106,10 +105,10 @@ export default function SignUp() {
       <div className="signup_cn">
         <div className="signup_innerCn">
           <div className="signup_header">
-            <h1>Blogify</h1>
             <div className="link_cn">
               <Link to={"/"} className="link">
-                Home page <AiOutlineHome />
+            <h1>Blogify</h1>
+              <AiOutlineHome />
               </Link>
             </div>
           </div>

@@ -12,8 +12,7 @@
     @include flex(flex, center, nowrap, column);
     align-items: $alignItems;
     .signin_innerCn {
-      align-items: $alignItems;
-      min-width: fit-content;
+      min-width: 300px;
       min-height: fit-content;
       background-color: rgb(0 0 0 / 75%);
       backdrop-filter: blur(10px);
@@ -167,4 +166,181 @@
       }
     }
   }
+}
+
+
+@media screen and (max-width: 450px) {
+
+
+  .signin {
+    @include flex(flex, center, nowrap, column);
+    background: url("https://msl-ltd.co.uk/wp-content/uploads/2016/10/shutterstock_451991974-1.jpg");
+    background-position: $alignItems;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    .signin_cn {
+      @include flex(flex, center, nowrap, column);
+      align-items: $alignItems;
+      .signin_innerCn {
+        // min-width:50vw;
+        // width: 450px;
+
+        min-height: fit-content;
+        // height: 85vh;
+        width: 300px;
+        background-color: rgb(0 0 0 / 75%);
+        backdrop-filter: blur(10px);
+        // width: 50vw;
+        .signin_header {
+          @include flex(flex, space-between, nowrap, row);
+          align-items: $alignItems;
+          width: 100%;
+          padding: 10px;
+          .link_cn {
+            .link {
+              @include flex(flex, unset, nowrap, row);
+              color: $primary_wh_clr;
+              align-items: $alignItems;
+              text-decoration: none;
+              gap: 5px;
+              &:hover {
+                transform: scale(1.05);
+              }
+            }
+          }
+          h1 {
+            color: $primary_bg_clr;
+          }
+        }
+        .form {
+          @include flex(flex, center, nowrap, column);
+          align-items: $alignItems;
+          padding: 10px;
+          .form_header {
+            padding-bottom: 60px;
+            padding-top: 25px;
+            h1 {
+              color: $primary_prp_clr;
+              margin-bottom: 10px;
+              font-size: 3rem;
+            }
+            p {
+              color: $primary_wh_clr;
+            }
+          }
+          .input_cn {
+            @include flex(flex, center, nowrap, column);
+            position: $relative;
+            gap: 20px;
+            input {
+              border: $border_tr;
+              color: $primary_wh_clr;
+              font-size: $mediumFont;
+              border-bottom: 1px solid #9e9e9e;
+              background-color: inherit;
+              width: 200px;
+              height: 35px;
+              padding: 5px;
+              &::selection {
+                outline: $border_tr;
+                background-color: #6a7886;
+              }
+              &:focus {
+                outline: $border_tr;
+                border-bottom: 1px solid $primary_prp_clr;
+              }
+              &:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 0.602) inset; /* Change the color to your own background color */
+                -webkit-text-fill-color: red;
+                background-color: #3d95ec;
+              }
+            }
+            .icon {
+              position: $absolute;
+              font-size: $largeFont;
+              color: $primary_gry_clr;
+              right: 0;
+              top: 7px;
+            }
+            .visible_icon {
+              cursor: pointer;
+              &:hover {
+                color: rgb(252, 246, 246);
+              }
+            }
+            .err {
+              font-size: $smallFont;
+              color: red;
+            }
+          }
+          .sign_btn_cn {
+            margin-top: 45px;
+            .signin_btn {
+              @include flex(flex, center, nowrap, row);
+              align-items: $alignItems;
+              background-color: $primary_prp_clr;
+              color: $primary_wh_clr;
+              border: $border_tr;
+              font-size: $mediumFont;
+              cursor: $cursorPointer;
+              box-shadow: 0px 0px 2px 1px $primary_gry_clr;
+              gap: 4px;
+              width: 120px;
+              height: 40px;
+              &:hover {
+                background-color: #b52dcd;
+              }
+              &:disabled {
+                background-color: #4d0f58;
+              }
+              .spinnerIcon {
+                animation: spin 5s;
+              }
+              @keyframes spin {
+                0% {
+                  rotate: (0);
+                }
+                25% {
+                  rotate: (90deg);
+                }
+                50% {
+                  rotate: (180deg);
+                }
+                90% {
+                  rotate: (360deg);
+                }
+                100% {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+        .signin_footer {
+          @include flex(flex, center, nowrap, column);
+          align-items: $alignItems;
+          padding-top: 20px;
+          .link {
+            font-size: $largerFont;
+            transition: all ease-in-out 1s;
+            color: #9e9e9e;
+            text-decoration: none;
+            letter-spacing: 1px;
+            &:hover {
+              color: $primary_wh_clr;
+              transform: scale(1.05);
+            }
+          }
+          p {
+            color: $primary_wh_clr;
+            font-size: $largeFont;
+          }
+        }
+      }
+    }
+  }
+  
+
+
 }

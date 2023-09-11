@@ -110,6 +110,7 @@
   height: 100%;
 }
 .home .home_cn .row1_section1 .container .firstCard .img_textarea {
+  width: 100%;
   position: absolute;
   bottom: 0px;
   padding: 15px;
@@ -142,6 +143,7 @@
   background-color: black;
 }
 .home .home_cn .row1_section1 .container .secondCard .card_Img1 .img_textarea {
+  width: 100%;
   position: absolute;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
   bottom: 0px;
@@ -662,6 +664,7 @@
   }
   .home .home_cn .row1_section1 .container .firstCard .img_textarea {
     position: absolute;
+    width: 100%;
     bottom: 0px;
     padding: 15px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
@@ -693,6 +696,7 @@
     background-color: black;
   }
   .home .home_cn .row1_section1 .container .secondCard .card_Img1 .img_textarea {
+    width: 100%;
     position: absolute;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     bottom: 0px;
@@ -1211,7 +1215,8 @@
   }
   .home .home_cn .row1_section1 .container .firstCard .img_textarea {
     position: absolute;
-    bottom: 0px;
+    width: 100%;
+    bottom: 3px;
     padding: 15px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
   }
@@ -1242,9 +1247,10 @@
     background-color: black;
   }
   .home .home_cn .row1_section1 .container .secondCard .card_Img1 .img_textarea {
+    width: 100%;
     position: absolute;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-    bottom: 0px;
+    bottom: 3px;
     padding: 15px;
   }
   .home .home_cn .row1_section1 .container .secondCard .card_Img2 {
@@ -1434,7 +1440,7 @@
     flex-direction: row;
     border-bottom: 2px solid #9c27b0;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   .home .home_cn .row2_section2 .section2_cn .container .part2 .blog_cn .header_cn2 h1:first-child {
     font-size: larger;
