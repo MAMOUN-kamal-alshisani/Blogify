@@ -270,12 +270,13 @@
   }
   .footer .footer_cn .first_section .second_cn .link {
     color: #f1f1f1;
-    font-size: larger;
+    font-size: small;
   }
   .footer .footer_cn .first_section .third_cn {
     background-color: #673ab7;
     color: #f1f1f1;
     margin: 5px;
+    font-size: small;
   }
   .footer .footer_cn .first_section .third_cn h5 {
     padding: 5px 0px;
@@ -287,9 +288,10 @@
   .footer .footer_cn .second_section h1 {
     color: #9c27b0;
     padding-bottom: 15px;
-    font-size: medium;
+    font-size: small;
   }
   .footer .footer_cn .second_section p {
+    font-size: small;
     padding-top: 10px;
     text-align: start;
     color: #f1f1f1;
@@ -306,7 +308,7 @@
   }
   .footer .footer_cn .third_section h1 {
     color: #9c27b0;
-    font-size: medium;
+    font-size: small;
   }
   .footer .footer_cn .third_section .input_cn input {
     width: 100%;
