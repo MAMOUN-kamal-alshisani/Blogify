@@ -27,7 +27,7 @@ import { FiDelete } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 
 export default function Profile() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   // const [profilePictureData,setProfilePictureData] = useState(null)
   const [navBtn, setNavBtn] = useState("content");
@@ -217,10 +217,10 @@ export default function Profile() {
     // mutationKey: ["formInput"],
     mutationFn: () => mutateUserData(cookies?.user?.id, userData?.id),
     onSuccess: () => {
-      queryClient.invalidateQueries(['formInput'])
+      queryClient.invalidateQueries(["formInput"]);
       const success_div = document.querySelector(".success_div");
       success_div.textContent = "user information updated successfully!";
-      
+
       setTimeout(() => {
         success_div.textContent = "";
       }, 4000);
@@ -229,7 +229,7 @@ export default function Profile() {
   const deleteBlog = useMutation({
     mutationFn: (id) => removeBlogHandler(id),
     onSuccess: () => {
-      queryClient.invalidateQueries(["blogs"])
+      queryClient.invalidateQueries(["blogs"]);
       setShowPopUpDelete(false);
     },
   });
@@ -237,18 +237,17 @@ export default function Profile() {
   const updateUserFile = useMutation({
     // mutationKey: ["formInput"],
     mutationFn: () => handleFile(),
-    onSuccess:()=>{
-      queryClient.invalidateQueries(['formInput'])
-      let successfull_upload_cn = document.createElement('div')
-      successfull_upload_cn.className = 'pic_upload_status_cn'
-      const parent = document.querySelector('.pic_div')
-      successfull_upload_cn.textContent = 'picture uploaded successfully!'
-      parent.appendChild(successfull_upload_cn)
-      
-      setTimeout(()=>{
-  
-        successfull_upload_cn.remove()
-      },5000)
+    onSuccess: () => {
+      queryClient.invalidateQueries(["formInput"]);
+      let successfull_upload_cn = document.createElement("div");
+      successfull_upload_cn.className = "pic_upload_status_cn";
+      const parent = document.querySelector(".pic_div");
+      successfull_upload_cn.textContent = "picture uploaded successfully!";
+      parent.appendChild(successfull_upload_cn);
+
+      setTimeout(() => {
+        successfull_upload_cn.remove();
+      }, 5000);
     },
   });
 
@@ -256,9 +255,8 @@ export default function Profile() {
     // mutationKey: ["blogs"],
     mutationFn: (blog) => handleBlogFile(blog),
     onSuccess: () => {
-      queryClient.invalidateQueries(['blogs'])
-      setShowEditSec(false)
-      
+      queryClient.invalidateQueries(["blogs"]);
+      setShowEditSec(false);
     },
   });
 
@@ -292,8 +290,6 @@ export default function Profile() {
   if (api[0]?.isLoading && api[1].isLoading) {
     return <Skeleton count={10} />;
   }
-
-
 
   return (
     <div className="profile">
@@ -362,15 +358,67 @@ export default function Profile() {
           {navBtn === "content" && (
             <div className="user_info_div">
               <ul className="InfoDiv">
-                <li>FullName: </li>
-                <li>birthDate:</li>
-                <li>phone:</li>
-                <li>gender: </li>
-                <li>country:</li>
-                <li>city:</li>
+                <li>
+                  FullName:{" "}
+                  <p>
+                    <BsFillPersonFill />
+                    {userInfo?.fullName}
+                  </p>
+                </li>
+                <li>
+                  birthDate:{" "}
+                  <p>
+                    {" "}
+                    <BsCalendarDate />{" "}
+                    {userInfo?.birthDate?.slice(
+                      0,
+                      userInfo?.birthDate?.indexOf("T")
+                    )}
+                  </p>
+                </li>
+                <li>
+                  phone:{" "}
+                  <p>
+                    <RiPhoneFill /> {userInfo?.phone}
+                  </p>
+                </li>
+                <li>
+                  gender:{" "}
+                  <p>
+                    {" "}
+                    {userInfo?.gender === "male" ? (
+                      <CgGenderMale />
+                    ) : (
+                      <CgGenderFemale />
+                    )}{" "}
+                    {userInfo?.gender || ""}
+                  </p>
+                </li>
+                <li>
+                  country:{" "}
+                  <p>
+                    {" "}
+                    <TbMapPinFilled /> {userInfo?.country}
+                  </p>
+                </li>
+                <li>
+                  city:{" "}
+                  <p>
+                    <TbMapPins /> {userInfo?.city}
+                  </p>
+                </li>
               </ul>
-
+{/* 
               <ul className="userDiv">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul> */}
+
+              {/* <ul className="userDiv">
                 <li>
                   <BsFillPersonFill />
                   {userInfo?.fullName}
@@ -399,7 +447,7 @@ export default function Profile() {
                 <li>
                   <TbMapPins /> {userInfo?.city}
                 </li>
-              </ul>
+              </ul> */}
             </div>
           )}
 
@@ -481,7 +529,7 @@ export default function Profile() {
 
           <div className="socials_div">
             <div className="icon_cn">
-              <a href={userInfo?.twitter || ''}>
+              <a href={userInfo?.twitter || ""}>
                 <AiFillTwitterSquare />
               </a>
             </div>
@@ -489,10 +537,10 @@ export default function Profile() {
             <div className="icon_cn">
               <a href={`mailto:${userInfo?.socialMail}`}>
                 <AiOutlineMail />
-              </a> 
+              </a>
             </div>
             <div className="icon_cn">
-              <a href={userInfo?.linkedIn || ''}>
+              <a href={userInfo?.linkedIn || ""}>
                 <AiFillLinkedin />
               </a>
             </div>
@@ -598,27 +646,27 @@ export default function Profile() {
                     formInputHandler(e);
                   }}
                   placeholder="Enter twitter link"
-                  value={profileInput.twitter || ''}
+                  value={profileInput.twitter || ""}
                 />
                 {/* <label htmlFor="socialEmail">socialEmail</label> */}
-                 <input
-                  type="text" 
+                <input
+                  type="text"
                   name="socialEmail"
                   onChange={(e) => {
                     formInputHandler(e);
                   }}
                   placeholder="Enter socialEmail link"
-                  value={profileInput.socialEmail || ''}
+                  value={profileInput.socialEmail || ""}
                 />
                 {/* <label htmlFor="linkedIn">linkedIn</label> */}
-                 <input
+                <input
                   type="text"
                   name="linkedIn"
                   onChange={(e) => {
                     formInputHandler(e);
                   }}
                   placeholder="Enter linkedIn link"
-                  value={profileInput.linkedIn || ''}
+                  value={profileInput.linkedIn || ""}
                 />
               </div>
               <button onClick={() => mutate()} className="formBtn">
@@ -633,9 +681,9 @@ export default function Profile() {
 
         {showEditSec && (
           <section className="edit_blogs_cn">
-            <div className="closeDiv" onClick={() => setShowEditSec(false)}>
+            {/* <div className="closeDiv" onClick={() => setShowEditSec(false)}>
               <MdKeyboardDoubleArrowLeft className="close_icon" />
-            </div>
+            </div> */}
             <div className="edit_cn">
               <div className="imgCn">
                 <LazyLoadImage
@@ -759,4 +807,3 @@ export default function Profile() {
     </div>
   );
 }
-
