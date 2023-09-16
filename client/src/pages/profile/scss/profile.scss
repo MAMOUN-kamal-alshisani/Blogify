@@ -6,7 +6,7 @@
     @include flex(flex, center, wrap, row);
     .profile_pic_section {
       @include flex(flex, unset, nowrap, column);
-      width: 80%;
+      width: 60%;
 
       min-width: fit-content;
       margin: 40px 0px;
@@ -92,11 +92,12 @@
         position: $relative;
         font-size: $largeFont;
         width: 100%;
-        max-width: 700px;
+        max-width: 1024px;
         padding: 20px;
         margin: 0px;
         ul {
           list-style: none;
+          
         }
         .InfoDiv {
           @include flex(flex, unset, wrap, column);
@@ -106,15 +107,16 @@
             @include flex(flex, space-between, nowrap, row);
             gap: 5px;
             align-items: $alignItems;
-            &:hover {
-              text-decoration: $underline_decore;
-            }
+            
 
             p{
               @include flex(flex, center, nowrap, row);
           color: $primary_dkprp_clr;
               align-items: center;
               gap: 5px;
+              &:hover {
+                text-decoration: $underline_decore red;
+              }
             }
           }
         }

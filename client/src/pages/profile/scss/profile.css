@@ -13,7 +13,7 @@
   justify-content: unset;
   flex-wrap: nowrap;
   flex-direction: column;
-  width: 80%;
+  width: 60%;
   min-width: -moz-fit-content;
   min-width: fit-content;
   margin: 40px 0px;
@@ -109,7 +109,7 @@
   position: relative;
   font-size: large;
   width: 100%;
-  max-width: 700px;
+  max-width: 1024px;
   padding: 20px;
   margin: 0px;
 }
@@ -132,9 +132,6 @@
   gap: 5px;
   align-items: center;
 }
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li:hover {
-  text-decoration: underline;
-}
 .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p {
   display: flex;
   justify-content: center;
@@ -143,6 +140,10 @@
   color: #7541ce;
   align-items: center;
   gap: 5px;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p:hover {
+  -webkit-text-decoration: underline red;
+          text-decoration: underline red;
 }
 .profile .profile_cn .profile_pic_section .blogsDiv {
   min-width: -moz-fit-content;
