@@ -29,6 +29,7 @@
     }
 
     .categoryList {
+
       @include flex(flex, unset, wrap, row);
       font-family: "Brush Script MT", cursive;
       ul {
@@ -143,6 +144,124 @@
       }
   
       .categoryList {
+        @include flex(flex, unset, nowrap, row);
+        font-family: "Brush Script MT", cursive;
+        ul {
+          @include flex(flex, unset, wrap, row);
+          font-size: $xLargeFont;
+          color: $primary_wh_clr2;
+          list-style: none;
+          gap: 10px;
+        }
+      }
+  
+      .personal_cn {
+        @include flex(flex, flex-end, wrap, row);
+        align-items: $alignItems;
+        padding-right: 5px;
+        gap: 10px;
+        .dropdown {
+          position: $relative;
+          transition: all ease-in-out 1s;
+          .icon {
+            transition: all ease-in-out 1s;
+            cursor: $cursorPointer;
+            font-size: $xLargeFont;
+            color:$primary_wh_clr2;
+            margin-right: 30px;
+  
+            &:hover {
+              color: $border_wh_clr;
+              transform: scale(1.1);
+            }
+          }
+          .dropdown_menu {
+            @include flex(flex, space-between, nowrap, column);
+            text-align: $alignItems;
+            position: $absolute;
+            background-color: $primary_wh_clr;
+            border: 1px solid rgb(219, 213, 213);
+            width: 100px;
+            z-index: 999;
+            right: 5px;
+            .dropdown_item {
+              border-bottom: 1px solid $primary_wh_clr2;
+              cursor: $cursorPointer;
+              padding: 10px;
+              &:hover {
+                background-color: $primary_bg_clr;
+              }
+              .logout_btn {
+                @include element_transparency();
+                color: $primary_dkprp_clr;
+                font-size: $mediumFont;
+                cursor: $cursorPointer;
+              }
+            }
+            .link {
+              color: $primary_dkprp_clr;
+              text-decoration: none;
+              font-size: 1.1rem;
+              width: 100%;
+            }
+          }
+        }
+  
+        .write_link {
+          .link {
+            background-color: $border_wh_clr;
+            color: $primary_black_clr;
+            font-weight: $fontweight;
+            text-decoration: none;
+            transition: all ease-in-out 1s;
+            padding: 10px;
+            border-radius: 50%;
+            &:hover {
+              background-color: $primary_wh_clr;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+@media screen and (max-width: 350px) {
+
+  .header {
+    background-color: rgb(42, 40, 40);
+    height: fit-content;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding-top: 5px;
+    min-height: 50px;
+    .header_cn {
+      @include flex(flex, space-between, nowrap, row);
+      align-items: normal;
+      padding: 5px 5px;
+      .header_links {
+        @include flex(flex, flex-start, wrap, row);
+        align-items: $alignItems;
+        padding-left: 5px;
+        gap: 10px;
+        .link {
+          font-size: $largeFont;
+          color: $primary_wh_clr;
+          text-decoration: none;
+          transition: ease-in-out;
+          padding-bottom: 6px;
+          &:hover {
+            color: $border_wh_clr;
+          }
+        }
+      }
+  
+      .categoryList {
+        display: none;
         @include flex(flex, unset, nowrap, row);
         font-family: "Brush Script MT", cursive;
         ul {
