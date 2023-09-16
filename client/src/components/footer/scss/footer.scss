@@ -261,13 +261,14 @@
           @include flex(flex, space-around, wrap, row);
           .link {
             color: $primary_bg_clr;
-            font-size: $largerFont;
+            font-size: small;
           }
         }
         .third_cn {
           background-color: $primary_ltprp_clr;
           color: $primary_bg_clr;
           margin: 5px;
+          font-size: small;
           h5 {
             padding: 5px 0px;
           }
@@ -279,10 +280,11 @@
         h1 {
           color: $primary_prp_clr;
           padding-bottom: 15px;
-          font-size: $mediumFont;
+          font-size: small;
         }
         p {
           // padding: 15px;
+          font-size: small;
           padding-top: 10px;
           text-align: start;
           color: $primary_bg_clr;
@@ -297,7 +299,7 @@
         border-left: 2px solid #424242;
         h1 {
           color: $primary_prp_clr;
-          font-size:$mediumFont;
+          font-size: small;
         }
         .input_cn {
           input {

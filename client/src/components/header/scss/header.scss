@@ -249,7 +249,7 @@
         padding-left: 5px;
         gap: 10px;
         .link {
-          font-size: $largeFont;
+          font-size: small;
           color: $primary_wh_clr;
           text-decoration: none;
           transition: ease-in-out;
@@ -261,12 +261,12 @@
       }
   
       .categoryList {
-        display: none;
+      
         @include flex(flex, unset, nowrap, row);
         font-family: "Brush Script MT", cursive;
         ul {
           @include flex(flex, unset, wrap, row);
-          font-size: $xLargeFont;
+          font-size: small;
           color: $primary_wh_clr2;
           list-style: none;
           gap: 10px;
@@ -284,7 +284,7 @@
           .icon {
             transition: all ease-in-out 1s;
             cursor: $cursorPointer;
-            font-size: $xLargeFont;
+            font-size: small;
             color:$primary_wh_clr2;
             margin-right: 30px;
   
@@ -330,9 +330,10 @@
             background-color: $border_wh_clr;
             color: $primary_black_clr;
             font-weight: $fontweight;
+            font-size: small;
             text-decoration: none;
             transition: all ease-in-out 1s;
-            padding: 10px;
+            padding: 5px;
             border-radius: 50%;
             &:hover {
               background-color: $primary_wh_clr;
