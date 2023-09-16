@@ -59,3 +59,5 @@ export const Profile = db.define('Profile',{
 // .catch((err) => console.error(err));
  Profile.belongsTo(User)
 // Profile.belongsTo(User,{ constraints: false})
+
+

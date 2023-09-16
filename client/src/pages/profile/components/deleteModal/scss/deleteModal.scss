@@ -5,8 +5,9 @@
   position: fixed;
   top: 50%;
   bottom: 50%;
-  left: 25%;
-  right: 25%;
+  // left: 25%;
+  transform: translateX(-50%);
+  left: 50%;
   z-index: 99;
   background-color: white;
   border: 1px solid #d4cccc;
@@ -89,10 +90,9 @@
   .deleteModal {
     backdrop-filter: blur(3px);
     position: fixed;
-    top: 50%;
-    bottom: 50%;
-    left: 25%;
-    right: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+
     z-index: 99;
     background-color: white;
     border: 1px solid #d4cccc;
@@ -114,6 +114,98 @@
         padding: 10px;
         border-bottom: 2px solid rgb(244, 242, 242);
         h1 {
+        }
+        .CancelBtn {
+          background-color: transparent;
+          border: transparent;
+        }
+      }
+      .middlePartCn {
+        padding: 10px;
+      }
+      .footerCn {
+        @include flex(flex, flex-end, wrap, row);
+        border-top: 2px solid rgb(244, 242, 242);
+        gap: 10px;
+        padding: 0px;
+     
+        .deleteModalBtn {
+          height: 30px;
+          padding: 5px;
+          border: transparent;
+        }
+        .CancelBtn {
+          background-color: transparent;
+  
+          &:hover {
+            color: royalblue;
+          }
+        }
+        .deleteBtn {
+          background-color: crimson;
+          color: white;
+  
+          &:hover {
+            background-color: rgb(240, 15, 60);
+          }
+  
+    
+          .BtnSpinner{
+            animation: spin 5s;
+            font-size: medium;
+          }
+          @keyframes spin {
+            0%   {rotate:(0)}
+            10%   {rotate:(30deg)}
+            25%  {rotate:(90deg)}
+            35%  {rotate:(130deg)}
+            50%  {rotate:(180deg)}
+            60%  {rotate:(220deg)}
+            70%  {rotate:(260deg)}
+            80%  {rotate:(300deg)}
+            90% {rotate:(360deg)}
+            100% {display: none;}
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+@media screen and (max-width: 350px) {
+  .deleteModal {
+    backdrop-filter: blur(3px);
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 99;
+    background-color: white;
+    border: 1px solid #d4cccc;
+    box-shadow: 0px 0px 5px 1px grey;
+    max-width: 500px;
+    height: 200px;
+    min-width: fit-content;
+    min-height: fit-content;
+  
+    .deleteModalCn {
+      @include flex(flex, space-between, nowrap, column);
+      width: inherit;
+      min-width: fit-content;
+      height: inherit;
+      min-height: fit-content;
+  
+      .HeaderCn {
+        @include flex(flex, space-between, wrap, row);
+        padding: 5px;
+        border-bottom: 2px solid rgb(244, 242, 242);
+        h1 {
+          font-size: medium;
         }
         .CancelBtn {
           background-color: transparent;
