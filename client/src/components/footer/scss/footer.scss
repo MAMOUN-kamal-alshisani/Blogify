@@ -280,11 +280,11 @@
         h1 {
           color: $primary_prp_clr;
           padding-bottom: 15px;
-          font-size: small;
+          font-size: $mediumFont;
         }
         p {
           // padding: 15px;
-          font-size: small;
+          font-size: $mediumFont;
           padding-top: 10px;
           text-align: start;
           color: $primary_bg_clr;
@@ -299,9 +299,12 @@
         border-left: 2px solid #424242;
         h1 {
           color: $primary_prp_clr;
-          font-size: small;
+          font-size: $mediumFont;
         }
         .input_cn {
+          p{
+            font-size: $mediumFont;
+          }
           input {
             width: 100%;
             background-color: #e1e1e1;
