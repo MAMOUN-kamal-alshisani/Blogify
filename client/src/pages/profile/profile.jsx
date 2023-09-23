@@ -360,53 +360,79 @@ export default function Profile() {
               <ul className="InfoDiv">
                 <li>
                   FullName:{" "}
-                  <p>
-                    <BsFillPersonFill />
-                    {userInfo?.fullName}
-                  </p>
+                  {/* <p>
+                  
+                  </p> */}
                 </li>
                 <li>
                   birthDate:{" "}
-                  <p>
+                  {/* <p>
                     {" "}
-                    <BsCalendarDate />{" "}
+  
+                  </p> */}
+                </li>
+                <li>
+                  phone:{" "}
+                  {/* <p>
+                   
+                  </p> */}
+                </li>
+                <li>
+                  gender:{" "}
+                  {/* <p>
+                    {" "}
+  
+                  </p> */}
+                </li>
+                <li>
+                  country:{" "}
+                  {/* <p>
+                    {" "}
+                   
+                  </p> */}
+                </li>
+                <li>
+                  city:{" "}
+                  {/* <p>
+                 
+                  </p> */}
+                </li>
+              </ul>
+
+              <ul className="InfoDiv_list">
+                <li>
+                <BsFillPersonFill className="profile_info_icon"/>
+                    {userInfo?.fullName}
+                </li>
+                <li>
+
+                <BsCalendarDate className="profile_info_icon"/>{" "}
                     {userInfo?.birthDate?.slice(
                       0,
                       userInfo?.birthDate?.indexOf("T")
                     )}
-                  </p>
+                </li>
+    
+                <li>
+                <RiPhoneFill className="profile_info_icon"/> {userInfo?.phone}
                 </li>
                 <li>
-                  phone:{" "}
-                  <p>
-                    <RiPhoneFill /> {userInfo?.phone}
-                  </p>
-                </li>
-                <li>
-                  gender:{" "}
-                  <p>
-                    {" "}
-                    {userInfo?.gender === "male" ? (
-                      <CgGenderMale />
+                {userInfo?.gender === "male" ? (
+                      <CgGenderMale className="profile_info_icon"/>
                     ) : (
-                      <CgGenderFemale />
+                      <CgGenderFemale className="profile_info_icon"/>
                     )}{" "}
                     {userInfo?.gender || ""}
-                  </p>
-                </li>
-                <li>
-                  country:{" "}
-                  <p>
-                    {" "}
-                    <TbMapPinFilled /> {userInfo?.country}
-                  </p>
-                </li>
-                <li>
-                  city:{" "}
-                  <p>
-                    <TbMapPins /> {userInfo?.city}
-                  </p>
-                </li>
+                  </li>
+                  <li>
+                  <TbMapPinFilled className="profile_info_icon"/> {userInfo?.country}
+                  </li>
+                  <li>
+                  <TbMapPins className="profile_info_icon"/> {userInfo?.city}
+                  </li>
+                  {/* <li>
+                  
+                  </li> */}
               </ul>
 {/* 
               <ul className="userDiv">
@@ -529,18 +555,18 @@ export default function Profile() {
 
           <div className="socials_div">
             <div className="icon_cn">
-              <a href={userInfo?.twitter || ""}>
+              <a href={userInfo?.twitter || ""} className="twitter_icon" target="_blank">
                 <AiFillTwitterSquare />
               </a>
             </div>
 
             <div className="icon_cn">
-              <a href={`mailto:${userInfo?.socialMail}`}>
+              <a href={`mailto:${userInfo?.socialMail}`} className="mail_icon" target="_blank">
                 <AiOutlineMail />
               </a>
             </div>
             <div className="icon_cn">
-              <a href={userInfo?.linkedIn || ""}>
+              <a href={userInfo?.linkedIn || ""} className="linkedin_icon" target="_blank">
                 <AiFillLinkedin />
               </a>
             </div>
