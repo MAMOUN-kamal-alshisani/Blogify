@@ -121,7 +121,7 @@
   justify-content: unset;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 100px;
+  gap: 70px;
   width: 75%;
 }
 .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li {

@@ -99,7 +99,7 @@
         }
         .InfoDiv {
           @include flex(flex, unset, wrap, column);
-          gap: 100px;
+          gap: 70px;
           width: 75%;
           li {
             @include flex(flex, space-between, nowrap, row);
