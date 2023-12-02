@@ -7,12 +7,14 @@
   .blogs_cn {
     @include flex(flex, unset, nowrap, column);
     align-items: $alignItems;
+    max-width: 85%;
+    margin: 0 auto;
     .toolbar_section {
       @include flex(flex, space-between, nowrap, row);
       align-items: $alignItems;
       border-radius: $px6_borderRadius;
       width: 100%;
-      max-width: 1024px;
+      // max-width: 85%;
       min-width: fit-content;
       height: 45px;
       box-shadow: 0px 0px 1px 0px $primary_gry_clr;
@@ -42,10 +44,12 @@
 
         .categoryBtnContainer {
           @include flex(flex, unset, nowrap, row);
+          align-items: center;
           position: $relative;
           padding-left: 10px;
           gap: 20px;
           width: 100%;
+          height: 100%;
           .categoryBtn {
             @include element_transparency();
             font-size: $mediumFont;
@@ -56,14 +60,14 @@
             }
           }
           .toolbar_filter {
-            position: $absolute;
-            right: 0;
-
+            // position: $absolute;
+            width: 100%;
+            padding-right: 5px;
             .filterBtn {
-              @include flex(flex, unset, nowrap, row);
+              @include flex(flex, flex-end,nowrap, row);
               @include element_transparency();
               align-items: $alignItems;
-              margin-right: 20px;
+              margin-right: 25px;
               cursor: $cursorPointer;
               width: 100%;
               font-size: $mediumFont;
@@ -103,7 +107,7 @@
         @include flex(flex, space-evenly, wrap, row);
         gap: 60px;
         .card_div {
-          border-radius: 6px;
+          border-radius: 15px;
           background-color: $primary_wh_clr;
           box-shadow: 0px 0px 10px 2px $primary_gry_clr;
           background: transparent;
@@ -113,8 +117,10 @@
             width: 275px;
             height: 100%;
             background-color: transparent;
-            border-bottom-right-radius: 15px;
-            border-bottom-left-radius: 15px;
+            // border-bottom-right-radius: 15px;
+            // border-bottom-left-radius: 15px;
+          border-radius: 15px;
+
             &:hover .container .card-footer {
               visibility: visible;
               display: block;
@@ -122,10 +128,16 @@
 
             .img_menu_header {
               background: transparent;
+          border-radius: 15px;
+
               .card_img {
                 height: 325px;
                 width: 100%;
                 object-fit: fill;
+          border-radius: 15px;
+
+                // background: linear-gradient(black, red);
+                // backdrop-filter: contrast(2);
                 transition: all ease 1.5s;
                 filter: drop-shadow(2px 13px 8px rgb(33, 32, 32));
                 background: linear-gradient(
@@ -133,7 +145,7 @@
                   rgba(0, 0, 0, 0),
                   rgba(0, 0, 0, 1)
                 );
-                filter: contrast(1.5);
+                filter: contrast(1);
               }
 
               .img_title {
@@ -148,7 +160,46 @@
                 padding: 5px;
               }
             }
+            &:hover .user_information_model{
+              visibility: visible;
+            }
+            .user_information_model {
+              visibility: collapse;
+              position: absolute;
+              // transition: visibility 0.5s;
+              // margin: 0 auto;
+              // left: 10px;
+              top: 0px;
+              right: 0px;
+              z-index: 100;
+             
+              .userCt{
+              @include flex(flex, center, wrap, column);
+              // gap: 5px;
+              padding-top:5px;
+                // background-color: rgba(0, 0, 0, 0.475);
+                width: 50px;
+                // backdrop-filter: blur(15px);
+                // position: absolute;
+                // bottom: 200px;
+                // width: 100px;
+                img{
+                  width: 40px !important;
+                  height: 40px !important;
+                  // backdrop-filter: 10px;
+                }
+                b{
+                  font-size: x-small;
+                  color: white !important;
+                  background-color: $primary_prp_clr;
+                  // display: none;
+                  text-align: center;
+                  border-bottom-left-radius: 15px;
+                  padding: 5px;
+                }
+              }
 
+            }
             .container {
               position: $absolute;
               z-index: 1;
@@ -167,6 +218,7 @@
                 .card_menu {
                   @include flex(flex, space-between, nowrap, row);
                   visibility: collapse;
+                  transition: visibility 0.5s;
                   position: absolute;
                   z-index: -1;
                   box-shadow: 0px 3px 10px 0px grey;
@@ -179,15 +231,14 @@
                   backdrop-filter: blur(5px);
 
                   .blog_user_span {
-                    @include flex(flex, center, nowrap, column);
-                    align-items: center;
-                    font-size: smaller;
-                    small {
-                      visibility: collapse;
-                    }
-                    &:hover small {
-                      visibility: visible;
-                    }
+                    @include flex(flex, flex-end, nowrap, column);
+                    padding: 5px 10px;
+                    // align-items: center;
+                    font-size: $smallerFont;
+
+                    // &:hover .user_information_model {
+                    //   visibility: visible;
+                    // }
                   }
                   .blog_likes_span {
                     @include flex(flex, center, nowrap, column);
@@ -195,6 +246,7 @@
                     font-size: small;
                     small {
                       visibility: collapse;
+                      transition: visibility 0.5s;
                     }
                     &:hover small {
                       visibility: visible;
@@ -440,13 +492,13 @@
                   width: 100%;
                   object-fit: fill;
                   transition: all ease 1.5s;
-                  filter: drop-shadow(2px 13px 8px rgb(33, 32, 32));
+                  filter: drop-shadow(2px 2px 8px rgb(33, 32, 32));
                   background: linear-gradient(
                     to bottom,
                     rgba(0, 0, 0, 0),
                     rgba(0, 0, 0, 1)
                   );
-                  filter: contrast(1.5);
+                  // filter: contrast(1.5);
                 }
 
                 .img_title {

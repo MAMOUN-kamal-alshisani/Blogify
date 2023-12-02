@@ -119,7 +119,7 @@
         }
         .InfoDiv_list {
           @include flex(flex, unset, nowrap, column);
-          gap: 100px;
+          gap: 70px;
           width: 40%;
           li {
             @include flex(flex, unset, nowrap, row);

@@ -17,7 +17,6 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { CiMenuKebab } from "react-icons/ci";
 import { BsFillPersonFill } from "react-icons/bs";
 
-
 // import { MdDateRange } from "react-icons/md";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 
@@ -96,10 +95,6 @@ export default function Blogs() {
       return;
     }
   };
-
-  // useEffect(() => {
-  //   setFilteredBlogs(blogs);
-  // }, [data, blogs]);
 
   // useEffect(() => {
   //   setFilteredBlogs(data);
@@ -220,6 +215,9 @@ export default function Blogs() {
                 return (
                   <div className="card_div" key={blog?.id}>
                     <Card>
+                      <span className="user_information_model">
+                        <User blog={blog} />
+                      </span>
                       {/* <div className="card_img" style={{background:`url(${blog.photo});`,width:"200px",height:"200px"}}>
                       </div> */}
                       <Card.Header className="img_menu_header">
@@ -274,7 +272,6 @@ export default function Blogs() {
                               blogsId === blog.id && showMenu && "show_menu"
                             }`}
                           >
-                           
                             <span className="blog_likes_span">
                               <small>{blog.liked.length}</small>
                               <Button
@@ -294,14 +291,10 @@ export default function Blogs() {
                               </Button>
                             </span>
 
-
                             <span className="blog_user_span">
-                              <small><User blog={blog} /></small>
-                              <BsFillPersonFill>
+                              {/* <BsFillPersonFill>
                              
-                              </BsFillPersonFill>
-                              
-
+                              </BsFillPersonFill> */}
                             </span>
 
                             <span className="blog_views_span">
@@ -351,7 +344,6 @@ export default function Blogs() {
                           </Button>
                         </Card.Footer>
                       </div>
-                    
                     </Card>
                   </div>
                 );
