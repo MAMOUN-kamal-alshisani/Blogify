@@ -223,7 +223,8 @@ export default function Blogs() {
                       <Card.Header className="img_menu_header">
                         <LazyLoadImage
                           variant="top"
-                          src={blog?.photo}
+                          src={blog?.photo||
+                            "https://tse4.mm.bing.net/th?id=OIP.kgfkdioyvqIrLPdA5bXckAHaE8&pid=Api&P=0&h=220"}
                           className="card_img"
                         />
                         <Card.Title className="img_title">
