@@ -81,8 +81,9 @@ export default function Home() {
     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`;
     watch = Number(watch);
     const res = axios.put(url, {
-      watched: (watch += 1).toString(),
+      watched: (watch += 1).toString()
     });
+    console.log(res);
     navigate(`/blogs/${id}`);
   };
 
@@ -107,8 +108,7 @@ export default function Home() {
   // }
   return (
     <div className="home">
-      <div className="home_cn">
-        <section className="row0_section0 box">
+              <section className="row0_section0 box">
           <div className="first_section_cn">
             <div className="text_part">
               <h1>Be Part Of Blogify Write And Review Diverse Topics</h1>
@@ -124,6 +124,8 @@ export default function Home() {
             </button>
           </div>
         </section>
+      <div className="home_cn">
+
 
         <section className="row1_section1 box">
           <div className="container">
@@ -344,7 +346,7 @@ export default function Home() {
                       </p>
                       <span className="user_span">
                         {" "}
-                        by{" "}
+                        {/* by{" "} */}
                         <b>
                           <User blog={results[3]?.data[0]} />
                         </b>
@@ -405,7 +407,8 @@ export default function Home() {
                       </p>
                       <div className="articalDetails">
                         <span className="user_cn">
-                          <BsPersonFill className="user_icon" />
+                          {/* <BsPersonFill className="user_icon" /> */}
+
                           <User
                             blog={
                               FeaturedBlogs?.data[1]
@@ -458,7 +461,7 @@ export default function Home() {
 
                       <div className="articalDetails">
                         <span className="user_cn">
-                          <BsPersonFill className="user_icon" />
+                          {/* <BsPersonFill className="user_icon" /> */}
                           <User
                             blog={
                               FeaturedBlogs?.data[2]
@@ -535,7 +538,7 @@ export default function Home() {
                       </p>
                       <span className="user_span">
                         {" "}
-                        by{" "}
+                        {/* by{" "} */}
                         <b>
                           <User blog={FeaturedBlogs?.data[3]} />
                         </b>

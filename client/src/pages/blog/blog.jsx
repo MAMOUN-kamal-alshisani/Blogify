@@ -1,9 +1,12 @@
 import { GiNextButton } from "react-icons/gi";
 import { GiPreviousButton } from "react-icons/gi";
-import { AiOutlineEye } from "react-icons/ai";
+// import { AiOutlineEye } from "react-icons/ai";
 // import { AiFillLike } from "react-icons/ai";
 // import { AiOutlineLike } from "react-icons/ai";
-import { FcLike,FcLikePlaceholder } from "react-icons/fc";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
+
+
 // import { FcLikePlaceholder } from "react-icons/fc";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
@@ -14,6 +17,12 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import User from "../../components/user/user";
 import "./scss/blog.css";
+import { CiCalendarDate } from "react-icons/ci";
+import {
+  AiFillTwitterSquare,
+  AiOutlineMail,
+  AiFillLinkedin,
+} from "react-icons/ai";
 
 export default function Blog() {
   const queryClient = useQueryClient();
@@ -28,7 +37,7 @@ export default function Blog() {
     location?.pathname.slice(location?.pathname.lastIndexOf("/") + 1)
   );
   const [allCarouselBlogs, setAllCarouselBlogs] = useState();
-
+  const [userSocialMedia, setUserSocialMedia] = useState("");
   //// to calculate how many days long a blog was posted
   const dateObj = new Date();
   const month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -50,6 +59,7 @@ export default function Blog() {
     else if (diffInDays === 1) return diffInDays + " Day Ago";
     return diffInDays + " Days Ago";
   }
+
   /////////////////////////
   const getBlog = async () => {
     const res = await axios.get(
@@ -69,7 +79,15 @@ export default function Blog() {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/api/blog`);
     return res.data;
   };
-
+  const getUserSocials = async (blog) => {
+    if (blog.UserId !== undefined) {
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/api/user/profile/${blog?.UserId}`
+      );
+      console.log(res.data);
+      return res.data;
+    }
+  };
   const results = useQueries({
     queries: [
       {
@@ -84,8 +102,14 @@ export default function Blog() {
         queryKey: ["Blogs", blogId],
         queryFn: getAllBlogs,
         onSuccess: (data) => {
-          console.log(data?.slice(0, 3));
           setAllCarouselBlogs(data?.slice(0, 3));
+        },
+      },
+      {
+        queryKey: ["usersSocials", blogId],
+        queryFn: getUserSocials,
+        onSuccess: (data) => {
+          setUserSocialMedia(data);
         },
       },
     ],
@@ -155,24 +179,21 @@ export default function Blog() {
     } else {
       setFilteredBlogs(results[1].data);
     }
-
-  
   }, [blogs.isSuccess, location.pathname]);
-
+  // CarouselBlogs
   useEffect(() => {
     if (blog) {
       ///////// api data comes with html elements so using innerhtml to kinda filter them out ////
       const blogDesc = document.querySelector(".blogDesc");
       blogDesc.innerHTML = blog?.desc;
     }
-  
   }, [blog]);
 
   if (results[0].isLoading && results[1].isLoading && results[2].isLoading) {
     return <Skeleton count={10} />;
   }
-  if (results[0].isError || results[1].isError && results[2].isError) {
-    return 'something went wrong please try again'
+  if (results[0].isError || (results[1].isError && results[2].isError)) {
+    return "something went wrong please try again";
   }
   return (
     <div className="SBlog">
@@ -180,15 +201,62 @@ export default function Blog() {
         <div className="personalBlog">
           <div className="mainBlog">
             <article className="card_article">
+              <h1>{blog?.title}</h1>
+              <div className="user_infomation">
+                <div className="user_para">
+                  <span>posted by</span> <User blog={blog} />
+                </div>
+                <div className="socials_div">
+                  <div className="icon_cn">
+                    <a
+                      href={userSocialMedia?.twitter || ""}
+                      className="twitter_icon socials"
+                      target="_blank"
+                    >
+                      <AiFillTwitterSquare />
+                    </a>
+                  </div>
+
+                  <div className="icon_cn">
+                    <a
+                      href={`mailto:${userSocialMedia?.socialMail}`}
+                      className="mail_icon socials"
+                      target="_blank"
+                    >
+                      <AiOutlineMail />
+                    </a>
+                  </div>
+                  <div className="icon_cn">
+                    <a
+                      href={userSocialMedia?.linkedIn || ""}
+                      className="linkedin_icon socials"
+                      target="_blank"
+                    >
+                      <AiFillLinkedin />
+                    </a>
+                  </div>
+                </div>
+              </div>
               <div className="img_cn">
                 <LazyLoadImage
-                  src={blog?.photo}
+                  src={
+                    blog?.photo ||
+                    "https://tse4.mm.bing.net/th?id=OIP.kgfkdioyvqIrLPdA5bXckAHaE8&pid=Api&P=0&h=220"
+                  }
                   alt={blog?.category}
                   className="mainBlogImg"
                 />
+                <div className="dateTime">
+                  <CiCalendarDate />{" "}
+                  {blog?.createdAt.slice(
+                    0,
+                    blog?.createdAt.indexOf("T"),
+                    DateNow
+                  )}
+                </div>
               </div>
-              <div className="moreDetailsCn">
-                <div className="write_div">
+              {/* <div className="moreDetailsCn"> */}
+              {/* <div className="write_div">
                   <span className="DateCn">
                     {" " +
                       getNumberOfDays(
@@ -201,24 +269,20 @@ export default function Blog() {
                     <AiOutlineEye />
                     {blog?.watched}
                   </span>
-                </div>
-              </div>
+                </div> */}
+              {/* </div> */}
               <div className="cardInfoCn">
                 <div className="textAreaDiv">
                   <div className="category_div">
                     <p>{blog?.category}</p>
                   </div>
                   <div className="body_details_div">
-                    <h2>{blog?.title}</h2>
                     <div className="blogDesc">
                       {/* this div is not empty! using dom to display text in     */}
                     </div>
                   </div>
 
                   <div className="footer_blog_details">
-                    <span className="user_para">
-                      posted by <User blog={blog} />
-                    </span>
                     <span className="likeBtnCn">
                       <button
                         className="likeBtn"
@@ -253,17 +317,65 @@ export default function Blog() {
                     <div
                       className="sideBlogCards"
                       key={sideBlog.id}
-                      onClick={() =>
-                        increaseWatch(sideBlog.watched, sideBlog.id)
-                      }
+                      // onClick={() =>
+                      //   increaseWatch(sideBlog.watched, sideBlog.id)
+                      // }
                     >
-                      <LazyLoadImage
-                        src={sideBlog.photo}
+                      <div className="sideBlogTime">
+                        {sideBlog?.createdAt.slice(
+                          0,
+                          sideBlog?.createdAt.indexOf("T"),
+                          DateNow
+                        )}
+                      </div>
+                      <h3 className="sideBlogTitle">
+                        {sideBlog?.title?.length > 100
+                          ? sideBlog?.title.substring(0, 60)
+                          : sideBlog?.title}
+                      </h3>
+                      <div className="sideBlogFooter">
+                        <span className="sideBlogCategory">
+                          {sideBlog?.category}
+                        </span>
+                        <button
+                          onClick={() =>
+                            increaseWatch(sideBlog.watched, sideBlog.id)
+                          }
+                          className="sideBlogBtn"
+                        >
+                         <FaRegArrowAltCircleRight />
+                        </button>
+                      </div>
+
+                      {/* <div className="sideBlogTime">
+                        {blog?.createdAt.slice(
+                          0,
+                          blog?.createdAt.indexOf("T"),
+                          DateNow
+                        )}
+                      </div> */}
+                      {/* <div className="sideBlogTitle">
+                        {blog?.title?.length > 100
+                          ? blog?.title.substring(0, 60)
+                          : blog?.title}
+                      </div> */}
+
+                      {/* <div className="sideBlogDesc">
+                      {blog?.desc?.length > 100
+                          ? blog?.desc.substring(0, 60)
+                          : blog?.desc}
+                          ... 
+                      </div> */}
+                      {/* <LazyLoadImage
+                        src={
+                          sideBlog.photo ||
+                          "https://tse4.mm.bing.net/th?id=OIP.kgfkdioyvqIrLPdA5bXckAHaE8&pid=Api&P=0&h=220"
+                        }
                         alt="img"
                         className="sideBlogImg"
-                      />
+                      /> */}
 
-                      <div className="textAreaCr">
+                      {/* <div className="textAreaCr">
                         <div className="desc_div">
                           {blog?.title?.length > 100
                             ? blog?.title.substring(0, 60)
@@ -282,7 +394,7 @@ export default function Blog() {
                             )}
                           </h5>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   );
                 })
@@ -323,7 +435,10 @@ export default function Blog() {
               return (
                 <div className="card_div" key={index}>
                   <LazyLoadImage
-                    src={blog.photo}
+                    src={
+                      blog.photo ||
+                      "https://tse4.mm.bing.net/th?id=OIP.kgfkdioyvqIrLPdA5bXckAHaE8&pid=Api&P=0&h=220"
+                    }
                     alt={blog.id}
                     className="footer_side_photo"
                   />

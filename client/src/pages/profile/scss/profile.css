@@ -150,7 +150,7 @@
   justify-content: unset;
   flex-wrap: nowrap;
   flex-direction: column;
-  gap: 100px;
+  gap: 70px;
   width: 40%;
 }
 .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv_list li {
