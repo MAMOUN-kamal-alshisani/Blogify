@@ -61,7 +61,7 @@ export default function Header() {
             Blogs
           </Link>
         </div>
-        <div className="categoryList">
+        {/* <div className="categoryList">
           <ul>
             <li>Travel</li>
             <li>Technology</li>
@@ -69,7 +69,7 @@ export default function Header() {
             <li>Science</li>
             <li>Design</li>
           </ul>
-        </div>
+        </div> */}
         <div className="personal_cn">
           <div className="write_link">
             <Link to={"/post"} className="link">

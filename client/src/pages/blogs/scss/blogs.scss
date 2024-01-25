@@ -79,11 +79,11 @@
             .filter_option_cr {
               @include flex(flex, unset, nowrap, column);
               position: $absolute;
-              top: 25px;
+              top: 43px;
               z-index: 110;
               background-color: $primary_wh_clr;
               border: 1px solid $primary_wh_clr2;
-
+              right: 10px;
               .filterBtn_cr {
                 width: 100%;
                 padding: 10px;
@@ -737,6 +737,7 @@
                 position: $absolute;
                 top: 25px;
                 z-index: 110;
+                left: 0;
                 background-color: $primary_wh_clr;
                 border: 1px solid $primary_wh_clr2;
 

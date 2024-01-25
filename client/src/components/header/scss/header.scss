@@ -94,15 +94,19 @@
 
       .write_link {
         .link {
-          background-color: $border_wh_clr;
-          color: $primary_black_clr;
+          // background-color: $border_wh_clr;
+          border: 2px solid grey;
+          color: white;
           font-weight: $fontweight;
           text-decoration: none;
           transition: all ease-in-out 1s;
           padding: 10px;
           border-radius: 50%;
           &:hover {
-            background-color: $primary_wh_clr;
+            // background-color: $primary_wh_clr;
+            // color: black;
+            color: #e0e0e0;
+            // transform:scale(1.5);
           }
         }
       }

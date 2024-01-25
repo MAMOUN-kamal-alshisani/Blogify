@@ -109,8 +109,8 @@
   width: 100%;
 }
 .header .header_cn .personal_cn .write_link .link {
-  background-color: #ebebeb;
-  color: black;
+  border: 2px solid grey;
+  color: white;
   font-weight: bold;
   text-decoration: none;
   transition: all ease-in-out 1s;
@@ -118,7 +118,7 @@
   border-radius: 50%;
 }
 .header .header_cn .personal_cn .write_link .link:hover {
-  background-color: white;
+  color: #e0e0e0;
 }
 
 @media screen and (max-width: 700px) {
