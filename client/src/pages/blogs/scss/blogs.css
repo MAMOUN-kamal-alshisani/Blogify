@@ -105,10 +105,11 @@
   flex-wrap: nowrap;
   flex-direction: column;
   position: absolute;
-  top: 25px;
+  top: 43px;
   z-index: 110;
   background-color: white;
   border: 1px solid #e0e0e0;
+  right: 10px;
 }
 .blogs .blogs_cn .toolbar_section .toolbar_category .categoryBtnContainer .toolbar_filter .filter_option_cr .filterBtn_cr {
   width: 100%;
@@ -780,6 +781,7 @@
     position: absolute;
     top: 25px;
     z-index: 110;
+    left: 0;
     background-color: white;
     border: 1px solid #e0e0e0;
   }
