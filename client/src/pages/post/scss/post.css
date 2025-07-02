@@ -75,13 +75,22 @@
   justify-content: unset;
   flex-wrap: nowrap;
   flex-direction: row;
+  padding: 5px;
 }
 .Post .Post_cn .TextCn2 .categoryContainer .inputContainer input {
   cursor: pointer;
 }
 .Post .Post_cn .TextCn2 .categoryContainer .inputContainer label {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
   padding-left: 10px;
   color: #7541ce;
+  align-items: center;
+}
+.Post .Post_cn .TextCn2 .categoryContainer #other-text {
+  padding: 5px;
 }
 .Post .Post_cn .TextCn2 .publishContainer {
   display: flex;
@@ -106,6 +115,12 @@
 }
 .Post .Post_cn .TextCn2 .publishContainer label:hover {
   color: black;
+}
+.Post .Post_cn .TextCn2 .publishContainer #uploadImgName {
+  font-size: 14px;
+  color: grey;
+  width: 250px;
+  word-wrap: break-word;
 }
 .Post .Post_cn .TextCn2 .publishContainer .publishBtn {
   display: flex;

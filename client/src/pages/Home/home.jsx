@@ -7,7 +7,6 @@ import { BsCalendarDate } from "react-icons/bs";
 import { BsPersonFill } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 
-
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -81,7 +80,7 @@ export default function Home() {
     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${id}`;
     watch = Number(watch);
     const res = axios.put(url, {
-      watched: (watch += 1).toString()
+      watched: (watch += 1).toString(),
     });
     console.log(res);
     navigate(`/blogs/${id}`);
@@ -91,6 +90,7 @@ export default function Home() {
   if (results[1]?.isLoading) {
     return <Skeleton count={10} />;
   }
+console.log(AdminBlog);
 
   // const allBoxes = document.querySelectorAll(".box");
   // window.addEventListener("scroll", () => checkBoxes());
@@ -108,50 +108,66 @@ export default function Home() {
   // }
   return (
     <div className="home">
-              <section className="row0_section0 box">
-          <div className="first_section_cn">
-            <div className="text_part">
-              <h1>Be Part Of Blogify Write And Review Diverse Topics</h1>
-            </div>
-            <div className="img_part">
-              <p>
-                Blogify provides diverse categories of topics where you can read
-                or write a topic of your interest
-              </p>
-            </div>
-            <button className="sg_btn" onClick={() => navigate("/signin")}>
-              start-up
-            </button>
+      <section className="row0_section0 box">
+        <div className="first_section_cn">
+          <div className="text_part">
+            <h1>Be Part Of Blogify Write And Review Diverse Topics</h1>
           </div>
-        </section>
+          <div className="img_part">
+            <p>
+              Blogify provides diverse categories of topics where you can read
+              or write a topic of your interest
+            </p>
+          </div>
+          <button className="sg_btn" onClick={() => navigate("/signin")}>
+            start-up
+          </button>
+        </div>
+      </section>
       <div className="home_cn">
-
-
         <section className="row1_section1 box">
           <div className="container">
-            {AdminBlog.isFetched && (
-              <div className="firstCard">
-                <LazyLoadImage 
-                  src={AdminBlog?.data[0]?.photo}
-                  alt={AdminBlog?.data[0]?.category}
-                  className="mainImage img1"
-                  loading="lazy"
-                />
-                <div className="img_textarea textarea">
-                  <p className="text2">{AdminBlog?.data[0]?.title}</p>
-                  <div className="text1">
-                    <h5>{AdminBlog?.data[0]?.category}</h5>-
-                    <h5>
-                      {" "}
-                      {AdminBlog?.data[0]?.createdAt?.slice(
-                        0,
-                        AdminBlog?.data[0]?.createdAt?.indexOf("T")
-                      )}
-                    </h5>
+            {AdminBlog.isFetched &&
+              ((
+                <div className="firstCard">
+                  <LazyLoadImage
+                    src={AdminBlog?.data[0]?.photo || "https://t3.ftcdn.net/jpg/02/15/15/46/360_F_215154625_hJg9QkfWH9Cu6LCTUc8TiuV6jQSI0C5X.jpg"}
+                    alt={AdminBlog?.data[0]?.category}
+                    className="mainImage img1"
+                    loading="lazy"
+                  />
+                  <div className="img_textarea textarea">
+                    <p className="text2">{AdminBlog?.data[0]?.title}</p>
+                    <div className="text1">
+                      <h5>{AdminBlog?.data[0]?.category}</h5>-
+                      <h5>
+                        {" "}
+                        {AdminBlog?.data[0]?.createdAt?.slice(
+                          0,
+                          AdminBlog?.data[0]?.createdAt?.indexOf("T")
+                        )}
+                      </h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              ) ||
+                (AdminBlog.isLoading && (
+                  <div className="firstCard">
+                    <LazyLoadImage
+                      src="https://cdn.projectexpedition.com/photos/43793touractivityislandhopping5_sized.jpg"
+                      alt="Travel"
+                      className="mainImage img1"
+                    />
+                    <div className="img_textarea textarea">
+                      <p className="text2">
+                        Tour of two Towns: Trogir and Split
+                      </p>
+                      <div className="text1">
+                        <h5>Travel</h5>-<h5>2023-06-11</h5>
+                      </div>
+                    </div>
+                  </div>
+                )))}
 
             {AdminBlog.isLoading && (
               <div className="firstCard">

@@ -50,6 +50,9 @@
 .profile .profile_cn .profile_pic_section .pic_div .upload_cn label:hover {
   color: rgb(190, 190, 190);
 }
+.profile .profile_cn .profile_pic_section .pic_div .userImgBtn:disabled:hover {
+  color: #b83f36;
+}
 .profile .profile_cn .profile_pic_section .pic_div .userImgBtn {
   border: transparent;
   background: transparent;
@@ -63,6 +66,15 @@
 }
 .profile .profile_cn .profile_pic_section .pic_div .user_info {
   margin: 10px 0px;
+}
+.profile .profile_cn .profile_pic_section .pic_div .img_Name {
+  color: grey;
+  font-size: 14px;
+  width: 300px;
+  word-wrap: break-word;
+}
+.profile .profile_cn .profile_pic_section .pic_div .img_Name:empty {
+  visibility: collapse;
 }
 .profile .profile_cn .profile_pic_section .pic_div .pic_upload_status_cn {
   color: #7541ce;
@@ -113,59 +125,50 @@
   padding: 20px;
   margin: 0px;
 }
-.profile .profile_cn .profile_pic_section .user_info_div ul {
-  list-style: none;
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table {
+  width: 100%;
 }
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv {
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR {
+  height: 60px;
+  box-shadow: 0px 1px 0px 0px rgb(232, 229, 229);
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th {
+  text-align: left;
+  border-right: 1px solid rgb(232, 229, 229);
   display: flex;
   justify-content: unset;
   flex-wrap: wrap;
-  flex-direction: column;
-  gap: 70px;
-  width: 75%;
-}
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: nowrap;
   flex-direction: row;
   gap: 5px;
   align-items: center;
+  height: 80px;
 }
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  color: #7541ce;
-  align-items: center;
-  gap: 5px;
-}
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p:hover {
-  -webkit-text-decoration: underline black;
-          text-decoration: underline black;
-}
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv_list {
-  display: flex;
-  justify-content: unset;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  gap: 70px;
-  width: 40%;
-}
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv_list li {
-  display: flex;
-  justify-content: unset;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  gap: 5px;
-  align-items: center;
-  color: #7541ce;
-}
-.profile .profile_cn .profile_pic_section .user_info_div .InfoDiv_list li .profile_info_icon {
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th .profile_info_icon {
   fill: black;
   stroke: grey;
-  stroke-width: 1;
+  stroke-width: 2;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th .male-icon {
+  stroke: royalblue;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th .female-icon {
+  stroke: pink;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th .calendar-icon {
+  fill: grey;
+  stroke-width: 0;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th .phone-icon {
+  stroke-width: 0;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th .gps-icon {
+  color: #7541ce;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td {
+  text-align: right;
+}
+.profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR:last-child {
+  box-shadow: 0px 0px 0px 0px rgb(232, 229, 229);
 }
 .profile .profile_cn .profile_pic_section .blogsDiv {
   min-width: -moz-fit-content;
@@ -440,7 +443,7 @@
   flex-direction: column;
   background-color: white;
   box-shadow: 0px 0px 5px 0px grey;
-  padding: 20px;
+  border-radius: 35px;
   gap: 20px;
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn {
@@ -450,6 +453,7 @@
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn .editImg {
   max-height: 300px;
   width: 100%;
+  border-radius: 35px;
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .imgCn .uploadInputDiv {
   margin: 10px;
@@ -483,6 +487,10 @@
 .profile .profile_cn .edit_blogs_cn .edit_cn .allOptionInputCn .optionInputCn .inputContainer label {
   color: #9c27b0;
 }
+.profile .profile_cn .edit_blogs_cn .edit_cn .allOptionInputCn .optionInputCn .inputContainer #other-text {
+  padding: 5px;
+  display: none;
+}
 .profile .profile_cn .edit_blogs_cn .edit_cn .inCn {
   display: flex;
   justify-content: unset;
@@ -506,6 +514,8 @@
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .blogEditBtnDiv {
   text-align: right;
+  padding: 5px;
+  margin-right: 20px;
 }
 .profile .profile_cn .edit_blogs_cn .edit_cn .blogEditBtnDiv .blogCBtn {
   padding: 5px;
@@ -616,6 +626,9 @@
   .profile .profile_cn .profile_pic_section .pic_div .upload_cn label:hover {
     color: rgb(190, 190, 190);
   }
+  .profile .profile_cn .profile_pic_section .pic_div .userImgBtn:disabled {
+    background-color: #607d8b;
+  }
   .profile .profile_cn .profile_pic_section .pic_div .userImgBtn {
     border: transparent;
     background: transparent;
@@ -679,53 +692,28 @@
     padding: 20px;
     margin: 0px;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div ul {
-    list-style: none;
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table {
+    width: 100%;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv {
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR {
+    height: 60px;
+    border-bottom: 1px solid;
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th, .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td {
+    border-bottom: 2px solid rgb(232, 229, 229);
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th {
+    text-align: left;
     display: flex;
-    justify-content: flex-end;
+    justify-content: unset;
     flex-wrap: wrap;
-    flex-direction: column;
-    gap: 100px;
-    width: 50%;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
     flex-direction: row;
     gap: 5px;
     align-items: center;
+    height: 80px;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    color: #7541ce;
-    align-items: center;
-    gap: 5px;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p:hover {
-    -webkit-text-decoration: underline black;
-            text-decoration: underline black;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv_list {
-    display: flex;
-    justify-content: unset;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    gap: 100px;
-    width: 50%;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv_list li {
-    display: flex;
-    justify-content: unset;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td {
+    text-align: right;
   }
   .profile .profile_cn .profile_pic_section .blogsDiv {
     min-width: -moz-fit-content;
@@ -1239,16 +1227,28 @@
     padding: 20px;
     margin: 20px;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div ul {
-    list-style: none;
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table {
+    width: 100%;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv {
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR {
+    height: 60px;
+    border-bottom: 1px solid;
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th, .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td:not(:last-child) {
+    border-bottom: 2px solid rgb(232, 229, 229);
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th {
+    text-align: left;
     display: flex;
-    justify-content: flex-end;
+    justify-content: unset;
     flex-wrap: wrap;
-    flex-direction: column;
-    gap: 100px;
-    width: 50%;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    height: 80px;
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td {
+    text-align: right;
   }
   .profile .profile_cn .profile_pic_section .blogsDiv {
     min-width: -moz-fit-content;
@@ -1758,59 +1758,28 @@
     padding: 10px;
     margin: 10px;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div ul {
-    list-style: none;
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table {
+    width: 100%;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv {
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR {
+    height: 60px;
+    border-bottom: 1px solid;
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th, .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td {
+    border-bottom: 2px solid rgb(232, 229, 229);
+  }
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR th {
+    text-align: left;
     display: flex;
-    justify-content: flex-end;
+    justify-content: unset;
     flex-wrap: wrap;
-    flex-direction: column;
-    gap: 100px;
-    width: 50%;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
     flex-direction: row;
     gap: 5px;
     align-items: center;
+    height: 80px;
   }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    color: #7541ce;
-    align-items: center;
-    gap: 5px;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv li p:hover {
-    -webkit-text-decoration: underline black;
-            text-decoration: underline black;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv .InfoDiv_list {
-    display: flex;
-    justify-content: unset;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    gap: 100px;
-    width: 50%;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv .InfoDiv_list li {
-    display: flex;
-    justify-content: unset;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-    font-size: x-large;
-  }
-  .profile .profile_cn .profile_pic_section .user_info_div .InfoDiv .InfoDiv_list li .profile_info_icon {
-    fill: blue;
-    stroke: red;
-    stroke-width: 12px;
+  .profile .profile_cn .profile_pic_section .user_info_div .user_info_table .tableR td {
+    text-align: right;
   }
   .profile .profile_cn .profile_pic_section .blogsDiv {
     min-width: -moz-fit-content;

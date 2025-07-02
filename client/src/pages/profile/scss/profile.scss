@@ -40,6 +40,12 @@
             }
           }
         }
+           .userImgBtn:disabled{
+            // background-color: #607d8b;
+            &:hover{
+              color: #b83f36
+            }
+          }
         .userImgBtn {
           @include element_transparency();
           color: #53436d;
@@ -52,6 +58,15 @@
         }
         .user_info {
           margin: 10px 0px;
+        }
+        .img_Name{
+          color: grey;
+          font-size: 14px;
+          width: 300px;
+          word-wrap: break-word;
+        }
+         .img_Name:empty{
+         visibility: collapse;
         }
         .pic_upload_status_cn {
           color: $primary_dkprp_clr;
@@ -94,53 +109,57 @@
         max-width: 1024px;
         padding: 20px;
         margin: 0px;
-        ul {
-          list-style: none;
-        }
-        .InfoDiv {
-          @include flex(flex, unset, wrap, column);
-          gap: 70px;
-          width: 75%;
-          li {
-            @include flex(flex, space-between, nowrap, row);
-            gap: 5px;
-            align-items: $alignItems;
+
+        .user_info_table{
+          width: 100%;
+          .tableR{
+            height: 60px;
             // border-bottom: 1px solid;
-            p {
-              @include flex(flex, center, nowrap, row);
-              color: $primary_dkprp_clr;
-              align-items: center;
-              gap: 5px;
-              &:hover {
-                text-decoration: $underline_decore black;
-              }
-            }
-          }
-        }
-        .InfoDiv_list {
-          @include flex(flex, unset, nowrap, column);
-          gap: 70px;
-          width: 40%;
-          li {
-            @include flex(flex, unset, nowrap, row);
-            gap: 5px;
-            align-items: $alignItems;
-            // border-bottom: 1px solid;
-            color: #7541ce;
-            .profile_info_icon {
+
+            box-shadow: 0px 1px 0px 0px rgb(232, 229, 229);
+            th{
+              text-align: left;
+              border-right: 1px solid rgb(232, 229, 229);
+               @include flex(flex, unset, wrap, row);
+               gap: 5px;
+               align-items: center;
+               height: 80px;
+                .profile_info_icon {
               // font-size: larger;
               fill: black;
               stroke: grey;
-              stroke-width: 1;
+             stroke-width:2
+           }
+           .male-icon{
+            // fill:royalblue;
+            stroke: royalblue;
+           }
+           .female-icon{
+            stroke: pink;
+           }
+           .calendar-icon{
+            fill: grey;
+            stroke-width:0;
+           }
+           .phone-icon{
+            stroke-width:0
+             
+           }
+           .gps-icon{
+           color:#7541ce
+           }
             }
+            td{
+              text-align: right;
+            }
+
+          }
+
+          .tableR:last-child{
+            box-shadow: 0px 0px 0px 0px rgb(232, 229, 229)
           }
         }
-        // .userDiv {
-        //   @include flex(flex, center, wrap, row);
-        //   gap: 20px;
-        //   color: $primary_dkprp_clr;
-
-        // }
+       
       }
 
       .blogsDiv {
@@ -393,7 +412,9 @@
         @include flex(flex, center, wrap, column);
         background-color: $primary_wh_clr;
         box-shadow: 0px 0px 5px 0px $primary_gry_clr;
-        padding: 20px;
+        // padding: 20px;
+          border-radius: 35px;
+
         gap: 20px;
         .imgCn {
           border-bottom: 2px solid rgb(232, 229, 229);
@@ -401,6 +422,7 @@
           .editImg {
             max-height: 300px;
             width: 100%;
+            border-radius: 35px;
           }
           .uploadInputDiv {
             margin: 10px;
@@ -427,6 +449,11 @@
               label {
                 color: $primary_prp_clr;
               }
+                      #other-text{
+          //  margin-left: 10px;
+           padding: 5px;
+          display: none
+          }
             }
           }
         }
@@ -451,6 +478,8 @@
 
         .blogEditBtnDiv {
           text-align: right;
+          padding: 5px;
+          margin-right: 20px;
           .blogCBtn {
             padding: 5px;
           }
@@ -555,6 +584,9 @@
               }
             }
           }
+          .userImgBtn:disabled{
+            background-color: #607d8b
+          }
           .userImgBtn {
             @include element_transparency();
             color: #53436d;
@@ -609,41 +641,61 @@
           max-width: 1024px;
           padding: 20px;
           margin: 0px;
-          ul {
-            list-style: none;
-          }
-          .InfoDiv {
-            @include flex(flex, flex-end, wrap, column);
-            gap: 100px;
-            width: 50%;
-            li {
-              @include flex(flex, space-between, nowrap, row);
-              gap: 5px;
-              align-items: $alignItems;
-              // border-bottom: 1px solid;
-              p {
-                @include flex(flex, center, nowrap, row);
-                color: $primary_dkprp_clr;
-                align-items: center;
-                gap: 5px;
-                &:hover {
-                  text-decoration: $underline_decore black;
-                }
-              }
+             .user_info_table{
+          width: 100%;
+          .tableR{
+            height: 60px;
+            border-bottom: 1px solid;
+  th, td{
+              border-bottom: 2px solid rgb(232, 229, 229);
+            }
+            th{
+              text-align: left;
+               @include flex(flex, unset, wrap, row);
+               gap: 5px;
+               align-items: center;
+               height: 80px;
+            }
+            td{
+              text-align: right;
             }
           }
-          .InfoDiv_list {
-            @include flex(flex, unset, nowrap, column);
-            gap: 100px;
-            // width: 100%;
-            width: 50%;
-            li {
-              @include flex(flex, unset, nowrap, row);
-              gap: 5px;
-              align-items: $alignItems;
-              // border-bottom: 1px solid;
-            }
-          }
+        }
+          // ul {
+          //   list-style: none;
+          // }
+          // .InfoDiv {
+          //   @include flex(flex, flex-end, wrap, column);
+          //   gap: 100px;
+          //   width: 50%;
+          //   li {
+          //     @include flex(flex, space-between, nowrap, row);
+          //     gap: 5px;
+          //     align-items: $alignItems;
+          //     // border-bottom: 1px solid;
+          //     p {
+          //       @include flex(flex, center, nowrap, row);
+          //       color: $primary_dkprp_clr;
+          //       align-items: center;
+          //       gap: 5px;
+          //       &:hover {
+          //         text-decoration: $underline_decore black;
+          //       }
+          //     }
+          //   }
+          // }
+          // .InfoDiv_list {
+          //   @include flex(flex, unset, nowrap, column);
+          //   gap: 100px;
+          //   // width: 100%;
+          //   width: 50%;
+          //   li {
+          //     @include flex(flex, unset, nowrap, row);
+          //     gap: 5px;
+          //     align-items: $alignItems;
+          //     // border-bottom: 1px solid;
+          //   }
+          // }
           // .userDiv {
           //   @include flex(flex, center, wrap, row);
           //   gap: 20px;
@@ -1118,18 +1170,37 @@
           max-width: 700px;
           padding: 20px;
           margin: 20px;
-          ul {
-            list-style: none;
+          // ul {
+          //   list-style: none;
+          // }
+          // .InfoDiv {
+          //   display: flex;
+          //   justify-content: flex-end;
+          //   flex-wrap: wrap;
+          //   flex-direction: column;
+          //   gap: 100px;
+          //   width: 50%;
+          // }
+   .user_info_table{
+          width: 100%;
+          .tableR{
+            height: 60px;
+            border-bottom: 1px solid;
+  th, td:not(:last-child){
+              border-bottom: 2px solid rgb(232, 229, 229);
+            }
+            th{
+              text-align: left;
+               @include flex(flex, unset, wrap, row);
+               gap: 5px;
+               align-items: center;
+               height: 80px;
+            }
+            td{
+              text-align: right;
+            }
           }
-          .InfoDiv {
-            display: flex;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            flex-direction: column;
-            gap: 100px;
-            width: 50%;
-          }
-
+        }
         }
 
         .blogsDiv {
@@ -1589,49 +1660,71 @@
           max-width: 700px;
           padding: 10px;
           margin: 10px;
-          ul {
-            list-style: none;
-          }
-          .InfoDiv {
-            @include flex(flex, flex-end, wrap, column);
-            gap: 100px;
-            width: 50%;
-            li {
-              @include flex(flex, flex-start, nowrap, row);
-              gap: 5px;
-              align-items: $alignItems;
-              // border-bottom: 1px solid;
-              p {
-                @include flex(flex, center, nowrap, row);
-                color: $primary_dkprp_clr;
-                align-items: center;
-                gap: 5px;
-                &:hover {
-                  text-decoration: $underline_decore black;
-                }
-              }
-            }
-            .InfoDiv_list {
-              @include flex(flex, unset, nowrap, column);
-              gap: 100px;
-              // width: 100%;
-              width: 50%;
-              li {
-                @include flex(flex, unset, nowrap, row);
-                gap: 5px;
-                align-items: $alignItems;
-                // border-bottom: 1px solid;
-                font-size: x-large;
 
-                .profile_info_icon {
-                  // font-size: larger;
-                  fill: blue;
-                  stroke: red;
-                  stroke-width: 12px;
-                }
-              }
+             .user_info_table{
+          width: 100%;
+          .tableR{
+            height: 60px;
+            border-bottom: 1px solid;
+
+            th, td{
+              border-bottom: 2px solid rgb(232, 229, 229);
+            }
+            th{
+              text-align: left;
+               @include flex(flex, unset, wrap, row);
+               gap: 5px;
+               align-items: center;
+               height: 80px;
+            }
+            td{
+              text-align: right;
             }
           }
+        }
+          // ul {
+          //   list-style: none;
+          // }
+          // .InfoDiv {
+          //   @include flex(flex, flex-end, wrap, column);
+          //   gap: 100px;
+          //   width: 50%;
+          //   li {
+          //     @include flex(flex, flex-start, nowrap, row);
+          //     gap: 5px;
+          //     align-items: $alignItems;
+          //     // border-bottom: 1px solid;
+          //     p {
+          //       @include flex(flex, center, nowrap, row);
+          //       color: $primary_dkprp_clr;
+          //       align-items: center;
+          //       gap: 5px;
+          //       &:hover {
+          //         text-decoration: $underline_decore black;
+          //       }
+          //     }
+          //   }
+          //   .InfoDiv_list {
+          //     @include flex(flex, unset, nowrap, column);
+          //     gap: 100px;
+          //     // width: 100%;
+          //     width: 50%;
+          //     li {
+          //       @include flex(flex, unset, nowrap, row);
+          //       gap: 5px;
+          //       align-items: $alignItems;
+          //       // border-bottom: 1px solid;
+          //       font-size: x-large;
+
+          //       .profile_info_icon {
+          //         // font-size: larger;
+          //         fill: blue;
+          //         stroke: red;
+          //         stroke-width: 12px;
+          //       }
+          //     }
+          //   }
+          // }
 
           // .userDiv {
           //   @include flex(flex, center, wrap, column);

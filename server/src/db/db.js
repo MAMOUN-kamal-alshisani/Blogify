@@ -7,7 +7,13 @@ dotenv.config()
 
 // 'mysql://oo5jqvt1kl5f26uqlj6r:************@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":true}'
 // const sql = new Sequelize('mysql://oo5jqvt1kl5f26uqlj6r:00000000@aws.connect.psdb.cloud/omegablog?ssl={"rejectUnauthorized":false}&sslcert=/etc/ssl/certs/ca-certificates.crt')
-const sql = new Sequelize(process.env.DATABASE_URL
+const sql = new Sequelize(process.env.DATABASE_URL,{
+  dialect: 'postgres',
+  dialectOptions: {
+    connectTimeout: 30000, // 30 seconds
+  },
+}
+  
 /* ,{  
   dialectOptions: {
     ssl: { // <1>

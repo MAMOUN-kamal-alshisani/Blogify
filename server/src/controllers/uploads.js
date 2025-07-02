@@ -21,7 +21,9 @@ export const uploadProfilePic = multer({ storage: multer.memoryStorage() });
 // /// upload profile pictures controller
 export async function handleUserPictureUpload(req, res) {
 
-    const storageRef = ref(
+  try{
+if(req.file.originalname !== undefined){
+ const storageRef = ref(
         storage,
         `pictures/${Date.now() + req.file.originalname}`
       );
@@ -45,6 +47,14 @@ export async function handleUserPictureUpload(req, res) {
         type: req.file.mimetype,
         downloadURL: downloadURL,
       });
+}
+
+  }catch(err){
+    console.log(err);
+    throw new Error(err)
+  }
+
+   
 }
 
 
