@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./scss/profile.css";
 import { useQueries, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
@@ -27,6 +27,8 @@ import { FiDelete } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 
 export default function Profile() {
+  const ImgUploadBtn = document.querySelector("#user-img-btn");
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   // const [profilePictureData,setProfilePictureData] = useState(null)
@@ -40,6 +42,7 @@ export default function Profile() {
   const [cookies] = useCookies("user");
   const [imgFile, setImgFile] = useState("");
   const [blogFile, setBlogFile] = useState("");
+  const [categoryText, setCategoryText] = useState("");
   const [editBlogData, setEditBlogData] = useState({
     title: "",
     desc: "",
@@ -86,12 +89,14 @@ export default function Profile() {
     try {
       const File = await upload();
       // console.log(File.downloadURL);
-      if (File) {
+      if (File.downloadURL) {
         const url = `${process.env.REACT_APP_SERVER_API}/api/user/profile/${cookies.user.id}`;
         const res = await axios.put(url, {
           picture: File.downloadURL,
         });
         return res.data;
+      } else {
+        throw new Error("no picture has been selected!");
       }
     } catch (err) {
       console.log(err);
@@ -123,7 +128,7 @@ export default function Profile() {
         const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${blog.id}`;
         const res = await axios.put(url, {
           title: editBlogData.title,
-          category: editBlogData.category,
+          category: editBlogData.category === 'other' ? categoryText : editBlogData.category,
           desc: editBlogData.desc,
           photo: File.downloadURL,
         });
@@ -132,7 +137,7 @@ export default function Profile() {
         const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${blog.id}`;
         const res = await axios.put(url, {
           title: editBlogData.title,
-          category: editBlogData.category,
+          category: editBlogData.category === 'other' ? categoryText : editBlogData.category,
           desc: editBlogData.desc,
         });
         return res.data;
@@ -237,6 +242,7 @@ export default function Profile() {
   const updateUserFile = useMutation({
     // mutationKey: ["formInput"],
     mutationFn: () => handleFile(),
+
     onSuccess: () => {
       queryClient.invalidateQueries(["formInput"]);
       let successfull_upload_cn = document.createElement("div");
@@ -247,6 +253,7 @@ export default function Profile() {
 
       setTimeout(() => {
         successfull_upload_cn.remove();
+        setImgFile("");
       }, 5000);
     },
   });
@@ -286,7 +293,32 @@ export default function Profile() {
     setEditBlogData(blog);
     setShowEditSec(true);
   };
-
+  useEffect(() => {
+   
+    const categoryInput = document.querySelector("#other-text");
+    // console.log(categoryInput);
+    if(categoryInput){
+   if (editBlogData.category === "other") {
+      categoryInput.style.visibility = "visible";
+      //  setCategoryText(categoryText)
+      categoryInput.style.display = "block";
+    } else {
+      categoryInput.style.visibility = "collapse";
+      categoryInput.style.display = "none";
+      setCategoryText(categoryText);
+    }
+    }
+ 
+  }, [editBlogData.category, setEditBlogData, categoryText, setCategoryText]);
+  useEffect(() => {
+    if (ImgUploadBtn !== null) {
+      if (imgFile !== "") {
+        ImgUploadBtn.disabled = false;
+      }
+    }
+    // userImgUploadBtn.disabled = true
+    // console.log(userImgUploadBtn);
+  }, [imgFile, setImgFile, ImgUploadBtn]);
   if (api[0]?.isLoading && api[1].isLoading) {
     return <Skeleton count={10} />;
   }
@@ -324,10 +356,12 @@ export default function Profile() {
               <h4>{cookies.user.UserName}</h4>
               <p>{cookies.user.Email}</p>
             </div>
-
+            <p className="img_Name">{imgFile?.name}</p>
             <button
               className="userImgBtn"
+              id="user-img-btn"
               onClick={() => updateUserFile.mutate()}
+              // disabled
             >
               update profile image
             </button>
@@ -357,123 +391,64 @@ export default function Profile() {
 
           {navBtn === "content" && (
             <div className="user_info_div">
-              <ul className="InfoDiv">
-                <li>
-                  FullName:{" "}
-                  {/* <p>
-                  
-                  </p> */}
-                </li>
-                <li>
-                  birthDate:{" "}
-                  {/* <p>
-                    {" "}
-  
-                  </p> */}
-                </li>
-                <li>
-                  phone:{" "}
-                  {/* <p>
-                   
-                  </p> */}
-                </li>
-                <li>
-                  gender:{" "}
-                  {/* <p>
-                    {" "}
-  
-                  </p> */}
-                </li>
-                <li>
-                  country:{" "}
-                  {/* <p>
-                    {" "}
-                   
-                  </p> */}
-                </li>
-                <li>
-                  city:{" "}
-                  {/* <p>
-                 
-                  </p> */}
-                </li>
-              </ul>
-
-              <ul className="InfoDiv_list">
-                <li>
-                <BsFillPersonFill className="profile_info_icon"/>
-                    {userInfo?.fullName}
-                </li>
-                <li>
-
-                <BsCalendarDate className="profile_info_icon"/>{" "}
-                    {userInfo?.birthDate?.slice(
-                      0,
-                      userInfo?.birthDate?.indexOf("T")
-                    )}
-                </li>
-    
-                <li>
-                <RiPhoneFill className="profile_info_icon"/> {userInfo?.phone}
-                </li>
-                <li>
-                {userInfo?.gender === "male" ? (
-                      <CgGenderMale className="profile_info_icon"/>
-                    ) : (
-                      <CgGenderFemale className="profile_info_icon"/>
-                    )}{" "}
-                    {userInfo?.gender || ""}
-                  </li>
-                  <li>
-                  <TbMapPinFilled className="profile_info_icon"/> {userInfo?.country}
-                  </li>
-                  <li>
-                  <TbMapPins className="profile_info_icon"/> {userInfo?.city}
-                  </li>
-                  {/* <li>
-                  
-                  </li> */}
-              </ul>
-{/* 
-              <ul className="userDiv">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-              </ul> */}
-
-              {/* <ul className="userDiv">
-                <li>
-                  <BsFillPersonFill />
-                  {userInfo?.fullName}
-                </li>
-                <li>
-                  <BsCalendarDate />{" "}
-                  {userInfo?.birthDate?.slice(
-                    0,
-                    userInfo?.birthDate?.indexOf("T")
-                  )}
-                </li>
-                <li>
-                  <RiPhoneFill /> {userInfo?.phone}
-                </li>
-                <li>
-                  {userInfo?.gender === "male" ? (
-                    <CgGenderMale />
-                  ) : (
-                    <CgGenderFemale />
-                  )}{" "}
-                  {userInfo?.gender || ""}
-                </li>
-                <li>
-                  <TbMapPinFilled /> {userInfo?.country}
-                </li>
-                <li>
-                  <TbMapPins /> {userInfo?.city}
-                </li>
-              </ul> */}
+              <table className="user_info_table">
+                <tbody>
+                  <tr className="tableR">
+                    <th>
+                      <BsFillPersonFill className="profile_info_icon" />
+                      FullName
+                    </th>
+                    <td>{userInfo?.fullName}</td>
+                  </tr>
+                  <tr className="tableR">
+                    <th>
+                      <BsCalendarDate className="profile_info_icon calendar-icon" />
+                      BirthDate
+                    </th>
+                    <td>
+                      {" "}
+                      {userInfo?.birthDate?.slice(
+                        0,
+                        userInfo?.birthDate?.indexOf("T")
+                      )}
+                    </td>
+                  </tr>
+                  <tr className="tableR">
+                    <th>
+                      <RiPhoneFill className="profile_info_icon phone-icon" />
+                      Phone
+                    </th>
+                    <td>{userInfo?.phone}</td>
+                  </tr>
+                  <tr className="tableR">
+                    <th>
+                      {" "}
+                      {userInfo?.gender === "male" ? (
+                        <CgGenderMale className="profile_info_icon male-icon" />
+                      ) : (
+                        <CgGenderFemale className="profile_info_icon female-icon" />
+                      )}
+                      Gender
+                    </th>
+                    <td>{userInfo?.gender || ""}</td>
+                  </tr>
+                  <tr className="tableR">
+                    <th>
+                      <TbMapPinFilled className="profile_info_icon gps-icon" />
+                      Country
+                    </th>
+                    <td>{userInfo?.country}</td>
+                  </tr>
+                  <tr className="tableR">
+                    <th>
+                      {" "}
+                      <TbMapPins className="profile_info_icon" />
+                      City
+                    </th>
+                    <td>{userInfo?.city}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           )}
 
@@ -555,18 +530,33 @@ export default function Profile() {
 
           <div className="socials_div">
             <div className="icon_cn">
-              <a href={userInfo?.twitter || ""} className="twitter_icon" target="_blank">
+              <a
+                href={userInfo?.twitter || ""}
+                className="twitter_icon"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <AiFillTwitterSquare />
               </a>
             </div>
 
             <div className="icon_cn">
-              <a href={`mailto:${userInfo?.socialMail}`} className="mail_icon" target="_blank">
+              <a
+                href={`mailto:${userInfo?.socialMail}`}
+                className="mail_icon"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <AiOutlineMail />
               </a>
             </div>
             <div className="icon_cn">
-              <a href={userInfo?.linkedIn || ""} className="linkedin_icon" target="_blank">
+              <a
+                href={userInfo?.linkedIn || ""}
+                className="linkedin_icon"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <AiFillLinkedin />
               </a>
             </div>
@@ -707,13 +697,9 @@ export default function Profile() {
 
         {showEditSec && (
           <section className="edit_blogs_cn">
-            {/* <div className="closeDiv" onClick={() => setShowEditSec(false)}>
-              <MdKeyboardDoubleArrowLeft className="close_icon" />
-            </div> */}
             <div className="edit_cn">
               <div className="imgCn">
                 <LazyLoadImage
-                  // style={{ width: "202px" }}
                   src={
                     editBlogData.photo ||
                     "http://genslerzudansdentistry.com/wp-content/uploads/2015/11/anonymous-user.png"
@@ -792,6 +778,22 @@ export default function Profile() {
                       onChange={(e) => editInputHandler(e)}
                     />
                     <label htmlFor="food">Food</label>
+                  </div>
+                  <div className="inputContainer">
+                    <input
+                      type="radio"
+                      name="category"
+                      value="other"
+                      onChange={(e) => editInputHandler(e)}
+                    />
+                    <label htmlFor="other">Other</label>
+                    <input
+                      type="text"
+                      name="category"
+                      value={categoryText}
+                      onChange={(e) => setCategoryText(e.target.value)}
+                      id="other-text"
+                    />
                   </div>
                 </div>
               </div>

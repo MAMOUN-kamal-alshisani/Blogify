@@ -7,7 +7,7 @@ export default function User({ blog }) {
   const [userPic, setUserPic] = useState("");
   ;
   const getUser = async (blog) => {
-    if (blog.UserId !== undefined) {
+    if (blog?.UserId !== undefined) {
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/api/user/${blog?.UserId}`
       );
@@ -16,7 +16,7 @@ export default function User({ blog }) {
     }
   };
   const getUserPicture = async (blog) => {
-    if (blog.UserId !== undefined) {
+    if (blog?.UserId !== undefined) {
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/api/user/profile/${blog?.UserId}`
       );
@@ -36,7 +36,7 @@ export default function User({ blog }) {
     queryKey: ["Userblogs", blog],
     queryFn: () => getUserPicture(blog),
     onSuccess: (data) => {
-      setUserPic(data.picture);
+      setUserPic(data?.picture);
     },
   });
   return (

@@ -1,6 +1,6 @@
 import { useCookies } from "react-cookie";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./scss/post.css";
@@ -10,55 +10,44 @@ export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("");
+  const [categoryText, setCategoryText] = useState("");
+
   const [imgFile, setImgFile] = useState(null);
   const [cookies] = useCookies("user");
 
   const upload = async () => {
     try {
-      const formData = new FormData();
-      formData.append("file", imgFile);
-      const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_API}/api/upload/blog`,
-        formData
-      );
-      return res.data;
+      if (imgFile) {
+        const formData = new FormData();
+        formData.append("file", imgFile);
+        const res = await axios.post(
+          `${process.env.REACT_APP_SERVER_API}/api/upload/blog`,
+          formData
+        );
+        return res.data;
+      }
     } catch (err) {
       console.log(err);
     }
   };
+
   const handleFile = async () => {
     try {
-      // const File = await upload();
+
+      const File = await upload();
       const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
       const res = await axios.post(url, {
         title: title,
         desc: desc,
-        category: category,
+        category: category === 'other' ? categoryText : category,
         watched: "12",
+        photo: File.downloadURL,
       });
-
       return res.data;
     } catch (err) {
       console.log(err);
     }
   };
-  // const handleFile = async () => {
-  //   try {
-  //     const File = await upload();
-  //     const url = `${process.env.REACT_APP_SERVER_API}/api/blog/${cookies.user.id}`;
-  //     const res = await axios.post(url, {
-  //       title: title,
-  //       desc: desc,
-  //       category: category,
-  //       watched: "12",
-  //       photo: File.downloadURL,
-  //     });
-
-  //     return res.data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   const { mutate, isLoading } = useMutation({
     mutationKey: ["blog_upload"],
     mutationFn: handleFile,
@@ -88,14 +77,47 @@ export default function Post() {
       }, 5000);
     },
   });
+  useEffect(() => {
+    const postBtn = document.querySelector(".update_btn");
+    if (title.length <= 5) {
+      postBtn.disabled = true;
+    } else if (desc.length <= 15) {
+      postBtn.disabled = true;
+    } else if (category === null || desc === "") {
+      postBtn.disabled = true;
+    } else if (imgFile === null || desc === "") {
+      postBtn.disabled = true;
+    } else {
+      postBtn.disabled = false;
+    }
+  }, [
+    title,
+    desc,
+    category,
+    imgFile,
+    setCategory,
+    setDesc,
+    setTitle,
+    setImgFile,
+  ]);
 
+  useEffect(() => {
+    const categoryInput = document.querySelector("#other-text");
+    if (category === "other") {
+        categoryInput.style.visibility = 'visible'
+         setCategoryText(categoryText)
+    }else{
+        categoryInput.style.visibility = 'collapse'
+        setCategoryText(categoryText)
+    }
+  }, [category, setCategory,categoryText,setCategoryText]);
   if (isLoading) {
     const update_btn = document.querySelector(".update_btn");
     update_btn.disabled = true;
   }
   return (
     <div className="Post">
-      <div className="Post_cn">
+      <form className="Post_cn" onSubmit={(e) => e.preventDefault()}>
         <div className="TextCn1">
           <div className="titleContainer">
             <input
@@ -164,6 +186,24 @@ export default function Post() {
               />
               <label htmlFor="food">Food</label>
             </div>
+
+            <div className="inputContainer ">
+              <input
+                type="radio"
+                name="category"
+                value="other"
+                onChange={(e) => setCategory(e.target.value)}
+              />
+              <label id="other-label" htmlFor="other">Other</label>
+             
+            </div>
+             <input
+                type="text"
+                name="category"
+                value={categoryText}
+                onChange={(e) => setCategoryText(e.target.value)}
+                id="other-text"
+              />
           </div>
           <div className="publishContainer">
             <h1>Publish</h1>
@@ -182,6 +222,7 @@ export default function Post() {
               onChange={(e) => setImgFile(e.target.files[0])}
               required
             />
+            <p id="uploadImgName">{imgFile?.name}</p>
             <div className="publishBtn">
               <button>Save as a draft</button>
               <button className="update_btn" onClick={() => mutate()}>
@@ -190,7 +231,7 @@ export default function Post() {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
