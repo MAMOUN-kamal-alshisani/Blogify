@@ -16,7 +16,7 @@ const server = express();
 
 /// middleware
 server.use(express.static("public"));
-server.use(cors( {credentials: true }));
+server.use(cors());
 server.use(cookieParser());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
