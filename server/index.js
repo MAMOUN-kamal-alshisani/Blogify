@@ -16,7 +16,7 @@ const server = express();
 
 /// middleware
 server.use(express.static("public"));
-server.use(cors({ origin: [process.env.DATABASE_URL,process.env.CLIENT_APP,process.env.FIREBASE_URL] }));
+server.use(cors());
 server.use(cookieParser());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
