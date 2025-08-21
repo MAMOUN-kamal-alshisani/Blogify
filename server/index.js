@@ -13,10 +13,11 @@ import {uploadRoute} from './src/routes/uploads.js'
 const PORT = process.env.PORT || 4005;
 const server = express();
 
+console.log(process.env.FIREBASE_URL,'549849849');
 
 /// middleware
 server.use(express.static("public"));
-server.use(cors());
+server.use(cors({ origin: [process.env.DATABASE_URL,process.env.CLIENT_APP,process.env.FIREBASE_URL],credentials: true  }));
 server.use(cookieParser());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
