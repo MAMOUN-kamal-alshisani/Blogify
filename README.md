@@ -45,4 +45,4 @@ Enable users to log in and log out securely**
 **Implement error handling for various scenarios (e.g., invalid requests, server errors)
 Return appropriate error messages and status codes to clients**
 
-deployed site link: https://mn-blog.netlify.app/
+deployed site link: https://mn-blogify.netlify.app/
